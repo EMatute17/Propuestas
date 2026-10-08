@@ -148,6 +148,14 @@
     });
   }
 
+  /* ---------- galeria: solo es una parada del teclado cuando de verdad se desplaza ---------- */
+  var gal = qs('.galeria');
+  if (gal) {
+    var ajustaGal = function () { if (gal.scrollWidth > gal.clientWidth + 1) gal.setAttribute('tabindex', '0'); else gal.removeAttribute('tabindex'); };
+    ajustaGal();
+    if ('ResizeObserver' in window) new ResizeObserver(ajustaGal).observe(gal); else window.addEventListener('resize', ajustaGal);
+  }
+
   /* ---------- galeria: paralaje suave en escritorio ---------- */
   var figs = qsa('.galeria figure');
   if (figs.length && window.matchMedia && window.matchMedia('(min-width:900px)').matches) {

@@ -291,14 +291,16 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
         I.add("G-INTERACCION", "Pestañas de la carta con teclado y diálogo de la muestra", ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", "flechas, Fin, Escape y retorno del foco", fl)
         # ---- foco
-        fl = []
+        fl, av = [], []
         for did, f in D["foco"].items():
             if f["primero"] != "a.salto": fl.append(f"{did}: el primer foco no es el enlace de salto ({f['primero']})")
             if f["sinAnillo"]: fl.append(f"{did}: sin indicador de foco: {f['sinAnillo']}")
             if f["noAlcanzados"]: fl.append(f"{did}: {f['noAlcanzados']} controles inalcanzables con Tab")
             if f["fueraDePantalla"]: fl.append(f"{did}: foco fuera de pantalla en {f['fueraDePantalla']}")
             if f.get("tapadoPorBarra"): fl.append(f"{did}: foco tapado por la barra fija en {f['tapadoPorBarra']}")
-        I.add("G-FOCO", "Teclado: orden, alcance y foco siempre visible", ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", f"{len(D['foco'])} dispositivos recorridos con Tab", fl)
+            if f.get("aroNoVisible"): fl.append(f"{did}: el aro de foco no se ve en pantalla en {f['aroNoVisible']}")
+            if f.get("tapadoParcial"): av.append(f"{did}: la barra fija tapa en parte el elemento enfocado: {f['tapadoParcial']}")
+        I.add("G-FOCO", "Teclado: orden, alcance y foco siempre visible", ["R-LEG-05"], "bloqueo", "FAIL" if fl else ("WARN" if av else "PASS"), f"{len(D['foco'])} dispositivos recorridos con Tab", fl + av)
         # ---- movimiento
         m = D["movimiento"]
         fl = []

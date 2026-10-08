@@ -256,16 +256,29 @@ async function probarFoco(d) {
       const el = document.activeElement; if (!el || el === document.body) return null;
       const cs = getComputedStyle(el), b = el.getBoundingClientRect();
       const barra = document.querySelector('.barra-movil'), rb = barra && getComputedStyle(barra).visibility !== 'hidden' && getComputedStyle(barra).display !== 'none' ? barra.getBoundingClientRect() : null;
-      const tapado = !!rb && rb.top < innerHeight - 1 && !el.closest('.barra-movil') && b.bottom > rb.top + 1 && b.top < rb.bottom && b.right > rb.left && b.left < rb.right;   // WCAG 2.4.11: el foco no queda tapado por la barra fija
+      const vw = innerWidth, vh = innerHeight;
+      const conBarra = !!rb && rb.top < vh - 1 && !el.closest('.barra-movil');
+      const limiteInf = conBarra ? rb.top : vh;
+      // WCAG 2.4.11: parte del elemento que se ve en la pantalla y fraccion que tapa la barra fija
+      const vx0 = Math.max(b.left, 0), vx1 = Math.min(b.right, vw), vy0 = Math.max(b.top, 0), vy1 = Math.min(b.bottom, vh);
+      const areaVista = Math.max(0, vx1 - vx0) * Math.max(0, vy1 - vy0);
+      const tapada = conBarra ? Math.max(0, Math.min(vx1, rb.right) - Math.max(vx0, rb.left)) * Math.max(0, Math.min(vy1, rb.bottom) - Math.max(vy0, rb.top)) : 0;
+      const fraccionTapada = areaVista > 0 ? tapada / areaVista : 0;
       const anillo = (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) || (cs.boxShadow && cs.boxShadow !== 'none');
-      return { i: el.getAttribute('data-gate-i'), nombre: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''), anillo: !!anillo, estilo: cs.outlineStyle + ' ' + cs.outlineWidth, enPantalla: b.bottom > 0 && b.top < innerHeight + 1 && b.right > 0 && b.left < innerWidth + 1, tapado };
+      // el aro de foco se tiene que ver: al menos un lado completo (de 24 px o mas) dentro de la pantalla y por encima de la barra fija
+      const ow = parseFloat(cs.outlineWidth) || 0, oo = parseFloat(cs.outlineOffset) || 0, ex = (cs.outlineStyle !== 'none' && ow > 0) ? oo + ow / 2 : 2;
+      const L = b.left - ex, R = b.right + ex, T = b.top - ex, B = b.bottom + ex;
+      const dentroX = (x) => x >= 0 && x <= vw, dentroY = (y) => y >= 0 && y <= limiteInf;
+      const spanX = Math.min(R, vw) - Math.max(L, 0), spanY = Math.min(B, limiteInf) - Math.max(T, 0);
+      const aroVisible = (dentroY(T) && spanX >= 24) || (dentroY(B) && spanX >= 24) || (dentroX(L) && spanY >= 24) || (dentroX(R) && spanY >= 24);
+      return { i: el.getAttribute('data-gate-i'), nombre: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''), anillo: !!anillo, estilo: cs.outlineStyle + ' ' + cs.outlineWidth, enPantalla: b.bottom > 0 && b.top < innerHeight + 1 && b.right > 0 && b.left < innerWidth + 1, fraccionTapada, aroVisible };
     });
     if (!info) continue;
     seq.push(info); vistos.add(info.i);
   }
   await ctx.close();
   const faltan = []; for (let k = 0; k < total; k++) if (!vistos.has(String(k))) faltan.push(k);
-  return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.tapado).map((s) => s.nombre).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
+  return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.fraccionTapada >= 0.5).map((s) => s.nombre).slice(0, 6), tapadoParcial: seq.filter((s) => s.fraccionTapada > 0 && s.fraccionTapada < 0.5).map((s) => s.nombre + ' ' + Math.round(s.fraccionTapada * 100) + '%').slice(0, 6), aroNoVisible: seq.filter((s) => !s.aroVisible).map((s) => s.nombre).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
 }
 for (const id of ['pc-1440', 'iph-390', 'se-horiz-667', 'mini-768']) { const d = lista.find((x) => x.id === id); if (d) R.foco[id] = await probarFoco(d); }
 

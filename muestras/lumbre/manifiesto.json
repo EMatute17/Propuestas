@@ -3,7 +3,7 @@
  "version_ficha": "2.0.0",
  "version_generador": "0.1.0",
  "version_reglas": "0.1.0",
- "fecha": "2026-10-08T02:22:15Z",
+ "fecha": "2026-10-08T02:30:43Z",
  "modo": "muestra",
  "ejemplo_ficticio": true,
  "pais": "VE",
@@ -248,12 +248,12 @@
   "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre"
  ],
  "pesos_bytes": {
-  "html": 70096,
-  "css_min": 24424,
-  "js_min": 17417,
+  "html": 70720,
+  "css_min": 24748,
+  "js_min": 17717,
   "fuentes": 91276,
   "imagenes": 3324883
  },
  "base_url": null,
- "paquete_sha256": "1c3006fec8411c7a05b4c90a43c99694940725c06c88091685dd6951170a2c29"
+ "paquete_sha256": "c1cd5b849a4e76c28435dadd6e45b827cf61589471748c94a7e999728d2e07d5"
 }
