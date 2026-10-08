@@ -1,0 +1,341 @@
+{
+  "id": "lumbre",
+  "version": "2.0.0",
+  "modo": "muestra",
+  "idioma": "es",
+  "confirmacion": {
+    "estado": "ejemplo",
+    "fecha": "2026-10-08",
+    "nota": "Restaurante ficticio. Todos los datos, textos y precios son de ejemplo."
+  },
+  "negocio": {
+    "nombre": "Lumbre",
+    "cocina": "Cocina de brasa y pasta fresca",
+    "ciudad": "Caracas",
+    "pais": "VE",
+    "direccion": "Av. Principal de Las Mercedes, local 4",
+    "zona_horaria": "America/Caracas",
+    "lema": "Fuego lento, pasta hecha a mano y una mesa que no tiene prisa.",
+    "descripcion": "Cocina de brasa y pasta fresca en Las Mercedes, Caracas. Mira la carta, el horario y reserva tu mesa por WhatsApp."
+  },
+  "contacto": {
+    "whatsapp": null,
+    "telefono": null,
+    "mapa_consulta": "Av. Principal de Las Mercedes, local 4, Caracas"
+  },
+  "conducta": {
+    "objetivo": "reservar",
+    "canal": "whatsapp"
+  },
+  "reservas": {
+    "maximo_personas": 12,
+    "personas_por_defecto": 2,
+    "paso_minutos": 30,
+    "ultima_antes_del_cierre_min": 60,
+    "antelacion_min": 60,
+    "hora_preferida": "20:00"
+  },
+  "moneda": "USD",
+  "horario": {
+    "lun": [],
+    "mar": [
+      [
+        "12:00",
+        "22:00"
+      ]
+    ],
+    "mie": [
+      [
+        "12:00",
+        "22:00"
+      ]
+    ],
+    "jue": [
+      [
+        "12:00",
+        "22:00"
+      ]
+    ],
+    "vie": [
+      [
+        "12:00",
+        "23:30"
+      ]
+    ],
+    "sab": [
+      [
+        "12:00",
+        "23:30"
+      ]
+    ],
+    "dom": [
+      [
+        "12:00",
+        "17:00"
+      ]
+    ]
+  },
+  "historia": {
+    "cifra": 14,
+    "unidad": "horas de brasa",
+    "texto": "Todo en Lumbre pasa por el fuego, y el fuego no tiene prisa. Se enciende al amanecer; la primera mesa se sirve al mediodía.",
+    "pasos": [
+      {
+        "titulo": "Encender",
+        "texto": "Encina y quebracho desde las seis de la mañana. La brasa necesita horas para ser brasa."
+      },
+      {
+        "titulo": "Reposar",
+        "texto": "La carne madura en cámara hasta 28 días antes de tocar el fuego."
+      },
+      {
+        "titulo": "Servir",
+        "texto": "Pasta hecha a mano cada tarde, terminada en la mesa."
+      }
+    ]
+  },
+  "carta": [
+    {
+      "id": "c0",
+      "titulo": "Para empezar",
+      "platos": [
+        {
+          "id": "c0-0",
+          "nombre": "Croquetas de rabo de toro",
+          "precio": 9,
+          "descripcion": "Crema de rabo estofado, mayonesa de ajo asado y hierbas.",
+          "foto": "plato_croquetas"
+        },
+        {
+          "id": "c0-1",
+          "nombre": "Carpaccio ahumado",
+          "precio": 14,
+          "descripcion": "Lomo fino, parmesano añejo, alcaparras fritas y aceite de brasa."
+        },
+        {
+          "id": "c0-2",
+          "nombre": "Pan de masa madre",
+          "precio": 6,
+          "descripcion": "Fermentado 36 horas, con mantequilla tostada en la brasa."
+        }
+      ]
+    },
+    {
+      "id": "c1",
+      "titulo": "Pasta fresca",
+      "platos": [
+        {
+          "id": "c1-0",
+          "nombre": "Ravioli de ragú de res",
+          "precio": 18,
+          "firma": true,
+          "descripcion": "Cocido ocho horas, salsa de su jugo y brotes de amaranto.",
+          "foto": "plato_ravioli"
+        },
+        {
+          "id": "c1-1",
+          "nombre": "Tortelli de calabaza y chorizo",
+          "precio": 17,
+          "descripcion": "Mantequilla de salvia y migas de chorizo crujiente.",
+          "foto": "plato_tortelli"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "titulo": "A la brasa",
+      "platos": [
+        {
+          "id": "c2-0",
+          "nombre": "Chuletón madurado",
+          "precio": 68,
+          "firma": true,
+          "descripcion": "Un kilo, 28 días de maduración, sal gorda y limón asado. Para dos.",
+          "foto": "plato_chuleton"
+        },
+        {
+          "id": "c2-1",
+          "nombre": "Entraña con chimichurri",
+          "precio": 29,
+          "descripcion": "Punto exacto, chimichurri de hierbas frescas y papas rotas."
+        },
+        {
+          "id": "c2-2",
+          "nombre": "Pulpo a las brasas",
+          "precio": 31,
+          "descripcion": "Cocción lenta, puré de yuca ahumada y pimentón."
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "titulo": "Dulces",
+      "platos": [
+        {
+          "id": "c3-0",
+          "nombre": "Tierra de chocolate",
+          "precio": 11,
+          "descripcion": "Chocolate negro, dulce de leche y helado de vainilla.",
+          "foto": "plato_chocolate"
+        },
+        {
+          "id": "c3-1",
+          "nombre": "Helado de leche quemada",
+          "precio": 8,
+          "descripcion": "Con sal de mar y aceite de oliva."
+        }
+      ]
+    }
+  ],
+  "galeria": [
+    {
+      "foto": "sala_azul",
+      "pie": "Sala azul"
+    },
+    {
+      "foto": "rincon_rojo",
+      "pie": "El rincón rojo"
+    },
+    {
+      "foto": "sala_roja",
+      "pie": "La sala roja"
+    },
+    {
+      "foto": "reservado",
+      "pie": "El reservado"
+    }
+  ],
+  "textos": {
+    "carta_titulo": "La carta",
+    "carta_sobretitulo": "Lo que sale de la brasa",
+    "ambiente_titulo": "Un lugar para quedarse",
+    "reserva_titulo": "Una mesa junto al fuego",
+    "reserva_texto": "Dinos cuándo vienes y cuántos son. Te confirmamos por WhatsApp.",
+    "visita_titulo": "Visítanos"
+  },
+  "activos": {
+    "hero": {
+      "archivo": "lumbre/hero_pasta.webp",
+      "foco": [
+        0.52,
+        0.42
+      ],
+      "alt": "Ravioli de ragú de res con brotes rojos de amaranto",
+      "ajustes": {
+        "contraste": 1.06,
+        "color": 1.08
+      }
+    },
+    "plato_croquetas": {
+      "archivo": "lumbre/plato_croquetas.webp",
+      "alt": "Croquetas de rabo de toro"
+    },
+    "plato_ravioli": {
+      "archivo": "lumbre/plato_ravioli.webp",
+      "alt": "Ravioli de ragú de res"
+    },
+    "plato_tortelli": {
+      "archivo": "lumbre/plato_tortelli.webp",
+      "alt": "Tortelli de calabaza y chorizo"
+    },
+    "plato_chuleton": {
+      "archivo": "lumbre/plato_chuleton.webp",
+      "alt": "Chuletón madurado"
+    },
+    "plato_chocolate": {
+      "archivo": "lumbre/plato_chocolate.webp",
+      "alt": "Tierra de chocolate"
+    },
+    "sala_azul": {
+      "archivo": "lumbre/sala_azul.webp",
+      "alt": "Sala con banquetas de cuero y paredes azules"
+    },
+    "rincon_rojo": {
+      "archivo": "lumbre/rincon_rojo.webp",
+      "alt": "Rincón de pared roja con mesas para dos"
+    },
+    "sala_roja": {
+      "archivo": "lumbre/sala_roja.webp",
+      "alt": "Sala de paredes rojas con estanterías y mesas redondas"
+    },
+    "reservado": {
+      "archivo": "lumbre/reservado.webp",
+      "alt": "Reservado con mesas y sillas grises"
+    }
+  },
+  "procedencia_activos": {
+    "origen": "referencia",
+    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+    "licencia": "sin confirmar; solo para demostración privada"
+  },
+  "estilo": {
+    "personalidad": "elegante",
+    "paleta": "brasa",
+    "tipografia": "bodoni-manrope",
+    "portada": "luz_brasas",
+    "carta": "pestanas_lista",
+    "galeria": "mosaico",
+    "forma": "recta",
+    "movimiento": "lento",
+    "orden": [
+      "portada",
+      "idea",
+      "carta",
+      "ambiente",
+      "reserva",
+      "visita",
+      "cierre"
+    ]
+  },
+  "muestra": {
+    "ejemplo_ficticio": true,
+    "base_url": null
+  },
+  "gate_pruebas_horario": [
+    {
+      "nombre": "miércoles 15:00 en Caracas, abierto",
+      "reloj": "2026-10-07T19:00:00Z",
+      "esperado": "Abierto ahora · cierra a las 22:00"
+    },
+    {
+      "nombre": "miércoles 23:00 en Caracas, cerrado hasta mañana",
+      "reloj": "2026-10-08T03:00:00Z",
+      "esperado": "Cerrado · abre mañana a las 12:00"
+    },
+    {
+      "nombre": "lunes 13:00 en Caracas, cerrado todo el día",
+      "reloj": "2026-10-05T17:00:00Z",
+      "esperado": "Cerrado · abre mañana a las 12:00"
+    },
+    {
+      "nombre": "viernes 23:45 en Caracas, cerrado hasta el sábado",
+      "reloj": "2026-10-10T03:45:00Z",
+      "esperado": "Cerrado · abre mañana a las 12:00"
+    },
+    {
+      "nombre": "domingo 16:30 en Caracas, abierto",
+      "reloj": "2026-10-11T20:30:00Z",
+      "esperado": "Abierto ahora · cierra a las 17:00"
+    },
+    {
+      "nombre": "domingo 17:30 en Caracas, abre el martes",
+      "reloj": "2026-10-11T21:30:00Z",
+      "esperado": "Cerrado · abre el martes a las 12:00"
+    },
+    {
+      "nombre": "visitante en Tokio, mismo instante que miércoles 15:00 en Caracas",
+      "reloj": "2026-10-07T19:00:00Z",
+      "zona_visitante": "Asia/Tokyo",
+      "esperado": "Abierto ahora · cierra a las 22:00"
+    },
+    {
+      "nombre": "visitante en Madrid, miércoles 06:00 en Caracas aún no abre",
+      "reloj": "2026-10-07T10:00:00Z",
+      "zona_visitante": "Europe/Madrid",
+      "esperado": "Cerrado · abre hoy a las 12:00"
+    }
+  ],
+  "excepciones_gate": {
+    "G-RESOLUCION": "Las fotos son de referencia y de baja resolución (la portada original mide 1398 px de ancho). Se sustituyen por fotos propias del restaurante o de banco libre en la versión final."
+  }
+}

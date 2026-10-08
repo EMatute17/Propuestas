@@ -1,0 +1,31 @@
+{
+  "dispositivos": [
+    {"id": "se1-320", "nombre": "iPhone SE (1.a gen)", "tipo": "telefono", "w": 320, "h": 568, "dpr": 2},
+    {"id": "fold-280", "nombre": "Galaxy Z Fold plegado", "tipo": "telefono", "w": 280, "h": 653, "dpr": 3, "estres": true},
+    {"id": "se3-375", "nombre": "iPhone SE (2.a y 3.a gen)", "tipo": "telefono", "w": 375, "h": 667, "dpr": 2},
+    {"id": "mini-360", "nombre": "iPhone 12 mini", "tipo": "telefono", "w": 360, "h": 780, "dpr": 3},
+    {"id": "s8-360", "nombre": "Galaxy S8", "tipo": "telefono", "w": 360, "h": 740, "dpr": 4},
+    {"id": "iph-390", "nombre": "iPhone 12, 13 y 14", "tipo": "telefono", "w": 390, "h": 844, "dpr": 3, "representativo": true},
+    {"id": "pro-393", "nombre": "iPhone 14 Pro", "tipo": "telefono", "w": 393, "h": 852, "dpr": 3},
+    {"id": "pix-412", "nombre": "Pixel 7", "tipo": "telefono", "w": 412, "h": 915, "dpr": 2.6},
+    {"id": "s20-412", "nombre": "Galaxy S20 Ultra", "tipo": "telefono", "w": 412, "h": 915, "dpr": 3.5},
+    {"id": "max-430", "nombre": "iPhone 14 Pro Max", "tipo": "telefono", "w": 430, "h": 932, "dpr": 3},
+    {"id": "se-horiz-667", "nombre": "iPhone SE horizontal", "tipo": "telefono", "w": 667, "h": 375, "dpr": 2, "horizontal": true, "representativo": true},
+    {"id": "iph-horiz-844", "nombre": "iPhone 14 horizontal", "tipo": "telefono", "w": 844, "h": 390, "dpr": 3, "horizontal": true},
+    {"id": "pix-horiz-915", "nombre": "Pixel 7 horizontal", "tipo": "telefono", "w": 915, "h": 412, "dpr": 2.6, "horizontal": true},
+    {"id": "fold-673", "nombre": "Galaxy Z Fold desplegado", "tipo": "telefono", "w": 673, "h": 841, "dpr": 2.6},
+    {"id": "mini-768", "nombre": "iPad mini", "tipo": "tablet", "w": 768, "h": 1024, "dpr": 2, "representativo": true},
+    {"id": "ipad-810", "nombre": "iPad", "tipo": "tablet", "w": 810, "h": 1080, "dpr": 2},
+    {"id": "pro11-834", "nombre": "iPad Pro 11", "tipo": "tablet", "w": 834, "h": 1194, "dpr": 2},
+    {"id": "pro13-1024", "nombre": "iPad Pro 12.9", "tipo": "tablet", "w": 1024, "h": 1366, "dpr": 2},
+    {"id": "ipad-horiz-1024", "nombre": "iPad horizontal", "tipo": "tablet", "w": 1024, "h": 768, "dpr": 2, "horizontal": true},
+    {"id": "pro11-horiz-1194", "nombre": "iPad Pro 11 horizontal", "tipo": "tablet", "w": 1194, "h": 834, "dpr": 2, "horizontal": true},
+    {"id": "pc-1280", "nombre": "Portatil 1280", "tipo": "escritorio", "w": 1280, "h": 720, "dpr": 1},
+    {"id": "pc-1366", "nombre": "Portatil 1366", "tipo": "escritorio", "w": 1366, "h": 768, "dpr": 1},
+    {"id": "pc-1440", "nombre": "Escritorio 1440", "tipo": "escritorio", "w": 1440, "h": 900, "dpr": 1, "representativo": true},
+    {"id": "pc-1536", "nombre": "Portatil 1536", "tipo": "escritorio", "w": 1536, "h": 864, "dpr": 1.25},
+    {"id": "pc-1920", "nombre": "Escritorio Full HD", "tipo": "escritorio", "w": 1920, "h": 1080, "dpr": 1},
+    {"id": "pc-2560", "nombre": "Escritorio 2K", "tipo": "escritorio", "w": 2560, "h": 1440, "dpr": 1},
+    {"id": "pc-3440", "nombre": "Ultrapanoramico", "tipo": "escritorio", "w": 3440, "h": 1440, "dpr": 1}
+  ]
+}

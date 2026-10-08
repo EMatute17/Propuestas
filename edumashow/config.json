@@ -1,0 +1,19 @@
+{
+  "agencia": {
+    "nombre": "Edumashow",
+    "whatsapp": "584127705633",
+    "correo": "Eduardopm@edumashow.online",
+    "dominio": "edumashow.online"
+  },
+  "gate": {
+    "version": "0.1.0",
+    "presupuesto": {
+      "inicial_kb": 450,
+      "total_kb": 1536,
+      "lcp_ms": 2500,
+      "cls": 0.1,
+      "tbt_ms": 200,
+      "lighthouse_rendimiento": 90
+    }
+  }
+}

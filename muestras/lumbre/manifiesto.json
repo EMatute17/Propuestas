@@ -1,0 +1,259 @@
+{
+ "id": "lumbre",
+ "version_ficha": "2.0.0",
+ "version_generador": "0.1.0",
+ "version_reglas": "0.1.0",
+ "fecha": "2026-10-08T02:22:15Z",
+ "modo": "muestra",
+ "ejemplo_ficticio": true,
+ "pais": "VE",
+ "ciudad": "Caracas",
+ "idioma": "es",
+ "confirmacion": {
+  "estado": "ejemplo",
+  "fecha": "2026-10-08",
+  "nota": "Restaurante ficticio. Todos los datos, textos y precios son de ejemplo."
+ },
+ "huella_diseno": {
+  "paleta": "brasa",
+  "tipografia": "bodoni-manrope",
+  "portada": "luz_brasas",
+  "carta": "pestanas_lista",
+  "orden": "6657c7aa",
+  "forma_movimiento": "recta+lento"
+ },
+ "id_de_ensamblado": "2a6ce096",
+ "tipografias": [
+  {
+   "familia": "Bodoni Moda",
+   "archivo": "assets/2a6ce096/fonts/bodonimoda-displayitalic.woff2",
+   "peso": 400,
+   "estilo": "italic",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Manrope",
+   "archivo": "assets/2a6ce096/fonts/playfairdisplay-regular.woff2",
+   "peso": 400,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Manrope",
+   "archivo": "assets/2a6ce096/fonts/manrope-regular.woff2",
+   "peso": 400,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Manrope",
+   "archivo": "assets/2a6ce096/fonts/manrope-semibold.woff2",
+   "peso": 600,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Manrope",
+   "archivo": "assets/2a6ce096/fonts/manrope-bold.woff2",
+   "peso": 700,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  }
+ ],
+ "imagenes": [
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/hero_pasta.webp",
+   "clave": "hero",
+   "ancho_origen": 1398,
+   "alto_origen": 962,
+   "ancho_nativo": 1398,
+   "alto_nativo": 962,
+   "anchos_generados": [
+    800,
+    1280,
+    1920
+   ],
+   "ampliada": true
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/hero_pasta.webp",
+   "clave": "hero-m",
+   "ancho_origen": 1398,
+   "alto_origen": 962,
+   "ancho_nativo": 770,
+   "alto_nativo": 962,
+   "anchos_generados": [
+    480,
+    768,
+    960
+   ],
+   "ampliada": true
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/plato_croquetas.webp",
+   "clave": "plato_croquetas",
+   "ancho_origen": 420,
+   "alto_origen": 525,
+   "ancho_nativo": 420,
+   "alto_nativo": 525,
+   "anchos_generados": [
+    210,
+    420
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/plato_ravioli.webp",
+   "clave": "plato_ravioli",
+   "ancho_origen": 420,
+   "alto_origen": 525,
+   "ancho_nativo": 420,
+   "alto_nativo": 525,
+   "anchos_generados": [
+    210,
+    420
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/plato_tortelli.webp",
+   "clave": "plato_tortelli",
+   "ancho_origen": 420,
+   "alto_origen": 525,
+   "ancho_nativo": 420,
+   "alto_nativo": 525,
+   "anchos_generados": [
+    210,
+    420
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/plato_chuleton.webp",
+   "clave": "plato_chuleton",
+   "ancho_origen": 420,
+   "alto_origen": 525,
+   "ancho_nativo": 420,
+   "alto_nativo": 525,
+   "anchos_generados": [
+    210,
+    420
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/plato_chocolate.webp",
+   "clave": "plato_chocolate",
+   "ancho_origen": 420,
+   "alto_origen": 525,
+   "ancho_nativo": 420,
+   "alto_nativo": 525,
+   "anchos_generados": [
+    210,
+    420
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/sala_azul.webp",
+   "clave": "sala_azul",
+   "ancho_origen": 1280,
+   "alto_origen": 720,
+   "ancho_nativo": 1280,
+   "alto_nativo": 720,
+   "anchos_generados": [
+    480,
+    1280
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/rincon_rojo.webp",
+   "clave": "rincon_rojo",
+   "ancho_origen": 716,
+   "alto_origen": 955,
+   "ancho_nativo": 716,
+   "alto_nativo": 955,
+   "anchos_generados": [
+    480,
+    716
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/sala_roja.webp",
+   "clave": "sala_roja",
+   "ancho_origen": 800,
+   "alto_origen": 600,
+   "ancho_nativo": 800,
+   "alto_nativo": 600,
+   "anchos_generados": [
+    480,
+    800
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "referencia",
+   "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
+   "licencia": "sin confirmar; solo para demostración privada",
+   "archivo_origen": "lumbre/reservado.webp",
+   "clave": "reservado",
+   "ancho_origen": 800,
+   "alto_origen": 600,
+   "ancho_nativo": 800,
+   "alto_nativo": 600,
+   "anchos_generados": [
+    480,
+    800
+   ],
+   "ampliada": false
+  }
+ ],
+ "enlaces_externos": [
+  "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20quisiera%20reservar%20una%20mesa.",
+  "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
+  "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+  "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+  "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre"
+ ],
+ "pesos_bytes": {
+  "html": 70096,
+  "css_min": 24424,
+  "js_min": 17417,
+  "fuentes": 91276,
+  "imagenes": 3324883
+ },
+ "base_url": null,
+ "paquete_sha256": "1c3006fec8411c7a05b4c90a43c99694940725c06c88091685dd6951170a2c29"
+}

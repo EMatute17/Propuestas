@@ -1,0 +1,13 @@
+{
+  "name": "edumashow-gate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Gate de Edumashow: comprobaciones en navegador real, multi-dispositivo.",
+  "dependencies": {
+    "axe-core": "4.11.0",
+    "chrome-launcher": "1.2.0",
+    "lighthouse": "12.8.2",
+    "playwright": "1.56.1"
+  }
+}

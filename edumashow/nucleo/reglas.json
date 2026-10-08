@@ -1,0 +1,1689 @@
+{
+ "version": "0.1.0",
+ "descripcion": "Núcleo de conocimiento unificado de Edumashow. Reglas con prioridad, fuente, evidencia y prueba.",
+ "prioridades": {
+  "0": "Verdad, legalidad y ética",
+  "1": "Accesibilidad y legibilidad",
+  "2": "Tarea del visitante: un siguiente paso claro y poca fricción",
+  "3": "Rendimiento en móvil lento",
+  "4": "Identidad y estética del restaurante",
+  "5": "Persuasión (solo como hipótesis a probar)",
+  "6": "Variedad entre webs (Gate de unicidad)"
+ },
+ "resolucion_de_choques": "Gana la regla de menor número de prioridad. A igual prioridad, el bloqueo gana al defecto y el defecto a la hipótesis. Una regla de prioridad mayor nunca se cumple a costa de una de prioridad menor.",
+ "estudios_de_origen": {
+  "AL": "Estudio motor predictivo para propuestas y alianzas con creadores (55 pp.)",
+  "PS": "Estudio de psicología humana histórica y actual (9 pp.)",
+  "UX": "Estudio motor predictivo de UX para propuestas (40 pp.)",
+  "CO": "Estudio de ciencias del comportamiento y de la conducta (11 pp.)",
+  "GR": "Informe motor gráfico para propuestas comerciales (33 pp.)"
+ },
+ "aviso": "Ninguno de los estudios trata de webs de restaurante: las reglas web son traducciones, y los umbrales numéricos de legibilidad, táctil y rendimiento son criterios propios o normas externas (WCAG 2.2, Core Web Vitals) o medidas de este proyecto.",
+ "reglas": [
+  {
+   "id": "R-DAT-01",
+   "tema": "datos",
+   "regla": "Todo dato factual visible (nombre, dirección, teléfono, horario, plato, precio, promoción, alérgeno) consta en la ficha confirmada con su fuente y fecha. Cero valores heredados de otra muestra o plantilla y cero marcadores de relleno.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-01 pp.20,31",
+    "AL-01 pp.9,13,34",
+    "AL-09 pp.13,20",
+    "GR-I01 p.24"
+   ],
+   "gate": [
+    "G-DATOS",
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-02",
+   "tema": "datos",
+   "regla": "Un dato ausente se omite o se muestra como por confirmar. Nunca aparece como 0, gratis o sin alérgenos por falta de dato: cero, desconocido y no aplicable no son lo mismo.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-03 pp.31,37",
+    "UX-08 p.22",
+    "AL-02 p.24"
+   ],
+   "gate": [
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-03",
+   "tema": "datos",
+   "regla": "Cada importe del HTML, de los metadatos y del mensaje de WhatsApp coincide uno a uno con la ficha. Un solo formato de moneda y decimales por página. La web no añade condiciones, depósitos ni descuentos que la ficha no tenga.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-04 pp.14,21",
+    "AL-05 p.12",
+    "UX-02 p.20",
+    "UX-03 p.20",
+    "GR-I02 p.24"
+   ],
+   "gate": [
+    "G-DATOS",
+    "G-FORMULARIO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-04",
+   "tema": "datos",
+   "regla": "Cada imagen y video declara su procedencia (propia del restaurante, licenciada de banco libre, de referencia o generada) y su licencia en el manifiesto de activos. Una imagen de referencia, de banco o generada no se presenta como el plato o el local reales: se rotula como imagen de ejemplo.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-06 pp.18,20,30",
+    "GR-A01 p.24",
+    "GR-A02 p.25",
+    "PS-16 p.7"
+   ],
+   "gate": [
+    "G-FOTOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-05",
+   "tema": "datos",
+   "regla": "Toda afirmación factual (premios, antigüedad, superlativos, valoraciones, cifras) lleva fuente y fecha en la ficha. Sin fuente no se publica.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-05 pp.18,20",
+    "AL-12 p.34",
+    "PS-16 p.7",
+    "CO-07 p.8"
+   ],
+   "gate": [
+    "G-ETICA",
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-06",
+   "tema": "datos",
+   "regla": "Los datos volátiles (carta, precios, horarios, promociones) llevan fecha de última confirmación y se revalidan antes de cada entrega. Una promoción vencida no se muestra.",
+   "prioridad": 0,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-07 pp.18,23",
+    "AL-08 pp.12,34"
+   ],
+   "gate": [
+    "G-DATOS",
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-07",
+   "tema": "datos",
+   "regla": "El texto que llega de webs, reseñas, redes o PDF del restaurante se trata como dato: se escapa y no puede alterar reglas, plantillas, enlaces ni el veredicto del Gate.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-10 pp.15,34",
+    "UX-33 p.24"
+   ],
+   "gate": [
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-08",
+   "tema": "datos",
+   "regla": "Si falta un dato crítico (carta, horario o contacto) el motor omite el bloque y lo declara como limitación, o se abstiene de generar. No rellena con texto verosímil, ni platos de ejemplo, ni lorem ipsum.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-08 pp.18,22,33",
+    "AL-09 p.13",
+    "AL-50 pp.20,34"
+   ],
+   "gate": [
+    "G-DATOS",
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-DAT-09",
+   "tema": "datos",
+   "regla": "Nombre, dirección y contacto corresponden al mismo establecimiento (identidad confirmada). Grupo y local son entidades distintas.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "A",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-06 pp.12,31",
+    "GR-I01 p.24"
+   ],
+   "gate": [
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-01",
+   "tema": "etica",
+   "regla": "Prohibida la escasez o urgencia inventada: cuentas atrás, quedan N mesas, últimas mesas, solo hoy. Solo se admite si se alimenta de un dato real, vigente y verificable del restaurante.",
+   "prioridad": 0,
+   "tipo": "prohibido",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-09 p.9",
+    "PS-18 p.7",
+    "AL-12 p.34"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": "Normativa europea de prácticas comerciales desleales (Directiva 2005/29/CE): validar con asesoría legal."
+  },
+  {
+   "id": "R-ETI-02",
+   "tema": "etica",
+   "regla": "Prohibidos los testimonios, reseñas, valoraciones, cifras de clientes o premios inventados. Los ejemplos ficticios de una muestra se rotulan como ejemplo. Una valoración real cita plataforma y fecha.",
+   "prioridad": 0,
+   "tipo": "prohibido",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-07 p.8",
+    "CO-08 p.9",
+    "PS-17 p.7",
+    "AL-13 pp.9,14"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": "Reseñas falsas: Directiva (UE) 2019/2161. Validar con asesoría legal."
+  },
+  {
+   "id": "R-ETI-03",
+   "tema": "etica",
+   "regla": "Prohibido prometer resultados cuantificados (más reservas, más ventas, un porcentaje de mejora) y mostrar porcentajes con falsa precisión. Una nota de calidad nunca se presenta como probabilidad de éxito.",
+   "prioridad": 0,
+   "tipo": "prohibido",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-52 pp.1,10,22",
+    "AL-14 p.16",
+    "AL-15 pp.6,23",
+    "CO-14 p.2",
+    "PS-19 p.7",
+    "GR p.7-8"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-04",
+   "tema": "etica",
+   "regla": "Decisión libre: sin ventanas bloqueantes al cargar, sin casillas premarcadas con coste o cesión de datos, y con salida o cierre visible en cada paso.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-06 p.9",
+    "PS-20 p.7"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-05",
+   "tema": "etica",
+   "regla": "Sin refuerzo variable (ruletas, rasca y gana, premios sorpresa) ni copy encuadrado en pérdida por defecto (no te quedes sin mesa). Ninguna constante universal de aversión a la pérdida.",
+   "prioridad": 0,
+   "tipo": "prohibido",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "PS-21 pp.3,7",
+    "PS-25 p.4",
+    "CO-27 p.5"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-06",
+   "tema": "etica",
+   "regla": "No se infiere ni se usa un perfil psicológico, estado emocional, salud o vulnerabilidad del dueño o del comensal para decidir diseño o texto. La personalización parte de necesidades observadas (sala, recoger, envío, grupo, idioma, hora).",
+   "prioridad": 0,
+   "tipo": "prohibido",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "AL-27 pp.7,24,39",
+    "PS-28 pp.1,3,4,7"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-07",
+   "tema": "etica",
+   "regla": "La muestra ofrece una vía visible y sencilla para declinar o pedir su retirada. Ninguna muestra se envía ni contacta automáticamente: la aprueba una persona antes.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-13 p.9",
+    "AL-48 pp.15,22,37"
+   ],
+   "gate": [
+    "G-MUESTRA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-08",
+   "tema": "etica",
+   "regla": "Sin rastreo oculto: ninguna cookie, ningún script ni recurso de terceros en la carga. Los formularios piden solo los datos necesarios. Cualquier medición es agregada y declarada, o con consentimiento.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "UX-09 pp.8,15,18,33",
+    "AL-47 pp.7,22,31",
+    "CO sec.6 p.9"
+   ],
+   "gate": [
+    "G-RED"
+   ],
+   "notas": "RGPD y LSSI (art. 22.2) para analítica y cookies: validar con asesoría legal."
+  },
+  {
+   "id": "R-ETI-09",
+   "tema": "etica",
+   "regla": "No se declara probado con usuarios lo que fue simulación, ni accesible o conforme a WCAG sin su alcance, ni el mejor sin un comparador y tareas definidos.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "UX-22 pp.12,15,21",
+    "UX-53 pp.8,12,13",
+    "UX p.29"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-10",
+   "tema": "etica",
+   "regla": "Alérgenos, dietas y precios finales se muestran como texto real y solo si constan en la ficha. Ausencia de dato no es ausencia de alérgeno.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "B",
+   "modos": [
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "AL-03 p.31",
+    "PS sec.6"
+   ],
+   "gate": [
+    "G-DATOS"
+   ],
+   "notas": "Reglamento (UE) 1169/2011 sobre información de alérgenos: validar con asesoría legal."
+  },
+  {
+   "id": "R-ETI-11",
+   "tema": "etica",
+   "regla": "Preferencia de marca de Eduardo: los entregables no mencionan herramientas de IA, nombres de modelos ni nada de Peetfoodie. Solo llevan la marca Edumashow. Esto no autoriza presentar imágenes generadas como reales (ver R-DAT-04).",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "Orden de Eduardo"
+   ],
+   "gate": [
+    "G-MARCA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-ETI-12",
+   "tema": "etica",
+   "regla": "Comillas: nunca se usan las comillas angulares dobles; siempre comillas rectas. Orden permanente de Eduardo.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "Orden de Eduardo"
+   ],
+   "gate": [
+    "G-COMILLAS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-01",
+   "tema": "legibilidad",
+   "regla": "Contraste de texto de al menos 4,5:1 (3:1 en texto grande) medido sobre el fondo real bajo el texto, también sobre fotos, degradados y animaciones, no sobre un color nominal.",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "UX-16 pp.12,21",
+    "AL-34 p.14",
+    "GR-G06 p.25",
+    "WCAG 2.2 SC 1.4.3"
+   ],
+   "gate": [
+    "G-CONTRASTE",
+    "G-AXE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-02",
+   "tema": "legibilidad",
+   "regla": "Objetivos táctiles de al menos 24 por 24 px CSS (WCAG 2.2, bloqueo) y de 44 por 44 px en las acciones principales de móvil (defecto).",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "UX-17 p.21",
+    "WCAG 2.2 SC 2.5.8"
+   ],
+   "gate": [
+    "G-TACTIL"
+   ],
+   "notas": "El umbral de 44 px es criterio de buenas prácticas móvil, no del estudio."
+  },
+  {
+   "id": "R-LEG-03",
+   "tema": "legibilidad",
+   "regla": "Sin scroll horizontal, texto recortado ni elementos solapados desde 320 px de ancho (reflow) y con el texto ampliado al 200 por ciento.",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "AL-33 p.14",
+    "UX-19 pp.21,24,31",
+    "GR-G01 p.25",
+    "WCAG 2.2 SC 1.4.10 y 1.4.4"
+   ],
+   "gate": [
+    "G-DESBORDE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-04",
+   "tema": "legibilidad",
+   "regla": "El texto esencial (nombre, precio, horario, CTA) es texto real, no imagen ni video. Todos los glifos necesarios (tildes, eñe, símbolos de moneda) existen en la fuente embebida o en una de respaldo legible.",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-15 pp.21,24",
+    "PS-27 p.6",
+    "GR-T03 p.25"
+   ],
+   "gate": [
+    "G-FUENTES",
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-05",
+   "tema": "legibilidad",
+   "regla": "Estructura accesible: idioma declarado, un solo h1, encabezados en orden, marcas de región (cabecera, principal, pie), texto alternativo, nombres accesibles, enlace de salto, foco visible y todo operable con teclado.",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "UX-21 pp.12,21,24",
+    "WCAG 2.2 SC 3.1.1, 1.3.1, 2.4.1, 2.4.7, 2.1.1, 4.1.2"
+   ],
+   "gate": [
+    "G-ESTRUCTURA",
+    "G-AXE",
+    "G-FOCO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-06",
+   "tema": "legibilidad",
+   "regla": "Movimiento: se respeta prefers-reduced-motion, y todo movimiento automático de más de 5 segundos (canvas, bucles, desplazamientos) se puede pausar con un control visible y accesible. Sin destellos.",
+   "prioridad": 1,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "WCAG 2.2 SC 2.2.2 y 2.3.1",
+    "UX p.7 (hueco)",
+    "AL-42 pp.4,5,33"
+   ],
+   "gate": [
+    "G-MOVIMIENTO"
+   ],
+   "notas": "Ningún estudio cubre el movimiento; la regla viene de WCAG."
+  },
+  {
+   "id": "R-LEG-07",
+   "tema": "legibilidad",
+   "regla": "Tamaño efectivo legible: texto de cuerpo de al menos 16 px y secundario de al menos 14 px en móvil, medidos sobre el render. Los conflictos de espacio no se resuelven encogiendo precio, horario o CTA.",
+   "prioridad": 1,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-18 pp.21,30",
+    "GR-V05 p.26"
+   ],
+   "gate": [
+    "G-TEXTO"
+   ],
+   "notas": "Los mínimos en px son criterio propio del motor, no de los estudios."
+  },
+  {
+   "id": "R-LEG-08",
+   "tema": "legibilidad",
+   "regla": "La estética no compensa fallos de lectura o de uso: una portada agradable no resuelve un contacto ausente, un precio incomprensible ni un archivo inaccesible. Atractivo y utilidad se miden por separado.",
+   "prioridad": 1,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "UX-58 p.10",
+    "GR p.5 (Tuch 2012)",
+    "UX-47 pp.10,15"
+   ],
+   "gate": [
+    "G-AXE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-LEG-09",
+   "tema": "legibilidad",
+   "regla": "Proximidad y alineación: plato, descripción y precio comparten contenedor y alineación. Sin huecos accidentales ni líneas que crucen contenido.",
+   "prioridad": 1,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "UX-24 p.9",
+    "UX-25 pp.21,30",
+    "GR-G05 p.25"
+   ],
+   "gate": [
+    "G-DESBORDE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-01",
+   "tema": "siguiente_paso",
+   "regla": "En el primer viewport de móvil (de 320 a 430 px de ancho) hay un h1 con el nombre, la cocina o la zona, y un CTA primario a un canal real (WhatsApp, teléfono o mapa) completamente visible, sin scroll ni menú previo.",
+   "prioridad": 2,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-01 pp.5,8",
+    "UX-59 p.11",
+    "AL-17 pp.14,21",
+    "PS-11 p.7",
+    "PS-10 pp.2,7"
+   ],
+   "gate": [
+    "G-PRIMERA"
+   ],
+   "notas": "El umbral de pantalla es operacionalización propia; los estudios piden que se vea oferta, coste y siguiente paso."
+  },
+  {
+   "id": "R-SIG-02",
+   "tema": "siguiente_paso",
+   "regla": "Horario, dirección y contacto se alcanzan con un toque desde cualquier punto de la página (barra fija en móvil, cabecera o pie).",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "CO-02 pp.5,8",
+    "PS-08 pp.3,7",
+    "PS-12 p.7",
+    "UX-13 pp.7,15",
+    "AL-23 p.14"
+   ],
+   "gate": [
+    "G-SIGUIENTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-03",
+   "tema": "siguiente_paso",
+   "regla": "Los contactos abren la acción directamente: tel: para llamar y wa.me con el mensaje prellenado (restaurante y acción) para WhatsApp, sin páginas intermedias ni registro.",
+   "prioridad": 2,
+   "tipo": "bloqueo",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-03 pp.5,7,8",
+    "PS-08 pp.3,7",
+    "UX-10 pp.9,14,20"
+   ],
+   "gate": [
+    "G-SIGUIENTE",
+    "G-FORMULARIO"
+   ],
+   "notas": "La evidencia E1 es de recordatorios de salud; la traslación a web es inferencia."
+  },
+  {
+   "id": "R-SIG-04",
+   "tema": "siguiente_paso",
+   "regla": "Formularios de reserva o pedido con solo los campos imprescindibles (no más de cinco), sin cuenta ni registro, con valores por defecto sensatos (dos personas, próxima franja disponible) y un resumen antes del envío.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "CO-04 p.5",
+    "CO-05 pp.5-7",
+    "PS-09 p.3",
+    "PS-14 p.2"
+   ],
+   "gate": [
+    "G-FORMULARIO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-05",
+   "tema": "siguiente_paso",
+   "regla": "Cada botón dice lo que ocurre al pulsarlo (Reservar mesa, Pedir por WhatsApp, Cómo llegar), nunca Haz clic aquí, y su activación produce una respuesta visible. El rótulo coincide con la conducta objetivo declarada en la ficha.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "UX-12 pp.7,9,14",
+    "PS-07 p.7"
+   ],
+   "gate": [
+    "G-SIGUIENTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-06",
+   "tema": "siguiente_paso",
+   "regla": "El precio de cada plato es visible junto a su nombre y las condiciones de reserva o pedido (cancelación, mínimo, zona y coste de envío, plazos) se ven antes del paso final.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-10 pp.5,8",
+    "AL-24 p.14",
+    "PS-12 p.7"
+   ],
+   "gate": [
+    "G-DATOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-07",
+   "tema": "siguiente_paso",
+   "regla": "En cada tramo de pantalla hay un único control primario con más área y contraste que los demás. Los secundarios quedan subordinados.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "PS-10 pp.2,7",
+    "UX-23 p.21"
+   ],
+   "gate": [
+    "G-PRIMERA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-08",
+   "tema": "siguiente_paso",
+   "regla": "Ningún enlace ficticio (#, javascript:void, example.com). Toda ancla existe y todo enlace tiene formato válido y lleva a lo que anuncia.",
+   "prioridad": 2,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-10 pp.9,14,20",
+    "UX-11 pp.21,24",
+    "AL-35 pp.14,24"
+   ],
+   "gate": [
+    "G-SIGUIENTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-09",
+   "tema": "siguiente_paso",
+   "regla": "La carta, el precio y el horario no quedan detrás de la historia del local ni dentro de acordeones cerrados por defecto. La narrativa no se presume superior al dato.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "PS-23 p.7"
+   ],
+   "gate": [
+    "G-SIGUIENTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-10",
+   "tema": "siguiente_paso",
+   "regla": "La web no promete lo que el restaurante no atiende (reserva por WhatsApp sin respuesta, reparto sin confirmar). El restaurante confirma cada promesa operativa antes de publicar.",
+   "prioridad": 2,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-14 pp.8,14,15",
+    "CO-16 pp.8,9"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-11",
+   "tema": "siguiente_paso",
+   "regla": "Titulares y CTA literales, sin vacíos de curiosidad (No imaginaras que lleva este plato). Los textos son concretos (ingredientes, técnica, origen) y concisos, sin superlativos sin respaldo.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "PS-24 p.7",
+    "AL-19 pp.14,33,51",
+    "AL-20 pp.29,54"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-SIG-12",
+   "tema": "siguiente_paso",
+   "regla": "Escaneo: cada sección tiene un encabezado que declara su función (Carta, Reservar, Visítanos) y jerarquía tipográfica visible, sin muros de texto. No se fija un número mágico de platos o secciones: se prueba por tarea.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "AL-18 pp.14,51",
+    "UX-56 pp.6,9,11",
+    "PS-26 p.6"
+   ],
+   "gate": [
+    "G-ESTRUCTURA"
+   ],
+   "notas": "La sobrecarga de opciones tiene efecto medio cercano a cero (D 0,02): no hay base para límites fijos."
+  },
+  {
+   "id": "R-REN-01",
+   "tema": "rendimiento",
+   "regla": "Presupuesto de carga en móvil lento simulado: transferencia inicial de 450 KB o menos, total de 1,5 MB o menos, LCP de 2,5 s o menos, CLS de 0,1 o menos y TBT de 200 ms o menos. Lighthouse móvil de 90 o más en rendimiento.",
+   "prioridad": 3,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "UX-26 p.21 (el estudio no da cifra)",
+    "AL-42 pp.4,5,33",
+    "Core Web Vitals",
+    "Medida: Lumbre 61 a 95 al sacar fotos del HTML"
+   ],
+   "gate": [
+    "G-REND"
+   ],
+   "notas": "Cifras fijadas con medidas propias; el estudio de UX pide un presupuesto de bytes sin dar valor."
+  },
+  {
+   "id": "R-REN-02",
+   "tema": "rendimiento",
+   "regla": "Imágenes: dimensiones declaradas (sin saltos de diseño), formatos AVIF y WebP con srcset, la imagen principal con prioridad alta y el resto diferido, sin duplicados, con píxeles nativos suficientes para su tamaño de colocación.",
+   "prioridad": 3,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "UX-20 p.21",
+    "UX-26 p.21",
+    "GR p.14 (densidad efectiva)"
+   ],
+   "gate": [
+    "G-REND",
+    "G-FOTOS"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-REN-03",
+   "tema": "rendimiento",
+   "regla": "Fuentes en subconjunto WOFF2 con font-display swap, como máximo dos precargadas y todas servidas desde el mismo origen.",
+   "prioridad": 3,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "GR p.13 (fuentes embebidas)",
+    "UX-15 p.21"
+   ],
+   "gate": [
+    "G-FUENTES",
+    "G-REND"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-REN-04",
+   "tema": "rendimiento",
+   "regla": "Cada módulo costoso (animación, canvas, librería) justifica su coste. JavaScript propio de 30 KB o menos y adaptación a la capacidad del dispositivo (memoria, núcleos, ahorro de datos, movimiento reducido).",
+   "prioridad": 3,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-42 pp.4,5,33",
+    "UX p.29 (ablación)"
+   ],
+   "gate": [
+    "G-REND",
+    "G-MOVIMIENTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-REN-05",
+   "tema": "rendimiento",
+   "regla": "Todos los recursos se sirven desde el mismo origen, con compresión y cabeceras de caché inmutables para los recursos con hash. Cero peticiones a terceros durante la carga.",
+   "prioridad": 3,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "AL-47 p.22",
+    "UX-09 p.8"
+   ],
+   "gate": [
+    "G-RED"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-IDE-01",
+   "tema": "identidad",
+   "regla": "Cada web tiene identidad propia a partir de datos reales del restaurante (cocina, rango de precios, ciudad, marca, fotos). Toda variación se traza a un campo de la ficha; cambiar colores o adjetivos al azar no cuenta como adaptación.",
+   "prioridad": 4,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-25 pp.21,45",
+    "AL-26 pp.7,9,13",
+    "UX-27 pp.7,21,30"
+   ],
+   "gate": [
+    "G-HUELLA"
+   ],
+   "notas": "El estudio de alianzas define adaptativo como responder a diferencias verificadas."
+  },
+  {
+   "id": "R-IDE-02",
+   "tema": "identidad",
+   "regla": "Las convenciones de la tarea se conservan (precio junto al nombre, categorías de carta, botón de acción reconocible en posición estable). Varia el estilo, no la tarea.",
+   "prioridad": 4,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "PS-15 p.4",
+    "UX-27 p.21"
+   ],
+   "gate": [
+    "G-SIGUIENTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-IDE-03",
+   "tema": "identidad",
+   "regla": "Paleta, tipografía y proporciones se eligen por contraste, marca y población, no por prestigio de tendencia. El 60/30/10 y las paletas de moda son punto de partida, no ensayos de conversión.",
+   "prioridad": 4,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-28 pp.13,30",
+    "UX-60 pp.6,11"
+   ],
+   "gate": [
+    "G-CONTRASTE"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-IDE-04",
+   "tema": "identidad",
+   "regla": "Los activos de marca aprobados por el restaurante (logo, colores, tipografías, fotos) son restricciones fijas. La variación solo actúa sobre lo no fijado.",
+   "prioridad": 4,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-31 pp.9,14,24",
+    "GR-A04 p.24"
+   ],
+   "gate": [
+    "G-HUELLA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-IDE-05",
+   "tema": "identidad",
+   "regla": "El movimiento tiene personalidad (elegante: lento y con aire; casual: rápido y grueso) y siempre respeta las reglas de legibilidad y rendimiento. Los efectos inmersivos son aditivos: la página es completa sin ellos.",
+   "prioridad": 4,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-42 pp.4,5,33",
+    "UX-58 p.10"
+   ],
+   "gate": [
+    "G-MOVIMIENTO",
+    "G-REND"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PER-01",
+   "tema": "persuasion",
+   "regla": "Ninguna técnica de persuasión se activa por defecto en todas las webs. Cada módulo persuasivo lleva evidencia y estado (probada en este contexto o hipótesis), y las hipótesis no se activan sin prueba propia.",
+   "prioridad": 5,
+   "tipo": "hipotesis",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "PS-01 pp.1,4,6,7",
+    "CO-26 pp.5-6,8"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PER-02",
+   "tema": "persuasion",
+   "regla": "La prueba social y las normas (el más pedido) solo se usan con dato real y fechado, y se les asigna un efecto esperado pequeño. No sustituyen a la reducción de fricción.",
+   "prioridad": 5,
+   "tipo": "hipotesis",
+   "publico": "B",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "PS-22 pp.4,6",
+    "CO-26 pp.5-6,8",
+    "CO-07 p.8"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": "Efecto de normas sociales: d 0,10 que desaparece al corregir sesgo de publicación (89 ensayos, N 85.759, salud)."
+  },
+  {
+   "id": "R-PER-03",
+   "tema": "persuasion",
+   "regla": "Anclaje, encuadre y otras heurísticas son descripciones de tareas concretas, no palancas con efecto garantizado. No se codifican constantes universales ni números mágicos de opciones.",
+   "prioridad": 5,
+   "tipo": "hipotesis",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-27 p.5",
+    "PS-25 p.4",
+    "UX-56 pp.6,9,11",
+    "UX-57 pp.6,9"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-VAR-01",
+   "tema": "variedad",
+   "regla": "Gate de unicidad: la huella de diseño (paleta, tipografías, portada, carta, orden de secciones, forma y movimiento) difiere en al menos 3 de 6 dimensiones respecto de cada web ya registrada.",
+   "prioridad": 6,
+   "tipo": "bloqueo",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-27 pp.7,21,30",
+    "GR-V03 p.26",
+    "AL-29 pp.15,17,25"
+   ],
+   "gate": [
+    "G-HUELLA"
+   ],
+   "notas": "Los estudios no definen familia de diseño ni distancia; la métrica de 6 dimensiones viene del kit de propuestas."
+  },
+  {
+   "id": "R-VAR-02",
+   "tema": "variedad",
+   "regla": "Se generan pocas alternativas materialmente distintas, no decenas de variantes superficiales. Si la asignación de variante es aleatoria se registran semilla y probabilidad para poder evaluarla después.",
+   "prioridad": 6,
+   "tipo": "defecto",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "AL-29 pp.15,17,25",
+    "AL-30 pp.17,31,40",
+    "UX-38 pp.25,33"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MUE-01",
+   "tema": "muestra",
+   "regla": "La muestra se rotula (cinta Muestra de Edumashow para el restaurante), lleva noindex y la cabecera X-Robots-Tag, y distingue los datos de ejemplo de los reales.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "UX-62 pp.6,7,14",
+    "PS-17 p.7"
+   ],
+   "gate": [
+    "G-META",
+    "G-MUESTRA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MUE-02",
+   "tema": "muestra",
+   "regla": "Una única acción de contratación visible en la primera pantalla y a un toque (WhatsApp con mensaje prellenado), con la oferta declarada: qué incluye, qué cuesta si procede, cuánto dura la prueba y qué ocurre al terminar.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-11 pp.5,9",
+    "PS-13 p.7",
+    "UX-04 pp.14,20",
+    "UX-62 pp.6,7,14"
+   ],
+   "gate": [
+    "G-MUESTRA",
+    "G-PRIMERA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MUE-03",
+   "tema": "muestra",
+   "regla": "Las necesidades del restaurante se formulan como hipótesis o pregunta, nunca como hecho, y sin aludir a presupuesto, margen ni motivos privados.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "AL-16 pp.6,9,13,34"
+   ],
+   "gate": [
+    "G-ETICA"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MUE-04",
+   "tema": "muestra",
+   "regla": "La muestra es compartible y explicable sin el autor: título con el nombre correcto, vista previa del enlace (Open Graph) y una URL estable que abre en móvil sin login.",
+   "prioridad": 2,
+   "tipo": "defecto",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "M",
+   "fuentes": [
+    "UX-62 pp.6,7,14",
+    "Medida: las 3 muestras actuales no tienen vista previa de enlace"
+   ],
+   "gate": [
+    "G-META"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MUE-05",
+   "tema": "muestra",
+   "regla": "No se usan nombre, logo, fotos ni carta de un negocio real sin su permiso. La muestra para un prospecto real se enseña primero a su dueño. La cinta visible y el noindex evitan que se confunda con el sitio oficial.",
+   "prioridad": 0,
+   "tipo": "bloqueo",
+   "publico": "A",
+   "modos": [
+    "muestra"
+   ],
+   "evidencia": "N",
+   "fuentes": [
+    "AL sec.6 (suplantación)",
+    "PS sec.6"
+   ],
+   "gate": [
+    "G-MUESTRA"
+   ],
+   "notas": "Propiedad intelectual y comunicaciones comerciales (LSSI art. 21): validar con asesoría legal."
+  },
+  {
+   "id": "R-PRO-01",
+   "tema": "proceso",
+   "regla": "Puerta de liberación que falla cerrada: la ausencia de prueba es bloqueo, el generador no es el verificador, y ninguna nota de belleza, velocidad o persuasión compensa un fallo bloqueante. Un verificador caído nunca cuenta como aprobado.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-29 pp.3,5,8,20,22,23",
+    "GR sec.9 p.15",
+    "AL-32 pp.14,22,24"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-02",
+   "tema": "proceso",
+   "regla": "El permiso de entrega se liga al hash SHA-256 del paquete exacto que pasó el Gate. Cualquier edición posterior lo invalida.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-30 pp.21,22,23",
+    "AL-49 pp.13,22,24",
+    "GR-D02 p.26"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-03",
+   "tema": "proceso",
+   "regla": "Cada comprobación tiene identificador, método, estado (PASS, WARN, FAIL, UNAVAILABLE, N/A), evidencia y versión. N/A exige razón verificable. UNAVAILABLE bloquea una obligación.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-31 pp.22,23,31",
+    "GR sec.9 p.15",
+    "GR Anexo B p.28"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-04",
+   "tema": "proceso",
+   "regla": "El Gate se prueba a si mismo con un banco de casos válidos y defectuosos. Cada defecto confirmado pasa a caso de regresión permanente y no se reutiliza como muestra comercial.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-32 pp.13,24,29,33",
+    "GR-L01 p.27"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-05",
+   "tema": "proceso",
+   "regla": "La revisión visual se hace sobre el render real en varios dispositivos y anchos, no solo sobre texto o coordenadas. Las notas de un modelo no validan por si solas la calidad visual.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-34 pp.7,21,24",
+    "GR-V01 p.26"
+   ],
+   "gate": [
+    "G-VISUAL"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-06",
+   "tema": "proceso",
+   "regla": "Cada web emite un manifiesto con versión, fecha, país, ciudad, idioma, hash, plantilla y huella de diseño, tipografías, imágenes con su origen y licencia, enlaces, pesos y versión del generador.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-36 p.18",
+    "AL-49 pp.13,22,24,29,31"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-PRO-07",
+   "tema": "proceso",
+   "regla": "Una puntuación no es una probabilidad. El informe separa conformidad, perfil de calidad y estimación comercial. Sin modelo calibrado, la estimación comercial dice no estimable de forma validada.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-51 pp.13,19,22,26",
+    "GR sec.4 p.7"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-01",
+   "tema": "medicion",
+   "regla": "Todo efecto tomado de la literatura es una hipótesis local y una cota superior: en las replicaciones el efecto fue aproximadamente la mitad (13 de 21 replicaron). Nunca se proyecta una ganancia con la cifra original.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-22 pp.7,8",
+    "PS-02 p.1",
+    "UX-46 pp.4,11,28"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-02",
+   "tema": "medicion",
+   "regla": "El resultado primario es una conducta observable definida antes (clic a WhatsApp, reserva enviada, contratación), con unidad igual al restaurante y ventana fija. No se usan aperturas, elogios ni intención declarada.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "CO-19 pp.2,7,9",
+    "PS-04 pp.3,4,7",
+    "UX-54 pp.3,14,15,18,27",
+    "AL-39 pp.10,23,30"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-03",
+   "tema": "medicion",
+   "regla": "Antes de proponer un A/B se calcula el tamaño necesario. Pasar de 10 a 12 por ciento exige unas 3.841 visitas por variante y de 20 a 30 por ciento unas 294 por grupo. Si el tráfico no alcanza no se hace el test ni se afirma mejora.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "AL-37 pp.17,18",
+    "UX-44 pp.27,28",
+    "GR sec.13 p.21"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-04",
+   "tema": "medicion",
+   "regla": "Con poco volumen se valida con pruebas de tarea de 5 a 8 personas representativas (dueños para la muestra, comensales con móvil de gama media y red lenta para la web final), con tareas que no inducen la respuesta.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E2",
+   "fuentes": [
+    "UX-40 pp.13,16",
+    "UX-41 p.16",
+    "UX-42 pp.6,16"
+   ],
+   "gate": [
+    "G-VISUAL"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-05",
+   "tema": "medicion",
+   "regla": "La medición es agregada y sin identificadores (conteo de clics a WhatsApp o llamada), o con consentimiento. Se filtran bots y previsualizadores de enlace antes de contar aperturas.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E3",
+   "fuentes": [
+    "UX-55 p.15",
+    "CO sec.5 p.9",
+    "PS sec.6"
+   ],
+   "gate": [
+    "G-RED"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-06",
+   "tema": "medicion",
+   "regla": "Un modelo de lenguaje propone variantes e hipótesis pero no estima efectos: sobrestima los tamaños de efecto. Los usuarios simulados no prueban comprensión, deseo ni confianza.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-25 p.8",
+    "UX-53 pp.8,12,13,17,19",
+    "AL-43 pp.14,29"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  },
+  {
+   "id": "R-MED-07",
+   "tema": "medicion",
+   "regla": "Los resultados se analizan por mercado y subgrupo fijados de antemano, se miden también efectos adversos (cancelaciones, quejas, no-shows) y todo hallazgo se replica en otro lote antes de promoverlo a regla.",
+   "prioridad": null,
+   "tipo": "proceso",
+   "publico": "ambos",
+   "modos": [
+    "muestra",
+    "final"
+   ],
+   "evidencia": "E1",
+   "fuentes": [
+    "CO-24 pp.5,8,9",
+    "CO-23 pp.2,9",
+    "UX-47 pp.10,15"
+   ],
+   "gate": [
+    "G-MANIFIESTO"
+   ],
+   "notas": ""
+  }
+ ]
+}
