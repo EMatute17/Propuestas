@@ -92,7 +92,10 @@ def juzgar_contraste(D, dir_informe):
 
 def hoja_contacto(dir_informe, dispositivos, salida):
     celdas = []
-    fuente = ImageFont.load_default()
+    try:   # tipografia libre del repositorio: la de Pillow por defecto no tiene tildes ni la o ordinal
+        fuente = ImageFont.truetype(os.path.join(RAIZ, "fuentes", "Manrope-Medium.ttf"), 13)
+    except OSError:
+        fuente = ImageFont.load_default()
     ancho = 250
     for d in dispositivos:
         ruta = os.path.join(dir_informe, "capturas", d["id"] + ".jpg")
