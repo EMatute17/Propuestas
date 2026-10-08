@@ -14,6 +14,8 @@ import re
 
 from . import calidad, catalogo, dinero, tipografia, valoracion
 
+# monedas en las que los precios normales pasan de cinco mil (para no avisar de un precio raro sin motivo)
+MONEDAS_GRANDES = {"COP", "CLP", "PYG", "ARS", "CRC", "VES", "UYU"}
 HORA = {"type": "string", "pattern": r"^([01]\d|2[0-3]):[0-5]\d$"}
 TRAMO = {"type": "array", "minItems": 2, "maxItems": 2, "items": HORA}
 DIA = {"type": "array", "items": TRAMO}
@@ -253,7 +255,7 @@ def _textos(x, ruta=""):
             yield from _textos(v, f"{ruta}[{i}]")
 
 
-def revisar(F, ruta=None, comprobar_fotos=True):
+def revisar(F, ruta=None, comprobar_fotos=True, fotos_de_prueba=False):
     """Devuelve (errores, avisos). Un error impide construir o haría fallar el Gate; un aviso conviene mirarlo."""
     from ..gate import estatico
     from . import generar
@@ -277,8 +279,11 @@ def revisar(F, ruta=None, comprobar_fotos=True):
             errores.append(f"la ficha no se pudo revisar: {type(e).__name__}: {e}")
     # fotos: procedencia y calidad de los originales (R-FOT-01 y R-FOT-02); calificacion de Google (R-VAL-01 y R-VAL-02)
     e_f, a_f = calidad.revisar(F, generar.ORIGEN_ACTIVOS, con_archivos=comprobar_fotos)
-    errores += [x for x in e_f if x not in errores]
-    avisos += a_f
+    if fotos_de_prueba:   # solo para probar el sistema: las faltas de las fotos pasan a avisos y la web resultante no es entregable
+        avisos += [f"(PRUEBA) {x}" for x in e_f if x not in errores] + a_f
+    else:
+        errores += [x for x in e_f if x not in errores]
+        avisos += a_f
     a_v = valoracion.validar(F)[1]
     avisos += a_v
     # zona horaria real
@@ -327,8 +332,6 @@ def revisar(F, ruta=None, comprobar_fotos=True):
         errores.append("estilo.orden lleva como pero la ficha no tiene pedido")
     if "reserva" in orden and not F.get("reservas"):
         errores.append("estilo.orden lleva reserva pero la ficha no tiene reservas")
-    if (F.get("estilo") or {}).get("paleta") == "auto" and "logo" not in activos:
-        errores.append("estilo.paleta es auto pero no hay activo logo (sin logo usa brasa o fuego)")
     # frases que el Gate rechaza (se avisan aquí, antes de construir)
     for ruta_t, t in _textos(F):
         if estatico.MARCA_PROHIBIDA.search(t):
@@ -355,8 +358,9 @@ def revisar(F, ruta=None, comprobar_fotos=True):
         for p in c.get("platos", []):
             if p.get("descripcion") and len(p["descripcion"]) > 130:
                 avisos.append(f"carta.{c.get('id')}.{p.get('id')}: la descripción mide {len(p['descripcion'])} caracteres (mejor hasta 110)")
-            for precio in [p.get("precio")] + [v.get("precio") for v in p.get("variantes", [])]:
-                if isinstance(precio, (int, float)) and (precio > 5000 or round(precio, 2) != precio):
+            tope = 2_000_000 if F.get("moneda") in MONEDAS_GRANDES else 5000
+            for precio in [p.get("precio")] + [v.get("precio") for v in p.get("variantes", [])] + [s.get("precio") for s in p.get("suplementos", [])]:
+                if isinstance(precio, (int, float)) and (precio > tope or round(precio, 2) != precio):
                     avisos.append(f"carta.{c.get('id')}.{p.get('id')}: precio raro ({precio})")
     for k, a in activos.items():
         if isinstance(a, dict) and len(a.get("alt", "")) > 140:

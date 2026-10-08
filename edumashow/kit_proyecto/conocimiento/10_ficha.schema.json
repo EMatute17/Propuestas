@@ -1,0 +1,1361 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "title": "Ficha de restaurante de Edumashow",
+ "type": "object",
+ "required": [
+  "id",
+  "version",
+  "modo",
+  "idioma",
+  "confirmacion",
+  "negocio",
+  "contacto",
+  "moneda",
+  "carta",
+  "textos",
+  "activos",
+  "estilo",
+  "muestra"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z0-9_]+$"
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+$"
+  },
+  "modo": {
+   "type": "string",
+   "enum": [
+    "muestra",
+    "final"
+   ]
+  },
+  "idioma": {
+   "type": "string",
+   "enum": [
+    "es"
+   ]
+  },
+  "confirmacion": {
+   "type": "object",
+   "required": [
+    "estado",
+    "fecha"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "estado": {
+     "type": "string",
+     "enum": [
+      "ejemplo",
+      "por_confirmar",
+      "confirmado"
+     ]
+    },
+    "fecha": {
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "nota": {
+     "type": "string"
+    }
+   }
+  },
+  "negocio": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "nombre",
+    "cocina",
+    "ciudad",
+    "pais",
+    "direccion",
+    "zona_horaria",
+    "lema",
+    "descripcion"
+   ],
+   "properties": {
+    "nombre": {
+     "type": "string",
+     "minLength": 1
+    },
+    "cocina": {
+     "type": "string",
+     "minLength": 1
+    },
+    "ciudad": {
+     "type": "string",
+     "minLength": 1
+    },
+    "pais": {
+     "type": "string",
+     "enum": [
+      "AR",
+      "BO",
+      "BR",
+      "CA",
+      "CL",
+      "CO",
+      "CR",
+      "DE",
+      "DO",
+      "EC",
+      "ES",
+      "FR",
+      "GB",
+      "GT",
+      "HN",
+      "IT",
+      "MX",
+      "NI",
+      "PA",
+      "PE",
+      "PR",
+      "PT",
+      "PY",
+      "SV",
+      "US",
+      "UY",
+      "VE"
+     ]
+    },
+    "direccion": {
+     "type": "string",
+     "minLength": 1
+    },
+    "zona_horaria": {
+     "type": "string",
+     "pattern": "^[A-Za-z_]+(/[A-Za-z_\\-]+){1,2}$"
+    },
+    "lema": {
+     "type": "string",
+     "minLength": 1
+    },
+    "lema_en": {
+     "type": "string",
+     "minLength": 1
+    },
+    "descripcion": {
+     "type": "string",
+     "minLength": 1
+    }
+   }
+  },
+  "contacto": {
+   "type": "object",
+   "required": [
+    "mapa_consulta"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "mapa_consulta": {
+     "type": "string",
+     "minLength": 1
+    },
+    "telefono": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^\\+\\d{8,15}$"
+    },
+    "telefono_visible": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "whatsapp": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^\\d{8,15}$"
+    },
+    "instagram": {
+     "type": "object",
+     "required": [
+      "usuario",
+      "url"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "usuario": {
+       "type": "string",
+       "minLength": 1
+      },
+      "url": {
+       "type": "string",
+       "pattern": "^https://"
+      }
+     }
+    },
+    "tiktok": {
+     "type": "object",
+     "required": [
+      "usuario",
+      "url"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "usuario": {
+       "type": "string",
+       "minLength": 1
+      },
+      "url": {
+       "type": "string",
+       "pattern": "^https://"
+      }
+     }
+    },
+    "reparto": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "nombre"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "nombre": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "conducta": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "objetivo": {
+     "type": "string",
+     "enum": [
+      "reservar",
+      "llamar",
+      "pedir"
+     ]
+    },
+    "canal": {
+     "type": "string",
+     "enum": [
+      "whatsapp",
+      "telefono"
+     ]
+    }
+   }
+  },
+  "acciones": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "hero": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 2,
+     "items": {
+      "type": "object",
+      "required": [
+       "tipo"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "tipo": {
+        "type": "string",
+        "enum": [
+         "reservar",
+         "carta",
+         "mapa",
+         "llamar",
+         "whatsapp",
+         "instagram"
+        ]
+       },
+       "etiqueta": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     }
+    },
+    "barra": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "required": [
+       "tipo"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "tipo": {
+        "type": "string",
+        "enum": [
+         "reservar",
+         "carta",
+         "mapa",
+         "llamar",
+         "whatsapp",
+         "instagram"
+        ]
+       },
+       "etiqueta": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "moneda": {
+   "type": "string",
+   "enum": [
+    "ARS",
+    "BOB",
+    "BRL",
+    "CAD",
+    "CHF",
+    "CLP",
+    "COP",
+    "CRC",
+    "DOP",
+    "EUR",
+    "GBP",
+    "GTQ",
+    "HNL",
+    "MXN",
+    "NIO",
+    "PEN",
+    "PYG",
+    "USD",
+    "UYU",
+    "VES"
+   ]
+  },
+  "horario_estado": {
+   "type": "string",
+   "enum": [
+    "por_confirmar"
+   ]
+  },
+  "horario_texto": {
+   "type": "string",
+   "minLength": 1
+  },
+  "horario": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "lun",
+    "mar",
+    "mie",
+    "jue",
+    "vie",
+    "sab",
+    "dom"
+   ],
+   "properties": {
+    "lun": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "mar": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "mie": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "jue": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "vie": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "sab": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    },
+    "dom": {
+     "type": "array",
+     "items": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "string",
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+      }
+     }
+    }
+   }
+  },
+  "reservas": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "maximo_personas",
+    "personas_por_defecto",
+    "paso_minutos",
+    "ultima_antes_del_cierre_min",
+    "antelacion_min",
+    "hora_preferida"
+   ],
+   "properties": {
+    "maximo_personas": {
+     "type": "integer",
+     "minimum": 2
+    },
+    "personas_por_defecto": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "paso_minutos": {
+     "type": "integer",
+     "enum": [
+      15,
+      30,
+      60
+     ]
+    },
+    "ultima_antes_del_cierre_min": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "antelacion_min": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "hora_preferida": {
+     "type": "string",
+     "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+    }
+   }
+  },
+  "historia": {
+   "type": "object",
+   "required": [
+    "cifra",
+    "unidad",
+    "texto",
+    "pasos"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "cifra": {
+     "type": "number"
+    },
+    "unidad": {
+     "type": "string",
+     "minLength": 1
+    },
+    "texto": {
+     "type": "string",
+     "minLength": 1
+    },
+    "pasos": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 4,
+     "items": {
+      "type": "object",
+      "required": [
+       "titulo",
+       "texto"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "titulo": {
+        "type": "string",
+        "minLength": 1
+       },
+       "texto": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "valoracion": {
+   "type": "object",
+   "required": [
+    "fuente",
+    "nota",
+    "resenas",
+    "fecha"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "fuente": {
+     "type": "string",
+     "enum": [
+      "google"
+     ]
+    },
+    "nota": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 5
+    },
+    "resenas": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "fecha": {
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "url": {
+     "type": "string",
+     "pattern": "^https://"
+    },
+    "ejemplo": {
+     "type": "boolean"
+    }
+   }
+  },
+  "carta": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "titulo",
+     "platos"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+     },
+     "titulo": {
+      "type": "string",
+      "minLength": 1
+     },
+     "chip": {
+      "type": "string",
+      "minLength": 1
+     },
+     "nota": {
+      "type": "string",
+      "minLength": 1
+     },
+     "foto": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+     },
+     "presentacion": {
+      "type": "string",
+      "enum": [
+       "lista"
+      ]
+     },
+     "platos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "type": "object",
+       "required": [
+        "id",
+        "nombre"
+       ],
+       "additionalProperties": false,
+       "properties": {
+        "id": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "nombre": {
+         "type": "string",
+         "minLength": 1
+        },
+        "nombre_en": {
+         "type": "string",
+         "minLength": 1
+        },
+        "lang": {
+         "type": "string",
+         "enum": [
+          "en",
+          "it",
+          "fr",
+          "pt",
+          "es",
+          "de"
+         ]
+        },
+        "descripcion": {
+         "type": "string",
+         "minLength": 1
+        },
+        "precio": {
+         "type": "number",
+         "exclusiveMinimum": 0
+        },
+        "foto": {
+         "type": "string",
+         "pattern": "^[a-z0-9_]+$"
+        },
+        "medida": {
+         "type": "number",
+         "exclusiveMinimum": 0
+        },
+        "firma": {
+         "type": "boolean"
+        },
+        "variantes": {
+         "type": "array",
+         "minItems": 2,
+         "items": {
+          "type": "object",
+          "required": [
+           "etiqueta",
+           "precio"
+          ],
+          "additionalProperties": false,
+          "properties": {
+           "etiqueta": {
+            "type": "string",
+            "minLength": 1
+           },
+           "precio": {
+            "type": "number",
+            "exclusiveMinimum": 0
+           }
+          }
+         }
+        },
+        "suplementos": {
+         "type": "array",
+         "minItems": 1,
+         "items": {
+          "type": "object",
+          "required": [
+           "etiqueta",
+           "precio"
+          ],
+          "additionalProperties": false,
+          "properties": {
+           "etiqueta": {
+            "type": "string",
+            "minLength": 1
+           },
+           "precio": {
+            "type": "number",
+            "exclusiveMinimum": 0
+           }
+          }
+         }
+        }
+       },
+       "oneOf": [
+        {
+         "required": [
+          "precio"
+         ],
+         "not": {
+          "required": [
+           "variantes"
+          ]
+         }
+        },
+        {
+         "required": [
+          "variantes"
+         ],
+         "not": {
+          "required": [
+           "precio"
+          ]
+         }
+        }
+       ]
+      }
+     }
+    }
+   }
+  },
+  "galeria": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "foto",
+     "pie"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "foto": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+     },
+     "pie": {
+      "type": "string",
+      "minLength": 1
+     }
+    }
+   }
+  },
+  "textos": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string",
+    "minLength": 1
+   }
+  },
+  "activos": {
+   "type": "object",
+   "minProperties": 1,
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "archivo",
+     "alt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "archivo": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-]+/[A-Za-z0-9_\\-\\.]+\\.(jpg|jpeg|png|webp|avif)$"
+     },
+     "alt": {
+      "type": "string"
+     },
+     "procedencia": {
+      "type": "object",
+      "properties": {
+       "origen": {
+        "type": "string",
+        "enum": [
+         "propia_del_restaurante",
+         "redes_del_restaurante",
+         "banco_libre",
+         "referencia",
+         "generada"
+        ]
+       },
+       "descripcion": {
+        "type": "string",
+        "minLength": 1
+       },
+       "licencia": {
+        "type": "string",
+        "minLength": 1
+       },
+       "permiso": {
+        "type": "string",
+        "enum": [
+         "pendiente",
+         "concedido"
+        ]
+       },
+       "autor": {
+        "type": "string"
+       },
+       "url": {
+        "type": "string"
+       },
+       "recorte": {
+        "type": "string"
+       }
+      }
+     },
+     "antojo": {
+      "type": "object",
+      "required": [
+       "juicio",
+       "real",
+       "sin_marcas_ajenas"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "juicio": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "textura",
+         "reconocible",
+         "accion",
+         "protagonista",
+         "luz",
+         "calor",
+         "mano"
+        ],
+        "properties": {
+         "textura": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "reconocible": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "accion": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "protagonista": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "luz": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "calor": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         },
+         "mano": {
+          "type": "integer",
+          "enum": [
+           0,
+           1,
+           2
+          ]
+         }
+        }
+       },
+       "real": {
+        "type": "boolean"
+       },
+       "sin_marcas_ajenas": {
+        "type": "boolean"
+       },
+       "nota": {
+        "type": "string"
+       }
+      }
+     },
+     "foco": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     },
+     "ajustes": {
+      "type": "object"
+     }
+    }
+   }
+  },
+  "procedencia_activos": {
+   "type": "object",
+   "properties": {
+    "origen": {
+     "type": "string",
+     "enum": [
+      "propia_del_restaurante",
+      "redes_del_restaurante",
+      "banco_libre",
+      "referencia",
+      "generada"
+     ]
+    },
+    "descripcion": {
+     "type": "string",
+     "minLength": 1
+    },
+    "licencia": {
+     "type": "string",
+     "minLength": 1
+    },
+    "permiso": {
+     "type": "string",
+     "enum": [
+      "pendiente",
+      "concedido"
+     ]
+    },
+    "autor": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    },
+    "recorte": {
+     "type": "string"
+    }
+   }
+  },
+  "estilo": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "personalidad"
+   ],
+   "properties": {
+    "personalidad": {
+     "type": "string",
+     "enum": [
+      "elegante",
+      "urbano"
+     ]
+    },
+    "paleta": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "brasa",
+      "fuego"
+     ]
+    },
+    "tipografia": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "alfaslab-karla",
+      "anton-archivo",
+      "archivo-condensado-inter",
+      "archivo-expandido",
+      "barlow-inter",
+      "baskerville-dmsans",
+      "bebas-manrope",
+      "bigshoulders-worksans",
+      "bodoni-manrope",
+      "bodoni-outfit",
+      "bowlby-dmsans",
+      "bricolage-outfit",
+      "caslon-karla",
+      "chivo-inter",
+      "cormorant-dmsans",
+      "delagothic-dmsans",
+      "dmserif-inter",
+      "fraunces-manrope",
+      "fredoka-figtree",
+      "garamond-manrope",
+      "gilda-worksans",
+      "gloock-worksans",
+      "instrument-inter",
+      "leaguegothic-karla",
+      "lilita-figtree",
+      "lora-karla",
+      "marcellus-figtree",
+      "newsreader-inter",
+      "oswald-dmsans",
+      "outfit-outfit",
+      "passion-worksans",
+      "paytone-dmsans",
+      "playfair-inter",
+      "prata-inter",
+      "righteous-karla",
+      "rubik-rubik",
+      "shrikhand-dmsans",
+      "sora-figtree",
+      "spacegrotesk-inter",
+      "spectral-dmsans",
+      "staatliches-figtree",
+      "syne-manrope",
+      "unbounded-manrope",
+      "yeseva-outfit",
+      "youngserif-figtree"
+     ]
+    },
+    "forma": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "recta",
+      "suave"
+     ]
+    },
+    "movimiento": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "lento",
+      "rapido"
+     ]
+    },
+    "orden": {
+     "type": "array",
+     "minItems": 3,
+     "items": {
+      "type": "string",
+      "enum": [
+       "portada",
+       "idea",
+       "carta",
+       "ambiente",
+       "reserva",
+       "visita",
+       "cierre",
+       "regla",
+       "como",
+       "fotos"
+      ]
+     }
+    },
+    "orden_fotos": {
+     "type": "string",
+     "enum": [
+      "antojo",
+      "ficha"
+     ]
+    },
+    "variante_paleta": {
+     "type": "integer"
+    },
+    "acento_temporada": {
+     "type": "boolean"
+    },
+    "tono": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "portada": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "cartel_rotulo",
+      "collage_pegatinas",
+      "cortina",
+      "luz_brasas",
+      "marco_editorial",
+      "mural_columnas"
+     ]
+    },
+    "carta": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "chips_tablero",
+      "indice_columnas",
+      "lista_cartel",
+      "pestanas_lista"
+     ]
+    },
+    "galeria": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "bento",
+      "cinta",
+      "cuadricula_ig",
+      "mosaico",
+      "polaroid"
+     ]
+    },
+    "ornamento": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "arco",
+      "diente",
+      "onda",
+      "rasgado",
+      "recto"
+     ]
+    },
+    "boton": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "contorno",
+      "sello",
+      "solido",
+      "subrayado"
+     ]
+    },
+    "densidad": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "aire",
+      "compacta",
+      "media"
+     ]
+    },
+    "textura": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "grano",
+      "limpia",
+      "papel",
+      "rayas"
+     ]
+    },
+    "animaciones": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "brasa",
+      "bruma",
+      "cartel",
+      "editorial",
+      "festivo",
+      "minimal"
+     ]
+    }
+   }
+  },
+  "perfil": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "servicio": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "mesa",
+       "llevar",
+       "barra",
+       "reparto"
+      ]
+     }
+    },
+    "precio": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 4
+    },
+    "ambiente": {
+     "type": "array",
+     "maxItems": 3,
+     "items": {
+      "type": "string",
+      "enum": [
+       "familiar",
+       "romantico",
+       "juvenil",
+       "nocturno",
+       "tradicional",
+       "moderno",
+       "terraza",
+       "playero",
+       "festivo",
+       "tranquilo"
+      ]
+     }
+    }
+   }
+  },
+  "pedido": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "canal": {
+     "type": "string",
+     "enum": [
+      "whatsapp",
+      "llamada"
+     ]
+    },
+    "nota_ejemplo": {
+     "type": "string",
+     "minLength": 1
+    },
+    "textos": {
+     "type": "object"
+    }
+   }
+  },
+  "idea": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "tipo",
+    "categoria",
+    "unidad",
+    "por",
+    "sobretitulo",
+    "titulo",
+    "texto",
+    "mejor",
+    "nota"
+   ],
+   "properties": {
+    "tipo": {
+     "type": "string",
+     "enum": [
+      "medida"
+     ]
+    },
+    "categoria": {
+     "type": "string",
+     "pattern": "^[a-z0-9_]+$"
+    },
+    "unidad": {
+     "type": "string",
+     "minLength": 1
+    },
+    "por": {
+     "type": "string",
+     "minLength": 1
+    },
+    "sobretitulo": {
+     "type": "string",
+     "minLength": 1
+    },
+    "titulo": {
+     "type": "string",
+     "minLength": 1
+    },
+    "texto": {
+     "type": "string",
+     "minLength": 1
+    },
+    "texto_js": {
+     "type": "string",
+     "minLength": 1
+    },
+    "mejor": {
+     "type": "string",
+     "minLength": 1
+    },
+    "nota": {
+     "type": "string",
+     "minLength": 1
+    }
+   }
+  },
+  "muestra": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "ejemplo_ficticio"
+   ],
+   "properties": {
+    "ejemplo_ficticio": {
+     "type": "boolean"
+    },
+    "permiso": {
+     "type": "string",
+     "enum": [
+      "pendiente",
+      "concedido"
+     ]
+    },
+    "origen_datos": {
+     "type": "string",
+     "minLength": 1
+    },
+    "nota_panel": {
+     "type": "string",
+     "minLength": 1
+    },
+    "incluye": {
+     "type": "array",
+     "minItems": 1,
+     "maxItems": 4,
+     "items": {
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "base_url": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "gate_pruebas_pedido": {
+   "type": "object"
+  },
+  "gate_pruebas_horario": {
+   "type": "array"
+  },
+  "excepciones_gate": {
+   "type": "object"
+  }
+ }
+}

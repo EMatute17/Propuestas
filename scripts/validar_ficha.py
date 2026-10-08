@@ -1,12 +1,13 @@
 """Revisa fichas antes de construir: forma (esquema), reglas del motor, frases que el Gate rechazaría y detalles de oficio.
 
 Uso:
-    python3 scripts/validar_ficha.py FICHA.json [OTRA.json ...] [--completar] [--escribir] [--corregir] [--sin-fotos]
+    python3 scripts/validar_ficha.py FICHA.json [OTRA.json ...] [--completar] [--escribir] [--corregir] [--sin-fotos] [--fotos-de-prueba]
 
   --completar   añade las pruebas del Gate que no escribe quien redacta (el pedido de prueba) y lo muestra
   --escribir    con --completar, guarda el resultado en el mismo archivo
   --corregir    imprime el mensaje listo para pegar en el chat del modelo que escribió la ficha, con los errores
   --sin-fotos   no exige que los archivos de fotos existan (para revisar la forma antes de tener las fotos)
+  --fotos-de-prueba   solo para probar el sistema: las faltas de las fotos (origen y calidad) pasan a avisos; la web resultante no es entregable
 
 Sale con código 0 si ninguna ficha tiene errores, y 1 si alguna los tiene.
 """
@@ -21,7 +22,7 @@ sys.path.insert(0, RAIZ)
 from edumashow.motor import esquema_ficha  # noqa: E402
 
 
-def revisar_archivo(ruta, completar=False, escribir=False, corregir=False, fotos=True):
+def revisar_archivo(ruta, completar=False, escribir=False, corregir=False, fotos=True, fotos_de_prueba=False):
     with open(ruta, encoding="utf-8") as f:
         crudo = f.read()
     try:
@@ -43,7 +44,7 @@ def revisar_archivo(ruta, completar=False, escribir=False, corregir=False, fotos
             with open(ruta, "w", encoding="utf-8") as g:
                 json.dump(F, g, ensure_ascii=False, indent=1)
                 g.write("\n")
-    errores, avisos = esquema_ficha.revisar(F, ruta, comprobar_fotos=fotos)
+    errores, avisos = esquema_ficha.revisar(F, ruta, comprobar_fotos=fotos, fotos_de_prueba=fotos_de_prueba)
     print(f"\n{ruta}: " + ("SIN ERRORES" if not errores else f"{len(errores)} ERRORES") + (f" y {len(avisos)} avisos" if avisos else ""))
     if completar:
         print("  completado:", ", ".join(hecho) if hecho else "nada que completar")
@@ -63,10 +64,11 @@ def main(argv=None):
     ap.add_argument("--escribir", action="store_true")
     ap.add_argument("--corregir", action="store_true")
     ap.add_argument("--sin-fotos", action="store_true")
+    ap.add_argument("--fotos-de-prueba", action="store_true")
     a = ap.parse_args(argv)
     ok = True
     for r in a.fichas:
-        ok = revisar_archivo(r, a.completar, a.escribir, a.corregir, not a.sin_fotos) and ok
+        ok = revisar_archivo(r, a.completar, a.escribir, a.corregir, not a.sin_fotos, a.fotos_de_prueba) and ok
     return 0 if ok else 1
 
 

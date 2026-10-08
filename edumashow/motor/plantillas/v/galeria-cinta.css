@@ -12,3 +12,5 @@ body[data-galeria="cinta"] .galeria figure{counter-increment:foto}
 @media (min-width:900px){body[data-galeria="cinta"] .galeria figure{flex-basis:min(30vw,30rem)}body[data-galeria="cinta"] .galeria figure .marco::before{padding-top:118%}}
 @media (max-height:520px) and (min-width:560px){body[data-galeria="cinta"] .galeria figure{flex-basis:min(44vw,22rem)}body[data-galeria="cinta"] .galeria figure .marco::before{padding-top:75%}}
 body[data-galeria="cinta"] .js .galeria figure.rv,.js body[data-galeria="cinta"] .galeria figure.rv{clip-path:none}
+
+body[data-galeria="cinta"] .galeria:focus-visible{outline:3px solid var(--foco-anillo);outline-offset:-3px;border-radius:0}

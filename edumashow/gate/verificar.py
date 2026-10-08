@@ -256,13 +256,18 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         r = estatico.muestra(sitio, ficha, cfg["agencia"]["whatsapp"])
         I.add("G-MUESTRA", "La muestra se rotula, deja pedir su retirada y tiene una sola acción de contratación", ["R-MUE-01", "R-MUE-02", "R-ETI-07", "R-MUE-05"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.fotos(sitio, ficha)
-    I.add("G-FOTOS", "Procedencia y licencia de cada imagen; ninguna de redes sociales salvo el logo", ["R-DAT-04", "R-FOT-01"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    I.add("G-FOTOS", "Procedencia y licencia de cada imagen", ["R-DAT-04"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    grav_f = "asesor" if fotos_de_prueba else "bloqueo"
+    marca_prueba = " (MODO PRUEBA: no bloquea y el resultado no es entregable)" if fotos_de_prueba else ""
+    I.add("G-FOTOS-ORIGEN", "Ninguna foto de redes sociales salvo el logo" + marca_prueba, ["R-FOT-01"], grav_f, "PASS" if not r["origen"] else "FAIL",
+          "origen de cada foto declarado en la ficha y en el manifiesto", r["origen"])
+    if fotos_de_prueba and r["origen"]:
+        prueba.append("G-FOTOS-ORIGEN")
     r = estatico.valoracion(sitio, ficha)
     I.add("G-VALORACION", "Calificación de Google solo si es real y de 4,0 o más, con enlace y fecha, sin comentarios", ["R-VAL-01", "R-VAL-02", "R-DAT-05"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.fotos_calidad(sitio, ficha, ORIGEN_ACTIVOS)
-    grav_f = "asesor" if fotos_de_prueba else "bloqueo"
     res_f = "WARN" if r["resultado"] == "PASS" and r["avisos"] else r["resultado"]
-    I.add("G-FOTOS-CALIDAD", "Calidad máxima de los originales de las fotos" + (" (MODO PRUEBA: no bloquea y el resultado no es entregable)" if fotos_de_prueba else ""),
+    I.add("G-FOTOS-CALIDAD", "Calidad máxima de los originales de las fotos" + marca_prueba,
           ["R-FOT-02"], grav_f, res_f, r["evidencia"], r["detalle"] + r["avisos"])
     if fotos_de_prueba and r["resultado"] == "FAIL":
         prueba.append("G-FOTOS-CALIDAD")
@@ -432,7 +437,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y día cerrado", fl)
         else:
             I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "NA", "no aplica: la ficha no tiene reservas y su acción principal es llamar")
-        pe, dl, ch = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("filtros")
+        pe, dl, ch, ind = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("filtros"), Fn.get("indice")
         fl, partes = [], []
         if pe:   # la carta con pestañas (personalidad elegante)
             ids = [c["id"] for c in ficha["carta"]]
@@ -453,11 +458,19 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             if ch["enter"]["presionados"] != [ids[0]]: fl.append("Enter sobre un filtro no lo activa")
             if ch["espacio"]["presionados"] != [ids[min(2, len(ids) - 1)]]: fl.append("la barra espaciadora sobre un filtro no lo activa")
             partes.append(f"{len(ids) - 1} categorías y Ver todo: clic, Enter y espacio")
+        if ind:   # la carta con índice (personalidad elegante, variante indice_columnas): cada enlace lleva a su categoría y la marca
+            for p_ in ind["pasos"] + [ind["enter"]]:
+                if p_["top"] is None: fl.append(f"el enlace {p_['id']} del índice no lleva a ninguna categoría"); continue
+                if p_["top"] < p_["barraAbajo"] - 2 or p_["bottom"] > p_["vh"] + 2: fl.append(f"al ir a {p_['id']} el título queda fuera de la vista o tapado por el índice (arriba {p_['top']}, índice hasta {p_['barraAbajo']}, pantalla {p_['vh']})")
+                if p_["actual"] != [p_["id"]]: fl.append(f"al ir a {p_['id']} el índice marca {p_['actual']}")
+                # al seguir un enlace a un ancla el navegador suelta el foco del enlace y sigue desde el destino (el siguiente Tab sale de la categoría): solo es fallo si el foco salta a otro control
+                if p_["foco"] not in (None, p_["id"]): fl.append(f"al activar el enlace {p_['id']} el foco salta a otro control ({p_['foco']})")
+            partes.append(f"{len(ind['ids'])} categorías del índice: clic y Enter llevan a su categoría y la marcan")
         if muestra:   # el diálogo de Edumashow solo existe en la muestra
             if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
             if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
             partes.append("Escape y retorno del foco en el diálogo")
-        if not (pe or ch): fl.append("la carta no tiene pestañas ni filtros que probar")
+        if not (pe or ch or ind): fl.append("la carta no tiene pestañas, filtros ni índice que probar")
         I.add("G-INTERACCION", "Navegación de la carta con teclado" + (" y diálogo de la muestra" if muestra else ""), ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", "; ".join(partes), fl)
         # ---- pedido: ticket en vivo, totales, mensaje y destino
         if ficha.get("pedido"):
@@ -494,9 +507,10 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         m = D["movimiento"]
         fl = []
         # WCAG 2.2.2: lo que dura mas de 5 segundos o se repite tiene que poder pausarse; una transicion de revelado de un segundo no cuenta
-        if m["pausado"]["infinitas"] or m["pausado"].get("largas", 0) or m["pausado"]["brasas"]: fl.append(f"tras pausar siguen: {m['pausado']}")
+        # brasas: -1 es que la página no dibuja partículas (un paquete sin lienzo); solo cuenta lo que sigue pintándose tras pausar
+        if m["pausado"]["infinitas"] or m["pausado"].get("largas", 0) or m["pausado"]["brasas"] > 0: fl.append(f"tras pausar siguen: {m['pausado']}")
         if not (m["pausaEstado"]["aria"] == "true" and m["pausaEstado"]["clase"]): fl.append("el botón de pausa no actualiza su estado")
-        if m["reducido"]["infinitas"] or m["reducido"]["brasas"] or not m["reducido"]["letras"]: fl.append(f"con movimiento reducido: {m['reducido']}")
+        if m["reducido"]["infinitas"] or m["reducido"]["brasas"] > 0 or not m["reducido"]["letras"]: fl.append(f"con movimiento reducido: {m['reducido']}")
         I.add("G-MOVIMIENTO", "Movimiento reducido y pausa de las animaciones", ["R-LEG-06", "R-REN-04", "R-IDE-05"], "bloqueo", "PASS" if not fl else "FAIL",
               f"animaciones infinitas normales {m['normal']['infinitas']}; con pausa {m['pausado']['infinitas']}; con movimiento reducido {m['reducido']['infinitas']}", fl)
         # ---- efectos ligados al scroll (la cifra que se llena)

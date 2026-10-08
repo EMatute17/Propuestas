@@ -62,16 +62,66 @@ def _tokens_con_acento(tokens):
     return t
 
 
-def resolver_paleta(F, origen_activos, fecha=None):
-    """Tokens de color de la web. Con paleta 'auto' salen del logo; con el nombre de una paleta hecha a mano, de ella (solo se valida)."""
+# Restaurante sin logo: el color de marca lo propone el director según el tono de su cocina. Rangos de matiz (grados OKLCH) que van con cada tono.
+MATICES_POR_TONO = [
+    (("parrilla", "potente", "callejero"), [(28, 48), (52, 68)]),
+    (("pop", "festivo", "joven", "social", "nocturno"), [(335, 358), (295, 325), (195, 215), (88, 104)]),
+    (("italiana", "clasico", "trattoria", "tradicion", "artesanal", "calido", "familiar"), [(28, 42), (62, 80), (118, 134)]),
+    (("dulce", "pasteleria", "lujo"), [(340, 358), (300, 328), (12, 28)]),
+    (("fresco", "saludable", "amable", "luminoso", "cafe"), [(132, 158), (98, 120), (176, 198)]),
+    (("marino",), [(214, 244), (190, 212)]),
+    (("autor", "elegante", "premium", "contemporaneo", "minimal", "moderno", "tecnica"), [(10, 24), (150, 168), (240, 268), (302, 322)]),
+]
+
+
+def _paleta_sin_logo(F, fecha, tonos, registro):
+    """Paleta de un restaurante sin logo: el color de marca sale del tono de su cocina y se aparta de los matices de las últimas webs, para que los restaurantes
+    sin logo no acaben todos con las mismas dos paletas hechas a mano. Es una propuesta de diseño, no un dato del restaurante: se confirma con el dueño."""
+    from .generar import FichaIncompleta
+    est = F["estilo"]
+    # los dos primeros tonos con matices propios mandan (los de la cocina van antes que los genéricos de la personalidad)
+    grupos = []
+    for t in tonos:
+        for i, (palabras, _) in enumerate(MATICES_POR_TONO):
+            if t in palabras and i not in grupos:
+                grupos.append(i)
+        if len(grupos) >= 2:
+            break
+    rangos = [r for i in grupos for r in MATICES_POR_TONO[i][1]]
+    grupo = ", ".join(t for t in tonos[:3]) or "sin tono"
+    if not rangos:
+        rangos, grupo = [(0, 359)], "ningún tono concreto"
+    matices = sorted({h % 360 for a, b in rangos for h in range(a, b + 1, 6)})
+    recientes = [_huella.normalizar(v).get("paleta") for _, v in _huella.vecinas(F["id"], registro, 8)]
+    semilla = hashlib.sha1(F["id"].encode()).hexdigest()
+    # primero los matices cuyo cubo de tono no está en las últimas webs; entre ellos, un orden fijo por el id de la ficha
+    def clave(h):
+        cubo = _huella.cubo_de_tono(color.desde_oklch(0.74, 0.17, h))
+        return (recientes.count(cubo), hashlib.sha1(f"{semilla}|{h}".encode()).hexdigest())
+    ultimo_error = ""
+    for h in sorted(matices, key=clave)[:12]:
+        marca = color.desde_oklch(0.62, 0.17, h)
+        tokens, rep = color.paleta_marca(marca, fecha, variante=est.get("variante_paleta", 0), con_acento=est.get("acento_temporada", True))
+        malos = [f'{p["texto"]} sobre {p["fondo"]} ({p["contraste"]}:1)' for p in rep["pares"] if not p["ok"]]
+        if malos:
+            ultimo_error = "; ".join(malos)
+            continue
+        rep["dominantes_del_logo"] = []
+        return {"id": "auto:" + tokens["brasa"].lstrip("#"),
+                "origen": f"propuesta del director (sin logo): color de marca {marca}, matiz {h} grados, del tono de la cocina ({grupo}); confirmar el color con el restaurante",
+                "tokens": tokens, "pares": rep["pares"], "informe": rep}
+    raise FichaIncompleta("ningún color de marca propuesto para un restaurante sin logo llega al contraste exigido (" + ultimo_error + "). Fija una paleta hecha a mano en estilo.paleta")
+
+
+def resolver_paleta(F, origen_activos, fecha=None, tonos=(), registro=None):
+    """Tokens de color de la web. Con paleta 'auto' salen del logo (o, sin logo, del tono de la cocina); con el nombre de una paleta hecha a mano, de ella (solo se valida)."""
     est = F["estilo"]
     if est.get("paleta", "auto") != "auto":
         tokens = _tokens_con_acento(temas.PALETAS[est["paleta"]])
         return {"id": est["paleta"], "origen": "paleta hecha a mano, validada con los mismos pares de contraste", "tokens": tokens,
                 "pares": color.pares_de_contraste(tokens), "informe": None}
     if "logo" not in F.get("activos", {}):
-        from .generar import FichaIncompleta
-        raise FichaIncompleta("estilo.paleta auto necesita activos.logo: el color de identidad sale del logo")
+        return _paleta_sin_logo(F, fecha, list(tonos), registro or {})
     im = Image.open(os.path.join(origen_activos, F["activos"]["logo"]["archivo"]))
     dominantes = color.colores_dominantes(im, k=6)
     marca = color.color_de_marca(dominantes)
@@ -176,7 +226,7 @@ def decidir(F, origen_activos, ruta_registro, fecha=None, redisenar=False):
     texto = json.dumps(F, ensure_ascii=False)
     if pedido.activo(F):
         texto += json.dumps(pedido.textos(F), ensure_ascii=False)
-    paleta = resolver_paleta(F, origen_activos, fecha)
+    paleta = resolver_paleta(F, origen_activos, fecha, tonos, _huella.cargar_registro(ruta_registro))
     registros, orden = puntuar_fotos(F, origen_activos)
     cubo = _huella.cubo_de_tono(paleta["tokens"]["brasa"]) if est.get("paleta", "auto") == "auto" else est["paleta"]
 

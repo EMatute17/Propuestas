@@ -1,0 +1,445 @@
+{
+ "id": "donchucho",
+ "version": "1.0.0",
+ "modo": "muestra",
+ "idioma": "es",
+ "confirmacion": {
+  "estado": "ejemplo",
+  "fecha": "2026-10-08",
+  "nota": "Restaurante ficticio para enseñar la forma de la ficha. Todos los datos, textos y precios son de ejemplo."
+ },
+ "negocio": {
+  "nombre": "Parrilla Don Chucho",
+  "cocina": "Parrilla y carnes al carbón",
+  "ciudad": "Bogotá",
+  "pais": "CO",
+  "direccion": "Calle 85 # 14-20, Bogotá",
+  "zona_horaria": "America/Bogota",
+  "lema": "Carbón, sal y paciencia",
+  "descripcion": "Parrilla en Bogotá: picadas por libras, carnes al carbón y acompañantes. Mira el menú con precios, arma tu pedido y escríbenos por WhatsApp."
+ },
+ "perfil": {
+  "servicio": [
+   "llevar",
+   "mesa"
+  ],
+  "precio": 2,
+  "ambiente": [
+   "familiar",
+   "juvenil"
+  ]
+ },
+ "contacto": {
+  "whatsapp": "573001112233",
+  "telefono": "+576011112233",
+  "telefono_visible": "601 111 2233",
+  "mapa_consulta": "Parrilla Don Chucho, Calle 85 # 14-20, Bogotá",
+  "instagram": {
+   "usuario": "parrilladonchucho",
+   "url": "https://www.instagram.com/parrilladonchucho/"
+  }
+ },
+ "conducta": {
+  "objetivo": "pedir",
+  "canal": "whatsapp"
+ },
+ "acciones": {
+  "hero": [
+   {
+    "tipo": "carta",
+    "etiqueta": "Armar mi pedido"
+   },
+   {
+    "tipo": "llamar"
+   }
+  ],
+  "barra": [
+   {
+    "tipo": "llamar"
+   },
+   {
+    "tipo": "carta",
+    "etiqueta": "Pedir"
+   },
+   {
+    "tipo": "mapa"
+   }
+  ]
+ },
+ "moneda": "COP",
+ "horario": {
+  "lun": [],
+  "mar": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "mie": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "jue": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "vie": [
+   [
+    "12:00",
+    "23:30"
+   ]
+  ],
+  "sab": [
+   [
+    "12:00",
+    "23:30"
+   ]
+  ],
+  "dom": [
+   [
+    "12:00",
+    "18:00"
+   ]
+  ]
+ },
+ "valoracion": {
+  "fuente": "google",
+  "nota": 4.6,
+  "resenas": 412,
+  "fecha": "2026-10-08",
+  "ejemplo": true
+ },
+ "carta": [
+  {
+   "id": "picadas",
+   "titulo": "Picadas al carbón",
+   "chip": "Picadas",
+   "foto": "picada",
+   "nota": "Se piden por libras",
+   "platos": [
+    {
+     "id": "picadas-1",
+     "nombre": "Picada 1 lb",
+     "descripcion": "Costilla, chorizo y papa criolla.",
+     "precio": 38000,
+     "medida": 1
+    },
+    {
+     "id": "picadas-2",
+     "nombre": "Picada 2 lb",
+     "descripcion": "Costilla, lomo, chorizo, morcilla y papa criolla.",
+     "precio": 72000,
+     "medida": 2
+    },
+    {
+     "id": "picadas-3",
+     "nombre": "Picada 3 lb",
+     "descripcion": "Costilla, lomo, pollo, chorizo, morcilla y papa criolla.",
+     "precio": 105000,
+     "medida": 3
+    },
+    {
+     "id": "picadas-5",
+     "nombre": "Picada 5 lb",
+     "descripcion": "Para compartir entre seis: todas las carnes de la casa.",
+     "precio": 168000,
+     "medida": 5
+    }
+   ]
+  },
+  {
+   "id": "carnes",
+   "titulo": "Carnes",
+   "foto": "costilla",
+   "nota": "Por media libra o por libra",
+   "platos": [
+    {
+     "id": "carnes-1",
+     "nombre": "Costilla de res",
+     "variantes": [
+      {
+       "etiqueta": "½ lb",
+       "precio": 24000
+      },
+      {
+       "etiqueta": "1 lb",
+       "precio": 44000
+      }
+     ],
+     "suplementos": [
+      {
+       "etiqueta": "Con tocino",
+       "precio": 4000
+      }
+     ]
+    },
+    {
+     "id": "carnes-2",
+     "nombre": "Lomo de cerdo",
+     "variantes": [
+      {
+       "etiqueta": "½ lb",
+       "precio": 22000
+      },
+      {
+       "etiqueta": "1 lb",
+       "precio": 40000
+      }
+     ]
+    },
+    {
+     "id": "carnes-3",
+     "nombre": "Pechuga a la parrilla",
+     "variantes": [
+      {
+       "etiqueta": "½ lb",
+       "precio": 18000
+      },
+      {
+       "etiqueta": "1 lb",
+       "precio": 33000
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "acompanantes",
+   "titulo": "Acompañantes",
+   "chip": "Acompañantes",
+   "presentacion": "lista",
+   "platos": [
+    {
+     "id": "acompanantes-1",
+     "nombre": "Papa criolla",
+     "precio": 7000
+    },
+    {
+     "id": "acompanantes-2",
+     "nombre": "Arepa de choclo",
+     "precio": 6000
+    },
+    {
+     "id": "acompanantes-3",
+     "nombre": "Ensalada de la casa",
+     "precio": 8000
+    },
+    {
+     "id": "acompanantes-4",
+     "nombre": "Yuca frita",
+     "precio": 7000
+    }
+   ]
+  },
+  {
+   "id": "bebidas",
+   "titulo": "Bebidas",
+   "presentacion": "lista",
+   "platos": [
+    {
+     "id": "bebidas-1",
+     "nombre": "Gaseosa",
+     "precio": 5000
+    },
+    {
+     "id": "bebidas-2",
+     "nombre": "Jugo natural",
+     "precio": 8000
+    },
+    {
+     "id": "bebidas-3",
+     "nombre": "Cerveza",
+     "precio": 9000
+    }
+   ]
+  }
+ ],
+ "galeria": [
+  {
+   "foto": "picada",
+   "pie": "Picada"
+  },
+  {
+   "foto": "costilla",
+   "pie": "Costilla"
+  },
+  {
+   "foto": "chorizo",
+   "pie": "Chorizo"
+  },
+  {
+   "foto": "papas",
+   "pie": "Papa criolla"
+  },
+  {
+   "foto": "asador",
+   "pie": "El asador"
+  },
+  {
+   "foto": "local",
+   "pie": "El local"
+  }
+ ],
+ "textos": {
+  "carta_sobretitulo": "Picadas, carnes y acompañantes",
+  "carta_titulo": "El menú",
+  "fotos_sobretitulo": "Así se ve",
+  "fotos_titulo": "Así se ve Don Chucho",
+  "fotos_texto": "Fotos de ejemplo: este restaurante es inventado y sirve para enseñar la forma de la ficha.",
+  "fotos_aria": "Fotos de Parrilla Don Chucho",
+  "visita_titulo": "Pásate por aquí"
+ },
+ "activos": {
+  "logo": {
+   "archivo": "donchucho/logo.png",
+   "alt": "Logo de Parrilla Don Chucho",
+   "procedencia": {
+    "origen": "redes_del_restaurante",
+    "descripcion": "Foto de perfil del Instagram del restaurante, en la mayor calidad disponible.",
+    "licencia": "Logo del propio restaurante",
+    "permiso": "pendiente"
+   }
+  },
+  "picada": {
+   "archivo": "donchucho/picada.jpg",
+   "alt": "Picada de costilla, chorizo y papa criolla sobre una tabla de madera",
+   "antojo": {
+    "juicio": {
+     "textura": 2,
+     "reconocible": 2,
+     "accion": 0,
+     "protagonista": 1,
+     "luz": 1,
+     "calor": 1,
+     "mano": 2
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "Picada sobre tabla, luz cálida de lado y varios productos juntos; un solo plato protagonista le daría más puntos."
+   }
+  },
+  "costilla": {
+   "archivo": "donchucho/costilla.jpg",
+   "alt": "Costilla de res al carbón cortada en trozos, con el hueso a la vista",
+   "antojo": {
+    "juicio": {
+     "textura": 2,
+     "reconocible": 2,
+     "accion": 1,
+     "protagonista": 2,
+     "luz": 2,
+     "calor": 1,
+     "mano": 2
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "Plano cerrado de la costilla con la grasa brillante y luz lateral; un solo protagonista."
+   }
+  },
+  "chorizo": {
+   "archivo": "donchucho/chorizo.jpg",
+   "alt": "Chorizos dorados sobre la parrilla con brasas debajo",
+   "antojo": {
+    "juicio": {
+     "textura": 2,
+     "reconocible": 2,
+     "accion": 2,
+     "protagonista": 1,
+     "luz": 2,
+     "calor": 2,
+     "mano": 1
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "Chorizos sobre las brasas con humo y calor a la vista; la parrilla ocupa parte del encuadre."
+   }
+  },
+  "papas": {
+   "archivo": "donchucho/papas.jpg",
+   "alt": "Papa criolla frita en un cuenco pequeño",
+   "antojo": {
+    "juicio": {
+     "textura": 1,
+     "reconocible": 2,
+     "accion": 0,
+     "protagonista": 2,
+     "luz": 1,
+     "calor": 1,
+     "mano": 2
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "Cuenco de papas con buena luz pero sin acción ni vapor."
+   }
+  },
+  "asador": {
+   "archivo": "donchucho/asador.jpg",
+   "alt": "Asador de carbón con cortes de carne colgados y brasas encendidas",
+   "antojo": {
+    "juicio": {
+     "textura": 2,
+     "reconocible": 1,
+     "accion": 1,
+     "protagonista": 1,
+     "luz": 2,
+     "calor": 2,
+     "mano": 1
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "Asador con fuego visible; composición cargada."
+   }
+  },
+  "local": {
+   "archivo": "donchucho/local.jpg",
+   "alt": "Fachada de la parrilla con mesas altas en la entrada y el rótulo iluminado",
+   "antojo": {
+    "juicio": {
+     "textura": 0,
+     "reconocible": 1,
+     "accion": 0,
+     "protagonista": 2,
+     "luz": 1,
+     "calor": 0,
+     "mano": 1
+    },
+    "real": true,
+    "sin_marcas_ajenas": true,
+    "nota": "El local, no un plato: sirve para situar al cliente y queda al final del orden."
+   }
+  }
+ },
+ "procedencia_activos": {
+  "origen": "referencia",
+  "descripcion": "Foto de ejemplo para enseñar la forma de la ficha; este restaurante es inventado.",
+  "licencia": "solo para ejemplos privados de Edumashow"
+ },
+ "estilo": {
+  "personalidad": "urbano",
+  "orden_fotos": "antojo"
+ },
+ "pedido": {
+  "canal": "whatsapp",
+  "nota_ejemplo": "Por ejemplo: la costilla bien cocida"
+ },
+ "idea": {
+  "tipo": "medida",
+  "categoria": "picadas",
+  "unidad": "lb",
+  "por": "por libra",
+  "sobretitulo": "La picada se mide en libras",
+  "titulo": "Elige tu tamaño",
+  "texto": "De 1 a 5 libras.",
+  "texto_js": "Toca Agregar en el tamaño que quieras y se suma a tu ticket.",
+  "mejor": "Menor precio por libra",
+  "nota": "El precio por libra es el de cada picada dividido entre sus libras. Precios de ejemplo."
+ },
+ "muestra": {
+  "ejemplo_ficticio": true,
+  "base_url": null
+ }
+}

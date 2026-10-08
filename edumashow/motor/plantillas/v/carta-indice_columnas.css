@@ -12,7 +12,7 @@
 .carta-cuerpo-i{counter-reset:cat;padding-top:.6rem}
 .cat-i{scroll-margin-top:4.5rem;padding-top:2.4rem}
 .cat-i-titulo{font-family:var(--f-titulo);font-weight:400;font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
-.cat-i-titulo::before{counter-increment:cat;content:counter(cat,decimal-leading-zero);display:block;margin-bottom:.35rem;font-family:var(--f-display);font-style:italic;font-size:1.05rem;letter-spacing:.12em;color:var(--brasa-papel)}
+.cat-i-titulo::before{counter-increment:cat;content:counter(cat,decimal-leading-zero);display:block;margin-bottom:.35rem;font-family:var(--f-display);font-style:var(--e-display,italic);font-size:1.05rem;letter-spacing:.12em;color:var(--brasa-papel)}
 .cat-i-nota{margin-top:.4rem;color:var(--texto-suave-papel);font-size:1rem}
 .cat-i .lista{margin-top:1rem;border-top:1px solid rgba(11,20,28,.2)}
 @media (min-width:900px){

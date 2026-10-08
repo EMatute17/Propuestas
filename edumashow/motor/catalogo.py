@@ -36,6 +36,9 @@ FORMAS = ("recta", "suave")
 
 # opciones del catálogo que aún no tienen su marcado o su CSS: el director no las elige (se quitan de aquí al implementarlas)
 PENDIENTES = set()
+# Pares de opciones que el Gate no deja pasar juntas todavía (cada par: ((dimension, opcion), (dimension, opcion))). El director no los combina; una ficha que fije
+# a mano los dos sí puede. Se llena con lo que muestra `scripts/cobertura_catalogo.py` y se vacía al arreglar la causa.
+PARES_NO_VIABLES = set()
 
 # ------------------------------------------------------------------ paquetes de animaciones
 # Cada paquete es un conjunto de módulos (plantillas/anim) y un estilo de revelado; el Gate comprueba en el navegador que cada módulo arrancó.
@@ -53,6 +56,43 @@ PAQUETES = {
     "festivo": {"modulos": ["revelado", "particulas", "inclinacion", "marquesina", "magnetico"], "particulas": "burbujas", "revelado": "escalera", "movimiento": "rapido",
                 "descripcion": "burbujas, marquesina, tarjetas que se inclinan y botones magnéticos"},
 }
+
+# qué es cada opción, en una frase (el kit del proyecto y el informe del Gate las usan)
+DESCRIPCIONES = {
+    ("portada", "luz_brasas"): "foto de portada a pantalla completa, luz de brasa que sigue al puntero y titular que entra letra a letra",
+    ("portada", "marco_editorial"): "portada de papel claro, titular por palabras y la foto en un arco con un sello giratorio",
+    ("portada", "cortina"): "foto a pantalla completa con marco fino, titular centrado y una cortina que se abre",
+    ("portada", "mural_columnas"): "mural de fotos en columnas que suben y bajan y titular de cartel",
+    ("portada", "collage_pegatinas"): "fotos como polaroids pegadas con cinta que caen sobre un fondo de puntos",
+    ("portada", "cartel_rotulo"): "cartel del color de la marca con titular enorme, disco con foto y una cinta que corre",
+    ("carta", "pestanas_lista"): "pestañas por categoría y lista con puntos guía y fotos pequeñas",
+    ("carta", "indice_columnas"): "todas las categorías seguidas, con un índice que marca dónde se está leyendo",
+    ("carta", "chips_tablero"): "filtros por categoría y tarjetas con precios grandes y botón de agregar",
+    ("carta", "lista_cartel"): "menú como cartel de precios, en renglones y sin tarjetas",
+    ("galeria", "mosaico"): "mosaico de fotos de distinto tamaño con parallax suave",
+    ("galeria", "cuadricula_ig"): "cuadrícula de fotos ligeramente torcidas con pie en mayúsculas",
+    ("galeria", "cinta"): "tira horizontal de fotos grandes numeradas, con el pie debajo",
+    ("galeria", "polaroid"): "fotos con marco blanco, un poco torcidas, como pegadas en un tablero",
+    ("galeria", "bento"): "mosaico de recuadros de distinto tamaño que encajan entre sí (necesita 5 fotos o más)",
+    ("ornamento", "recto"): "secciones con borde recto",
+    ("ornamento", "onda"): "borde en onda entre secciones",
+    ("ornamento", "diente"): "borde en diente de sierra",
+    ("ornamento", "arco"): "borde en arco amplio",
+    ("ornamento", "rasgado"): "borde de papel rasgado, distinto en cada web",
+    ("boton", "solido"): "botón relleno con el color de la marca",
+    ("boton", "contorno"): "botón de contorno que se rellena al pasar el puntero",
+    ("boton", "subrayado"): "botón de texto subrayado con una flecha",
+    ("boton", "sello"): "botón con borde grueso y sombra dura que se hunde al pulsar",
+    ("densidad", "media"): "espaciado habitual",
+    ("densidad", "aire"): "secciones muy espaciadas",
+    ("densidad", "compacta"): "secciones juntas, más contenido por pantalla",
+    ("textura", "grano"): "grano de película en la portada",
+    ("textura", "papel"): "fibras de papel en las secciones claras",
+    ("textura", "rayas"): "diagonales finas en las secciones oscuras",
+    ("textura", "limpia"): "sin textura",
+}
+for _p, _d in PAQUETES.items():
+    DESCRIPCIONES[("animaciones", _p)] = _d["descripcion"]
 
 # ------------------------------------------------------------------ afinidades: qué rasgos del restaurante piden cada opción
 A = {
@@ -235,19 +275,24 @@ def componer(F, registro, tonos, fijados=None, origen_fijados=None, tipos=None, 
     def puntos(el):
         return sum(next((f["puntos"] for f in ranking[d] if f["opcion"] == el[d]), 0.0) for d in dims)
 
+    def con_par_no_viable(el):
+        return any(((d1, el[d1]), (d2, el[d2])) in PARES_NO_VIABLES or ((d2, el[d2]), (d1, el[d1])) in PARES_NO_VIABLES
+                   for i, d1 in enumerate(dims) for d2 in dims[i + 1:] if d1 in el and d2 in el)
+
     evaluados = []
     for i in range(MUESTRAS):
         el = candidato(None if i == 0 else rng)
         h = huella_de(el)
         d_min = min([_huella.distancia(h, v) for _, v in vecinas] or [99])
-        evaluados.append((el, d_min, _huella.firma(h) in firmas, puntos(el)))
+        evaluados.append((el, d_min, _huella.firma(h) in firmas, puntos(el), con_par_no_viable(el)))
+    evaluados = [e for e in evaluados if not e[4]] or evaluados   # sin pares que el Gate no deja pasar (salvo que no quede otra: lo fijado en la ficha manda)
     buenos = [e for e in evaluados if e[1] >= _huella.UMBRAL and not e[2]]
     if buenos:
-        el, d_min, _, _ = max(buenos, key=lambda e: e[3])
+        el, d_min = max(buenos, key=lambda e: e[3])[:2]
         limitada = False
     else:
         sin_copia = [e for e in evaluados if not e[2]] or evaluados
-        el, d_min, _, _ = max(sin_copia, key=lambda e: (e[1], e[3]))
+        el, d_min = max(sin_copia, key=lambda e: (e[1], e[3]))[:2]
         limitada = True
     for d in dims:
         fila = next((f for f in ranking[d] if f["opcion"] == el[d]), None)

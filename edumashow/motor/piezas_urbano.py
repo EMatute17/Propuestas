@@ -2,7 +2,7 @@
 regla de medidas, menú de tarjetas con filtros y ticket en vivo, y la tarjeta de visita.
 Cada función recibe la ficha (F) y el contexto de construcción (C) y devuelve HTML.
 Todo texto de la ficha se escapa (R-DAT-07). Comparte con la elegante la cinta de muestra, el pie, la barra móvil y el panel."""
-from . import pedido, temas, valoracion
+from . import pedido, temas, tipografia, valoracion
 from .imagenes import picture_html
 from .piezas import (ICONO_IG, ICONO_MAPA, ICONO_PAUSA, ICONO_PLAY, ICONO_TEL, ICONO_WA, _enlace_accion, acciones, e_, mapa_url,
                      nombre_pais, wa_url, DIAS, rango_horario, cierre_muestra, estado_y_valoracion, particulas_html, banda_texto, paralaje_attr)
@@ -78,7 +78,9 @@ def _pegatina(F, C):
     lema = N["lema"].upper()
     anillo = (lema + " · ") * 2
     ciudad = N["ciudad"].upper()
-    tam = max(15, min(30, int(170 / max(4, len(ciudad)))))   # la ciudad cabe en el circulo central, sea corta o larga
+    # la ciudad cabe en el circulo central (unos 104 de ancho de los 200 del dibujo) sea corta o larga y sea ancha o estrecha la tipografia del titular
+    ancho_mayuscula = tipografia.ancho_em(C["comp"]["tipografia"]) if C.get("comp") else 0.5
+    tam = max(12, min(30, int(104 / (max(4, len(ciudad)) * max(ancho_mayuscula, 0.3)))))
     centro = e_(ciudad)
     return (f'<div class="pegatina" aria-hidden="true" data-decorativo><svg viewBox="0 0 200 200" focusable="false">'
             f'<defs><path id="anillo-pegatina" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>'
@@ -208,9 +210,11 @@ def fotos(F, C):
         figs.append(f'<figure class="rv" data-tilt style="--c:{a["color"]};--d:{i * 70}ms;--g:{(-1.4, 1.1, -0.7, 1.5, -1.1, 0.8)[i % 6]}deg"><div class="marco">{pic}</div><figcaption>{e_(g["pie"])}</figcaption></figure>')
     ig = F["contacto"].get("instagram")
     boton = f'<a class="btn suave" href="{ig["url"]}" target="_blank" rel="noopener">{ICONO_IG} Ver más en Instagram</a>' if ig else ""
+    # la cinta se desliza de lado: una región con desplazamiento tiene que poder enfocarse con el teclado para recorrerla
+    desplazable = ' tabindex="0"' if C["comp"].get("galeria") == "cinta" else ""
     return f'''<section class="fotos" id="fotos" aria-labelledby="t-fotos"><div class="caja">
 <div class="fotos-txt"><p class="sobretitulo rv">{e_(T["fotos_sobretitulo"])}</p><h2 id="t-fotos" class="rv">{e_(T["fotos_titulo"])}</h2><p class="rv">{e_(T["fotos_texto"])}</p>{boton}</div>
-<div class="galeria" role="group" aria-label="{e_(T["fotos_aria"])}">{"".join(figs)}</div></div></section>'''
+<div class="galeria" role="group" aria-label="{e_(T["fotos_aria"])}"{desplazable}>{"".join(figs)}</div></div></section>'''
 
 
 # ------------------------------------------------------------------ visita

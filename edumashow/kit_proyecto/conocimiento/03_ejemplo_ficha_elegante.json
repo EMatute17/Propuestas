@@ -1,0 +1,296 @@
+{
+ "id": "lumbre",
+ "version": "1.0.0",
+ "modo": "muestra",
+ "idioma": "es",
+ "confirmacion": {
+  "estado": "ejemplo",
+  "fecha": "2026-10-08",
+  "nota": "Restaurante ficticio. Todos los datos, textos y precios son de ejemplo."
+ },
+ "negocio": {
+  "nombre": "Lumbre",
+  "cocina": "Cocina de brasa y pasta fresca",
+  "ciudad": "Caracas",
+  "pais": "VE",
+  "direccion": "Av. Principal de Las Mercedes, local 4",
+  "zona_horaria": "America/Caracas",
+  "lema": "Fuego lento, pasta hecha a mano y una mesa que no tiene prisa.",
+  "descripcion": "Cocina de brasa y pasta fresca en Las Mercedes, Caracas. Mira la carta, el horario y reserva tu mesa por WhatsApp."
+ },
+ "contacto": {
+  "whatsapp": null,
+  "telefono": null,
+  "mapa_consulta": "Av. Principal de Las Mercedes, local 4, Caracas"
+ },
+ "conducta": {
+  "objetivo": "reservar",
+  "canal": "whatsapp"
+ },
+ "reservas": {
+  "maximo_personas": 12,
+  "personas_por_defecto": 2,
+  "paso_minutos": 30,
+  "ultima_antes_del_cierre_min": 60,
+  "antelacion_min": 60,
+  "hora_preferida": "20:00"
+ },
+ "moneda": "USD",
+ "horario": {
+  "lun": [],
+  "mar": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "mie": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "jue": [
+   [
+    "12:00",
+    "22:00"
+   ]
+  ],
+  "vie": [
+   [
+    "12:00",
+    "23:30"
+   ]
+  ],
+  "sab": [
+   [
+    "12:00",
+    "23:30"
+   ]
+  ],
+  "dom": [
+   [
+    "12:00",
+    "17:00"
+   ]
+  ]
+ },
+ "historia": {
+  "cifra": 14,
+  "unidad": "horas de brasa",
+  "texto": "Todo en Lumbre pasa por el fuego, y el fuego no tiene prisa. Se enciende al amanecer; la primera mesa se sirve al mediodía.",
+  "pasos": [
+   {
+    "titulo": "Encender",
+    "texto": "Encina y quebracho desde las seis de la mañana. La brasa necesita horas para ser brasa."
+   },
+   {
+    "titulo": "Reposar",
+    "texto": "La carne madura en cámara hasta 28 días antes de tocar el fuego."
+   },
+   {
+    "titulo": "Servir",
+    "texto": "Pasta hecha a mano cada tarde, terminada en la mesa."
+   }
+  ]
+ },
+ "carta": [
+  {
+   "id": "c0",
+   "titulo": "Para empezar",
+   "platos": [
+    {
+     "id": "c0-0",
+     "nombre": "Croquetas de rabo de toro",
+     "precio": 9,
+     "descripcion": "Crema de rabo estofado, mayonesa de ajo asado y hierbas.",
+     "foto": "plato_croquetas"
+    },
+    {
+     "id": "c0-1",
+     "nombre": "Carpaccio ahumado",
+     "precio": 14,
+     "descripcion": "Lomo fino, parmesano añejo, alcaparras fritas y aceite de brasa."
+    },
+    {
+     "id": "c0-2",
+     "nombre": "Pan de masa madre",
+     "precio": 6,
+     "descripcion": "Fermentado 36 horas, con mantequilla tostada en la brasa."
+    }
+   ]
+  },
+  {
+   "id": "c1",
+   "titulo": "Pasta fresca",
+   "platos": [
+    {
+     "id": "c1-0",
+     "nombre": "Ravioli de ragú de res",
+     "precio": 18,
+     "firma": true,
+     "descripcion": "Cocido ocho horas, salsa de su jugo y brotes de amaranto.",
+     "foto": "plato_ravioli"
+    },
+    {
+     "id": "c1-1",
+     "nombre": "Tortelli de calabaza y chorizo",
+     "precio": 17,
+     "descripcion": "Mantequilla de salvia y migas de chorizo crujiente.",
+     "foto": "plato_tortelli"
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "titulo": "A la brasa",
+   "platos": [
+    {
+     "id": "c2-0",
+     "nombre": "Chuletón madurado",
+     "precio": 68,
+     "firma": true,
+     "descripcion": "Un kilo, 28 días de maduración, sal gorda y limón asado. Para dos.",
+     "foto": "plato_chuleton"
+    },
+    {
+     "id": "c2-1",
+     "nombre": "Entraña con chimichurri",
+     "precio": 29,
+     "descripcion": "Punto exacto, chimichurri de hierbas frescas y papas rotas."
+    },
+    {
+     "id": "c2-2",
+     "nombre": "Pulpo a las brasas",
+     "precio": 31,
+     "descripcion": "Cocción lenta, puré de yuca ahumada y pimentón."
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "titulo": "Dulces",
+   "platos": [
+    {
+     "id": "c3-0",
+     "nombre": "Tierra de chocolate",
+     "precio": 11,
+     "descripcion": "Chocolate negro, dulce de leche y helado de vainilla.",
+     "foto": "plato_chocolate"
+    },
+    {
+     "id": "c3-1",
+     "nombre": "Helado de leche quemada",
+     "precio": 8,
+     "descripcion": "Con sal de mar y aceite de oliva."
+    }
+   ]
+  }
+ ],
+ "galeria": [
+  {
+   "foto": "sala_azul",
+   "pie": "Sala azul"
+  },
+  {
+   "foto": "rincon_rojo",
+   "pie": "El rincón rojo"
+  },
+  {
+   "foto": "sala_roja",
+   "pie": "La sala roja"
+  },
+  {
+   "foto": "reservado",
+   "pie": "El reservado"
+  }
+ ],
+ "textos": {
+  "carta_titulo": "La carta",
+  "carta_sobretitulo": "Lo que sale de la brasa",
+  "ambiente_titulo": "Un lugar para quedarse",
+  "reserva_titulo": "Una mesa junto al fuego",
+  "reserva_texto": "Dinos cuándo vienes y cuántos son. Te confirmamos por WhatsApp.",
+  "visita_titulo": "Visítanos"
+ },
+ "activos": {
+  "hero": {
+   "archivo": "lumbre/hero_pasta.jpg",
+   "foco": [
+    0.52,
+    0.42
+   ],
+   "alt": "Ravioli de ragú de res con brotes rojos de amaranto",
+   "ajustes": {
+    "contraste": 1.06,
+    "color": 1.08
+   }
+  },
+  "plato_croquetas": {
+   "archivo": "lumbre/plato_croquetas.jpg",
+   "alt": "Croquetas de rabo de toro"
+  },
+  "plato_ravioli": {
+   "archivo": "lumbre/plato_ravioli.jpg",
+   "alt": "Ravioli de ragú de res"
+  },
+  "plato_tortelli": {
+   "archivo": "lumbre/plato_tortelli.jpg",
+   "alt": "Tortelli de calabaza y chorizo"
+  },
+  "plato_chuleton": {
+   "archivo": "lumbre/plato_chuleton.jpg",
+   "alt": "Chuletón madurado"
+  },
+  "plato_chocolate": {
+   "archivo": "lumbre/plato_chocolate.jpg",
+   "alt": "Tierra de chocolate"
+  },
+  "sala_azul": {
+   "archivo": "lumbre/sala_azul.jpg",
+   "alt": "Sala con banquetas de cuero y paredes azules"
+  },
+  "rincon_rojo": {
+   "archivo": "lumbre/rincon_rojo.jpg",
+   "alt": "Rincón de pared roja con mesas para dos"
+  },
+  "sala_roja": {
+   "archivo": "lumbre/sala_roja.jpg",
+   "alt": "Sala de paredes rojas con estanterías y mesas redondas"
+  },
+  "reservado": {
+   "archivo": "lumbre/reservado.jpg",
+   "alt": "Reservado con mesas y sillas grises"
+  }
+ },
+ "procedencia_activos": {
+  "origen": "referencia",
+  "descripcion": "Foto de ejemplo para enseñar la forma de la ficha; este restaurante es inventado.",
+  "licencia": "solo para ejemplos privados de Edumashow"
+ },
+ "estilo": {
+  "personalidad": "elegante",
+  "paleta": "brasa"
+ },
+ "muestra": {
+  "ejemplo_ficticio": true,
+  "base_url": null
+ },
+ "perfil": {
+  "servicio": [
+   "mesa"
+  ],
+  "precio": 3,
+  "ambiente": [
+   "romantico",
+   "tranquilo"
+  ]
+ },
+ "valoracion": {
+  "fuente": "google",
+  "nota": 4.7,
+  "resenas": 128,
+  "fecha": "2026-10-08",
+  "ejemplo": true
+ }
+}

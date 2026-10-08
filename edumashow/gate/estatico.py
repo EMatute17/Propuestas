@@ -298,20 +298,21 @@ def muestra(carpeta, ficha, whatsapp_agencia):
 
 
 def fotos(carpeta, ficha):
-    """Procedencia de cada imagen (R-DAT-04 y R-FOT-01): origen y licencia registrados, nada de redes sociales salvo el logo."""
+    """Procedencia de cada imagen (R-DAT-04): origen y licencia registrados, alt en cada imagen, las de referencia declaradas. Aparte (clave `origen`)
+    va lo que dice R-FOT-01: nada de redes sociales salvo el logo, y las de referencia o generadas solo en un ejemplo ficticio."""
     from edumashow.motor import calidad
     html, p = leer_html(carpeta)
     man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))
-    fallos = []
+    fallos, origen = [], []
     for im in man["imagenes"]:
         for k in ("origen", "licencia"):
             if not im.get(k):
                 fallos.append(f"{im['clave']}: falta {k} en el manifiesto")
         if im.get("origen") == "redes_del_restaurante" and im["clave"].removesuffix("-m") != "logo":
-            fallos.append(f"{im['clave']}: foto sacada de redes sociales (solo el logo puede venir de una red)")
+            origen.append(f"{im['clave']}: foto sacada de redes sociales (solo el logo puede venir de una red)")
     # la ficha dice lo mismo que el manifiesto, y lo que dice cumple la regla
     errores_p, _ = calidad.revisar_procedencia(ficha)
-    fallos += errores_p
+    origen += [e for e in errores_p if e not in origen]
     sin_alt = [i.get("src", "")[-30:] for i in p.imgs if "alt" not in i]
     if sin_alt:
         fallos.append(f"imágenes sin atributo alt: {sin_alt[:4]}")
@@ -319,7 +320,9 @@ def fotos(carpeta, ficha):
         t = " ".join(p.texto).lower()
         if "referencia" not in t:
             fallos.append("hay fotos de referencia y la página no lo declara")
-    return res("PASS" if not fallos else "FAIL", f"{len(man['imagenes'])} imágenes con origen y licencia registrados; {len(p.imgs)} etiquetas img con alt; ninguna de redes sociales salvo el logo", fallos[:8])
+    r = res("PASS" if not fallos else "FAIL", f"{len(man['imagenes'])} imágenes con origen y licencia registrados; {len(p.imgs)} etiquetas img con alt", fallos[:8])
+    r["origen"] = origen[:10]
+    return r
 
 
 def fotos_calidad(carpeta, ficha, origen_activos):
@@ -435,11 +438,10 @@ def fuentes_glifos(carpeta, parejas, clave):
     roles = ["display", "texto"] + (["titulo"] if pareja.get("titulo") else [])
     base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fuentes")
     from edumashow.motor import tipografia as _tipo
-    servidos = set(_tipo.unicodes_base())    # lo que viaja en el WOFF2: un caracter fuera de esto cae a la fuente del sistema aunque la fuente completa lo tenga
     for rol in roles:
         archivo = pareja[rol][0][0]
-        cmap = TTFont(os.path.join(base, archivo)).getBestCmap()
-        f = sorted({c for c in texto if ord(c) > 0x20 and (ord(c) not in cmap or ord(c) not in servidos)})
+        # la misma comprobacion del motor: lo que viaja recortado en el WOFF2 y lo que la fuente trae (un caracter fuera cae a la fuente del sistema)
+        f = _tipo.glifos_faltantes(archivo, texto)
         if f:
             faltan[archivo] = f
     return res("PASS" if not faltan else "FAIL", f"{len(roles)} tipografías revisadas contra {len(set(texto))} caracteres distintos", [f"{a}: {''.join(f)}" for a, f in faltan.items()])

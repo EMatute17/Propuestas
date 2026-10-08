@@ -103,6 +103,18 @@ async function recorrer(pag) {
   for (let y = 0; y < alto; y += Math.round(vh * 0.7)) { await pag.evaluate((yy) => window.scrollTo(0, yy), y); await pag.waitForTimeout(130); }
   await pag.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await pag.waitForTimeout(1300);
+  await esperarFinDeTransiciones(pag);
+}
+
+// las entradas (revelados) que aun corren dejan los elementos a medio tamaño: se mide cuando terminan; las animaciones infinitas (fondos, cintas) no se esperan
+async function esperarFinDeTransiciones(pag, max = 4500) {
+  await pag.waitForFunction(() => document.documentElement.classList.contains('listo'), null, { timeout: max, polling: 100 }).catch(() => {});   // las entradas empiezan cuando las fuentes estan cargadas
+  await pag.waitForFunction(() => document.getAnimations().every((a) => {
+    if (a.playState !== 'running') return true;
+    const t = a.effect && a.effect.getComputedTiming ? a.effect.getComputedTiming() : null;
+    return !t || t.iterations === Infinity;
+  }), null, { timeout: max, polling: 100 }).catch(() => {});
+  await pag.waitForTimeout(120);
 }
 
 // ---------------------------------------------------------------- medición del DOM (se ejecuta en la página)
@@ -248,6 +260,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
   if (antes) await antes();
   await pag.evaluate(() => { const b = document.querySelector('[data-pausa]'); const root = document.documentElement; if (!root.classList.contains('pausada') && b) b.click(); });
   await pag.waitForTimeout(500);
+  await esperarFinDeTransiciones(pag);   // la cortina de la portada y los revelados terminan antes de medir (con la maquina cargada tardan mas)
   const datos = await pag.evaluate((sels) => {
     const vw = document.documentElement.clientWidth, vh = window.innerHeight, filas = [];
     // lo que tapan las barras fijas o pegadas (la barra de acciones del movil, la del pedido, la de filtros) no lo ve la persona: no se mide
@@ -267,8 +280,14 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
       const b = e.getBoundingClientRect(); if (b.width < 2 || b.height < 2 || b.bottom < 0 || b.top > vh || b.right < 0 || b.left > vw) continue;
       let op = 1; for (let p = e; p && p.nodeType === 1; p = p.parentElement) op *= parseFloat(getComputedStyle(p).opacity);
       const m = cs.color.match(/[\d.]+/g).map(Number);
-      const rg = document.createRange(); rg.selectNodeContents(e);
-      const rects = Array.from(rg.getClientRects()).filter((r) => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw && r.width < vw * 1.5)
+      // las cajas del texto que se ve: lo que solo leen los lectores de pantalla (un texto recortado a 1 px) no se pinta y no se mide; los iconos si
+      const oculto = (n) => { for (let p = n.nodeType === 1 ? n : n.parentElement; p && p !== e.parentElement; p = p.parentElement) { const c = getComputedStyle(p), w = p.getBoundingClientRect(); if (/^rect\(0(px)?,? ?0(px)?,? ?0(px)?,? ?0(px)?\)$/.test(c.clip) || (w.width <= 1.5 && w.height <= 1.5 && c.overflow !== 'visible')) return true; } return false; };
+      const crudas = [], tw = document.createTreeWalker(e, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+      for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+        if (n.nodeType === 3) { if (!n.textContent.trim() || oculto(n)) continue; const r1 = document.createRange(); r1.selectNodeContents(n); crudas.push(...Array.from(r1.getClientRects())); }
+        else if (/^(svg|img|canvas)$/i.test(n.tagName) && !oculto(n)) crudas.push(n.getBoundingClientRect());
+      }
+      const rects = crudas.filter((r) => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw && r.width < vw * 1.5)
         // el texto se mide dentro de la caja del propio elemento (sus lineas): el area de contenido de una tipografia con mucho ascendente asoma por encima y por debajo de la linea y es del vecino
         .map((r) => { const l = Math.max(0, r.left, b.left), t = Math.max(0, r.top, b.top), rr = Math.min(vw, r.right, b.right), bb = Math.min(vh, r.bottom, b.bottom); return [l, t, rr - l, bb - t]; })
         .filter(([, , w, h]) => w > 1 && h > 1)
@@ -280,7 +299,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
     }
     return filas;
   }, selectores);
-  const ocultar = await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;text-shadow:none !important;animation:none !important;transition:none !important;caret-color:transparent !important}' });
+  const ocultar = await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;-webkit-text-stroke-color:transparent !important;text-decoration-color:transparent !important;text-shadow:none !important;animation:none !important;transition:none !important;caret-color:transparent !important}' });
   await pag.waitForTimeout(250);
   const img = path.join(CAP, `contraste_${d.id}_${etiqueta}.png`);
   await pag.screenshot({ path: img });
@@ -580,7 +599,8 @@ if (puede('carta')) {
   await pag.evaluate(() => document.querySelector('.carta').scrollIntoView());
   if (await pag.evaluate(() => !!document.querySelector('[role=tab]'))) {
   const t0 = await pag.evaluate(() => ({ sel: Array.from(document.querySelectorAll('[role=tab]')).map((t) => t.getAttribute('aria-selected')), visibles: Array.from(document.querySelectorAll('[role=tabpanel]')).filter((p) => getComputedStyle(p).display !== 'none').length }));
-  await pag.focus('#tab-c0'); await pag.keyboard.press('ArrowRight'); await pag.waitForTimeout(500);
+  await pag.focus(`[id="tab-${ficha.carta[0].id}"]`);   // la primera pestana es la de la primera categoria de la ficha, se llame como se llame
+   await pag.keyboard.press('ArrowRight'); await pag.waitForTimeout(500);
   const t1 = await pag.evaluate(() => ({ sel: Array.from(document.querySelectorAll('[role=tab]')).map((t) => t.getAttribute('aria-selected')), activo: document.activeElement.id, visibles: Array.from(document.querySelectorAll('[role=tabpanel]')).filter((p) => getComputedStyle(p).display !== 'none').map((p) => p.id) }));
   await pag.keyboard.press('End'); await pag.waitForTimeout(300);
   const t2 = await pag.evaluate(() => ({ activo: document.activeElement.id }));
@@ -617,6 +637,25 @@ if (puede('carta')) {
     const espacio = await leer();
     await pag.click(`[data-filtro="${ids[0]}"]`); await pag.waitForTimeout(250); await esperarScroll(pag);   // se deja como estaba
     F.filtros = { ids, inicial, pasos, enter, espacio };
+  }
+  // carta con indice (variante indice_columnas): cada enlace del indice lleva a su categoria, la deja a la vista bajo el indice pegado y la marca como actual
+  if (await pag.evaluate(() => !!document.querySelector('.indice [data-cat-link]'))) {
+    await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector('.carta').scrollIntoView(); });
+    await pag.waitForTimeout(500);
+    const ids = await pag.evaluate(() => Array.from(document.querySelectorAll('.indice [data-cat-link]')).map((a) => a.getAttribute('data-cat-link')));
+    const leerI = (id) => pag.evaluate((id) => {
+      const sec = document.getElementById('cat-' + id), t = sec ? sec.querySelector('.cat-i-titulo') : null, b = t ? t.getBoundingClientRect() : null;
+      const ind = document.querySelector('.indice'), pegado = ind && getComputedStyle(ind).position === 'sticky';
+      return { id, top: b ? Math.round(b.top) : null, bottom: b ? Math.round(b.bottom) : null, vh: innerHeight, barraAbajo: pegado ? Math.round(ind.getBoundingClientRect().bottom) : 0,
+        actual: Array.from(document.querySelectorAll('.indice [aria-current="true"]')).map((a) => a.getAttribute('data-cat-link')), foco: document.activeElement ? document.activeElement.getAttribute('data-cat-link') : null };
+    }, id);
+    const pasosI = [];
+    for (const id of [ids[Math.min(1, ids.length - 1)], ids[ids.length - 1], ids[0]]) {
+      await pag.click(`.indice [data-cat-link="${id}"]`); await pag.waitForTimeout(250); await esperarScroll(pag); await pag.waitForTimeout(900);
+      pasosI.push(await leerI(id));
+    }
+    await pag.focus(`.indice [data-cat-link="${ids[Math.min(1, ids.length - 1)]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(250); await esperarScroll(pag); await pag.waitForTimeout(900);
+    F.indice = { ids, pasos: pasosI, enter: await leerI(ids[Math.min(1, ids.length - 1)]) };
   }
   if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
     await pag.evaluate(() => window.scrollTo(0, 0));
@@ -677,6 +716,7 @@ if (ficha.pedido) {
         const e = Array.from(document.querySelectorAll(sel)).find((x) => { const b = x.getBoundingClientRect(), cs = getComputedStyle(x); return b.width > 0 && b.height > 0 && cs.visibility !== 'hidden'; });
         if (!e) return { sel, ausente: true };
         e.focus({ preventScroll: true });
+        e.scrollIntoView({ block: 'nearest', inline: 'nearest' });   // el navegador acerca a la vista lo que se enfoca con el teclado: dentro de la hoja o del ticket con desplazamiento tambien
         return { sel, enfocado: document.activeElement === e && e.matches(':focus-visible'), recortado: window.__gate.anilloRecortado(e), contraste: window.__gate.contrasteAro(e) };
       }), sels);
       Rd.anillos.push(...r.map((x) => ({ ...x, donde })));

@@ -5,7 +5,9 @@ representativos, sin Lighthouse). Si no hay ningún bloqueo la anota en edumasho
 estilo solo propone parejas anotadas ahí. La web que se entrega pasa siempre el Gate completo, con la pareja que se haya elegido.
 
 La web de prueba es una copia de otra a propósito (solo cambia la tipografía), así que no se le exige G-HUELLA: que una web
-sea distinta de las demás no tiene sentido para una copia. Todo lo demás sí se exige.
+sea distinta de las demás no tiene sentido para una copia. Todo lo demás sí se exige, salvo el origen y la calidad de las fotos de las fichas base
+(Lumbre y Al Fuego ya no cumplen la regla de fotos): esas dos comprobaciones corren en modo prueba y no bloquean. Con tantas parejas conviene usar
+`scripts/cobertura_catalogo.py --tipografias`, que reparte las parejas entre las fichas de cobertura y las prueba junto con todas las composiciones.
 
 Uso:
     python3 scripts/probar_parejas.py edumashow/fichas/alfuego.json pareja1,pareja2 [--trabajo CARPETA]
@@ -50,7 +52,7 @@ def main():
             print(f"{clave}: el motor se abstiene: {e}")
             resultados[clave] = ("SE ABSTIENE", [str(e)])
             continue
-        inf = V.verificar(ruta, r["carpeta"], rapido=True, con_navegador=True, con_rendimiento=False, dir_informe=os.path.join(a.trabajo, "informe_" + f["id"]))
+        inf = V.verificar(ruta, r["carpeta"], rapido=True, con_navegador=True, con_rendimiento=False, dir_informe=os.path.join(a.trabajo, "informe_" + f["id"]), fotos_de_prueba=True)
         bloq = [(b["id"], b["detalle"][:3]) for b in inf["resultados"] if b["id"] in inf["bloqueantes"] and b["id"] != "G-HUELLA"]
         veredicto = "APTO" if not bloq else "NO APTO"
         resultados[clave] = (veredicto, bloq)

@@ -11,11 +11,11 @@
 .marco-sobre span{min-width:0}
 .marco-sobre i{display:none}
 @media (min-width:700px){.marco-sobre i{display:block}}
-.hero.hero-marco h1{margin:1rem 0 1.2rem;font-family:var(--f-titulo);font-style:normal;font-weight:400;line-height:.96;letter-spacing:-.02em;color:var(--tinta);text-shadow:none;font-size:clamp(2.8rem,calc((100vw - 2 * var(--pad)) / (var(--c) * .56)),8.5rem)}
+.hero.hero-marco h1{display:flow-root;margin:1rem 0 1.6rem;font-family:var(--f-titulo);font-style:normal;font-weight:400;line-height:.96;letter-spacing:-.02em;color:var(--tinta);text-shadow:none;font-size:clamp(2.8rem,calc((100vw - 2 * var(--pad)) / (var(--c) * max(.5, var(--w-d)))),8.5rem)}
 .marco-h1{display:block}
 .mp{display:block;overflow:hidden;overflow:clip;padding:.06em .1em .14em;margin:-.06em -.1em -.14em}
 .mp-i{display:inline-block}
-.mp-ultima{font-family:var(--f-display);font-style:italic;color:var(--brasa-papel)}
+.mp-ultima{font-family:var(--f-display);font-style:var(--e-display,italic);color:var(--brasa-papel)}
 .js .mp-i{transform:translateY(110%)}
 .js.listo .mp-i{animation:pm-sube 1.05s var(--ease) forwards;animation-delay:calc(var(--i) * 150ms + 180ms)}
 @keyframes pm-sube{to{transform:none}}
@@ -47,14 +47,14 @@
 @media (min-width:900px){
   .marco-cuerpo{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center;gap:clamp(2rem,5vw,5rem);min-height:calc(100svh - var(--cinta-real,var(--cinta-h)) - 8rem);padding-top:1rem}
   .marco-foto{width:100%;max-width:30rem;justify-self:end}
-  .hero.hero-marco h1{font-size:clamp(3rem,calc((min(100vw,var(--max)) * .56 - var(--pad)) / (var(--c) * .56)),9.5rem)}
+  .hero.hero-marco h1{font-size:clamp(3rem,calc((min(100vw,var(--max)) * .56 - var(--pad)) / (var(--c) * max(.5, var(--w-d)))),9.5rem)}
   .sello-marco{left:-2.6rem;bottom:3rem;width:8.2rem;height:8.2rem}
 }
 @media (max-height:520px) and (min-width:560px){
   .hero-marco{padding-bottom:1.5rem}
   .marco-cuerpo{grid-template-columns:minmax(0,1fr);padding-top:.2rem}
   .marco-foto,.hero-marco .lema{display:none}
-  .hero.hero-marco h1{margin:.2rem 0 .4rem;font-size:clamp(2.4rem,min(calc((100vw - 2 * var(--pad)) / (var(--c) * .56)),22vh),6rem)}
+  .hero.hero-marco h1{margin:.2rem 0 .4rem;font-size:clamp(2.4rem,min(calc((100vw - 2 * var(--pad)) / (var(--c) * max(.5, var(--w-d)))),22vh),6rem)}
   .hero-marco .acciones{margin-top:.6rem}
   .hero-marco .hero-datos{margin-top:.6rem}
 }

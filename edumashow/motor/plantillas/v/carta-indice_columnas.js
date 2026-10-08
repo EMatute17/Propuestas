@@ -4,7 +4,7 @@
   var E = window.EDU, qs = E.qs, qsa = E.qsa;
   var enlaces = qsa('[data-cat-link]'), cats = qsa('.cat-i');
   if (!enlaces.length || !cats.length || !('IntersectionObserver' in window)) return;
-  var lista = qs('.indice ol'), actual = null;
+  var lista = qs('.indice ol'), actual = null, fijo = 0;
   var marcar = function (id) {
     if (id === actual) return; actual = id;
     enlaces.forEach(function (a) { if (a.getAttribute('data-cat-link') === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
@@ -14,7 +14,12 @@
     }
   };
   var io = new IntersectionObserver(function (es) {
+    if (Date.now() < fijo) return;   // tras elegir una categoría en el índice, el desplazamiento no cambia la marca
     es.forEach(function (e) { if (e.isIntersecting) marcar(e.target.id.replace(/^cat-/, '')); });
   }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  // lo que la persona elige queda marcado aunque la categoría sea corta o la última de la página (no llegaría a la franja de lectura)
+  enlaces.forEach(function (a) {
+    a.addEventListener('click', function () { fijo = Date.now() + (E.reduce ? 500 : 1100); marcar(a.getAttribute('data-cat-link')); });
+  });
   cats.forEach(function (c) { io.observe(c); });
 })();

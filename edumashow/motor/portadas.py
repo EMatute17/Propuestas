@@ -62,7 +62,6 @@ def portada_cortina(F, C):
     pic, foco, lqip = hero_picture(C, paralaje_attr(C))
     return f'''<header class="hero hero-cortina" id="inicio" style="--c:{mas_larga};--foco:{foco}">
 <div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
-<div class="cortina-marco" aria-hidden="true" data-decorativo><i></i><i></i><i></i><i></i></div>
 <span class="cortina-hoja izq" aria-hidden="true"></span><span class="cortina-hoja der" aria-hidden="true"></span>
 <div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante()}{_pausa()}</div></div>
 <div class="hero-cuerpo cortina-cuerpo"><p class="cortina-sobre"><span>{e_(N["cocina"])}</span><b aria-hidden="true"></b><span>{e_(N["ciudad"])}</span></p>

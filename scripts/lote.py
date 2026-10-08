@@ -70,7 +70,7 @@ def procesar(carpeta, id_, salida, nivel, fotos_de_prueba=False):
             with open(ruta, "w", encoding="utf-8") as g:
                 json.dump(F, g, ensure_ascii=False, indent=1)
                 g.write("\n")
-        errores, avisos = esquema_ficha.revisar(F, ruta)
+        errores, avisos = esquema_ficha.revisar(F, ruta, fotos_de_prueba=fotos_de_prueba)
         fila["avisos"] = " | ".join(avisos)
         if errores:
             fila["estado"], fila["veredicto"] = "FICHA CON ERRORES", "NO SE CONSTRUYO"

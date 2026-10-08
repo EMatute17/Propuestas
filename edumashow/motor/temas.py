@@ -50,6 +50,7 @@ def tokens_css(paleta, forma, movimiento, fuentes, num_letras, cinta_h, ancho_ti
         f"--f-display:'{fuentes['familia_display']}',{fuentes['respaldo_display']}",
         f"--f-titulo:'{fuentes.get('familia_titulo', fuentes['familia_display'])}',{fuentes['respaldo_display']}",
         f"--f-texto:'{fuentes['familia_texto']}',{fuentes['respaldo_texto']}",
+        f"--e-display:{fuentes['display'][0][2]}",   # el titular se dibuja con la cara que tiene: una tipografía sin cursiva no se inclina a la fuerza
         "--max:78rem", "--pad:clamp(1.25rem,4.5vw,3.5rem)", f"--c:{num_letras}", f"--cinta-h:{cinta_h}", f"--w-d:{ancho_titular}",
     ]
     return ":root{" + ";".join(linea) + "}"
@@ -63,12 +64,18 @@ def grano_datauri():
     return "url(\"data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ") + "\")"
 
 
-def fibras_datauri():
-    """Fibras de papel: ruido de baja frecuencia en dos capas, oscuro y transparente, para la textura papel de las secciones claras."""
-    svg = ("<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='f'>"
-           "<feTurbulence type='fractalNoise' baseFrequency='.035 .6' numOctaves='3' seed='4' stitchTiles='stitch'/>"
-           "<feColorMatrix values='0 0 0 0 .25 0 0 0 0 .18 0 0 0 0 .1 0 0 0 .32 0'/></filter>"
-           "<rect width='100%' height='100%' filter='url(#f)'/></svg>")
+def fibras_datauri(papel_2="#e9e1d2"):
+    """Fibras de papel de las secciones claras. Dos capas de ruido alargado: fibras del segundo tono de papel de la paleta (nunca más oscuras que él) y
+    fibras blancas que aclaran. Así cada pixel queda entre el segundo tono de papel y el blanco, y todos los pares de color de lectura que la paleta
+    ya probó contra el papel siguen cumpliendo sobre la textura."""
+    h = papel_2.lstrip("#")
+    r, g, b = (round(int(h[i:i + 2], 16) / 255, 3) for i in (0, 2, 4))
+    svg = ("<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'>"
+           "<filter id='f' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.035 .6' numOctaves='3' seed='4' stitchTiles='stitch'/>"
+           f"<feColorMatrix values='0 0 0 0 {r} 0 0 0 0 {g} 0 0 0 0 {b} 0 0 0 1.9 -.55'/></filter>"
+           "<filter id='h' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.5 .03' numOctaves='2' seed='9' stitchTiles='stitch'/>"
+           "<feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.5 -.62'/></filter>"
+           "<rect width='100%' height='100%' filter='url(#f)'/><rect width='100%' height='100%' filter='url(#h)'/></svg>")
     return "url(\"data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ") + "\")"
 
 

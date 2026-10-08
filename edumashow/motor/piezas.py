@@ -253,7 +253,9 @@ def carta_indice(F, C):
 def ambiente(F, C):
     T = F["textos"]
     figs = []
-    for i, g in enumerate(F["galeria"]):
+    # el mosaico de escritorio tiene cuatro huecos (a, b, c y d): con más fotos se solaparían, así que solo lleva las cuatro primeras
+    fotos_galeria = F["galeria"][:4] if (C.get("comp") or {}).get("galeria", "mosaico") == "mosaico" else F["galeria"]
+    for i, g in enumerate(fotos_galeria):
         clase = "abcd"[i % 4]
         a = C["fotos"][g["foto"]]
         pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 58vw, 78vw").replace("<picture>", f"<picture{paralaje_attr(C, 3)}>", 1)
@@ -303,12 +305,19 @@ def visita(F, C):
     como = mapa_url(F["contacto"]["mapa_consulta"])
     pais = nombre_pais(N)
     pref = C["prefijo_wa"]
-    wa = wa_url(C["wa_destino"], f'{pref}Hola {N["nombre"]}, tengo una consulta.')
+    K = F["contacto"]
+    # los contactos que la ficha trae, cada uno con su acción directa: sin WhatsApp no hay botón de escribir (un enlace sin número no lleva a ningún sitio)
+    botones = [f'<a class="btn" href="{como}" target="_blank" rel="noopener">{ICONO_MAPA} Cómo llegar</a>']
+    if C["wa_destino"]:
+        wa = wa_url(C["wa_destino"], f'{pref}Hola {N["nombre"]}, tengo una consulta.')
+        botones.append(f'<a class="btn suave" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Escribirnos</a>')
+    if K.get("telefono"):
+        botones.append(f'<a class="btn suave" href="tel:{K["telefono"]}">{ICONO_TEL} Llamar al {e_(K.get("telefono_visible") or K["telefono"])}</a>')
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja rej-2">
 <div class="rv"><h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{e_(N["direccion"])}<br>{e_(N["ciudad"])}, {e_(pais)}</address>
 <p class="estado" data-open><span data-open-text>Ver horario</span></p>
 {valoracion.pieza(F, C, "en-visita")}{valoracion.nota_fuente(F)}
-<div class="botones"><a class="btn" href="{como}" target="_blank" rel="noopener">{ICONO_MAPA} Cómo llegar</a><a class="btn suave" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Escribirnos</a></div></div>
+<div class="botones">{"".join(botones)}</div></div>
 <ul class="horas rv" style="--d:120ms" aria-label="Horario">{filas}</ul></div></section>'''
 
 

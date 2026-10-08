@@ -380,8 +380,8 @@ def construir(ruta_ficha, salida_base, base_url=None, redisenar=False):
 
     # ---- CSS y JS
     cinta_h = "3.25rem" if muestra else "0rem"
-    css = temas.tokens_css(tokens_paleta, est_r["forma"], est_r["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h, tipografia.ancho_em(est_r["tipografia"]))
-    css += f"body{{--grano:{temas.grano_datauri()};--fibras:{temas.fibras_datauri()}}}"
+    css = temas.tokens_css(tokens_paleta, est_r["forma"], est_r["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h, tipografia.ancho_titular(est_r["tipografia"], N["nombre"]))
+    css += f"body{{--grano:{temas.grano_datauri()};--fibras:{temas.fibras_datauri(tokens_paleta['papel-2'])}}}"
     css += fuentes["css"]
     v_css, v_js = archivos_de_composicion(est_r, paquete, modulos)
     for nombre in ["base.css"] + (["pedido.css"] if pedido.activo(F) else []) + [f"{fam}.css"] + v_css:
