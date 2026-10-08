@@ -852,9 +852,10 @@
   "por": "por libra",
   "sobretitulo": "La picada se mide en libras",
   "titulo": "Elige tu tamaño",
-  "texto": "De 1 a 5 libras. Toca Agregar en el tamaño que quieras y se suma a tu ticket.",
+  "texto": "De 1 a 5 libras.",
   "mejor": "Menor precio por libra",
-  "nota": "El precio por libra es el de cada picada dividido entre sus libras. Los precios del menú están por confirmar con el restaurante."
+  "nota": "El precio por libra es el de cada picada dividido entre sus libras. Los precios del menú están por confirmar con el restaurante.",
+  "texto_js": "Toca Agregar en el tamaño que quieras y se suma a tu ticket."
  },
  "gate_pruebas_pedido": {
   "lineas": [

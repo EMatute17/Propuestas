@@ -20,8 +20,9 @@
 
   /* ---------- estado: las lineas del ticket ---------- */
   var lineas = [], nombre = '', nota = '';
-  var barra = qs('#pedido-barra'), hoja = qs('#hoja-pedido'), vivo = qs('#pedido-vivo'), molde = qs('#tk-molde'), lado = qs('[data-ticket="lado"]');
+  var barra = qs('#pedido-barra'), hoja = qs('#hoja-pedido'), vivo = qs('#pedido-vivo'), vivoHoja = qs('#pedido-vivo-hoja'), molde = qs('#tk-molde'), lado = qs('[data-ticket="lado"]');
   var tickets = [], ladoVisible = false;
+  var ancho = window.matchMedia ? window.matchMedia('(min-width:1000px)') : null;   /* desde aqui el ticket va al lado y no hay hoja */
 
   var buscar = function (k) { for (var i = 0; i < lineas.length; i++) { if (lineas[i].k === k) return lineas[i]; } return null; };
   var unitario = function (l) { var s = l.base; for (var i = 0; i < l.sups.length; i++) s += l.sups[i].c; return s; };
@@ -65,22 +66,26 @@
     despues(l, d, origen);
   }
   function despues(l, d, origen) {
+    var desde = (d > 0 && origen && origen.getBoundingClientRect) ? origen.getBoundingClientRect() : null;   /* antes de pintar: Agregar se oculta al pintar */
     pintar();
     anunciar((d > 0 ? T.agregado : T.quitado) + ': ' + nombreLargo(l) + '. ' + (lineas.length ? cuenta() + ' ' + unidad(cuenta()) + ' ' + T.en_el_pedido + ', ' + fmt(total()) : T.vacio_aviso));
-    if (d > 0 && origen) volar(origen);
+    if (desde) volar(desde);
   }
+  /* con la hoja abierta el resto de la pagina es inerte: el aviso para lectores de pantalla tiene que estar dentro de la hoja */
   function anunciar(txt) {
-    if (!vivo) return;
-    vivo.textContent = '';
-    setTimeout(function () { vivo.textContent = txt; }, 40);
+    var z = (hoja && hoja.open && vivoHoja) ? vivoHoja : vivo;
+    if (!z) return;
+    z.textContent = '';
+    setTimeout(function () { z.textContent = txt; }, 40);
   }
 
   /* ---------- pintar todo a partir del estado ---------- */
+  function poner(el, v) { v = String(v); if (el && el.textContent !== v) el.textContent = v; }
   function pintarFilas() {
     qsa('[data-item] .op').forEach(function (f) {
       var add = qs('.add', f), paso = qs('.paso', f); if (!add || !paso) return;
       var l = buscar(clave(f.getAttribute('data-op'), supsDe(f))), q = l ? l.qty : 0;
-      add.hidden = q > 0; paso.hidden = q === 0; qs('.qty', paso).textContent = q;
+      add.hidden = q > 0; paso.hidden = q === 0; poner(qs('.qty', paso), q);
     });
     qsa('[data-item]').forEach(function (t) {
       var id = t.getAttribute('data-item'), hay = false;
@@ -90,7 +95,7 @@
     qsa('[data-ref-q]').forEach(function (b) {
       var op = b.getAttribute('data-ref-q'), q = 0;
       for (var i = 0; i < lineas.length; i++) { if (lineas[i].op === op) q += lineas[i].qty; }
-      b.hidden = q === 0; b.textContent = '×' + q;
+      b.hidden = q === 0; poner(b, '×' + q);
     });
   }
   function pintarBarra() {
@@ -98,8 +103,8 @@
     var n = cuenta(), ver = n > 0 && !ladoVisible;
     barra.hidden = !ver;
     root.classList.toggle('con-pedido', ver);
-    qs('[data-barra-n]', barra).textContent = n;
-    qs('[data-barra-total]', barra).textContent = fmt(total());
+    poner(qs('[data-barra-n]', barra), n);
+    poner(qs('[data-barra-total]', barra), fmt(total()));
     qs('.pb-ver', barra).setAttribute('aria-label', T.ver + ': ' + n + ' ' + unidad(n) + ', ' + fmt(total()));
   }
 
@@ -129,12 +134,14 @@
       li = null; hijos = ul.children;
       for (var j = 0; j < hijos.length; j++) { if (hijos[j].getAttribute('data-k') === lineas[i].k) { li = hijos[j]; break; } }
       if (!li) { li = crearLinea(lineas[i]); ul.appendChild(li); }
-      qs('.qty', li).textContent = lineas[i].qty; qs('.tk-pre', li).textContent = fmt(totalLinea(lineas[i]));
+      poner(qs('.qty', li), lineas[i].qty); poner(qs('.tk-pre', li), fmt(totalLinea(lineas[i])));
     }
-    qs('[data-tk-n]', el).textContent = n; qs('[data-tk-unidad]', el).textContent = unidad(n);
-    qs('[data-tk-total]', el).textContent = fmt(total());
+    poner(qs('[data-tk-n]', el), n); poner(qs('[data-tk-unidad]', el), unidad(n));
+    poner(qs('[data-tk-total]', el), fmt(total()));
     qs('[data-tk-vacio]', el).hidden = n > 0; qs('[data-tk-cuerpo]', el).hidden = n === 0;
     el.classList.toggle('con-lineas', n > 0);
+    /* los avisos de un envio o una copia anteriores ya no valen: el pedido cambio */
+    qsa('[data-tk-noabrio],[data-tk-copiado]', el).forEach(function (a) { a.hidden = true; });
   }
   function pintar() {
     pintarFilas(); pintarBarra();
@@ -200,33 +207,51 @@
     try { navigator.clipboard.writeText(texto).then(ok, respaldo); } catch (x) { respaldo(); }
   }
   function vaciar() {
+    var enHoja = !!(hoja && hoja.open);
     lineas = []; pintar(); anunciar(T.vacio_aviso);
-    if (hoja && hoja.open) cerrarHoja();
+    if (enHoja) cerrarHoja();
+    else enfocarTicket();   /* el boton de vaciar se oculta con el cuerpo del ticket: el foco pasa al titulo */
+  }
+  /* lleva el foco a un sitio que existe: el titulo del ticket lateral o, si no hay, el encabezado de la carta */
+  function enfocarTicket() {
+    var t = (visibleEnPantalla(lado) && qs('.tk-tit', lado)) || qs('#t-carta'); if (!t) return;
+    t.setAttribute('tabindex', '-1');
+    try { t.focus({ preventScroll: true }); } catch (e) { t.focus(); }
   }
 
   /* ---------- hoja del ticket (pantallas estrechas) ---------- */
   var abridor = null;
-  function abrirHoja() {
-    if (!hoja) return; abridor = doc.activeElement;
+  /* desde 1000 px la hoja no se dibuja (hay ticket al lado): abrirla dejaria la pagina inerte con un dialogo invisible. Se lleva a la persona al ticket */
+  function irAlTicket() {
+    var t = lado || qs('.carta-cuerpo'); if (!t) return;
+    t.scrollIntoView({ block: 'center', behavior: E.animar() ? 'smooth' : 'auto' });
+    enfocarTicket();
+  }
+  function abrirHoja(ev) {
+    if (!hoja) return;
+    if (ancho && ancho.matches) { irAlTicket(); return; }
+    abridor = (ev && ev.currentTarget) || doc.activeElement;   /* en Safari y Firefox de Mac un boton tocado no recibe el foco: activeElement seria el body */
     if (typeof hoja.showModal === 'function') { try { hoja.showModal(); } catch (e) { hoja.setAttribute('open', ''); } } else { hoja.setAttribute('open', ''); }
     var c = qs('.cerrar', hoja); if (c) c.focus();
   }
+  function visibleEnPantalla(e) { return !!(e && e.getClientRects && e.getClientRects().length); }
   function cerrarHoja() {
     if (!hoja) return;
     if (typeof hoja.close === 'function') { try { hoja.close(); } catch (e) { hoja.removeAttribute('open'); } } else { hoja.removeAttribute('open'); }
-    if (abridor && abridor.focus && doc.contains(abridor) && !abridor.hidden) abridor.focus();
+    if (abridor && abridor.focus && doc.contains(abridor) && visibleEnPantalla(abridor)) abridor.focus();   /* si la barra se oculto (pedido vacio), el foco va a un sitio que existe */
+    else enfocarTicket();
   }
   qsa('[data-abrir-hoja]').forEach(function (b) { b.addEventListener('click', abrirHoja); });
   qsa('[data-cerrar-hoja]').forEach(function (b) { b.addEventListener('click', cerrarHoja); });
   if (hoja) hoja.addEventListener('click', function (e) { if (e.target === hoja) cerrarHoja(); });
 
   /* ---------- animacion: la bolita sale del boton y llega al ticket ---------- */
-  function volar(desde) {
-    if (!E.animar() || !desde || !desde.animate || !doc.body.animate) return;
+  function volar(a) {
+    if (!E.animar() || !a || !doc.body.animate) return;
     requestAnimationFrame(function () {
       var meta = (barra && !barra.hidden) ? qs('.pb-n', barra) : (ladoVisible ? qs('[data-tk-total]', lado) : null);
       if (!meta) return;
-      var a = desde.getBoundingClientRect(), b = meta.getBoundingClientRect();
+      var b = meta.getBoundingClientRect();
       if (!a.width || !b.width) return;
       var dot = doc.createElement('span'); dot.className = 'vuela'; dot.setAttribute('aria-hidden', 'true');
       dot.style.left = (a.left + a.width / 2 - 8) + 'px'; dot.style.top = (a.top + a.height / 2 - 8) + 'px';
@@ -247,7 +272,12 @@
     if (mas) { cambiarFila(mas.closest('.op'), 1, mas); return; }
     if (menos) { var fm = menos.closest('.op'), sigue = buscar(clave(fm.getAttribute('data-op'), supsDe(fm))).qty > 1; cambiarFila(fm, -1); if (!sigue) { var a2 = qs('.add', fm); if (a2) a2.focus(); } return; }
     var sup = t.closest('.sup-btn');
-    if (sup) { sup.setAttribute('aria-pressed', sup.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); pintarFilas(); return; }
+    if (sup) {
+      var enc = sup.getAttribute('aria-pressed') !== 'true';
+      sup.setAttribute('aria-pressed', enc ? 'true' : 'false'); pintarFilas();
+      anunciar(qs('.sup-et', sup).textContent.trim() + ': ' + (enc ? T.extra_si : T.extra_no));
+      return;
+    }
     var ref = t.closest('[data-add-ref]');
     if (ref) { var fr = qs('[data-item] .op[data-op="' + ref.getAttribute('data-add-ref') + '"]'); if (fr) cambiarFila(fr, 1, ref); }
   });

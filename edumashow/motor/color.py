@@ -114,8 +114,11 @@ def colores_dominantes(imagen, k=6, semilla=7):
     c = [lab[rng.integers(len(lab))]]
     for _ in range(1, k):
         d2 = np.min(((lab[:, None, :] - np.array(c)[None]) ** 2).sum(-1), axis=1)
-        p = d2 / (d2.sum() + 1e-12)
-        c.append(lab[rng.choice(len(lab), p=p)])
+        suma = d2.sum()
+        if suma <= 1e-12:        # un logo de pocos colores: ya no quedan colores distintos de los elegidos
+            break
+        c.append(lab[rng.choice(len(lab), p=d2 / suma)])
+    k = len(c)
     cent = np.array(c)
     for _ in range(30):
         asign = ((lab[:, None, :] - cent[None]) ** 2).sum(-1).argmin(1)

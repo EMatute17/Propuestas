@@ -247,4 +247,5 @@ def glifos_faltantes(archivo_ttf, texto):
     """Caracteres del texto que la fuente no tiene (comprobación previa a la entrega)."""
     f = TTFont(os.path.join(CARPETA, archivo_ttf))
     cmap = f.getBestCmap()
-    return sorted({c for c in texto if ord(c) > 0x20 and ord(c) not in cmap})
+    servidos = set(unicodes_base())    # la fuente se recorta a este conjunto: lo que quede fuera se vería con la fuente del sistema
+    return sorted({c for c in texto if ord(c) > 0x20 and (ord(c) not in cmap or ord(c) not in servidos)})

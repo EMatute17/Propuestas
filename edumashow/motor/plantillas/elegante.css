@@ -92,6 +92,7 @@
 .tabs{scrollbar-width:none}
 .tabs button{flex:none;scroll-snap-align:start;min-height:3rem;padding:0 1rem;border:0;background:transparent;color:var(--texto-suave-papel);font-weight:600;font-size:1rem;white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--tinta);font-weight:700}
+.tabs button:focus-visible{outline-offset:-5px}
 .tab-ind{position:absolute;left:0;bottom:-1px;height:3px;width:var(--ind-w,0);transform:translateX(var(--ind-x,0));background:var(--brasa-papel);transition:transform .5s var(--ease),width .5s var(--ease)}
 .panel-cat{display:block}
 .js .panel-cat{display:none}

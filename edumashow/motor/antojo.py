@@ -57,11 +57,15 @@ def _nitidez_plato(a):
             t = lap[i * H // 6:(i + 1) * H // 6, j * W // 6:(j + 1) * W // 6]
             if t.size:
                 v.append(float(t.var()))
-    return float(np.percentile(v, 90))
+    return float(np.percentile(v, 90)) if v else 0.0     # una foto de tres píxeles o menos no tiene zonas que medir
 
 
 def medidas_tecnicas(imagen):
     """Medidas objetivas de una foto y su puntuación técnica de 0 a 100."""
+    if imagen.mode in ("RGBA", "LA") or (imagen.mode == "P" and "transparency" in imagen.info):
+        fondo = Image.new("RGBA", imagen.size, (128, 128, 128, 255))   # lo transparente se mide sobre gris medio, no sobre el RGB que quede oculto
+        fondo.alpha_composite(imagen.convert("RGBA"))
+        imagen = fondo
     im = imagen.convert("RGB")
     px = im.size
     t = im.copy()

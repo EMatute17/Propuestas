@@ -13,7 +13,7 @@ El mismo motor, el mismo Gate y el mismo conocimiento sirven a los dos. Todo se 
 |---|---|
 | `edumashow/nucleo/` | El conocimiento unificado de los cinco estudios: reglas con prioridad, fuente, evidencia y prueba. Ver su README. |
 | `edumashow/motor/` | El generador (ficha a sitio), las piezas de cada personalidad (elegante y urbana), el pedido con ticket en vivo (`pedido.py`, `pedido.js`), el director de estilo (`estilo.py`: paleta desde el logo en `color.py`, tipografía con rotación en `tipografia.py` y `huella.py`, fotos por antojo en `antojo.py`), los temas y el procesado de imágenes. |
-| `edumashow/gate/` | El verificador: comprobaciones estáticas y pruebas en navegador real en 27 dispositivos (incluye el pedido, los filtros del menú, la página con el JavaScript apagado, los pares de colores y la rotación tipográfica). |
+| `edumashow/gate/` | El verificador: comprobaciones estáticas y pruebas en navegador real en 27 dispositivos (incluye el pedido, los filtros del menú, la página con el JavaScript apagado, los pares de colores, la rotación tipográfica y el aro de foco con el pedido en marcha). |
 | `edumashow/fichas/` | Una ficha JSON por restaurante: datos, carta, horario, textos y estilo. |
 | `edumashow/activos/origen/` | Fotos de origen: las de referencia de la muestra de ejemplo (Lumbre) y los recortes de las redes de Al Fuego Grill, con su `recortes.json`. La guía para pasar fotos y videos de bancos libres está en `edumashow/activos/GUIA_RECURSOS.md`. |
 | `edumashow/informes/` | Informes del Gate por restaurante. |
@@ -46,6 +46,8 @@ Las dos muestras que hay hoy: `lumbre` (restaurante de ejemplo, personalidad ele
 Probar parejas tipográficas nuevas en el Gate para que el director de estilo pueda proponerlas:
 
     python3 scripts/probar_parejas.py edumashow/fichas/alfuego.json bebas-manrope,outfit-outfit
+
+Hoy hay 12 de las 13 parejas probadas (`edumashow/gate/parejas_probadas.json`). La que no pasó es `outfit-outfit`: su titular, muy ancho, llegaba a tocar el sello giratorio de la portada en 1440 x 900.
 
 La explicación de cómo se construyen estas webs y qué estudios se aplican en cada capa está en `edumashow/COMO_LO_HIZO.md`.
 

@@ -75,6 +75,10 @@ def resolver_paleta(F, origen_activos, fecha=None):
         raise FichaIncompleta("no se pudo sacar un color de identidad del logo")
     tokens, rep = color.paleta_marca(marca["hex"], fecha, variante=est.get("variante_paleta", 0), con_acento=est.get("acento_temporada", True))
     rep["dominantes_del_logo"] = dominantes
+    malos = [f'{p["texto"]} sobre {p["fondo"]} ({p["contraste"]}:1, mínimo {p["minimo"]})' for p in rep["pares"] if not p["ok"]]
+    if malos:   # el director no entrega una paleta que no cumple: se abstiene y pide una a mano
+        from .generar import FichaIncompleta
+        raise FichaIncompleta("la paleta derivada del logo no llega al contraste exigido en " + "; ".join(malos) + ". Fija una paleta hecha a mano en estilo.paleta")
     return {"id": "auto:" + tokens["brasa"].lstrip("#"), "origen": f'derivada del logo (color de identidad {marca["hex"]}, tono {marca["h"]:.0f})',
             "tokens": tokens, "pares": rep["pares"], "informe": rep}
 

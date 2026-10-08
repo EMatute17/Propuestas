@@ -94,6 +94,19 @@ def main():
     comprobar("Lumbre mantiene su pareja fijada", dl["tipografia"]["clave"] == lum["estilo"]["tipografia"])
     comprobar("Lumbre mantiene su paleta a mano", dl["paleta"]["id"] == lum["estilo"]["paleta"])
 
+    # 7) casos de borde: un logo de un solo color, una foto muy plana o con transparencia no rompen el cálculo
+    from PIL import ImageDraw
+    plano = Image.new("RGBA", (120, 120), (0, 0, 0, 0))
+    ImageDraw.Draw(plano).rectangle((10, 10, 110, 110), fill=(200, 60, 30, 255))
+    dom = color.colores_dominantes(plano)
+    comprobar("un logo de un solo color no rompe el cálculo de la paleta", len(dom) == 1 and dom[0]["peso"] == 1.0)
+    dos = Image.new("RGBA", (120, 120), (0, 0, 0, 0))
+    ImageDraw.Draw(dos).rectangle((10, 10, 110, 110), fill=(200, 60, 30, 255))
+    ImageDraw.Draw(dos).rectangle((40, 40, 80, 80), fill=(20, 20, 20, 255))
+    comprobar("un logo de dos colores lisos da dos grupos", len(color.colores_dominantes(dos)) == 2)
+    comprobar("una foto de 800 x 3 px no rompe las medidas", antojo.medidas_tecnicas(Image.new("RGB", (800, 3), (120, 80, 40)))["puntos"] >= 0)
+    comprobar("una foto transparente se mide sobre gris y no rompe", antojo.medidas_tecnicas(Image.new("RGBA", (60, 60), (255, 0, 0, 0)))["puntos"] >= 0)
+
     print("\nFALLAN:" if FALLOS else "\nTodo pasa.", FALLOS or "")
     return 1 if FALLOS else 0
 

@@ -120,7 +120,18 @@
   });
 
   /* ---------- WhatsApp ---------- */
-  function waLink(texto, numero) { return 'https://wa.me/' + (numero || F.wa) + '?text=' + encodeURIComponent(texto); }
+  /* un emoji partido (par sustituto suelto) hace que encodeURIComponent lance un error y el envio muera sin aviso: se cambia por el caracter de reemplazo */
+  function bienFormado(t) {
+    t = String(t); var o = '', i, c, n;
+    for (i = 0; i < t.length; i++) {
+      c = t.charCodeAt(i);
+      if (c >= 0xD800 && c <= 0xDBFF) { n = t.charCodeAt(i + 1); if (n >= 0xDC00 && n <= 0xDFFF) { o += t.charAt(i) + t.charAt(i + 1); i++; } else o += '\uFFFD'; }
+      else if (c >= 0xDC00 && c <= 0xDFFF) o += '\uFFFD';
+      else o += t.charAt(i);
+    }
+    return o;
+  }
+  function waLink(texto, numero) { return 'https://wa.me/' + (numero || F.wa) + '?text=' + encodeURIComponent(bienFormado(texto)); }
   function abrirWA(texto, aviso, numero) {
     var url = waLink(texto, numero);
     if (aviso) { aviso.hidden = false; var a = qs('a', aviso); if (a) a.href = url; }

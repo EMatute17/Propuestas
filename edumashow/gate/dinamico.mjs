@@ -23,7 +23,57 @@ const puede = (n) => !SOLO || SOLO === n;
 const registro = [];
 const srv = await servir(carpeta, { registro });
 const nav = await chromium.launch({ args: ['--no-sandbox'] });
-const R = { version_gate: '0.2.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {}, peso: {} };
+const R = { version_gate: '0.3.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {}, peso: {} };
+
+// Ayudas que se instalan en cada pagina antes de que cargue: miden el aro de foco (que lo recorte un ancestro con overflow, y su contraste)
+const AYUDAS_PAGINA = `(() => {
+  const recorta = (v) => /(hidden|auto|scroll|clip)/.test(v);
+  const rgba = (c) => { const m = (c || '').match(/[\\d.]+/g); return m ? { r: +m[0], g: +m[1], b: +m[2], a: m[3] === undefined ? 1 : +m[3] } : null; };
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b); };
+  window.__gate = {
+    // el aro de foco (outline) se recorta si un ancestro con overflow lo deja fuera de su caja: devuelve el ancestro, o null
+    anilloRecortado(el) {
+      const cs = getComputedStyle(el), w = parseFloat(cs.outlineWidth) || 0;
+      if (cs.outlineStyle === 'none' || w === 0) return null;
+      const ext = (parseFloat(cs.outlineOffset) || 0) + w, r = el.getBoundingClientRect();
+      const aro = { l: r.left - ext, t: r.top - ext, r: r.right + ext, b: r.bottom + ext };
+      for (let p = el.parentElement; p && p !== document.documentElement; p = p.parentElement) {
+        const o = getComputedStyle(p); if (!recorta(o.overflowX) && !recorta(o.overflowY)) continue;
+        const q = p.getBoundingClientRect();
+        const v = { l: q.left + (parseFloat(o.borderLeftWidth) || 0), t: q.top + (parseFloat(o.borderTopWidth) || 0), r: q.right - (parseFloat(o.borderRightWidth) || 0), b: q.bottom - (parseFloat(o.borderBottomWidth) || 0) };
+        // solo cuenta si el propio elemento cabe en el ancestro: un chip a medio salir de una fila que se desplaza no es un fallo del aro
+        if (r.left < v.l - 1 || r.right > v.r + 1 || r.top < v.t - 1 || r.bottom > v.b + 1) continue;
+        if ((recorta(o.overflowX) && (aro.l < v.l - 0.5 || aro.r > v.r + 0.5)) || (recorta(o.overflowY) && (aro.t < v.t - 0.5 || aro.b > v.b + 0.5)))
+          return p.tagName.toLowerCase() + (typeof p.className === 'string' && p.className ? '.' + p.className.split(' ')[0] : '');
+      }
+      return null;
+    },
+    // contraste del aro de foco con el fondo liso que tiene detras (null si el fondo no es liso o no se puede saber)
+    contrasteAro(el) {
+      const cs = getComputedStyle(el); if (cs.outlineStyle === 'none' || !(parseFloat(cs.outlineWidth) > 0)) return null;
+      const aro = rgba(cs.outlineColor); if (!aro) return null;
+      let fondo = null, desde = (parseFloat(cs.outlineOffset) || 0) < 0 ? el : el.parentElement;   // con desplazamiento negativo el aro se dibuja sobre el propio elemento
+      for (let p = desde; p; p = p.parentElement) {
+        const o = getComputedStyle(p);
+        if (o.backgroundImage && o.backgroundImage !== 'none') return null;
+        const c = rgba(o.backgroundColor); if (c && c.a > 0.95) { fondo = c; break; }
+        if (c && c.a > 0) return null;
+      }
+      if (!fondo) return null;
+      const a = lum(aro) + 0.05, b = lum(fondo) + 0.05;
+      return Math.round((Math.max(a, b) / Math.min(a, b)) * 100) / 100;
+    },
+  };
+})();`;
+// espera a que el scroll suave de la pagina termine (varias lecturas seguidas iguales) en vez de una pausa fija
+async function esperarScroll(pag, max = 3500) {
+  let ultimo = null, estable = 0; const t0 = Date.now();
+  while (Date.now() - t0 < max) {
+    const y = await pag.evaluate(() => Math.round(window.scrollY * 10));
+    if (y === ultimo) { if (++estable >= 3) return; } else { estable = 0; ultimo = y; }
+    await pag.waitForTimeout(90);
+  }
+}
 
 async function nuevaPagina(d, op = {}) {
   const movil = d.tipo !== 'escritorio';
@@ -32,6 +82,7 @@ async function nuevaPagina(d, op = {}) {
     locale: op.locale || 'es-VE', timezoneId: op.tz || 'America/Caracas', reducedMotion: op.reduce ? 'reduce' : 'no-preference',
   });
   const externas = [], errores = [];
+  await ctx.addInitScript({ content: AYUDAS_PAGINA });
   await ctx.route('**/*', (route) => {
     const u = route.request().url();
     if (u.startsWith(srv.url) || u.startsWith('data:') || u.startsWith('blob:')) return route.continue();
@@ -289,7 +340,7 @@ for (const d of axeDisp) {
   await pag.addScriptTag({ content: axeSrc });
   R.axe[d.id] = await pag.evaluate(async () => {
     const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] } });
-    return r.violations.map((v) => ({ id: v.id, impacto: v.impact, nodos: v.nodes.length, ayuda: v.help, ejemplo: (v.nodes[0] && v.nodes[0].target || []).join(' ').slice(0, 80) }));
+    return r.violations.map((v) => ({ id: v.id, impacto: v.impact, nodos: v.nodes.length, ayuda: v.help, ejemplo: (v.nodes[0] && v.nodes[0].target || []).join(' ').slice(0, 80), datos: (() => { const a = v.nodes[0] && v.nodes[0].any && v.nodes[0].any[0]; return a && a.data ? JSON.stringify(a.data).slice(0, 220) : ''; })() }));
   });
   await ctx.close();
 }
@@ -329,14 +380,14 @@ async function probarFoco(d) {
       const dentroX = (x) => x >= 0 && x <= vw, dentroY = (y) => y >= 0 && y <= limiteInf;
       const spanX = Math.min(R, vw) - Math.max(L, 0), spanY = Math.min(B, limiteInf) - Math.max(T, 0);
       const aroVisible = (dentroY(T) && spanX >= 24) || (dentroY(B) && spanX >= 24) || (dentroX(L) && spanY >= 24) || (dentroX(R) && spanY >= 24);
-      return { i: el.getAttribute('data-gate-i'), nombre: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''), anillo: !!anillo, estilo: cs.outlineStyle + ' ' + cs.outlineWidth, enPantalla: b.bottom > 0 && b.top < innerHeight + 1 && b.right > 0 && b.left < innerWidth + 1, fraccionTapada, aroVisible };
+      return { recortado: window.__gate.anilloRecortado(el), contrasteAro: window.__gate.contrasteAro(el), i: el.getAttribute('data-gate-i'), nombre: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''), anillo: !!anillo, estilo: cs.outlineStyle + ' ' + cs.outlineWidth, enPantalla: b.bottom > 0 && b.top < innerHeight + 1 && b.right > 0 && b.left < innerWidth + 1, fraccionTapada, aroVisible };
     });
     if (!info) continue;
     seq.push(info); vistos.add(info.i);
   }
   await ctx.close();
   const faltan = []; for (let k = 0; k < total; k++) if (!vistos.has(String(k))) faltan.push(k);
-  return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.fraccionTapada >= 0.5).map((s) => s.nombre).slice(0, 6), tapadoParcial: seq.filter((s) => s.fraccionTapada > 0 && s.fraccionTapada < 0.5).map((s) => s.nombre + ' ' + Math.round(s.fraccionTapada * 100) + '%').slice(0, 6), aroNoVisible: seq.filter((s) => !s.aroVisible).map((s) => s.nombre).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
+  return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.fraccionTapada >= 0.5).map((s) => s.nombre).slice(0, 6), tapadoParcial: seq.filter((s) => s.fraccionTapada > 0 && s.fraccionTapada < 0.5).map((s) => s.nombre + ' ' + Math.round(s.fraccionTapada * 100) + '%').slice(0, 6), aroNoVisible: seq.filter((s) => !s.aroVisible).map((s) => s.nombre).slice(0, 6), aroRecortado: Array.from(new Set(seq.filter((s) => s.recortado).map((s) => s.nombre + ' (recortado por ' + s.recortado + ')'))).slice(0, 6), aroPocoContraste: Array.from(new Set(seq.filter((s) => s.contrasteAro !== null && s.contrasteAro < 3).map((s) => s.nombre + ' ' + s.contrasteAro + ':1'))).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
 }
 for (const id of ['pc-1440', 'iph-390', 'se-horiz-667', 'mini-768']) { const d = lista.find((x) => x.id === id); if (d) R.foco[id] = await probarFoco(d); }
 }
@@ -555,15 +606,15 @@ if (puede('carta')) {
     const inicial = await leer();
     const pasos = [];
     for (const id of [ids[1], 'todo', ids[ids.length - 2]]) {
-      await pag.click(`[data-filtro="${id}"]`); await pag.waitForTimeout(900);
+      await pag.click(`[data-filtro="${id}"]`); await pag.waitForTimeout(250); await esperarScroll(pag);
       pasos.push({ id, ...(await leer()) });
     }
     // con el teclado: Enter y espacio sobre un filtro
-    await pag.focus(`[data-filtro="${ids[0]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(500);
+    await pag.focus(`[data-filtro="${ids[0]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(250); await esperarScroll(pag);
     const enter = await leer();
-    await pag.focus(`[data-filtro="${ids[2]}"]`); await pag.keyboard.press('Space'); await pag.waitForTimeout(500);
+    await pag.focus(`[data-filtro="${ids[Math.min(2, ids.length - 1)]}"]`); await pag.keyboard.press('Space'); await pag.waitForTimeout(250); await esperarScroll(pag);
     const espacio = await leer();
-    await pag.click(`[data-filtro="${ids[0]}"]`); await pag.waitForTimeout(500);   // se deja como estaba
+    await pag.click(`[data-filtro="${ids[0]}"]`); await pag.waitForTimeout(250); await esperarScroll(pag);   // se deja como estaba
     F.filtros = { ids, inicial, pasos, enter, espacio };
   }
   if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
@@ -599,7 +650,7 @@ if (ficha.pedido) {
   var pagGlobal = null;
   for (const idDisp of ['iph-390', 'pc-1440']) {
     const d = lista.find((x) => x.id === idDisp); if (!d) continue;
-    const { ctx, pag, errores } = await nuevaPagina(d, { espera: 1000 });
+    const { ctx, pag, errores, externas } = await nuevaPagina(d, { espera: 1000 });
     pagGlobal = pag;
     await pag.evaluate(() => { window.__wa = []; document.addEventListener('edu:wa', (e) => window.__wa.push(e.detail)); document.documentElement.style.scrollBehavior = 'auto'; });
     const Rd = {};
@@ -616,14 +667,43 @@ if (ficha.pedido) {
     }
     await pag.waitForTimeout(900);
     Rd.tras = await leerPedido();
+    // aros de foco de los controles con el pedido en marcha (contadores, extras, filtros): se miden con el foco de teclado, que es el que los dibuja
+    Rd.anillos = [];
+    await pag.keyboard.press('Tab');
+    const medirAnillos = async (sels, donde) => {
+      await pag.keyboard.press('Tab');   // el ultimo gesto cuenta: tras un clic de raton el foco programado no se dibuja como foco de teclado
+      const r = await pag.evaluate((ss) => ss.map((sel) => {
+        const e = Array.from(document.querySelectorAll(sel)).find((x) => { const b = x.getBoundingClientRect(), cs = getComputedStyle(x); return b.width > 0 && b.height > 0 && cs.visibility !== 'hidden'; });
+        if (!e) return { sel, ausente: true };
+        e.focus({ preventScroll: true });
+        return { sel, enfocado: document.activeElement === e && e.matches(':focus-visible'), recortado: window.__gate.anilloRecortado(e), contraste: window.__gate.contrasteAro(e) };
+      }), sels);
+      Rd.anillos.push(...r.map((x) => ({ ...x, donde })));
+    };
+    await medirAnillos(['.filtros .chip', '.tarjeta .paso:not([hidden]) .menos', '.tarjeta .paso:not([hidden]) .mas-uno', '.tarjeta .sup-btn', '.tarjeta .add:not([hidden])'], 'menú');
     if (d.w < 1000) {
       // hoja: se abre desde la barra, con el foco en Cerrar, y Escape la cierra devolviendo el foco
       await pag.click('.pb-ver'); await pag.waitForTimeout(700);
       Rd.hoja = { ...(await leerPedido()), foco: await pag.evaluate(() => document.activeElement.className) };
       await muestrearContraste(pag, d, ['.tk-tit', '.tk-cuenta', '.tk-nom', '.tk-det', '.tk-pre', '.tk-total span', '.tk-total b', '.hoja-pedido .qty', '.hoja-pedido .cerrar'], 'ticket');
+      await medirAnillos(['.hoja-pedido .cerrar', '.hoja-pedido .tk-linea .menos', '.hoja-pedido .tk-linea .mas-uno', '.hoja-pedido [name=nombre]', '.hoja-pedido [name=nota]', '.hoja-pedido .tk-enviar', '.hoja-pedido .tk-llamar', '.hoja-pedido .tk-vaciar'], 'hoja');
+      // accesibilidad con la hoja abierta y el pedido armado (el axe de las demas pruebas corre con la pagina recien cargada)
+      await pag.waitForTimeout(1100);   // al quitar la hoja de estilo de la medicion de contraste las entradas de las tarjetas vuelven a correr: axe las mediria a medias
+      await pag.addScriptTag({ content: axeSrc });
+      R.axe[d.id + ' con la hoja del pedido abierta'] = await pag.evaluate(async () => {
+        const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] } });
+        return r.violations.map((v) => ({ id: v.id, impacto: v.impact, nodos: v.nodes.length, ayuda: v.help, ejemplo: (v.nodes[0] && v.nodes[0].target || []).join(' ').slice(0, 80), datos: (() => { const a = v.nodes[0] && v.nodes[0].any && v.nodes[0].any[0]; return a && a.data ? JSON.stringify(a.data).slice(0, 220) : ''; })() }));
+      });
     } else {
       Rd.hoja = null;
       await muestrearContraste(pag, d, ['.ticket .tk-tit', '.ticket .tk-cuenta', '.ticket .tk-nom', '.ticket .tk-det', '.ticket .tk-pre', '.ticket .tk-total span', '.ticket .tk-total b', '.ticket .qty', '.ticket label', '.ticket .tk-nota'], 'ticket');
+      await medirAnillos(['.ticket .tk-linea .menos', '.ticket .tk-linea .mas-uno', '.ticket [name=nombre]', '.ticket [name=nota]', '.ticket .tk-enviar', '.ticket .tk-llamar', '.ticket .tk-vaciar'], 'ticket lateral');
+      await pag.waitForTimeout(1100);
+      await pag.addScriptTag({ content: axeSrc });
+      R.axe[d.id + ' con el ticket lateral armado'] = await pag.evaluate(async () => {
+        const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] } });
+        return r.violations.map((v) => ({ id: v.id, impacto: v.impact, nodos: v.nodes.length, ayuda: v.help, ejemplo: (v.nodes[0] && v.nodes[0].target || []).join(' ').slice(0, 80), datos: (() => { const a = v.nodes[0] && v.nodes[0].any && v.nodes[0].any[0]; return a && a.data ? JSON.stringify(a.data).slice(0, 220) : ''; })() }));
+      });
     }
     const cont = d.w < 1000 ? '.hoja-pedido' : '.ticket';
     // quitar uno y volver a ponerlo desde el propio ticket
@@ -640,6 +720,7 @@ if (ficha.pedido) {
     await pag.fill(`${cont} [name=nombre]`, 'Ana Pérez'); await pag.fill(`${cont} [name=nota]`, 'Sin cebolla, por favor');
     await pag.click(`${cont} .tk-enviar`); await pag.waitForTimeout(400);
     Rd.envio = await pag.evaluate(() => window.__wa.slice());
+    Rd.navegacion = externas.filter((u) => u.includes('wa.me/'));   // lo que el navegador intento abrir de verdad (el contexto corta todo lo externo)
     Rd.noAbrio = await pag.evaluate((c) => { const p_ = document.querySelector(c + ' [data-tk-noabrio]'); return p_ ? { visible: !p_.hidden, href: (p_.querySelector('a') || {}).href || '' } : null; }, cont);
     if (d.w < 1000) {
       await pag.keyboard.press('Escape'); await pag.waitForTimeout(400);
@@ -648,12 +729,16 @@ if (ficha.pedido) {
       // con el ticket fuera de pantalla aparece la barra para volver a el
       await pag.evaluate(() => document.querySelector('#visitanos').scrollIntoView()); await pag.waitForTimeout(700);
       Rd.barraLejos = await leerPedido();
+      // pulsar la pastilla debe llevar al ticket (que va al lado) y dejar la pagina viva: una hoja invisible la dejaria inerte
+      await pag.click('.pb-ver'); await pag.waitForTimeout(250); await esperarScroll(pag);
+      Rd.pastilla = await pag.evaluate(() => { const l = document.querySelector('[data-ticket="lado"]').getBoundingClientRect(); return { hojaAbierta: document.querySelector('#hoja-pedido').open, modal: !!document.querySelector('dialog:modal'), ticketEnPantalla: l.bottom > 0 && l.top < innerHeight, foco: (document.activeElement.className || document.activeElement.tagName) + '' }; });
+      try { await pag.click('.chips .filtros .chip:nth-child(2)', { timeout: 3000 }); Rd.pastilla.responde = true; } catch (e) { Rd.pastilla.responde = false; }
       await pag.evaluate(() => document.querySelector('.carta').scrollIntoView()); await pag.waitForTimeout(700);
     }
     // vaciar
     if (d.w < 1000) { await pag.click('.pb-ver'); await pag.waitForTimeout(500); }
     await pag.click(`${cont} [data-tk-vaciar]`); await pag.waitForTimeout(500);
-    Rd.vaciado = await leerPedido();
+    Rd.vaciado = { ...(await leerPedido()), foco: await pag.evaluate(() => { const a = document.activeElement; return a && a !== document.body ? ((typeof a.className === 'string' && a.className) || a.id || a.tagName) : 'body'; }) };
     Rd.errores = errores.slice(0, 3);
     F.pedido.dispositivos[idDisp] = Rd;
     await ctx.close();

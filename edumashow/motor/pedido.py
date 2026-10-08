@@ -54,6 +54,8 @@ TEXTOS = {
     "paso3_t_llamada": "Llámanos",
     "paso3_x_llamada": "Con tu ticket a la mano, pides en una llamada.",
     "paso3_x_muestra": "Con un toque lo mandas por WhatsApp. En esta muestra llega a Edumashow como prueba.",
+    "extra_si": "activado, se suma al tocar Agregar",
+    "extra_no": "desactivado",
     "sin_js": "Para armar el pedido aquí hace falta JavaScript. Mientras tanto puedes llamar",
     "sin_js_corto": "Para armar el pedido aquí hace falta JavaScript.",
 }
@@ -96,8 +98,9 @@ def config_js(F, C):
 
 
 # ------------------------------------------------------------------ filas de opciones (cada una se puede agregar al ticket)
-def _precio(C, valor):
-    return f'<data class="pre" value="{valor}">{e_(C["importe"](valor))}</data>'
+def _precio(C, valor, eco=False):
+    """El importe de un plato. Con eco es una repetición de un importe que ya está en la carta (el Gate comprueba que existe, no la cuenta dos veces)."""
+    return f'<data class="pre"{" data-eco" if eco else ""} value="{valor}">{e_(C["importe"](valor))}</data>'
 
 
 def _nombre_accion(p, etiqueta):
@@ -123,14 +126,18 @@ def opciones(F, C, p, pedir):
 
 
 def suplementos(F, C, p, pedir):
-    """Extras opcionales de un plato. Con pedir son interruptores (nacen apagados); sin pedir, una línea de texto."""
+    """Extras opcionales de un plato. Con pedir son interruptores (nacen apagados) y, para quien no ejecuta JavaScript, también van como
+    texto con su precio (el CSS muestra uno u otro); sin pedir, una línea de texto. Van antes de los botones Agregar: se eligen primero
+    y se suman a lo que se agregue después."""
     if not p.get("suplementos"):
         return ""
     if not pedir:
         return "".join(f'<p class="sup">{e_(s["etiqueta"])} +{_precio(C, s["precio"])}</p>' for s in p["suplementos"])
+    # con pedido, el precio de cada extra ya está en su interruptor: la línea de texto (para quien no ejecuta JavaScript) es un eco
+    texto = '<div class="sups-texto">' + "".join(f'<p class="sup">{e_(s["etiqueta"])} +{_precio(C, s["precio"], eco=True)}</p>' for s in p["suplementos"]) + '</div>'
     botones = "".join(f'<button type="button" class="sup-btn" data-sup="{k}" aria-pressed="false"><span class="chk" aria-hidden="true"></span>'
                       f'<span class="sup-et">{e_(s["etiqueta"])}</span><span class="sup-mas">+{_precio(C, s["precio"])}</span></button>' for k, s in enumerate(p["suplementos"]))
-    return f'<div class="sups" role="group" aria-label="Extras de {e_(p["nombre"])}">{botones}</div>'
+    return texto + f'<div class="sups" role="group" aria-label="Extras de {e_(p["nombre"])}">{botones}</div>'
 
 
 def molde(F, C):
@@ -148,18 +155,18 @@ def molde(F, C):
         enviar = t["enviar_prueba"] if C["muestra"] else t["enviar_wa"]
         # el enlace de respaldo ya apunta al WhatsApp correcto (el pedido completo lo pone el JavaScript al enviar): un enlace sin destino no sirve ni se rastrea
         aviso_href = "https://wa.me/" + destino_wa(F, C) + "?text=" + quote(C["prefijo_wa_pedido"] + t["saludo"].replace("{negocio}", F["negocio"]["nombre"]), safe="")
-        campos = (f'<div class="campo"><label for="tk-nombre-{{v}}">{e_(t["nombre"])}</label><input id="tk-nombre-{{v}}" name="nombre" autocomplete="name" required></div>'
-                  f'<div class="campo"><label for="tk-nota-{{v}}">{e_(t["nota"])}</label><textarea id="tk-nota-{{v}}" name="nota"></textarea></div>'
+        campos = (f'<div class="campo"><label for="tk-nombre-{{v}}">{e_(t["nombre"])}</label><input id="tk-nombre-{{v}}" name="nombre" autocomplete="name" maxlength="60" required></div>'
+                  f'<div class="campo"><label for="tk-nota-{{v}}">{e_(t["nota"])}</label><textarea id="tk-nota-{{v}}" name="nota" maxlength="300"></textarea></div>'
                   f'<p class="aviso" data-tk-error role="alert" hidden></p>')
         acciones = (f'<button type="submit" class="btn tk-enviar">{ICONO_WA} {e_(enviar)}</button>'
-                    f'<p class="aviso-wa" data-tk-noabrio hidden>{e_(t["no_abrio"])} <a href="{aviso_href}" target="_blank" rel="noopener">{e_(t["no_abrio_enlace"])}</a>.</p>')
+                    f'<div role="status"><p class="aviso-wa" data-tk-noabrio hidden>{e_(t["no_abrio"])} <a href="{aviso_href}" target="_blank" rel="noopener">{e_(t["no_abrio_enlace"])}</a>.</p></div>')
         if llamar_href:
             acciones += f'<a class="btn suave tk-llamar" href="{llamar_href}">{ICONO_TEL} {e_(t["llamar"])}</a>'
     else:
         campos = ""
         acciones = (f'<a class="btn tk-llamar" href="{llamar_href}">{ICONO_TEL} Llamar para pedir</a>'
                     f'<button type="button" class="btn suave tk-copiar">{e_(t["copiar"])}</button>'
-                    f'<p class="aviso-wa" data-tk-copiado role="status" hidden>{e_(t["copiado"])}</p>')
+                    f'<div role="status"><p class="aviso-wa" data-tk-copiado hidden>{e_(t["copiado"])}</p></div>')
     return (f'<template id="tk-molde"><div class="tk-cab"><p class="tk-tit" role="heading" aria-level="3" id="tk-tit-{{v}}">{e_(t["ticket_titulo"])}</p>'
             f'<p class="tk-cuenta"><b data-tk-n>0</b> <span data-tk-unidad>{e_(t["productos_varios"])}</span></p></div>'
             f'<p class="tk-vacio" data-tk-vacio>{e_(t["vacio"])}</p>'
@@ -182,6 +189,7 @@ def extras(F, C):
     barra = (f'<div class="pedido-barra" id="pedido-barra" hidden>{llamar}<button type="button" class="pb-ver" data-abrir-hoja aria-haspopup="dialog">'
              f'<span class="pb-n" data-barra-n>0</span><span class="pb-txt">{e_(t["ver"])}</span><b class="pb-total" data-barra-total></b></button></div>')
     hoja = (f'<dialog class="hoja-pedido" id="hoja-pedido" aria-labelledby="tk-tit-hoja"><button type="button" class="cerrar" data-cerrar-hoja aria-label="{e_(t["cerrar"])}"><span aria-hidden="true"></span></button>'
+            f'<div class="sr-only" id="pedido-vivo-hoja" role="status" aria-live="polite" aria-atomic="true"></div>'
             f'<div class="tk" data-ticket="hoja"></div></dialog>')
     vivo = '<div class="sr-only" id="pedido-vivo" role="status" aria-live="polite" aria-atomic="true"></div>'
     return barra + hoja + vivo + molde(F, C)
@@ -217,7 +225,7 @@ def como_pedir(F, C):
     pasos = [(t["paso1_t"], t["paso1_x"]), (t["paso2_t"], t["paso2_x"]), (p3t, p3x)]
     lis = "".join(f'<li class="paso-c rv" data-superpuesto style="--d:{i * 110}ms;--giro:{(-1.6, 1.2, -0.8)[i]}deg"><span class="n" aria-hidden="true">{i + 1}</span><h3>{e_(a)}</h3><p>{e_(b)}</p></li>'
                   for i, (a, b) in enumerate(pasos))
-    return (f'<section class="como" id="como-pedir" aria-labelledby="t-como"><div class="caja"><h2 id="t-como" class="rv">{e_(t["pedir_como_titulo"])}</h2>'
+    return (f'<section class="como solo-js" id="como-pedir" aria-labelledby="t-como"><div class="caja"><h2 id="t-como" class="rv">{e_(t["pedir_como_titulo"])}</h2>'
             f'<ol class="pasos-c">{lis}</ol></div></section>')
 
 

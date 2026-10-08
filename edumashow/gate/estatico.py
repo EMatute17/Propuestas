@@ -18,9 +18,9 @@ MARCA_PROHIBIDA = re.compile(
     re.I)
 PLACEHOLDERS = [r"lorem", r"ipsum", r"plato 1", r"tu texto", r"calculando", r"todo:", r"undefined", r"\bnan\b", r"\{\{", r"\}\}", r"\bxxx\b", r"por definir", r"pendiente de"]
 ETICA = [
-    ("escasez o urgencia", r"quedan\s+\d+|[uú]ltim[ao]s?\s+(mesas?|plazas?|unidades?)|solo\s+hoy|oferta\s+limitada|date\s+prisa|corre\s|no\s+te\s+lo\s+pierdas|no\s+te\s+quedes\s+sin|cuenta\s+atr[aá]s"),
-    ("testimonios, reseñas o estrellas", r"testimonio|rese[nñ]as?\s+de\s+clientes|\d[.,]\d\s*/\s*5|\bestrellas?\b|" + chr(0x2605) + "|" + chr(0x2B50)),
-    ("promesa de resultados", r"\+\s*\d+\s*%|\d+\s*%\s*m[aá]s\s|aument(a|ar[aá])\s+(tus\s+)?(ventas|reservas|pedidos)|garantiz|llen(a|ar)\s+tus\s+mesas|duplica|triplica"),
+    ("escasez o urgencia", r"quedan\s+\d+|[uú]ltim[ao]s?\s+(mesas?|plazas?|unidades?)|solo\s+hoy|oferta\s+limitada|date\s+prisa|\bcorre\s|no\s+te\s+lo\s+pierdas|no\s+te\s+quedes\s+sin|cuenta\s+atr[aá]s"),
+    ("testimonios, reseñas o estrellas", r"testimonio|rese[nñ]as?\s+de\s+clientes|\d[.,]\d\s*/\s*5|\b\d(?:[.,]\d)?\s*estrellas?\b|\bestrellas?\s+(?:de\s+)?(?:google|tripadvisor|yelp|rese[nñ]as?)\b|" + chr(0x2605) + "|" + chr(0x2B50)),
+    ("promesa de resultados", r"\+\s*\d+\s*%|\d+\s*%\s*m[aá]s\s|aument(a|ar[aá])\s+(tus\s+)?(ventas|reservas|pedidos)|garantiz|llen(a|ar)\s+tus\s+mesas|\b(?:duplica|triplica)\s+(?:tus?|las?|los)\b"),
     ("porcentaje con falsa precisión", r"\d+[.,]\d+\s*%"),
     ("refuerzo variable", r"ruleta|rasca\s+y\s+gana|premio\s+sorpresa"),
 ]
@@ -123,8 +123,9 @@ def datos(carpeta, ficha, importe, rango_horario):
     texto = re.sub(r"\s+", " ", " ".join(p.texto))
     fallos = []
     N, K = ficha["negocio"], ficha.get("contacto", {})
+    ws = lambda t: re.sub(r"\s+", " ", t)    # los espacios duros y repetidos cuentan como uno, igual que en el texto de la pagina
     for k in ("nombre", "ciudad", "direccion"):
-        if N[k] not in texto:
+        if ws(N[k]) not in texto:
             fallos.append(f"falta en el texto visible: {k} = {N[k]}")
     # precios: cada importe de la carta (plato, variante o suplemento) con su texto exacto y ningún importe extra
     esperados = []
@@ -164,7 +165,7 @@ def datos(carpeta, ficha, importe, rango_horario):
     # importes sueltos en el texto que no pertenezcan a la carta (el patron sale del propio formato de la ficha)
     base = norm(importe(1))
     m = re.search(r"\d[\d.,]*", base)
-    patron = re.escape(base[:m.start()]) + r"\d[\d.,]*" + re.escape(base[m.end():])
+    patron = re.escape(base[:m.start()]) + r"\d(?:[\d.,]*\d)?" + re.escape(base[m.end():])
     sueltos = [x for x in re.findall(patron, norm(texto)) if x not in [t for _, t in esp_set] and x not in derivados]
     if sueltos:
         fallos.append(f"importes en el texto que no estan en la carta: {sueltos[:5]}")
@@ -204,7 +205,7 @@ def datos(carpeta, ficha, importe, rango_horario):
     if K.get("telefono"):
         if tels != {"tel:" + K["telefono"]}:
             fallos.append(f"enlaces tel: distintos del telefono de la ficha: {sorted(tels)}")
-        if K.get("telefono_visible") and K["telefono_visible"] not in texto:
+        if K.get("telefono_visible") and ws(K["telefono_visible"]) not in texto:
             fallos.append(f"falta el telefono visible: {K['telefono_visible']}")
     elif tels:
         fallos.append(f"enlaces tel: y la ficha no declara telefono: {sorted(tels)}")
@@ -331,10 +332,12 @@ def fuentes_glifos(carpeta, parejas, clave):
     pareja = parejas[clave]
     roles = ["display", "texto"] + (["titulo"] if pareja.get("titulo") else [])
     base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fuentes")
+    from edumashow.motor import tipografia as _tipo
+    servidos = set(_tipo.unicodes_base())    # lo que viaja en el WOFF2: un caracter fuera de esto cae a la fuente del sistema aunque la fuente completa lo tenga
     for rol in roles:
         archivo = pareja[rol][0][0]
         cmap = TTFont(os.path.join(base, archivo)).getBestCmap()
-        f = sorted({c for c in texto if ord(c) > 0x20 and ord(c) not in cmap})
+        f = sorted({c for c in texto if ord(c) > 0x20 and (ord(c) not in cmap or ord(c) not in servidos)})
         if f:
             faltan[archivo] = f
     return res("PASS" if not faltan else "FAIL", f"{len(roles)} tipografías revisadas contra {len(set(texto))} caracteres distintos", [f"{a}: {''.join(f)}" for a, f in faltan.items()])

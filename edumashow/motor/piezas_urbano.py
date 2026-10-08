@@ -148,8 +148,10 @@ def regla(F, C):
             f'<span class="b-pre"><data data-eco value="{p["precio"]}">{e_(C["importe"](p["precio"]))}</data></span>{boton}</div>'
             f'<div class="b-riel" aria-hidden="true"><span class="b-barra"></span></div>'
             f'<div class="b-pie"><p class="b-xu"><data data-calc="{e_(p["id"])}" value="{v}">{e_(C["importe"](v))}</data> {e_(I["por"])}</p>{medalla}</div></li>')
+    # lo que habla de tocar Agregar solo se lee con JavaScript: sin el, los botones no existen
+    texto_js = f' <span class="solo-js">{e_(I["texto_js"])}</span>' if I.get("texto_js") and pedir else ""
     return f'''<section class="regla" id="regla" aria-labelledby="t-regla"><div class="caja">
-<div class="regla-cab"><p class="sobretitulo rv">{e_(I["sobretitulo"])}</p><h2 id="t-regla" class="rv">{e_(I["titulo"])}</h2><p class="regla-txt rv">{e_(I["texto"])}</p></div>
+<div class="regla-cab"><p class="sobretitulo rv">{e_(I["sobretitulo"])}</p><h2 id="t-regla" class="rv">{e_(I["titulo"])}</h2><p class="regla-txt rv">{e_(I["texto"])}{texto_js}</p></div>
 <ol class="barras" style="--n-lb:{mx:g}" aria-label="{e_(cat["titulo"])}">{"".join(filas)}</ol>
 <p class="regla-nota rv">{e_(I["nota"])}</p></div></section>'''
 
@@ -161,7 +163,7 @@ def _item(F, C, p, i, pedir):
     des = f'<p class="des">{e_(p["descripcion"])}</p>' if p.get("descripcion") else ""
     clase = "tarjeta " + ("varias" if p.get("variantes") else "sola") + ("" if p.get("descripcion") else " sin-des")
     return (f'<li class="{clase}" data-item="{e_(p["id"])}" data-tilt style="--i:{i}"><div class="t-cab"><h4 class="nom"{lang}>{e_(p["nombre"])}</h4>{en}</div>{des}'
-            f'{pedido.opciones(F, C, p, pedir)}{pedido.suplementos(F, C, p, pedir)}</li>')
+            f'{pedido.suplementos(F, C, p, pedir)}{pedido.opciones(F, C, p, pedir)}</li>')
 
 
 def _categoria(F, C, c, pedir):

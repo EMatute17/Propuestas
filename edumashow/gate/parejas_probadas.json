@@ -2,7 +2,35 @@
  "anton-archivo": {
   "urbano": {
    "fecha": "2026-10-08",
+   "gate": "0.2.0",
    "modo": "completo (27 dispositivos y Lighthouse)",
+   "sitio": "alfuego",
+   "veredicto": "APTO"
+  }
+ },
+ "archivo-condensado-inter": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse)",
+   "sitio": "alfuego",
+   "veredicto": "APTO"
+  }
+ },
+ "archivo-expandido": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse)",
+   "sitio": "alfuego",
+   "veredicto": "APTO"
+  }
+ },
+ "bebas-manrope": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse)",
    "sitio": "alfuego",
    "veredicto": "APTO"
   }
@@ -10,8 +38,72 @@
  "bodoni-manrope": {
   "elegante": {
    "fecha": "2026-10-08",
+   "gate": "0.2.0",
    "modo": "completo (27 dispositivos y Lighthouse)",
    "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "bodoni-outfit": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse; sin G-HUELLA, que no aplica a una copia de prueba)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "bricolage-outfit": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse)",
+   "sitio": "alfuego",
+   "veredicto": "APTO"
+  }
+ },
+ "dmserif-inter": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse; sin G-HUELLA, que no aplica a una copia de prueba)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "fraunces-manrope": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse; sin G-HUELLA, que no aplica a una copia de prueba)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "instrument-inter": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse; sin G-HUELLA, que no aplica a una copia de prueba)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "playfair-inter": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse; sin G-HUELLA, que no aplica a una copia de prueba)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ },
+ "unbounded-manrope": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "gate": "0.2.0",
+   "modo": "rápido (4 dispositivos representativos, sin Lighthouse)",
+   "sitio": "alfuego",
    "veredicto": "APTO"
   }
  }

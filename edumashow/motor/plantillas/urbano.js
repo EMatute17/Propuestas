@@ -67,6 +67,33 @@
     }
   }
 
+  /* ---------- pegatina: es decorativa. Si en esta pantalla (texto muy grande, ventana baja, titular largo) taparia texto o botones, se quita ---------- */
+  var peg = qs('.pegatina');
+  if (peg && hero) {
+    var choca = function () {
+      var a = peg.getBoundingClientRect(), tapa = false;
+      if (!a.width) return false;
+      qsa('*', hero).forEach(function (e) {
+        if (tapa || peg.contains(e) || e.contains(peg) || e.closest('.hero-fondo,[data-decorativo],.sr-only')) return;
+        var directo = false, i, n;
+        for (i = 0; i < e.childNodes.length; i++) { n = e.childNodes[i]; if (n.nodeType === 3 && n.textContent.replace(/\s+/g, '')) { directo = true; break; } }
+        if (!(directo || e.tagName === 'H1' || e.tagName === 'A' || e.tagName === 'BUTTON')) return;
+        var b = e.getBoundingClientRect();
+        if (b.width < 3 || b.height < 3) return;
+        var w = Math.min(a.right, b.right) - Math.max(a.left, b.left), h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (w > 2 && h > 2 && w * h > 12) tapa = true;
+      });
+      return tapa;
+    };
+    var revisarPeg = function () { peg.classList.remove('oculta'); if (choca()) peg.classList.add('oculta'); };
+    var pendientePeg = 0;
+    var programarPeg = function () { if (pendientePeg) return; pendientePeg = raf(function () { pendientePeg = 0; revisarPeg(); }); };
+    window.addEventListener('resize', programarPeg, { passive: true });
+    if ('ResizeObserver' in window) { var roPeg = new ResizeObserver(programarPeg); roPeg.observe(hero); var cuerpoPeg = qs('.hero-cuerpo', hero); if (cuerpoPeg) roPeg.observe(cuerpoPeg); }
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(programarPeg);
+    programarPeg();
+  }
+
   /* ---------- menu: una categoria a la vez, o todas ---------- */
   var filtros = qsa('[data-filtro]');
   if (filtros.length) {
@@ -92,8 +119,13 @@
       }
     };
     filtros.forEach(function (b) { b.addEventListener('click', function () { mostrar(b.getAttribute('data-filtro'), true); }); });
+    /* un enlace con #cat-algo abre esa categoria; si el enlace esta mal escrito (un % suelto, comillas) se ignora y se abre la primera */
     var enlace = /^#cat-(.+)$/.exec(window.location.hash || ''), inicial = filtros[0].getAttribute('data-filtro');
-    if (enlace && qs('[data-cat="' + decodeURIComponent(enlace[1]) + '"]')) inicial = decodeURIComponent(enlace[1]);
+    if (enlace) {
+      var pedida = enlace[1];
+      try { pedida = decodeURIComponent(pedida); } catch (x) { pedida = ''; }
+      cats.forEach(function (c) { if (c.getAttribute('data-cat') === pedida) inicial = pedida; });
+    }
     mostrar(inicial, false);
   }
 

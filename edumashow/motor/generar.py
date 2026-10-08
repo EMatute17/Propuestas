@@ -21,7 +21,7 @@ import rjsmin
 
 from . import color, dinero, estilo as _estilo, huella as _huella, imagenes, pedido, piezas, temas, tipografia
 
-VERSION_GENERADOR = "0.2.0"
+VERSION_GENERADOR = "0.3.0"
 RAIZ = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 PLANTILLAS = os.path.join(RAIZ, "motor", "plantillas")
 ORIGEN_ACTIVOS = os.path.join(RAIZ, "activos", "origen")
@@ -162,6 +162,15 @@ def validar_ficha(F):
         falta.append("contacto.whatsapp o contacto.telefono (obligatorio en el modo final)")
     if K.get("telefono") and not re.fullmatch(r"\+\d{8,15}", K["telefono"]):
         falta.append("contacto.telefono (formato internacional, por ejemplo +17867282934)")
+    if K.get("whatsapp") and not re.fullmatch(r"\d{8,15}", str(K["whatsapp"])):
+        falta.append("contacto.whatsapp (solo dígitos con el código de país y sin signos, por ejemplo 17867282934)")
+    ids = [p_.get("id") for c in F.get("carta", []) for p_ in c.get("platos", [])]
+    malos = sorted({i for i in ids if not isinstance(i, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", i)})
+    if malos:
+        falta.append(f"carta: ids de plato no válidos (solo letras, números, guion y guion bajo): {malos}")
+    repetidos = sorted({i for i in ids if ids.count(i) > 1})
+    if repetidos:
+        falta.append(f"carta: ids de plato repetidos {repetidos} (cada plato necesita un id único: el ticket los usa como clave)")
 
     # una muestra de un negocio real declara de dónde salen los datos y las fotos y si hay permiso (R-MUE-05)
     M = F.get("muestra", {})
@@ -349,10 +358,13 @@ def construir(ruta_ficha, salida_base, base_url=None):
         Fjs["pedido"] = pedido.config_js(F, C)
     Fjs["fuentes_carga"] = [_carga_fuente(par["familia_display"], disp["peso"], disp["estilo"]), _carga_fuente(par["familia_texto"], txt_min, "normal")]
     js = "window.__F=" + json.dumps(Fjs, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";\n"
+    # cada módulo va en su propio try: si uno falla al arrancar (un dato raro, un navegador antiguo) no tumba a los demás, y el error sigue saliendo por la consola
+    aislado = lambda codigo: "try{" + codigo + "\n}catch(e){if(window.console&&console.error)console.error(e)}\n"
     for nombre in ["base.js"] + (["pedido.js"] if pedido.activo(F) else []) + [f"{est['personalidad']}.js"]:
         with open(os.path.join(PLANTILLAS, nombre), encoding="utf-8") as f:
-            js += f.read() + "\n"
-    js += P["js_extra"]
+            js += aislado(f.read())
+    if P["js_extra"].strip():
+        js += aislado(P["js_extra"])
     js_min = rjsmin.jsmin(js)
 
     # ---- HTML

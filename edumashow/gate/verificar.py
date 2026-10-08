@@ -25,7 +25,7 @@ from edumashow.motor import dinero, huella as _huella, pedido as _pedido, piezas
 from edumashow.motor.generar import hash_paquete
 from . import estatico
 
-VERSION_GATE = "0.2.0"
+VERSION_GATE = "0.3.0"
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.normpath(os.path.join(AQUI, ".."))
 
@@ -130,6 +130,9 @@ def juzgar_pedido(ficha, cfg, datos, muestra):
     """Recalcula en Python lo que el ticket de la página tiene que decir y lo compara con lo que se vio en el navegador."""
     if not datos:
         return "UNAVAILABLE", "la prueba del pedido no se ejecutó", []
+    faltan_disp = [d for d in ("iph-390", "pc-1440") if d not in datos.get("dispositivos", {})]
+    if faltan_disp:
+        return "UNAVAILABLE", f"la prueba del pedido no corrió en {faltan_disp}", []
     importe = dinero.importe_fn(ficha)
     T = _pedido.textos(ficha)
     platos = {pl["id"]: pl for c in ficha["carta"] for pl in c["platos"]}
@@ -196,10 +199,26 @@ def juzgar_pedido(ficha, cfg, datos, muestra):
             if f"{T['total']}: {total_txt}" not in norm(texto): fl.append(f"{did}: al mensaje le falta el total {total_txt}")
             if f"{T['a_nombre']}: Ana P\u00e9rez" not in texto: fl.append(f"{did}: al mensaje le falta el nombre")
             if f"{T['notas']}: Sin cebolla, por favor" not in texto: fl.append(f"{did}: al mensaje le falta la nota")
+            nav = R_.get("navegacion") or []
+            if len(nav) != 1 or unquote(nav[0]) != unquote(url): fl.append(f"{did}: el navegador no intentó abrir el mismo enlace que anunció la página ({[x[:60] for x in nav]})")
             na = R_.get("noAbrio") or {}
-            if not na.get("visible") or na.get("href") != url: fl.append(f"{did}: el aviso por si no se abrió WhatsApp no lleva el mismo enlace")
+            # el navegador normaliza el enlace (un apóstrofo pasa a %27): se compara lo que dicen, no cómo está escrito
+            if not na.get("visible") or unquote(na.get("href") or "") != unquote(url): fl.append(f"{did}: el aviso por si no se abrió WhatsApp no lleva el mismo enlace")
+        for x in R_.get("anillos", []):   # aros de foco con el pedido en marcha
+            if x.get("ausente"): continue
+            if not x.get("enfocado"): fl.append(f"{did}: no se pudo enfocar con teclado {x['sel']} ({x['donde']})")
+            if x.get("recortado"): fl.append(f"{did}: el aro de foco de {x['sel']} ({x['donde']}) queda recortado por {x['recortado']}")
+            if x.get("contraste") is not None and x["contraste"] < 3: fl.append(f"{did}: el aro de foco de {x['sel']} ({x['donde']}) tiene {x['contraste']} a 1 de contraste (mínimo 3)")
+        if not movil:
+            pa = R_.get("pastilla")
+            if not pa: fl.append(f"{did}: falta la prueba de pulsar Ver mi pedido con el ticket fuera de pantalla")
+            else:
+                if pa["hojaAbierta"] or pa["modal"]: fl.append(f"{did}: Ver mi pedido abre una hoja que no se dibuja y deja la página inerte ({pa})")
+                if not pa["ticketEnPantalla"]: fl.append(f"{did}: Ver mi pedido no lleva al ticket ({pa})")
+                if not pa["responde"]: fl.append(f"{did}: tras Ver mi pedido la página no responde a un clic")
         v = R_["vaciado"]
         if v["lineas"] or v["barraVisible"] or v["pasosActivos"]: fl.append(f"{did}: tras vaciar quedan líneas {len(v['lineas'])}, barra {v['barraVisible']}, contadores {v['pasosActivos']}")
+        if v.get("foco") == "body": fl.append(f"{did}: al vaciar el ticket el foco se perdió (quedó en el body)")
         if v["almacenamiento"] or t["almacenamiento"]: fl.append(f"{did}: el pedido dejó cookies o almacenamiento")
         if R_.get("errores"): fl.append(f"{did}: errores de consola durante el pedido: {R_['errores']}")
     ok = "PASS" if not fl else "FAIL"
@@ -256,7 +275,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
     r = estatico.antojo(sitio, ficha)
     if r is not None:
         I.add("G-ANTOJO", "Fotos ordenadas por antojo: juicio completo, fotos reales y orden visible igual al del ranking", ["R-IDE-07", "R-DAT-04"], "defecto", r["resultado"], r["evidencia"], r["detalle"])
-    r = estatico.fuentes_glifos(sitio, tipografia.PAREJAS, ficha["estilo"]["tipografia"])
+    r = estatico.fuentes_glifos(sitio, tipografia.PAREJAS, h["tipografia"])   # la pareja ya resuelta por el director (la ficha puede decir "auto")
     I.add("G-FUENTES", "Todos los caracteres existen en las tipografías", ["R-LEG-04", "R-REN-03"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.red_estatica(sitio, ficha)
     estatica_red = r
@@ -307,9 +326,9 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         graves, leves = [], []
         for did, vs in D["axe"].items():
             for v in vs:
-                (graves if v["impacto"] in ("serious", "critical") else leves).append(f"{did}: {v['id']} ({v['impacto']}) x{v['nodos']} {v['ejemplo']}")
+                (graves if v["impacto"] in ("serious", "critical") else leves).append(f"{did}: {v['id']} ({v['impacto']}) x{v['nodos']} {v['ejemplo']} {v.get('datos', '')}".rstrip())
         I.add("G-AXE", "axe-core sin violaciones graves (WCAG 2.2 AA)", ["R-LEG-05", "R-LEG-08"], "bloqueo", "FAIL" if graves else ("WARN" if leves else "PASS"),
-              f"{len(D['axe'])} tamaños: {len(graves)} graves y {len(leves)} leves", graves + leves)
+              f"{len(D['axe'])} pruebas (tamaños y, con pedido, la hoja y el ticket armados): {len(graves)} graves y {len(leves)} leves", graves + leves)
         # ---- contraste real
         filas, fc = juzgar_contraste(D, dir_informe)
         resumen_contraste = filas
@@ -415,7 +434,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
                 if p_["tarjetaTop"] is not None and p_["tarjetaTop"] < p_["barraAbajo"] - 2: fl.append(f"con {p_['id']} la primera tarjeta queda tapada por la barra de filtros")
                 if not p_["tarjetas"]: fl.append(f"con {p_['id']} no se ve ninguna tarjeta")
             if ch["enter"]["presionados"] != [ids[0]]: fl.append("Enter sobre un filtro no lo activa")
-            if ch["espacio"]["presionados"] != [ids[2]]: fl.append("la barra espaciadora sobre un filtro no lo activa")
+            if ch["espacio"]["presionados"] != [ids[min(2, len(ids) - 1)]]: fl.append("la barra espaciadora sobre un filtro no lo activa")
             partes.append(f"{len(ids) - 1} categorías y Ver todo: clic, Enter y espacio")
         if muestra:   # el diálogo de Edumashow solo existe en la muestra
             if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
@@ -450,6 +469,8 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             if f["fueraDePantalla"]: fl.append(f"{did}: foco fuera de pantalla en {f['fueraDePantalla']}")
             if f.get("tapadoPorBarra"): fl.append(f"{did}: foco tapado por la barra fija en {f['tapadoPorBarra']}")
             if f.get("aroNoVisible"): fl.append(f"{did}: el aro de foco no se ve en pantalla en {f['aroNoVisible']}")
+            if f.get("aroRecortado"): fl.append(f"{did}: el aro de foco queda recortado por un contenedor en {f['aroRecortado']}")
+            if f.get("aroPocoContraste"): fl.append(f"{did}: el aro de foco tiene menos de 3 a 1 de contraste con su fondo en {f['aroPocoContraste']}")
             if f.get("tapadoParcial"): av.append(f"{did}: la barra fija tapa en parte el elemento enfocado: {f['tapadoParcial']}")
         I.add("G-FOCO", "Teclado: orden, alcance y foco siempre visible", ["R-LEG-05"], "bloqueo", "FAIL" if fl else ("WARN" if av else "PASS"), f"{len(D['foco'])} dispositivos recorridos con Tab", fl + av)
         # ---- movimiento
