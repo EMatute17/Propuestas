@@ -555,10 +555,18 @@ if (ficha.horario && ficha.negocio) {
     E.F.horario = { lun: [], mar: [], mie: [], jue: [], vie: [['18:00', '02:00']], sab: [], dom: [] };
     const tz = E.F.tz;
     const f = (iso) => { const s = E.estado(new Date(iso)); return s && s.txt; };
-    const o = E.ahoraEn(tz, new Date('2026-10-09T22:00:00Z'));   // viernes
-    res.push(['vie 18:30 hora local (cruce)', f(new Date(Date.UTC(2026, 9, 9, 22, 30)).toISOString()), 'Abierto ahora · cierra a las 02:00']);
-    res.push(['sab 01:00 hora local (madrugada del cruce)', f(new Date(Date.UTC(2026, 9, 10, 5, 0)).toISOString()), 'Abierto ahora · cierra a las 02:00']);
-    res.push(['sab 02:30 hora local (ya cerrado)', f(new Date(Date.UTC(2026, 9, 10, 6, 30)).toISOString()), 'Cerrado · abre el viernes a las 18:00']);
+    // el instante UTC en el que la hora de pared de la zona de la ficha es la pedida (cada restaurante esta en su zona, no en la de Caracas)
+    const aUtc = (y, m, d, hh, mm) => {
+      const objetivo = Date.UTC(y, m - 1, d, hh, mm); let t = objetivo;
+      for (let i = 0; i < 3; i++) {
+        const p = new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(new Date(t)).reduce((o, x) => (o[x.type] = x.value, o), {});
+        t += objetivo - Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute);
+      }
+      return new Date(t).toISOString();
+    };
+    res.push(['vie 18:30 hora local (cruce)', f(aUtc(2026, 10, 9, 18, 30)), 'Abierto ahora · cierra a las 02:00']);
+    res.push(['sab 01:00 hora local (madrugada del cruce)', f(aUtc(2026, 10, 10, 1, 0)), 'Abierto ahora · cierra a las 02:00']);
+    res.push(['sab 02:30 hora local (ya cerrado)', f(aUtc(2026, 10, 10, 2, 30)), 'Cerrado · abre el viernes a las 18:00']);
     E.F.horario = JSON.parse(orig);
     return res.map((r) => ({ caso: r[0], obtenido: r[1], esperado: r[2], ok: r[1] === r[2] }));
   });

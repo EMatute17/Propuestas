@@ -43,8 +43,8 @@ def portada_marco(F, C):
     pic, foco, _ = hero_picture(C, paralaje_attr(C, 5))
     hs = "".join(f'<span class="mp"><span class="mp-i{" mp-ultima" if i == n - 1 else ""}" data-anim-titulo style="--i:{i}">{e_(w)}</span></span>' for i, w in enumerate(palabras))
     mas_larga = max(len(w) for w in palabras)
-    return f'''<header class="hero hero-marco" id="inicio" style="--c:{mas_larga};--foco:{foco}">
-<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante()}{_pausa()}</div></div>
+    return f'''<header class="hero hero-marco" id="inicio" style="--c:{mas_larga};--ln:{n};--foco:{foco}">
+<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
 <div class="marco-cuerpo"><div class="marco-texto"><p class="marco-sobre"><span>{e_(N["cocina"])}</span><i aria-hidden="true"></i><span>{e_(N["ciudad"])}</span></p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true" class="marco-h1">{hs}</span></h1>
 <p class="lema">{e_(N["lema"])}</p>
@@ -60,10 +60,10 @@ def portada_cortina(F, C):
     nombre = N["nombre"]
     letras, mas_larga = letras_titular(nombre)
     pic, foco, lqip = hero_picture(C, paralaje_attr(C))
-    return f'''<header class="hero hero-cortina" id="inicio" style="--c:{mas_larga};--foco:{foco}">
+    return f'''<header class="hero hero-cortina" id="inicio" style="--c:{mas_larga};--ln:{len(nombre.split())};--foco:{foco}">
 <div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
 <span class="cortina-hoja izq" aria-hidden="true"></span><span class="cortina-hoja der" aria-hidden="true"></span>
-<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante()}{_pausa()}</div></div>
+<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
 <div class="hero-cuerpo cortina-cuerpo"><p class="cortina-sobre"><span>{e_(N["cocina"])}</span><b aria-hidden="true"></b><span>{e_(N["ciudad"])}</span></p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1>
 <p class="lema">{e_(N["lema"])}</p>

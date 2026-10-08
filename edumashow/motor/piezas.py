@@ -168,9 +168,15 @@ def letras_titular(nombre):
     return " ".join(partes), max(len(w) for w in palabras)
 
 
-def nav_elegante():
-    return ('<nav aria-label="Secciones"><a href="#carta">Carta</a><a href="#ambiente">Ambiente</a>'
-            '<a href="#reservar">Reservar</a><a href="#visitanos">Visítanos</a></nav>')
+def nav_elegante(F):
+    """Los enlaces de la cabecera llevan solo a las secciones que la ficha tiene (un enlace a una sección que no existe no lleva a ningún sitio)."""
+    enlaces = ['<a href="#carta">Carta</a>']
+    if F.get("galeria"):
+        enlaces.append('<a href="#ambiente">Ambiente</a>')
+    if F.get("reservas"):
+        enlaces.append('<a href="#reservar">Reservar</a>')
+    enlaces.append('<a href="#visitanos">Visítanos</a>')
+    return '<nav aria-label="Secciones">' + "".join(enlaces) + '</nav>'
 
 
 def portada(F, C):
@@ -180,8 +186,8 @@ def portada(F, C):
     pic, foco, lqip = hero_picture(C, paralaje_attr(C))
     hero_acc = acciones(F, C)["hero"]
     botones = "".join(_enlace_accion(a, "btn" if i == 0 else "btn suave") for i, a in enumerate(hero_acc))
-    nav = nav_elegante()
-    return f'''<header class="hero" id="inicio" style="--c:{mas_larga};--foco:{foco}">
+    nav = nav_elegante(F)
+    return f'''<header class="hero" id="inicio" style="--c:{mas_larga};--ln:{len(nombre.split())};--foco:{foco}">
 <div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
 <div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav}<button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
 <div class="hero-cuerpo"><div class="hero-titulo"><p class="sobre">{e_(N["cocina"])} · {e_(N["ciudad"])}</p>

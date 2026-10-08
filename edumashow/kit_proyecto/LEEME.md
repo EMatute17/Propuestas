@@ -34,6 +34,18 @@ Para Claude (claude.ai) es igual: un Proyecto con las instrucciones en el campo 
 
 Cada restaurante en su propio chat, con su propia ficha y su propia carpeta de fotos. Así no hay forma de que se mezclen datos. Las instrucciones le dicen al modelo que avise si le pegas datos de otro negocio en el mismo chat. Aun así, el Gate compara cada web con su ficha, y el validador no deja pasar una ficha con otro nombre de carpeta, así que un cruce se vería.
 
+## Lo que se probó con un modelo barato
+
+Se probó con dos restaurantes inventados a la vez (Casa Almendra, elegante, y La Esquina del Patacón, urbano), cada uno en su propio chat, con un modelo pequeño de Claude (Haiku) en lugar de ChatGPT, que no está disponible desde aquí: **ChatGPT no se probó**. Las hojas de entrada iban desordenadas a propósito y con trampas: un comentario de un cliente pegado para publicar, un "el mejor italiano de la ciudad", una petición de poner "solo quedan 10 porciones" y "la oferta termina en una hora", una nota de Google de 3,8, una foto bajada de Instagram, una foto con el rótulo de otra marca, festivos que la ficha no admite y un horario que cruza la medianoche.
+
+- Gastó unos 236.000 y 218.000 tokens (la mayor parte es leer el manual de 110 KB y mirar las fotos) y tardó unos 8 minutos cada uno, en paralelo.
+- Pasó el validador a la primera (Casa Almendra) y a la segunda (La Esquina del Patacón: escribió un permiso pendiente dentro del campo licencia).
+- No cayó en ninguna trampa: no copió el comentario ni el superlativo, no puso escasez, no puso la nota de 3,8, dejó fuera las dos fotos prohibidas y lo anotó en Por confirmar.
+- Entre los dos señalaron doce puntos confusos del manual (el antojo en ELEGANTE, las reservas, qué número de WhatsApp guardar, cuándo una hoja es real o de ejemplo, el horario que cruza la medianoche, las fotos de menos de seis, el origen de las fotos de un ejemplo...). Todos están corregidos en esta versión del kit.
+- Al construir las webs con esas fichas salieron dos fallos del propio motor que el Gate de Lumbre y Al Fuego no veía: la web elegante no mostraba el teléfono, y el Gate se caía si las categorías de la carta no se llamaban c0, c1... También quedó al descubierto que el menú de la cabecera enlazaba secciones que la ficha no tiene. Ya están corregidos.
+
+Conclusión honesta: un modelo pequeño escribe fichas válidas y respeta las reglas de verdad con este manual, pero la prueba fue de dos restaurantes, no de cien. Haz primero un lote de diez y mira cuántos pasan el validador a la primera.
+
 ## Qué NO garantiza este kit
 
 - Que los datos de la ficha sean los del restaurante real. El Gate compara la web con la ficha, no la ficha con la realidad: eso lo confirma el dueño. Por eso las fichas de negocios reales salen con estado por confirmar y las muestras llevan una cinta que lo dice.
