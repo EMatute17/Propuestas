@@ -370,12 +370,15 @@ if (ficha.horario && ficha.negocio) {
   const t1 = await pag.evaluate(() => ({ sel: Array.from(document.querySelectorAll('[role=tab]')).map((t) => t.getAttribute('aria-selected')), activo: document.activeElement.id, visibles: Array.from(document.querySelectorAll('[role=tabpanel]')).filter((p) => getComputedStyle(p).display !== 'none').map((p) => p.id) }));
   await pag.keyboard.press('End'); await pag.waitForTimeout(300);
   const t2 = await pag.evaluate(() => ({ activo: document.activeElement.id }));
-  await pag.evaluate(() => window.scrollTo(0, 0));
-  await pag.click('.cinta button'); await pag.waitForTimeout(400);
-  const abierto = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.className }));
-  await pag.keyboard.press('Escape'); await pag.waitForTimeout(300);
-  const cerrado = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.textContent.trim() }));
-  F.pestanas = { t0, t1, t2 }; F.dialogo = { abierto, cerrado };
+  F.pestanas = { t0, t1, t2 };
+  if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
+    await pag.evaluate(() => window.scrollTo(0, 0));
+    await pag.click('.cinta button'); await pag.waitForTimeout(400);
+    const abierto = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.className }));
+    await pag.keyboard.press('Escape'); await pag.waitForTimeout(300);
+    const cerrado = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.textContent.trim() }));
+    F.dialogo = { abierto, cerrado };
+  }
   await ctx.close();
 }
 R.funcional = F;

@@ -290,9 +290,11 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         if pe.get("t0", {}).get("sel") != ["true", "false", "false", "false"] or pe.get("t0", {}).get("visibles") != 1: fl.append("estado inicial de las pestañas")
         if pe.get("t1", {}).get("sel") != ["false", "true", "false", "false"] or pe.get("t1", {}).get("visibles") != ["panel-c1"]: fl.append("la flecha derecha no cambia de pestaña")
         if pe.get("t2", {}).get("activo") != "tab-c3": fl.append("la tecla Fin no va a la última pestaña")
-        if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
-        if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
-        I.add("G-INTERACCION", "Pestañas de la carta con teclado y diálogo de la muestra", ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", "flechas, Fin, Escape y retorno del foco", fl)
+        if muestra:   # el diálogo de Edumashow solo existe en la muestra
+            if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
+            if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
+        I.add("G-INTERACCION", "Pestañas de la carta con teclado" + (" y diálogo de la muestra" if muestra else ""), ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL",
+              "flechas, Fin, Escape y retorno del foco" if muestra else "flechas y Fin en las pestañas", fl)
         # ---- foco
         fl, av = [], []
         for did, f in D["foco"].items():

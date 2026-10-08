@@ -12,6 +12,7 @@ Esta tabla mide velocidad y cumplimiento de reglas verificables. No mide ventas,
 | Accesibilidad (Lighthouse) | 94 | 100 |
 | Buenas prácticas (Lighthouse) | 100 | 100 |
 | SEO básico (Lighthouse), muestra con noindex | 91 | 66 |
+| SEO básico (Lighthouse), modo final sin noindex | no aplica | 100 |
 | LCP en móvil lento | 4,1 s | 2,2 s |
 | Peso transferido (móvil) | 662 KB | 180 KB |
 | CLS | 0 | 0 |
