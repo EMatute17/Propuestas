@@ -1,5 +1,5 @@
 {
- "version_gate": "0.1.0",
+ "version_gate": "0.2.0",
  "dispositivos": [
   {
    "id": "se1-320",
@@ -74,6 +74,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -135,8 +136,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 322.24542236328125,
-      "cajaH": 599.8671875,
+      "cajaW": 322.258544921875,
+      "cajaH": 599.8916015625,
       "cubre": true
      },
      {
@@ -161,6 +162,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -234,7 +236,7 @@
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
       "cajaW": 280.2808837890625,
-      "cajaH": 652.607177734375,
+      "cajaH": 652.6070556640625,
       "cubre": true
      },
      {
@@ -259,6 +261,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -346,6 +349,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -418,8 +422,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 375.376220703125,
-      "cajaH": 615.6170043945312,
+      "cajaW": 375.3818359375,
+      "cajaH": 615.626220703125,
       "cubre": true
      },
      {
@@ -444,6 +448,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -505,8 +510,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 377.1908874511719,
-      "cajaH": 618.59326171875,
+      "cajaW": 377.20489501953125,
+      "cajaH": 618.61572265625,
       "cubre": true
      },
      {
@@ -531,6 +536,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -629,6 +635,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -716,6 +723,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -788,8 +796,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.3665771484375,
-      "cajaH": 688.7005615234375,
+      "cajaW": 360.3611755371094,
+      "cajaH": 688.6902465820312,
       "cubre": true
      },
      {
@@ -814,6 +822,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -875,8 +884,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.55572509765625,
-      "cajaH": 692.88427734375,
+      "cajaW": 362.6153564453125,
+      "cajaH": 692.998046875,
       "cubre": true
      },
      {
@@ -901,6 +910,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -973,8 +983,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 390.3912658691406,
-      "cajaH": 792.7945556640625,
+      "cajaW": 390.397216796875,
+      "cajaH": 792.8065185546875,
       "cubre": true
      },
      {
@@ -999,6 +1009,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -1060,8 +1071,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 391.8636169433594,
-      "cajaH": 795.784423828125,
+      "cajaW": 391.8375244140625,
+      "cajaH": 795.731689453125,
       "cubre": true
      },
      {
@@ -1086,6 +1097,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -1223,8 +1235,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 393.394287109375,
-      "cajaH": 800.8026123046875,
+      "cajaW": 393.38836669921875,
+      "cajaH": 800.79052734375,
       "cubre": true
      },
      {
@@ -1249,6 +1261,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -1310,8 +1323,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 395.4754638671875,
-      "cajaH": 805.0390625,
+      "cajaW": 395.429931640625,
+      "cajaH": 804.946533203125,
       "cubre": true
      },
      {
@@ -1336,6 +1349,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -1408,8 +1422,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.41326904296875,
-      "cajaH": 863.86572265625,
+      "cajaW": 412.41949462890625,
+      "cajaH": 863.8787841796875,
       "cubre": true
      },
      {
@@ -1434,6 +1448,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -1495,8 +1510,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.42242431640625,
-      "cajaH": 868.07421875,
+      "cajaW": 414.468994140625,
+      "cajaH": 868.17138671875,
       "cubre": true
      },
      {
@@ -1521,6 +1536,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -1593,8 +1609,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.413330078125,
-      "cajaH": 863.8658447265625,
+      "cajaW": 412.41949462890625,
+      "cajaH": 863.8787841796875,
       "cubre": true
      },
      {
@@ -1619,6 +1635,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -1680,8 +1697,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.8572082519531,
-      "cajaH": 868.98486328125,
+      "cajaW": 414.8909606933594,
+      "cajaH": 869.0556640625,
       "cubre": true
      },
      {
@@ -1706,6 +1723,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -1778,8 +1796,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 430.431396484375,
-      "cajaH": 880.8829345703125,
+      "cajaW": 430.42498779296875,
+      "cajaH": 880.8697509765625,
       "cubre": true
      },
      {
@@ -1804,6 +1822,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -1865,8 +1884,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 432.6422119140625,
-      "cajaH": 885.4072265625,
+      "cajaW": 432.609375,
+      "cajaH": 885.33984375,
       "cubre": true
      },
      {
@@ -1891,6 +1910,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -1963,8 +1983,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 667.67919921875,
-      "cajaH": 365.6531982421875,
+      "cajaW": 667.669189453125,
+      "cajaH": 365.64776611328125,
       "cubre": true
      },
      {
@@ -1989,6 +2009,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -2076,6 +2097,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -2213,8 +2235,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 844.8467407226562,
-      "cajaH": 368.88531494140625,
+      "cajaW": 844.8341674804688,
+      "cajaH": 368.87982177734375,
       "cubre": true
      },
      {
@@ -2246,6 +2268,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -2307,8 +2330,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 852.0631103515625,
-      "cajaH": 372.0361328125,
+      "cajaW": 852.22607421875,
+      "cajaH": 372.107421875,
       "cubre": true
      },
      {
@@ -2340,6 +2363,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -2412,8 +2436,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 915.9318237304688,
-      "cajaH": 373.645751953125,
+      "cajaW": 915.91796875,
+      "cajaH": 373.6401062011719,
       "cubre": true
      },
      {
@@ -2452,6 +2476,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -2513,8 +2538,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 922.433837890625,
-      "cajaH": 376.2978515625,
+      "cajaW": 922.555908203125,
+      "cajaH": 376.347900390625,
       "cubre": true
      },
      {
@@ -2553,6 +2578,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -2625,8 +2651,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 673.6751708984375,
-      "cajaH": 789.7915649414062,
+      "cajaW": 673.6650390625,
+      "cajaH": 789.77978515625,
       "cubre": true
      },
      {
@@ -2651,6 +2677,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -2712,8 +2739,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 677.2652587890625,
-      "cajaH": 794.00048828125,
+      "cajaW": 677.7223510742188,
+      "cajaH": 794.5361328125,
       "cubre": true
      },
      {
@@ -2738,6 +2765,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -2810,8 +2838,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 768.7476806640625,
-      "cajaH": 972.9462890625,
+      "cajaW": 768.759033203125,
+      "cajaH": 972.9606323242188,
       "cubre": true
      },
      {
@@ -2836,6 +2864,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -2897,7 +2926,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 771.4412841796875,
+      "cajaW": 771.44140625,
       "cajaH": 976.355224609375,
       "cubre": true
      },
@@ -2923,6 +2952,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -3086,6 +3116,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -3147,8 +3178,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 814.8539428710938,
-      "cajaH": 1034.160400390625,
+      "cajaW": 814.7020874023438,
+      "cajaH": 1033.967529296875,
       "cubre": true
      },
      {
@@ -3173,6 +3204,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -3245,8 +3277,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 834.799560546875,
-      "cajaH": 1143.094970703125,
+      "cajaW": 834.8118896484375,
+      "cajaH": 1143.1116943359375,
       "cubre": true
      },
      {
@@ -3271,6 +3303,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -3332,8 +3365,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 838.5966796875,
-      "cajaH": 1148.294189453125,
+      "cajaW": 838.9976806640625,
+      "cajaH": 1148.84326171875,
       "cubre": true
      },
      {
@@ -3358,6 +3391,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -3430,8 +3464,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.9373779296875,
-      "cajaH": 1315.202880859375,
+      "cajaW": 1024.9521484375,
+      "cajaH": 1315.2216796875,
       "cubre": true
      },
      {
@@ -3470,6 +3504,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -3531,8 +3566,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.020751953125,
-      "cajaH": 1321.72607421875,
+      "cajaW": 1030.37060546875,
+      "cajaH": 1322.175048828125,
       "cubre": true
      },
      {
@@ -3553,24 +3588,25 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 409.25244140625,
-      "cajaH": 586.3894653320312,
+      "cajaH": 586.389404296875,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 323.9324951171875,
-      "cajaH": 242.9493408203125,
+      "cajaH": 242.949462890625,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 238.646240234375,
-      "cajaH": 178.97625732421875,
+      "cajaH": 178.976318359375,
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -3643,8 +3679,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.9969482421875,
-      "cajaH": 716.6970825195312,
+      "cajaW": 1024.981689453125,
+      "cajaH": 716.6865234375,
       "cubre": true
      },
      {
@@ -3683,6 +3719,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -3744,8 +3781,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.48974609375,
-      "cajaH": 720.53759765625,
+      "cajaW": 1030.6904296875,
+      "cajaH": 720.67822265625,
       "cubre": true
      },
      {
@@ -3784,6 +3821,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -3856,8 +3894,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1195.144775390625,
-      "cajaH": 782.749755859375,
+      "cajaW": 1195.12744140625,
+      "cajaH": 782.7384033203125,
       "cubre": true
      },
      {
@@ -3896,6 +3934,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -3957,8 +3996,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1201.9912109375,
-      "cajaH": 787.23388671875,
+      "cajaW": 1202.0389404296875,
+      "cajaH": 787.26513671875,
       "cubre": true
      },
      {
@@ -3972,31 +4011,32 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 677.328857421875,
-      "cajaH": 380.98681640625,
+      "cajaH": 380.9869384765625,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 478.87884521484375,
-      "cajaH": 682.98193359375,
+      "cajaH": 682.9818115234375,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 379.63690185546875,
-      "cajaH": 284.7149658203125,
+      "cajaH": 284.715087890625,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 280.411865234375,
-      "cajaH": 210.29638671875,
+      "cajaH": 210.2962646484375,
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -4069,8 +4109,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1281.20849609375,
-      "cajaH": 668.6307373046875,
+      "cajaW": 1281.227294921875,
+      "cajaH": 668.6405029296875,
       "cubre": true
      },
      {
@@ -4109,6 +4149,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -4170,8 +4211,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1286.734619140625,
-      "cajaH": 671.5146484375,
+      "cajaW": 1286.8250732421875,
+      "cajaH": 671.56201171875,
       "cubre": true
      },
      {
@@ -4185,14 +4226,14 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5198974609375,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.880126953125,
       "cubre": true
      },
      {
@@ -4210,6 +4251,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -4282,8 +4324,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1367.289794921875,
-      "cajaH": 716.676025390625,
+      "cajaW": 1367.27001953125,
+      "cajaH": 716.6656494140625,
       "cubre": true
      },
      {
@@ -4322,6 +4364,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -4383,8 +4426,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1373.186767578125,
-      "cajaH": 719.766845703125,
+      "cajaW": 1373.2838134765625,
+      "cajaH": 719.81787109375,
       "cubre": true
      },
      {
@@ -4405,24 +4448,25 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.44000244140625,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -4535,6 +4579,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -4611,7 +4656,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5201416015625,
       "cubre": true
      },
      {
@@ -4636,6 +4681,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -4773,8 +4819,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1537.427978515625,
-      "cajaH": 812.7549438476562,
+      "cajaW": 1537.406005859375,
+      "cajaH": 812.7432861328125,
       "cubre": true
      },
      {
@@ -4813,6 +4859,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -4874,8 +4921,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1544.35498046875,
-      "cajaH": 816.416748046875,
+      "cajaW": 1544.6334228515625,
+      "cajaH": 816.56396484375,
       "cubre": true
      },
      {
@@ -4889,31 +4936,32 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5201416015625,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.880126953125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -4986,8 +5034,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1921.7303466796875,
-      "cajaH": 1028.926513671875,
+      "cajaW": 1921.757568359375,
+      "cajaH": 1028.9410400390625,
       "cubre": true
      },
      {
@@ -5026,6 +5074,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -5087,8 +5136,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1929.04638671875,
-      "cajaH": 1032.84326171875,
+      "cajaW": 1928.982421875,
+      "cajaH": 1032.8095703125,
       "cubre": true
      },
      {
@@ -5109,14 +5158,14 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
@@ -5127,6 +5176,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -5199,8 +5249,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2562.19921875,
-      "cajaH": 1389.1925048828125,
+      "cajaW": 2562.23486328125,
+      "cajaH": 1389.2119140625,
       "cubre": true
      },
      {
@@ -5239,6 +5289,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -5300,8 +5351,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2571.722412109375,
-      "cajaH": 1394.355712890625,
+      "cajaW": 2572.49267578125,
+      "cajaH": 1394.773193359375,
       "cubre": true
      },
      {
@@ -5315,7 +5366,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5198974609375,
       "cubre": true
      },
      {
@@ -5340,6 +5391,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -5412,8 +5464,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3442.72216796875,
-      "cajaH": 1389.098388671875,
+      "cajaW": 3442.861083984375,
+      "cajaH": 1389.1544189453125,
       "cubre": true
      },
      {
@@ -5452,6 +5504,7 @@
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "hidden",
@@ -5513,8 +5566,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3456.32275390625,
-      "cajaH": 1394.5859375,
+      "cajaW": 3456.09326171875,
+      "cajaH": 1394.4931640625,
       "cubre": true
      },
      {
@@ -5528,31 +5581,32 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5198974609375,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8799438476562,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
+    "logo": null,
     "barra": {
      "enlaces": 3,
      "visibilidad": "visible",
@@ -5638,12 +5692,14 @@
   "normal": {
    "infinitas": 2,
    "corriendo": 2,
-   "brasas": 195,
+   "largas": 2,
+   "brasas": 214,
    "letras": true
   },
   "pausado": {
    "infinitas": 0,
    "corriendo": 0,
+   "largas": 0,
    "brasas": 0,
    "letras": true
   },
@@ -5655,6 +5711,7 @@
   "reducido": {
    "infinitas": 0,
    "corriendo": 0,
+   "largas": 0,
    "brasas": 0,
    "letras": true
   }
@@ -5811,7 +5868,7 @@
  "red": {
   "peticiones404": [],
   "bytesPorTipo": {
-   ".html": 1123620,
+   ".html": 1123440,
    ".woff2": 5476560,
    ".avif": 13911237
   },
@@ -5830,15 +5887,15 @@
      "rects": [
       [
        20,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ],
       [
        20,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ]
      ],
      "color": [
@@ -5876,9 +5933,9 @@
      "rects": [
       [
        20,
-       66.59375,
+       69.59375,
        106.453125,
-       49
+       44
       ]
      ],
      "color": [
@@ -5899,12 +5956,6 @@
        399.984375,
        307.03125,
        19
-      ],
-      [
-       35.796875,
-       422.375,
-       79.890625,
-       19
       ]
      ],
      "color": [
@@ -5921,52 +5972,52 @@
      "texto": "LumbreLumbre",
      "rects": [
       [
-       19,
-       426.765625,
-       319.4375,
-       153
+       20,
+       459.765625,
+       318.4375,
+       90.515625
       ],
       [
        20,
-       427.765625,
+       459.765625,
        324.65625,
-       153
+       90.515625
       ],
       [
        20,
-       427.765625,
+       459.765625,
        55.21875,
-       153
+       90.515625
       ],
       [
        75.21875,
-       427.765625,
+       459.765625,
        54.65625,
-       153
+       90.515625
       ],
       [
        129.875,
-       427.765625,
+       459.765625,
        79.859375,
-       153
+       90.515625
       ],
       [
        209.734375,
-       427.765625,
+       459.765625,
        47.515625,
-       153
+       90.515625
       ],
       [
        257.25,
-       427.765625,
+       459.765625,
        42.953125,
-       153
+       90.515625
       ],
       [
        300.203125,
-       427.765625,
+       459.765625,
        44.453125,
-       153
+       90.515625
       ]
      ],
      "color": [
@@ -6083,7 +6134,7 @@
       [
        347.5,
        92.09375,
-       42.5,
+       22.5,
        19
       ]
      ],
@@ -6244,15 +6295,15 @@
      "rects": [
       [
        30,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ],
       [
        30,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ]
      ],
      "color": [
@@ -6290,9 +6341,9 @@
      "rects": [
       [
        30,
-       57,
+       60,
        106.453125,
-       49
+       44
       ]
      ],
      "color": [
@@ -6305,76 +6356,56 @@
      "peso": 400
     },
     {
-     "sel": ".sobre",
-     "texto": "Cocina de brasa y pasta fresca",
-     "rects": [
-      [
-       45.796875,
-       121,
-       391.671875,
-       19
-      ]
-     ],
-     "color": [
-      243,
-      233,
-      216
-     ],
-     "alfa": 1,
-     "px": 14,
-     "peso": 700
-    },
-    {
      "sel": ".hero h1",
      "texto": "LumbreLumbre",
      "rects": [
       [
-       29,
-       124.578125,
-       285.890625,
-       137
+       30,
+       153.578125,
+       284.890625,
+       81
       ],
       [
        30,
-       125.578125,
+       153.578125,
        290.5625,
-       137
+       81
       ],
       [
        30,
-       125.578125,
+       153.578125,
        49.421875,
-       137
+       81
       ],
       [
        79.421875,
-       125.578125,
+       153.578125,
        48.921875,
-       137
+       81
       ],
       [
        128.34375,
-       125.578125,
+       153.578125,
        71.46875,
-       137
+       81
       ],
       [
        199.8125,
-       125.578125,
+       153.578125,
        42.53125,
-       137
+       81
       ],
       [
        242.34375,
-       125.578125,
+       153.578125,
        38.4375,
-       137
+       81
       ],
       [
        280.78125,
-       125.578125,
+       153.578125,
        39.78125,
-       137
+       81
       ]
      ],
      "color": [
@@ -6626,15 +6657,15 @@
      "rects": [
       [
        34.546875,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ],
       [
        34.546875,
-       16.359375,
+       17.359375,
        158.8125,
-       19
+       17.28125
       ]
      ],
      "color": [
@@ -6672,9 +6703,9 @@
      "rects": [
       [
        34.546875,
-       66.59375,
+       69.59375,
        106.453125,
-       49
+       44
       ]
      ],
      "color": [
@@ -6687,76 +6718,56 @@
      "peso": 400
     },
     {
-     "sel": ".sobre",
-     "texto": "Cocina de brasa y pasta fresca",
-     "rects": [
-      [
-       50.34375,
-       509.6875,
-       391.671875,
-       19
-      ]
-     ],
-     "color": [
-      243,
-      233,
-      216
-     ],
-     "alfa": 1,
-     "px": 14,
-     "peso": 700
-    },
-    {
      "sel": ".hero h1",
      "texto": "LumbreLumbre",
      "rects": [
       [
-       33.546875,
-       483.078125,
-       637.890625,
-       306
+       34.546875,
+       547.078125,
+       636.890625,
+       180.734375
       ],
       [
        34.546875,
-       484.078125,
+       547.078125,
        648.265625,
-       306
+       180.734375
       ],
       [
        34.546875,
-       484.078125,
+       547.078125,
        110.25,
-       306
+       180.734375
       ],
       [
        144.796875,
-       484.078125,
+       547.078125,
        109.15625,
-       306
+       180.734375
       ],
       [
        253.953125,
-       484.078125,
+       547.078125,
        159.453125,
-       306
+       180.734375
       ],
       [
        413.40625,
-       484.078125,
+       547.078125,
        94.890625,
-       306
+       180.734375
       ],
       [
        508.296875,
-       484.078125,
+       547.078125,
        85.75,
-       306
+       180.734375
       ],
       [
        594.046875,
-       484.078125,
+       547.078125,
        88.765625,
-       306
+       180.734375
       ]
      ],
      "color": [
@@ -6772,12 +6783,6 @@
      "sel": ".lema",
      "texto": "Fuego lento, pasta hecha a man",
      "rects": [
-      [
-       34.546875,
-       767.8125,
-       327.953125,
-       26
-      ],
       [
        34.546875,
        794.546875,
@@ -6974,27 +6979,27 @@
      "rects": [
       [
        56,
-       16.359375,
+       17.359375,
        512.390625,
-       19
+       17.28125
       ],
       [
        56,
-       16.359375,
+       17.359375,
        193.96875,
-       19
+       17.28125
       ],
       [
        249.96875,
-       16.359375,
+       17.359375,
        52.75,
-       19
+       17.28125
       ],
       [
        302.71875,
-       16.359375,
+       17.359375,
        265.671875,
-       19
+       17.28125
       ]
      ],
      "color": [
@@ -7032,9 +7037,9 @@
      "rects": [
       [
        152,
-       66.59375,
+       69.59375,
        106.453125,
-       49
+       44
       ]
      ],
      "color": [
@@ -7127,76 +7132,56 @@
      "peso": 600
     },
     {
-     "sel": ".sobre",
-     "texto": "Cocina de brasa y pasta fresca",
-     "rects": [
-      [
-       167.796875,
-       358.296875,
-       391.671875,
-       19
-      ]
-     ],
-     "color": [
-      243,
-      233,
-      216
-     ],
-     "alfa": 1,
-     "px": 14,
-     "peso": 700
-    },
-    {
      "sel": ".hero h1",
      "texto": "LumbreLumbre",
      "rects": [
       [
-       151,
-       298.6875,
-       965.671875,
-       464
+       152,
+       395.6875,
+       964.671875,
+       273.59375
       ],
       [
        152,
-       299.6875,
+       395.6875,
        981.359375,
-       464
+       273.59375
       ],
       [
        152,
-       299.6875,
+       395.6875,
        166.90625,
-       464
+       273.59375
       ],
       [
        318.90625,
-       299.6875,
+       395.6875,
        165.234375,
-       464
+       273.59375
       ],
       [
        484.140625,
-       299.6875,
+       395.6875,
        241.390625,
-       464
+       273.59375
       ],
       [
        725.53125,
-       299.6875,
+       395.6875,
        143.640625,
-       464
+       273.59375
       ],
       [
        869.171875,
-       299.6875,
+       395.6875,
        129.8125,
-       464
+       273.59375
       ],
       [
        998.984375,
-       299.6875,
+       395.6875,
        134.375,
-       464
+       273.59375
       ]
      ],
      "color": [
@@ -7214,12 +7199,6 @@
      "rects": [
       [
        152,
-       741.09375,
-       441.4375,
-       33
-      ],
-      [
-       152,
        777.046875,
        276.765625,
        33
@@ -7233,26 +7212,6 @@
      "alfa": 1,
      "px": 24.8,
      "peso": 400
-    },
-    {
-     "sel": ".hero .btn",
-     "texto": "Reservar mesa",
-     "rects": [
-      [
-       988.171875,
-       723.484375,
-       117.96875,
-       22
-      ]
-     ],
-     "color": [
-      11,
-      20,
-      28
-     ],
-     "alfa": 1,
-     "px": 16,
-     "peso": 700
     },
     {
      "sel": ".hero .btn",
@@ -7527,23 +7486,23 @@
  },
  "peso": {
   "iph-390": {
-   "inicial": 300708,
-   "total": 300708,
+   "inicial": 300705,
+   "total": 300705,
    "peticionesIniciales": 10,
    "peticionesTotales": 10,
    "porTipo": {
-    ".html": 18727,
+    ".html": 18724,
     ".woff2": 91276,
     ".avif": 190705
    }
   },
   "pc-1440": {
-   "inicial": 431083,
-   "total": 431083,
+   "inicial": 431080,
+   "total": 431080,
    "peticionesIniciales": 12,
    "peticionesTotales": 12,
    "porTipo": {
-    ".html": 18727,
+    ".html": 18724,
     ".woff2": 91276,
     ".avif": 321080
    }

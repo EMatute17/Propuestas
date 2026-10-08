@@ -1,9 +1,9 @@
 {
  "id": "lumbre",
  "version_ficha": "2.0.0",
- "version_generador": "0.1.0",
- "version_reglas": "0.1.0",
- "fecha": "2026-10-08T04:01:24Z",
+ "version_generador": "0.2.0",
+ "version_reglas": "0.2.0",
+ "fecha": "2026-10-08T05:06:33Z",
  "modo": "muestra",
  "ejemplo_ficticio": true,
  "pais": "VE",
@@ -22,39 +22,39 @@
   "orden": "6657c7aa",
   "forma_movimiento": "recta+lento"
  },
- "id_de_ensamblado": "2a6ce096",
+ "id_de_ensamblado": "a75365a5",
  "tipografias": [
   {
    "familia": "Bodoni Moda",
-   "archivo": "assets/2a6ce096/fonts/bodonimoda-displayitalic.woff2",
+   "archivo": "assets/a75365a5/fonts/bodonimoda-displayitalic.woff2",
    "peso": 400,
    "estilo": "italic",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/2a6ce096/fonts/playfairdisplay-regular.woff2",
+   "archivo": "assets/a75365a5/fonts/playfairdisplay-regular.woff2",
    "peso": 400,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/2a6ce096/fonts/manrope-regular.woff2",
+   "archivo": "assets/a75365a5/fonts/manrope-regular.woff2",
    "peso": 400,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/2a6ce096/fonts/manrope-semibold.woff2",
+   "archivo": "assets/a75365a5/fonts/manrope-semibold.woff2",
    "peso": 600,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/2a6ce096/fonts/manrope-bold.woff2",
+   "archivo": "assets/a75365a5/fonts/manrope-bold.woff2",
    "peso": 700,
    "estilo": "normal",
    "licencia": "OFL-1.1"
@@ -66,6 +66,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/hero_pasta.webp",
+   "sha256_origen": "250033fa1355542bfd2758bd0d0f2dfc1ceea1f15bb5921153f12c71df62d613",
    "clave": "hero",
    "ancho_origen": 1398,
    "alto_origen": 962,
@@ -83,6 +84,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/hero_pasta.webp",
+   "sha256_origen": "250033fa1355542bfd2758bd0d0f2dfc1ceea1f15bb5921153f12c71df62d613",
    "clave": "hero-m",
    "ancho_origen": 1398,
    "alto_origen": 962,
@@ -100,6 +102,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/plato_croquetas.webp",
+   "sha256_origen": "0d5b9bb931c9d01eafa691f1c3e2e4cd20636dd005c08d03f43c5edb85ff42c2",
    "clave": "plato_croquetas",
    "ancho_origen": 420,
    "alto_origen": 525,
@@ -116,6 +119,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/plato_ravioli.webp",
+   "sha256_origen": "5fd0ed7f02b40e89b66c12c37e12f349e0b8f4aa88f984f0d4e9e3165c724d71",
    "clave": "plato_ravioli",
    "ancho_origen": 420,
    "alto_origen": 525,
@@ -132,6 +136,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/plato_tortelli.webp",
+   "sha256_origen": "5595d261268fd690288715d62982190893fff9ba4105267ae5d2b78a3825aed4",
    "clave": "plato_tortelli",
    "ancho_origen": 420,
    "alto_origen": 525,
@@ -148,6 +153,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/plato_chuleton.webp",
+   "sha256_origen": "b685530cd5fa1ad59291ac5bff3ea5721e6ade5a59ee53e62f503fc9e16b98ae",
    "clave": "plato_chuleton",
    "ancho_origen": 420,
    "alto_origen": 525,
@@ -164,6 +170,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/plato_chocolate.webp",
+   "sha256_origen": "6df1704ebe97732feb372938f8a02223e6347791f4a38c50fa28d3889293a11a",
    "clave": "plato_chocolate",
    "ancho_origen": 420,
    "alto_origen": 525,
@@ -180,6 +187,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/sala_azul.webp",
+   "sha256_origen": "5d4fe28163726995ffb8d389fbaccd03b1fcfc2117fef6030212302958e136cd",
    "clave": "sala_azul",
    "ancho_origen": 1280,
    "alto_origen": 720,
@@ -196,6 +204,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/rincon_rojo.webp",
+   "sha256_origen": "1630a656fd22d6798a34dc811fab6574685afb21e75c4084155ce400c6a91b9e",
    "clave": "rincon_rojo",
    "ancho_origen": 716,
    "alto_origen": 955,
@@ -212,6 +221,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/sala_roja.webp",
+   "sha256_origen": "f3741ddcc3f53a8ee0ce0051aa8d4a6cd8cb3db7c9006eb187229ff7d2284d36",
    "clave": "sala_roja",
    "ancho_origen": 800,
    "alto_origen": 600,
@@ -228,6 +238,7 @@
    "descripcion": "Foto de referencia usada en una muestra anterior de Edumashow.",
    "licencia": "sin confirmar; solo para demostración privada",
    "archivo_origen": "lumbre/reservado.webp",
+   "sha256_origen": "17ee7610a896ce2a3ae08e66a2e31378f19a1b45b21dd2addae6846b504d0554",
    "clave": "reservado",
    "ancho_origen": 800,
    "alto_origen": 600,
@@ -248,12 +259,12 @@
   "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre"
  ],
  "pesos_bytes": {
-  "html": 71273,
-  "css_min": 24983,
+  "html": 71280,
+  "css_min": 24990,
   "js_min": 17766,
   "fuentes": 91276,
   "imagenes": 3324883
  },
  "base_url": null,
- "paquete_sha256": "9dbfd7be45a44bdecfc0f26e15868bc7505a883d0674d6a9ed79d166d587c43c"
+ "paquete_sha256": "04aab5f2b5fc36a5bb2f9578cced5f8b1142dca93235224da7d13f20d1179a21"
 }

@@ -1,8 +1,8 @@
-# Informe del Gate: Lumbre (lumbre)
+# Informe del Gate: Al Fuego Grill (alfuego)
 
 - **Veredicto técnico: APTO**
-- Fecha: 2026-10-08T05:12:17Z | Gate 0.2.0 | Reglas 0.2.0
-- Paquete (SHA-256): `04aab5f2b5fc36a5bb2f9578cced5f8b1142dca93235224da7d13f20d1179a21`
+- Fecha: 2026-10-08T05:18:38Z | Gate 0.2.0 | Reglas 0.2.0
+- Paquete (SHA-256): `7f71a00bc6273784136774997d317e1b9d8867e5852c5da71388b7a7cad485b0`
 - Estados: técnico = APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
 
 ## Resultado por comprobación
@@ -11,47 +11,39 @@
 |---|---|---|---|---|
 | G-COMILLAS | **PASS** | bloqueo | R-ETI-12 | 6 archivos de texto revisados, 0 con comillas angulares |
 | G-MARCA | **PASS** | bloqueo | R-ETI-11 | 0 menciones a herramientas de IA o a Peetfoodie |
-| G-DATOS | **PASS** | bloqueo | R-DAT-01, R-DAT-02, R-DAT-03, R-DAT-08, R-SIG-06 | 10 importes y 7 horarios comparados con la ficha; 0 discrepancias |
+| G-DATOS | **PASS** | bloqueo | R-DAT-01, R-DAT-02, R-DAT-03, R-DAT-08, R-SIG-06 | 74 importes y 1 horario comparados con la ficha; 0 discrepancias |
 | G-ETICA | **PASS** | bloqueo | R-ETI-01, R-ETI-02, R-ETI-03, R-ETI-05, R-SIG-11 | 0 patrones de escasez, testimonios, promesas o refuerzo variable |
 | G-META | **WARN** | bloqueo | R-MUE-01, R-MUE-04 | 0 fallos y 1 avisos de metadatos |
-| G-MUESTRA | **PASS** | bloqueo | R-MUE-01, R-MUE-02, R-ETI-07, R-MUE-05 | ejemplo ficticio; 0 fallos |
-| G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 11 imágenes con origen y licencia registrados; 11 etiquetas img con alt |
-| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 04aab5f2b5fc verificado sobre 69 archivos |
+| G-MUESTRA | **PASS** | bloqueo | R-MUE-01, R-MUE-02, R-ETI-07, R-MUE-05 | negocio real con permiso declarado; 0 fallos |
+| G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 7 imágenes con origen y licencia registrados; 82 etiquetas img con alt |
+| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 7f71a00bc627 verificado sobre 33 archivos |
 | G-HUELLA | **PASS** | bloqueo | R-VAR-01 | distancia mínima 6 de 6 (se exigen 3) |
-| G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 3 tipografías revisadas contra 73 caracteres distintos |
+| G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 2 tipografías revisadas contra 81 caracteres distintos |
 | G-RED | **PASS** | bloqueo | R-ETI-08, R-REN-05 | 27 dispositivos: 0 peticiones externas, 0 errores de consola, 0 con cookies o almacenamiento, 0 respuestas 404 |
 | G-ETICA-VISTA | **PASS** | bloqueo | R-ETI-04 | 27 dispositivos revisados |
-| G-ESTRUCTURA | **PASS** | bloqueo | R-LEG-05, R-SIG-12 | 25 encabezados, 11 imágenes, 2 navegaciones |
+| G-ESTRUCTURA | **PASS** | bloqueo | R-LEG-05, R-SIG-12 | 16 encabezados, 82 imágenes, 3 navegaciones |
 | G-AXE | **PASS** | bloqueo | R-LEG-05, R-LEG-08 | 3 tamaños: 0 graves y 0 leves |
-| G-CONTRASTE | **PASS** | bloqueo | R-LEG-01, R-IDE-03 | 59 textos medidos sobre píxeles reales; el peor: .galeria figcaption 5.89:1 (se exige 4.5:1) |
+| G-CONTRASTE | **PASS** | bloqueo | R-LEG-01, R-IDE-03 | 259 textos medidos sobre píxeles reales; el peor: .cat-nota 5.29:1 (se exige 4.5:1) |
 | G-TACTIL24 | **PASS** | bloqueo | R-LEG-02 | 20 teléfonos y tablets |
 | G-TACTIL44 | **PASS** | defecto | R-LEG-02 | 20 teléfonos y tablets |
 | G-DESBORDE | **PASS** | bloqueo | R-LEG-03, R-LEG-09 | 27 dispositivos y 2 pruebas de zoom |
 | G-TEXTO | **PASS** | defecto | R-LEG-07 | texto mínimo medido: 14 px |
 | G-PRIMERA | **PASS** | bloqueo | R-SIG-01, R-SIG-07, R-MUE-02 | 27 dispositivos, incluidos horizontales y plegables |
-| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 17 enlaces revisados; barra fija en 16 de 16 móviles |
-| G-HORARIO | **PASS** | bloqueo | R-DAT-03, R-SIG-02 | 11 casos simulados |
-| G-FORMULARIO | **PASS** | defecto | R-SIG-03, R-SIG-04, R-DAT-03 | 5 campos; se probó envío vacío, envío completo y día cerrado |
-| G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | flechas y Fin en las pestañas; Escape y retorno del foco en el diálogo |
+| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 25 enlaces revisados; barra fija en 16 de 16 móviles |
+| G-HORARIO | **PASS** | bloqueo | R-DAT-03, R-DAT-08 | horario por confirmar: se muestra el texto de la ficha y la página no afirma que esté abierto o cerrado |
+| G-FORMULARIO | **NA** | defecto | R-SIG-03, R-SIG-04, R-DAT-03 | no aplica: la ficha no tiene reservas y su acción principal es llamar |
+| G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | 7 categorías: clic, teclado y barra pegada; Escape y retorno del foco en el diálogo |
+| G-LOGO | **PASS** | defecto | R-IDE-04 | 27 dispositivos; el logotipo más pequeño mide 48 px |
 | G-FOCO | **PASS** | bloqueo | R-LEG-05 | 4 dispositivos recorridos con Tab |
-| G-MOVIMIENTO | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-IDE-05 | animaciones infinitas normales 2; con pausa 0; con movimiento reducido 0 |
-| G-AVANCE | **PASS** | defecto | R-IDE-05 | 3 dispositivos; con movimiento reducido y sin JavaScript el efecto queda completo |
-| G-RESOLUCION | **WARN** | defecto | R-REN-02 | 5 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
-| G-VISUAL | **REVISAR** | asesor | R-PRO-05, R-MED-04 | 27 capturas en informes/lumbre/hoja_dispositivos.jpg; falta la revisión humana (Eduardo) y las pruebas con personas |
-| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2179 ms, CLS 0, TBT 0 ms; escritorio 100 |
+| G-MOVIMIENTO | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-IDE-05 | animaciones infinitas normales 4; con pausa 0; con movimiento reducido 0 |
+| G-RESOLUCION | **PASS** | defecto | R-REN-02 | 0 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
+| G-VISUAL | **REVISAR** | asesor | R-PRO-05, R-MED-04 | 27 capturas en informes/alfuego/hoja_dispositivos.jpg; falta la revisión humana (Eduardo) y las pruebas con personas |
+| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 1812 ms, CLS 0, TBT 71 ms; escritorio 100 |
 
 ## Detalle de avisos, fallos y excepciones
 
 ### G-META: Metadatos, noindex y vista previa al compartir (WARN)
 - sin imagen de vista previa al compartir el enlace (se genera con --base-url)
-
-### G-RESOLUCION: Resolución de las fotos suficiente para cada pantalla (WARN)
-- Excepción documentada en la ficha: Las fotos son de referencia y de baja resolución (la portada original mide 1398 px de ancho). Se sustituyen por fotos propias del restaurante o de banco libre en la versión final.
-- iph-390: hero-m necesita x2.48 su resolución original (770x962)
-- mini-768: hero necesita x2.03 su resolución original (1398x962)
-- se-horiz-667: hero-m necesita x1.75 su resolución original (770x962)
-- mini-768: sala_azul necesita x1.44 su resolución original (1280x720)
-- iph-390: sala_azul necesita x1.42 su resolución original (1280x720)
 
 ### G-VISUAL: Revisión visual sobre el render real (REVISAR)
 
@@ -91,23 +83,23 @@
 
 | Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |
 |---|---|---|---|---|---|---|---|
-| móvil | 99 | 100 | 100 | 2179 ms | 0 | 0 ms | 180 KB |
-| escritorio | 100 | 100 | 100 | 604 ms | 0 | 0 ms | 310 KB |
+| móvil | 99 | 100 | 100 | 1812 ms | 0 | 71 ms | 134 KB |
+| escritorio | 100 | 100 | 100 | 408 ms | 0 | 8 ms | 134 KB |
 
-Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 420 KB, total tras recorrer la página 420 KB
+Peso realmente descargado (con compresión): iph-390: inicial 138 KB, total tras recorrer la página 138 KB; pc-1440: inicial 131 KB, total tras recorrer la página 131 KB
 
 ## Contraste medido sobre píxeles reales (peores 8)
 
 | Elemento | Dispositivo | Contraste (5.º percentil) | Se exige | |
 |---|---|---|---|---|
-| .galeria figcaption "El rincón rojo" | iph-390 | 5.89:1 | 4.5:1 | ok |
-| .hero-barra nav a "Carta" | pc-1440 | 6.52:1 | 4.5:1 | ok |
-| .hero .btn "Reservar mesa" | iph-390 | 6.53:1 | 4.5:1 | ok |
-| .barra-movil a "Reservar" | iph-390 | 6.53:1 | 4.5:1 | ok |
-| .hero .btn "Reservar mesa" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
-| .barra-movil a "Reservar" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
-| .hero .btn "Reservar mesa" | mini-768 | 6.53:1 | 4.5:1 | ok |
-| .hero h1 "LumbreLumbre" | se-horiz-667 | 4.48:1 | 3.0:1 | ok |
+| .cat-nota "Por media libra o por libra" | iph-390 | 5.29:1 | 4.5:1 | ok |
+| .cat-nota "Por media libra o por libra" | se-horiz-667 | 5.29:1 | 4.5:1 | ok |
+| .cat-nota "Por media libra o por libra" | mini-768 | 5.29:1 | 4.5:1 | ok |
+| .cat-nota "Por media libra o por libra" | pc-1440 | 5.29:1 | 4.5:1 | ok |
+| .nom-en "Picanha" | iph-390 | 5.88:1 | 4.5:1 | ok |
+| .nom-en "Flap meat" | iph-390 | 5.88:1 | 4.5:1 | ok |
+| .nom-en "Lamb chops" | iph-390 | 5.88:1 | 4.5:1 | ok |
+| .nom-en "Filet mignon" | iph-390 | 5.88:1 | 4.5:1 | ok |
 
 ## Lo que este Gate no verifica
 

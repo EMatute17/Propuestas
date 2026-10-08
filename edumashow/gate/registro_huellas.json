@@ -1,4 +1,12 @@
 {
+ "alfuego": {
+  "carta": "chips_tablero",
+  "forma_movimiento": "recta+rapido",
+  "orden": "8aad2002",
+  "paleta": "fuego",
+  "portada": "mural_columnas",
+  "tipografia": "anton-archivo"
+ },
  "lumbre": {
   "carta": "pestanas_lista",
   "forma_movimiento": "recta+lento",

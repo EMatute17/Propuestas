@@ -9,16 +9,18 @@
     "best-practices": 100,
     "seo": 66
    },
-   "fcp_ms": 1204,
-   "lcp_ms": 2179,
+   "fcp_ms": 947,
+   "lcp_ms": 1812,
    "cls": 0,
-   "tbt_ms": 0,
-   "speed_index_ms": 1204,
-   "peso_KB": 180,
+   "tbt_ms": 71,
+   "speed_index_ms": 947,
+   "peso_KB": 134,
    "fallos": [
-    "mainthread-work-breakdown (50)",
+    "dom-size (50)",
     "is-crawlable (0)",
     "forced-reflow-insight (0)",
+    "image-delivery-insight (0)",
+    "lcp-discovery-insight (0)",
     "network-dependency-tree-insight (0)"
    ]
   },
@@ -29,17 +31,16 @@
     "best-practices": 100,
     "seo": 66
    },
-   "fcp_ms": 324,
-   "lcp_ms": 604,
+   "fcp_ms": 250,
+   "lcp_ms": 408,
    "cls": 0,
-   "tbt_ms": 0,
-   "speed_index_ms": 415,
-   "peso_KB": 310,
+   "tbt_ms": 8,
+   "speed_index_ms": 326,
+   "peso_KB": 134,
    "fallos": [
-    "uses-responsive-images (0)",
+    "dom-size (50)",
     "is-crawlable (0)",
     "forced-reflow-insight (0)",
-    "image-delivery-insight (0)",
     "network-dependency-tree-insight (0)"
    ]
   }

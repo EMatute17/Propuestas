@@ -1,0 +1,197 @@
+{
+ "id": "alfuego",
+ "version_ficha": "1.0.0",
+ "version_generador": "0.2.0",
+ "version_reglas": "0.2.0",
+ "fecha": "2026-10-08T05:06:35Z",
+ "modo": "muestra",
+ "ejemplo_ficticio": false,
+ "pais": "US",
+ "ciudad": "Miami",
+ "idioma": "es",
+ "confirmacion": {
+  "estado": "por_confirmar",
+  "fecha": "2026-10-08",
+  "nota": "Datos tomados de capturas del Instagram público @alfuego_grill, de su volante y de su menú impreso. Nada está confirmado por el restaurante."
+ },
+ "huella_diseno": {
+  "paleta": "fuego",
+  "tipografia": "anton-archivo",
+  "portada": "mural_columnas",
+  "carta": "chips_tablero",
+  "orden": "8aad2002",
+  "forma_movimiento": "recta+rapido"
+ },
+ "id_de_ensamblado": "dd28aedf",
+ "tipografias": [
+  {
+   "familia": "Anton",
+   "archivo": "assets/dd28aedf/fonts/anton-regular.woff2",
+   "peso": 400,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Archivo",
+   "archivo": "assets/dd28aedf/fonts/archivo-medium.woff2",
+   "peso": 500,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  },
+  {
+   "familia": "Archivo",
+   "archivo": "assets/dd28aedf/fonts/archivo-bold.woff2",
+   "peso": 700,
+   "estilo": "normal",
+   "licencia": "OFL-1.1"
+  }
+ ],
+ "imagenes": [
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Logotipo del restaurante, recortado de su foto de perfil de Instagram @alfuego_grill con borde circular suave.",
+   "licencia": "Marca del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/logo.png",
+   "sha256_origen": "19562d9d3d5e93f0c92308e15282417e3b00777e44a0023bb0cb090577de7eb6",
+   "clave": "logo",
+   "ancho_origen": 784,
+   "alto_origen": 784,
+   "ancho_nativo": 784,
+   "alto_nativo": 784,
+   "anchos_generados": [
+    128,
+    256,
+    512
+   ],
+   "ampliada": false,
+   "con_transparencia": true
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/picada.webp",
+   "sha256_origen": "58e8c546d7a1d71f2274a5c03baaecde566cd5e29bc10c5b5e4732445390603e",
+   "clave": "picada",
+   "ancho_origen": 382,
+   "alto_origen": 446,
+   "ancho_nativo": 382,
+   "alto_nativo": 446,
+   "anchos_generados": [
+    382
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (cuadricula). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/lomo.webp",
+   "sha256_origen": "9bf319ca437901aa131d20727ece23927bb7b5702074eb26cd5352cb2569a7ad",
+   "clave": "lomo",
+   "ancho_origen": 385,
+   "alto_origen": 444,
+   "ancho_nativo": 385,
+   "alto_nativo": 444,
+   "anchos_generados": [
+    385
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/tostones.webp",
+   "sha256_origen": "da530f513b550a89c3f7d61fe2f0ddd68df28e584142f4d07058b49a824115fc",
+   "clave": "tostones",
+   "ancho_origen": 385,
+   "alto_origen": 446,
+   "ancho_nativo": 385,
+   "alto_nativo": 446,
+   "anchos_generados": [
+    385
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (cuadricula). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/sandwich.webp",
+   "sha256_origen": "a0ed461c126ccdcc457c760092dba98b94bf41d643309f8428a871ee42c332e1",
+   "clave": "sandwich",
+   "ancho_origen": 382,
+   "alto_origen": 445,
+   "ancho_nativo": 382,
+   "alto_nativo": 445,
+   "anchos_generados": [
+    382
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/asador.webp",
+   "sha256_origen": "720ae1352cdfef65cac1e716da8f781898aeb58b570616a670f827d79e226b82",
+   "clave": "asador",
+   "ancho_origen": 385,
+   "alto_origen": 445,
+   "ancho_nativo": 385,
+   "alto_nativo": 445,
+   "anchos_generados": [
+    385
+   ],
+   "ampliada": false
+  },
+  {
+   "origen": "redes_del_restaurante",
+   "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+   "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+   "permiso": "pendiente",
+   "recorte": "edumashow/activos/origen/alfuego/recortes.json",
+   "archivo_origen": "alfuego/trailer.webp",
+   "sha256_origen": "975fdec57c15577aee110b9c1953f68df88005ef713302346c3b67a4f4c874d8",
+   "clave": "trailer",
+   "ancho_origen": 385,
+   "alto_origen": 445,
+   "ancho_nativo": 385,
+   "alto_nativo": 445,
+   "anchos_generados": [
+    385
+   ],
+   "ampliada": false
+  }
+ ],
+ "enlaces_externos": [
+  "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Al%20Fuego%20Grill%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+  "https://www.google.com/maps/search/?api=1&query=Al%20Fuego%20Grill%2C%209100%20S%20Dixie%20Hwy%2C%20Miami%2C%20FL%2033156",
+  "https://www.instagram.com/alfuego_grill/",
+  "https://www.tiktok.com/@alfuego_grill",
+  "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Al%20Fuego%20Grill",
+  "tel:+17867282934"
+ ],
+ "pesos_bytes": {
+  "html": 103016,
+  "css_min": 24288,
+  "js_min": 10575,
+  "fuentes": 41312,
+  "imagenes": 625978
+ },
+ "base_url": null,
+ "paquete_sha256": "7f71a00bc6273784136774997d317e1b9d8867e5852c5da71388b7a7cad485b0"
+}
