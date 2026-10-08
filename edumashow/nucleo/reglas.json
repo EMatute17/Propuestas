@@ -1,5 +1,5 @@
 {
- "version": "0.1.0",
+ "version": "0.2.0",
  "descripcion": "Núcleo de conocimiento unificado de Edumashow. Reglas con prioridad, fuente, evidencia y prueba.",
  "prioridades": {
   "0": "Verdad, legalidad y ética",
@@ -1099,7 +1099,8 @@
     "UX-27 p.21"
    ],
    "gate": [
-    "G-SIGUIENTE"
+    "G-SIGUIENTE",
+    "G-INTERACCION"
    ],
    "notas": ""
   },
@@ -1141,7 +1142,8 @@
     "GR-A04 p.24"
    ],
    "gate": [
-    "G-HUELLA"
+    "G-HUELLA",
+    "G-LOGO"
    ],
    "notas": ""
   },

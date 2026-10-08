@@ -98,7 +98,7 @@ def formato_importe(monto, pais, moneda, fijos=False):
 
 
 def precios_de_carta(F):
-    """Todos los precios de la carta, incluidos los de cada variante (media libra, una libra...)."""
+    """Todos los precios de la carta, incluidos los de cada variante (media libra, una libra...) y los suplementos (con tocino +2)."""
     out = []
     for c in F.get("carta", []):
         for p in c.get("platos", []):
@@ -106,6 +106,8 @@ def precios_de_carta(F):
                 out.append(p["precio"])
             for v in p.get("variantes", []):
                 out.append(v["precio"])
+            for sup in p.get("suplementos", []):
+                out.append(sup["precio"])
     return out
 
 

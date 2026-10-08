@@ -8,10 +8,10 @@ Estados: **Aplicada** (está en el código o el diseño y el Gate la comprueba),
 
 | Estado | Reglas unificadas (76) | Controles del informe del motor gráfico (54) |
 |---|---|---|
-| Aplicada | 47 | 24 |
+| Aplicada | 48 | 26 |
 | Sin prueba | 5 | 2 |
 | Parcial | 13 | 18 |
-| Pendiente | 7 | 4 |
+| Pendiente | 6 | 2 |
 | No aplica | 4 | 6 |
 
 Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y conducta) y el informe del motor gráfico se unificaron en 76 reglas con prioridad, fuente, evidencia y prueba (`reglas.json`). Si dos reglas chocan, gana la de menor prioridad numérica. Ninguno de los cinco trata de webs de restaurante: las reglas web son traducciones y están marcadas como tales.
@@ -22,8 +22,8 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 |---|---|---|---|---|---|
 | R-DAT-01 | Aplicada | UX-01 pp.20,31; AL-01 pp.9,13,34; AL-09 pp.13,20; GR-I01 p.24 | `motor/generar.py`: validar_ficha<br>`gate/estatico.py`: PLACEHOLDERS<br>`gate/estatico.py`: def datos | G-DATOS, G-ETICA | Todo el texto sale de la ficha; si falta un dato el motor se abstiene. El Gate busca marcadores de relleno y compara con la ficha. |
 | R-DAT-02 | Aplicada | AL-03 pp.31,37; UX-08 p.22; AL-02 p.24 | `motor/generar.py`: validar_ficha<br>`gate/estatico.py`: patron_cero | G-DATOS | Un dato ausente no se rellena. El Gate busca ceros, gratis y similares que la ficha no tenga. |
-| R-DAT-03 | Aplicada | AL-04 pp.14,21; AL-05 p.12; UX-02 p.20; UX-03 p.20 | `motor/dinero.py`: def formato_importe<br>`gate/estatico.py`: def datos<br>`gate/verificar.py`: G-FORMULARIO | G-DATOS, G-FORMULARIO | Un solo formato de moneda por país; cada importe de la página y del mensaje de WhatsApp se compara con la ficha. |
-| R-DAT-04 | Aplicada | UX-06 pp.18,20,30; GR-A01 p.24; GR-A02 p.25; PS-16 p.7 | `motor/imagenes.py`: class Activos<br>`motor/generar.py`: LICENCIAS.txt<br>`gate/estatico.py`: def fotos | G-FOTOS | Cada imagen lleva su procedencia en el manifiesto y en LICENCIAS.txt. Las fotos de referencia obligan a declararlo en la página. |
+| R-DAT-03 | Aplicada | AL-04 pp.14,21; AL-05 p.12; UX-02 p.20; UX-03 p.20 | `motor/dinero.py`: def formato_importe<br>`motor/dinero.py`: def importe_fn<br>`gate/estatico.py`: def datos<br>`gate/verificar.py`: G-FORMULARIO | G-DATOS, G-FORMULARIO | Un solo formato de moneda por país y por página (si algún precio lleva centavos, todos llevan dos decimales); cada importe de la página, sea de un plato, de una variante (media libra, una libra) o de un suplemento, y cada importe del mensaje de WhatsApp se compara con la ficha. |
+| R-DAT-04 | Aplicada | UX-06 pp.18,20,30; GR-A01 p.24; GR-A02 p.25; PS-16 p.7 | `motor/imagenes.py`: class Activos<br>`motor/generar.py`: LICENCIAS.txt<br>`gate/estatico.py`: def fotos | G-FOTOS | Cada imagen lleva su procedencia, su permiso y el hash del archivo original en el manifiesto, y las tipografías en LICENCIAS.txt. Las fotos de referencia obligan a declararlo en la página. |
 | R-DAT-05 | Parcial | UX-05 pp.18,20; AL-12 p.34; PS-16 p.7; CO-07 p.8 | `gate/estatico.py`: ETICA | G-ETICA, G-DATOS | El Gate bloquea premios, estrellas y porcentajes inventados, pero no hay un registro de afirmaciones con fuente y fecha por frase. |
 | R-DAT-06 | Parcial | UX-07 pp.18,23; AL-08 pp.12,34 | `motor/generar.py`: confirmacion | G-DATOS, G-MANIFIESTO | La ficha guarda estado y fecha de confirmación y el manifiesto la copia; revalidar los datos antes de cada entrega es un paso humano. |
 | R-DAT-07 | Sin prueba | AL-10 pp.15,34; UX-33 p.24 | `motor/piezas.py`: def e_<br>`motor/generar.py`: replace("</" | G-DATOS | Todo texto de la ficha se escapa y el JSON incrustado cierra las etiquetas. Falta el caso de prueba con texto malicioso (ver R-PRO-04). |
@@ -42,10 +42,10 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 | R-ETI-11 | Aplicada | Orden de Eduardo | `gate/estatico.py`: def marca | G-MARCA | Ninguna mención a herramientas de IA ni a Peetfoodie en lo que se entrega. |
 | R-ETI-12 | Aplicada | Orden de Eduardo | `gate/estatico.py`: def comillas<br>`../scripts/revisar_comillas.py`: PROHIBIDOS<br>`../CLAUDE.md`: Comillas | G-COMILLAS | Cero comillas angulares en todo el repositorio y en cada paquete. |
 | R-IDE-01 | Parcial | AL-25 pp.21,45; AL-26 pp.7,9,13; UX-27 pp.7,21,30 | `motor/temas.py`: PALETAS<br>`motor/huella.py`: def huella | G-HUELLA | El estilo lo decide la ficha a partir de los datos del restaurante; el motor no lo deduce solo. |
-| R-IDE-02 | Aplicada | PS-15 p.4; UX-27 p.21 | `motor/piezas.py`: def _plato<br>`motor/plantillas/elegante.js`: role=tab | G-SIGUIENTE | Precio junto al nombre, categorías de carta y botones de acción donde se esperan. |
+| R-IDE-02 | Aplicada | PS-15 p.4; UX-27 p.21 | `motor/piezas.py`: def _plato<br>`motor/plantillas/elegante.js`: role=tab<br>`motor/piezas_urbano.py`: def _item<br>`motor/plantillas/urbano.js`: chips | G-SIGUIENTE, G-INTERACCION | Precio junto al nombre, categorías de carta y botones de acción donde se esperan: pestañas en la personalidad elegante y barra de categorías pegada arriba, con la categoría actual marcada, en la urbana. |
 | R-IDE-03 | Aplicada | UX-28 pp.13,30; UX-60 pp.6,11 | `motor/tipografia.py`: PAREJAS<br>`gate/verificar.py`: G-CONTRASTE | G-CONTRASTE | Paleta y tipografía se eligen por contraste y marca, y se miden. |
-| R-IDE-04 | Pendiente | AL-31 pp.9,14,24; GR-A04 p.24 | - | G-HUELLA | El motor todavía no sabe poner un logo del restaurante ni respetar sus colores aprobados. Es lo primero que se construye con Al Fuego Grill. |
-| R-IDE-05 | Parcial | AL-42 pp.4,5,33; UX-58 p.10 | `motor/temas.py`: MOVIMIENTOS<br>`gate/verificar.py`: G-AVANCE | G-MOVIMIENTO, G-AVANCE, G-REND | Movimiento lento para la personalidad elegante, con pausa y sin efectos obligatorios. La personalidad casual (rápida y gruesa) esta por construir. |
+| R-IDE-04 | Parcial | AL-31 pp.9,14,24; GR-A04 p.24 | `motor/imagenes.py`: def procesar_logo<br>`gate/verificar.py`: G-LOGO<br>`motor/temas.py`: "fuego" | G-HUELLA, G-LOGO | El logo se usa íntegro: con su transparencia, sin recortar, recolorear ni deformar, y el Gate mide que cargue y que no cambie de proporción. La paleta fuego se tomó de los colores del logo; falta un campo de colores aprobados por el restaurante. |
+| R-IDE-05 | Aplicada | AL-42 pp.4,5,33; UX-58 p.10 | `motor/temas.py`: MOVIMIENTOS<br>`motor/plantillas/urbano.css`: mural<br>`gate/verificar.py`: G-AVANCE<br>`gate/verificar.py`: G-MOVIMIENTO | G-MOVIMIENTO, G-AVANCE, G-REND | Movimiento lento para la personalidad elegante y rápido y grueso para la urbana (mural de fotos, brasas, titular que sube), las dos con pausa, sin efectos obligatorios y quietas con movimiento reducido. |
 | R-LEG-01 | Aplicada | UX-16 pp.12,21; AL-34 p.14; GR-G06 p.25; WCAG 2.2 SC 1.4.3 | `motor/temas.py`: PALETAS<br>`gate/dinamico.mjs`: muestrearContraste<br>`gate/verificar.py`: G-CONTRASTE | G-CONTRASTE, G-AXE | El contraste se mide sobre los píxeles reales (texto oculto, captura, relación por pixel), no sobre colores nominales. |
 | R-LEG-02 | Aplicada | UX-17 p.21; WCAG 2.2 SC 2.5.8 | `motor/plantillas/base.css`: .btn{<br>`gate/verificar.py`: G-TACTIL44 | G-TACTIL | Botones de 3,25 rem y controles de al menos 44 px en móvil. |
 | R-LEG-03 | Aplicada | AL-33 p.14; UX-19 pp.21,24,31; GR-G01 p.25; WCAG 2.2 SC 1.4.10 y 1.4.4 | `motor/plantillas/base.css`: @container<br>`motor/plantillas/elegante.css`: minmax(0,1fr)<br>`gate/verificar.py`: G-DESBORDE | G-DESBORDE | Reorganiza sin desbordar desde 280 px y con el texto al 200 por ciento; medido en 27 dispositivos. |
@@ -66,7 +66,7 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 | R-MUE-02 | Aplicada | CO-11 pp.5,9; PS-13 p.7; UX-04 pp.14,20; UX-62 pp.6,7,14 | `motor/piezas.py`: def cierre_muestra<br>`motor/piezas.py`: def panel_edu | G-MUESTRA, G-PRIMERA | Una sola acción de contratación: WhatsApp a Edumashow con mensaje prellenado. |
 | R-MUE-03 | Aplicada | AL-16 pp.6,9,13,34 | `motor/piezas.py`: def cierre_muestra | G-ETICA | El cierre habla en condicional y no menciona presupuesto ni margen. |
 | R-MUE-04 | Aplicada | UX-62 pp.6,7,14; Medida: las 3 muestras actuales no tienen vista previa de enlace | `motor/generar.py`: og:title<br>`gate/estatico.py`: def meta | G-META | Titulo, descripción y vista previa; la imagen social necesita el dominio final (aviso del Gate). |
-| R-MUE-05 | Parcial | AL sec.6 (suplantación); PS sec.6 | `gate/estatico.py`: def muestra | G-MUESTRA | Para un negocio real la muestra lleva cinta y noindex y el Gate exige declarar el permiso como pendiente; que se le ensene primero al dueño es un paso humano. |
+| R-MUE-05 | Parcial | AL sec.6 (suplantación); PS sec.6 | `gate/estatico.py`: def muestra | G-MUESTRA | Para un negocio real la ficha debe declarar el permiso, de dónde salen los datos y el permiso de cada foto; la muestra lo dice en el pie, lleva cinta y noindex, y el Gate lo exige. Que se le enseñe primero al dueño es un paso humano. |
 | R-PER-01 | No aplica | PS-01 pp.1,4,6,7; CO-26 pp.5-6,8 | - | G-MANIFIESTO | Ninguna técnica de persuasión se activa por defecto: es la regla y se cumple por omisión. |
 | R-PER-02 | No aplica | PS-22 pp.4,6; CO-26 pp.5-6,8; CO-07 p.8 | - | G-ETICA | No hay prueba social ni normas en las muestras. |
 | R-PER-03 | No aplica | CO-27 p.5; PS-25 p.4; UX-56 pp.6,9,11; UX-57 pp.6,9 | - | G-MANIFIESTO | No se usan anclajes ni encuadres como palanca. |
@@ -95,7 +95,7 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 | R-SIG-11 | Parcial | PS-24 p.7; AL-19 pp.14,33,51; AL-20 pp.29,54 | `gate/estatico.py`: ETICA | G-ETICA | Titulares literales; el Gate no detecta vacíos de curiosidad. |
 | R-SIG-12 | Aplicada | AL-18 pp.14,51; UX-56 pp.6,9,11; PS-26 p.6 | `gate/verificar.py`: G-ESTRUCTURA | G-ESTRUCTURA | Cada sección tiene un encabezado que dice su función (25 encabezados en Lumbre). |
 | R-VAR-01 | Aplicada | UX-27 pp.7,21,30; GR-V03 p.26; AL-29 pp.15,17,25 | `motor/huella.py`: def comparar<br>`gate/verificar.py`: G-HUELLA | G-HUELLA | Huella de seis dimensiones y registro; el Gate bloqueo una copia exacta en la prueba del modo final. |
-| R-VAR-02 | Parcial | AL-29 pp.15,17,25; AL-30 pp.17,31,40; UX-38 pp.25,33 | `motor/huella.py`: def huella | G-MANIFIESTO | Solo hay una personalidad construida. La segunda llega con Al Fuego Grill. |
+| R-VAR-02 | Parcial | AL-29 pp.15,17,25; AL-30 pp.17,31,40; UX-38 pp.25,33 | `motor/huella.py`: def huella<br>`motor/piezas_urbano.py`: PERSONALIDAD | G-MANIFIESTO | Hay dos personalidades materialmente distintas (la huella de Al Fuego difiere de la de Lumbre en las 6 dimensiones). El motor todavía no propone alternativas para un mismo restaurante ni registra semillas. |
 
 ## Los 54 controles del informe del motor grafico
 
@@ -106,16 +106,16 @@ El informe esta pensado para propuestas en PDF. Aquí se traducen a la web los c
 | I01 | Identidad confirmada | Aplicada | validar_ficha y G-DATOS: sin marcadores pendientes ni datos heredados. |
 | I02 | Contrato comercial tipado | Aplicada | dinero.py exige país y moneda conocidos; G-DATOS compara cada importe. |
 | I03 | Visibilidad del encargo | Parcial | No hay un campo de visibilidad por dato; la muestra evita presupuesto y margen (R-MUE-03). |
-| I04 | Contacto verificado | Aplicada | El contacto sale de la ficha y G-SIGUIENTE valida su formato. |
-| S01 | Concepto específico | Parcial | La ficha tiene conducta, pero el motor aún no deriva de ella todas las acciones de la página. |
+| I04 | Contacto verificado | Aplicada | El contacto sale de la ficha; G-SIGUIENTE valida el formato de wa.me, tel: y mapas, y que las redes sean solo las que declara la ficha. |
+| S01 | Concepto específico | Parcial | La ficha declara sus acciones (reservar, llamar, mapa, redes) y la portada y la barra móvil las siguen; el motor aún no elige solo la acción a partir de la conducta. |
 | S02 | Afirmaciones trazables | Parcial | Ver R-DAT-05. |
 | S03 | Metricas originales | No aplica | La web no muestra metricas de audiencia. |
 | S04 | Mercado documentado | No aplica | La web no atribuye audiencia geográfica. |
 | S05 | Condiciones preservadas | Aplicada | Precios y horarios de la página son los de la ficha y el hash congela el paquete. |
-| A01 | Procedencia del activo | Parcial | Cada imagen lleva origen y licencia; falta guardar el hash del archivo original. |
+| A01 | Procedencia del activo | Aplicada | Cada imagen lleva origen, licencia, permiso y el hash sha256 del archivo original en el manifiesto; los recortes de capturas dejan su caja y el hash de la captura en recortes.json. |
 | A02 | Uso autorizado | Parcial | La ficha declara uso y permiso por foto; no hay perfil de fuentes admitidas por rol. |
 | A03 | Original conservado | Aplicada | imagenes.py parte siempre del original y registra recortes y ajustes; no se inventa detalle. |
-| A04 | Logo íntegro | Pendiente | Todavía no hay soporte de logo. Se construye con Al Fuego Grill. |
+| A04 | Logo íntegro | Aplicada | procesar_logo no recorta ni recolorea y G-LOGO comprueba en cada dispositivo que carga, que su proporción en pantalla es la del archivo y que mide al menos 40 px. |
 | A05 | Permiso documentado | Parcial | Campo de permiso por activo; la aprobación es un paso humano. |
 | A06 | Evidencia protegida | Parcial | Punto de foco por imagen y recorte dirigido; sin prueba automática de que no se corte el sujeto. |
 | A07 | Resolución efectiva | Aplicada | G-RESOLUCION mide cuanto se amplia cada foto en cada pantalla. |
@@ -133,7 +133,7 @@ El informe esta pensado para propuestas en PDF. Aquí se traducen a la web los c
 | G05 | Separacion de líneas | Sin prueba | Separaciones por CSS; sin prueba automática. |
 | G06 | Contraste suficiente | Aplicada | G-CONTRASTE sobre el fondo compuesto real. |
 | G07 | Recorte de producto | Parcial | Foco por imagen; sin prueba automática del sujeto. |
-| G08 | Color y transparencia | Pendiente | Las imágenes se tratan sin canal alfa; los logos transparentes necesitan soporte. |
+| G08 | Color y transparencia | Parcial | El logo conserva su transparencia (AVIF y WebP con alfa y PNG de respaldo) y su borde se suavizó con máscara supermuestreada; no hay prueba automática de halos ni de perfil de color. |
 | V01 | Todas las páginas revisadas | Parcial | Capturas de 27 dispositivos en una hoja; la revisión humana (la tuya) es el paso que falta para aprobar. |
 | V02 | Nivel visual pertinente | Parcial | Comparación antes y después de Lumbre; sin referencias autorizadas más allá de ella. |
 | V03 | Independencia creativa | Aplicada | La huella de diseño impide clonar una web cambiando solo la identidad. |

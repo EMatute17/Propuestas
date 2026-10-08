@@ -1,0 +1,753 @@
+{
+  "id": "alfuego",
+  "version": "1.0.0",
+  "modo": "muestra",
+  "idioma": "es",
+  "confirmacion": {
+    "estado": "por_confirmar",
+    "fecha": "2026-10-08",
+    "nota": "Datos tomados de capturas del Instagram público @alfuego_grill, de su volante y de su menú impreso. Nada está confirmado por el restaurante."
+  },
+  "negocio": {
+    "nombre": "Al Fuego Grill",
+    "cocina": "Churrascaria",
+    "ciudad": "Miami",
+    "pais": "US",
+    "direccion": "9100 S Dixie Hwy, Miami, FL 33156",
+    "zona_horaria": "America/New_York",
+    "lema": "Sabor · Calidad · Pasión",
+    "lema_en": "Flavor · Quality · Passion",
+    "descripcion": "Churrascaria en Miami: picadas, carnes a la parrilla y acompañantes. Mira el menú con precios, la dirección y llama al 786 728 2934."
+  },
+  "contacto": {
+    "whatsapp": null,
+    "telefono": "+17867282934",
+    "telefono_visible": "786 728 2934",
+    "mapa_consulta": "Al Fuego Grill, 9100 S Dixie Hwy, Miami, FL 33156",
+    "instagram": {
+      "usuario": "alfuego_grill",
+      "url": "https://www.instagram.com/alfuego_grill/"
+    },
+    "tiktok": {
+      "usuario": "alfuego_grill",
+      "url": "https://www.tiktok.com/@alfuego_grill"
+    },
+    "reparto": [
+      {
+        "nombre": "DoorDash"
+      },
+      {
+        "nombre": "Uber Eats"
+      }
+    ]
+  },
+  "conducta": {
+    "objetivo": "llamar",
+    "canal": "telefono"
+  },
+  "acciones": {
+    "hero": [
+      {
+        "tipo": "llamar"
+      },
+      {
+        "tipo": "carta",
+        "etiqueta": "Ver el menú"
+      }
+    ],
+    "barra": [
+      {
+        "tipo": "llamar"
+      },
+      {
+        "tipo": "carta",
+        "etiqueta": "Menú"
+      },
+      {
+        "tipo": "mapa"
+      }
+    ]
+  },
+  "moneda": "USD",
+  "horario_estado": "por_confirmar",
+  "horario_texto": "11:00 a. m. a 10:00 p. m.",
+  "carta": [
+    {
+      "id": "picadas",
+      "titulo": "Picadas al fuego",
+      "chip": "Picadas",
+      "foto": "picada",
+      "platos": [
+        {
+          "id": "picadas-1",
+          "nombre": "Picada 1 lb",
+          "precio": 25
+        },
+        {
+          "id": "picadas-2",
+          "nombre": "Picada 2 lb",
+          "precio": 45
+        },
+        {
+          "id": "picadas-3",
+          "nombre": "Picada 3 lb",
+          "descripcion": "Picanha, churrasco, pollo, lomo y chorizo.",
+          "precio": 66
+        },
+        {
+          "id": "picadas-4",
+          "nombre": "Picada 5 lb",
+          "descripcion": "Churrasco, picanha, pollo, cordero o mignon, lomo y chorizo.",
+          "precio": 115
+        }
+      ]
+    },
+    {
+      "id": "carnes",
+      "titulo": "Carnes",
+      "foto": "lomo",
+      "nota": "Por media libra o por libra",
+      "platos": [
+        {
+          "id": "carnes-1",
+          "nombre": "Picaña",
+          "nombre_en": "Picanha",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 15
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 27
+            }
+          ]
+        },
+        {
+          "id": "carnes-2",
+          "nombre": "Churrasco",
+          "nombre_en": "Flap meat",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 15
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 27
+            }
+          ]
+        },
+        {
+          "id": "carnes-3",
+          "nombre": "Chuletas de cordero",
+          "nombre_en": "Lamb chops",
+          "descripcion": "Porción por confirmar: el menú impreso se lee 11/2 lb.",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 16
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 30
+            }
+          ]
+        },
+        {
+          "id": "carnes-4",
+          "nombre": "Filete mignon",
+          "nombre_en": "Filet mignon",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 16
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 30
+            }
+          ],
+          "suplementos": [
+            {
+              "etiqueta": "Con tocino",
+              "precio": 2
+            }
+          ]
+        },
+        {
+          "id": "carnes-5",
+          "nombre": "Chorizo",
+          "nombre_en": "Sausage",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 11
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 17
+            }
+          ]
+        },
+        {
+          "id": "carnes-6",
+          "nombre": "Lomo de cerdo",
+          "nombre_en": "Pork loin",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 11
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 17
+            }
+          ]
+        },
+        {
+          "id": "carnes-7",
+          "nombre": "Costillas de cerdo",
+          "nombre_en": "Pork ribs",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 11
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 17
+            }
+          ]
+        },
+        {
+          "id": "carnes-8",
+          "nombre": "Pollo BBQ",
+          "nombre_en": "BBQ chicken",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 11
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 17
+            }
+          ]
+        },
+        {
+          "id": "carnes-9",
+          "nombre": "Pollo con bacon",
+          "nombre_en": "Chicken with bacon",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 11
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 17
+            }
+          ]
+        },
+        {
+          "id": "carnes-10",
+          "nombre": "Ropa vieja",
+          "variantes": [
+            {
+              "etiqueta": "½ lb",
+              "precio": 16
+            },
+            {
+              "etiqueta": "1 lb",
+              "precio": 29
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "especiales",
+      "titulo": "Especiales",
+      "nota": "½ lb de carne con 2 acompañantes",
+      "platos": [
+        {
+          "id": "especiales-1",
+          "nombre": "Picaña",
+          "nombre_en": "Picanha",
+          "precio": 21
+        },
+        {
+          "id": "especiales-2",
+          "nombre": "Churrasco",
+          "nombre_en": "Flap meat",
+          "precio": 21
+        },
+        {
+          "id": "especiales-3",
+          "nombre": "Chuletas de cordero",
+          "nombre_en": "Lamb chops",
+          "precio": 27.99
+        },
+        {
+          "id": "especiales-4",
+          "nombre": "Filete mignon",
+          "nombre_en": "Filet mignon",
+          "precio": 25,
+          "suplementos": [
+            {
+              "etiqueta": "Con tocino",
+              "precio": 2
+            }
+          ]
+        },
+        {
+          "id": "especiales-5",
+          "nombre": "Chorizo argentino",
+          "nombre_en": "Argentine sausage",
+          "precio": 17
+        },
+        {
+          "id": "especiales-6",
+          "nombre": "Lomo de cerdo parmesano",
+          "nombre_en": "Parmesan pork loin",
+          "precio": 17
+        },
+        {
+          "id": "especiales-7",
+          "nombre": "Costillas de cerdo",
+          "nombre_en": "Pork ribs",
+          "precio": 17
+        },
+        {
+          "id": "especiales-8",
+          "nombre": "Pollo BBQ",
+          "nombre_en": "BBQ chicken",
+          "precio": 17
+        },
+        {
+          "id": "especiales-9",
+          "nombre": "Pollo con tocino",
+          "nombre_en": "Chicken with bacon",
+          "precio": 17
+        },
+        {
+          "id": "especiales-10",
+          "nombre": "Camarones",
+          "nombre_en": "Shrimp",
+          "descripcion": "10 unidades.",
+          "precio": 22
+        },
+        {
+          "id": "especiales-11",
+          "nombre": "Brocheta al fuego",
+          "nombre_en": "Skewer on fire",
+          "descripcion": "½ churrasco, pimiento y cebolla.",
+          "precio": 18
+        },
+        {
+          "id": "especiales-12",
+          "nombre": "Brocheta hawaiana",
+          "descripcion": "½ pollo, lomo, pimiento, cebolla y piña.",
+          "precio": 17
+        },
+        {
+          "id": "especiales-13",
+          "nombre": "Ropa vieja",
+          "descripcion": "De res.",
+          "precio": 25
+        }
+      ]
+    },
+    {
+      "id": "aperitivos",
+      "titulo": "Aperitivos",
+      "foto": "tostones",
+      "platos": [
+        {
+          "id": "aperitivos-1",
+          "nombre": "Empanada de carne",
+          "nombre_en": "Meat pie",
+          "descripcion": "Por unidad.",
+          "precio": 3
+        },
+        {
+          "id": "aperitivos-2",
+          "nombre": "Croquetas",
+          "nombre_en": "Croquettes",
+          "descripcion": "8 unidades: jamón, chorizo, queso manchego o camarón.",
+          "precio": 8.99
+        },
+        {
+          "id": "aperitivos-3",
+          "nombre": "Mozzarella sticks",
+          "lang": "en",
+          "descripcion": "6 unidades.",
+          "precio": 8.5
+        },
+        {
+          "id": "aperitivos-4",
+          "nombre": "Smoked chicken wings",
+          "lang": "en",
+          "descripcion": "5 unidades, con papas fritas.",
+          "precio": 10.99
+        },
+        {
+          "id": "aperitivos-5",
+          "nombre": "Tostones al fuego",
+          "nombre_en": "Tostones on fire",
+          "descripcion": "Picanha, churrasco, ropa vieja, pollo, lomo, chorizo, camarón o bacon.",
+          "precio": 15.99
+        },
+        {
+          "id": "aperitivos-6",
+          "nombre": "Sandwich",
+          "descripcion": "Churrasco, picanha, lomo de cerdo, pollo o bacon.",
+          "precio": 15.99
+        },
+        {
+          "id": "aperitivos-7",
+          "nombre": "Tacos",
+          "descripcion": "Picanha, churrasco, ropa vieja, pollo o lomo, chorizo, pollo con bacon.",
+          "precio": 15.99
+        },
+        {
+          "id": "aperitivos-8",
+          "nombre": "Hamburguesa",
+          "nombre_en": "Hamburger",
+          "descripcion": "Con papas fritas.",
+          "precio": 15.99
+        }
+      ]
+    },
+    {
+      "id": "acompanantes",
+      "titulo": "Acompañantes",
+      "presentacion": "lista",
+      "platos": [
+        {
+          "id": "acomp-1",
+          "nombre": "Arroz blanco",
+          "nombre_en": "White rice",
+          "precio": 4.5
+        },
+        {
+          "id": "acomp-2",
+          "nombre": "Frijoles negros",
+          "nombre_en": "Black beans",
+          "precio": 4.5
+        },
+        {
+          "id": "acomp-3",
+          "nombre": "Arroz moro",
+          "nombre_en": "Moro rice",
+          "precio": 5
+        },
+        {
+          "id": "acomp-4",
+          "nombre": "Maíz dulce",
+          "nombre_en": "Sweet corn",
+          "precio": 5
+        },
+        {
+          "id": "acomp-5",
+          "nombre": "Ensalada mixta",
+          "nombre_en": "Mixed salad",
+          "descripcion": "Tomate, cebolla, pepino, pasas y lechuga.",
+          "precio": 5
+        },
+        {
+          "id": "acomp-6",
+          "nombre": "Ensalada césar",
+          "nombre_en": "Caesar salad",
+          "precio": 5
+        },
+        {
+          "id": "acomp-7",
+          "nombre": "Ensalada griega",
+          "nombre_en": "Greek salad",
+          "precio": 5
+        },
+        {
+          "id": "acomp-8",
+          "nombre": "Ensalada de aguacate",
+          "nombre_en": "Avocado salad",
+          "precio": 5
+        },
+        {
+          "id": "acomp-9",
+          "nombre": "Plátanos maduros",
+          "nombre_en": "Fried ripe plantains",
+          "precio": 5
+        },
+        {
+          "id": "acomp-10",
+          "nombre": "Boniato frito",
+          "nombre_en": "Fried sweet potato",
+          "precio": 5
+        },
+        {
+          "id": "acomp-11",
+          "nombre": "Papas fritas",
+          "nombre_en": "French fries",
+          "precio": 5
+        },
+        {
+          "id": "acomp-12",
+          "nombre": "Yuca frita",
+          "nombre_en": "Fried yucca",
+          "precio": 5
+        },
+        {
+          "id": "acomp-13",
+          "nombre": "Puré de papa",
+          "nombre_en": "Mashed potatoes",
+          "precio": 5
+        },
+        {
+          "id": "acomp-14",
+          "nombre": "Tostones",
+          "nombre_en": "Green plantain",
+          "precio": 5
+        },
+        {
+          "id": "acomp-15",
+          "nombre": "Tamal de maíz",
+          "nombre_en": "Corn tamal",
+          "precio": 5
+        },
+        {
+          "id": "acomp-16",
+          "nombre": "Combo de 4 acompañantes",
+          "nombre_en": "Combo of 4 sides",
+          "descripcion": "Conviértelo en un combo de 4 acompañantes.",
+          "precio": 16
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "titulo": "Bebidas",
+      "presentacion": "lista",
+      "platos": [
+        {
+          "id": "bebidas-1",
+          "nombre": "Limonada",
+          "nombre_en": "Lemonade",
+          "descripcion": "Fresa y mango.",
+          "precio": 4.5
+        },
+        {
+          "id": "bebidas-2",
+          "nombre": "Iron Beer",
+          "lang": "en",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-3",
+          "nombre": "Materva",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-4",
+          "nombre": "Jupiña",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-5",
+          "nombre": "Coca-Cola y Coca-Cola de dieta",
+          "nombre_en": "Coke and Diet Coke",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-6",
+          "nombre": "Fanta",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-7",
+          "nombre": "Sprite",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-8",
+          "nombre": "Jugos",
+          "nombre_en": "Juice",
+          "precio": 2.5
+        },
+        {
+          "id": "bebidas-9",
+          "nombre": "Agua",
+          "nombre_en": "Water",
+          "precio": 2.5
+        }
+      ]
+    },
+    {
+      "id": "postres",
+      "titulo": "Postres",
+      "presentacion": "lista",
+      "platos": [
+        {
+          "id": "postres-1",
+          "nombre": "Flan",
+          "precio": 5.5
+        },
+        {
+          "id": "postres-2",
+          "nombre": "Arroz con leche",
+          "nombre_en": "Rice pudding",
+          "precio": 5.5
+        }
+      ]
+    }
+  ],
+  "galeria": [
+    {
+      "foto": "picada",
+      "pie": "Picada"
+    },
+    {
+      "foto": "tostones",
+      "pie": "Tostones"
+    },
+    {
+      "foto": "sandwich",
+      "pie": "Sandwich"
+    },
+    {
+      "foto": "lomo",
+      "pie": "Lomo con tocino"
+    },
+    {
+      "foto": "asador",
+      "pie": "El asador"
+    },
+    {
+      "foto": "trailer",
+      "pie": "El trailer"
+    }
+  ],
+  "textos": {
+    "nav_carta": "Menú",
+    "nav_fotos": "Fotos",
+    "carta_sobretitulo": "Picadas, carnes y acompañantes",
+    "carta_titulo": "El menú",
+    "carta_nota": "Menú y precios tal como los publica el restaurante en sus redes. Por confirmar con el restaurante antes de publicar.",
+    "fotos_sobretitulo": "En sus redes",
+    "fotos_titulo": "Así se ve Al Fuego",
+    "fotos_texto": "Fotos de la cuenta de Instagram @alfuego_grill, tomadas de su perfil público para esta muestra.",
+    "fotos_aria": "Fotos de Al Fuego Grill",
+    "visita_titulo": "Visítanos",
+    "horario_aviso": "Por confirmar con el restaurante: los días de atención. El horario sale de una publicación suya.",
+    "reparto_texto": "También en {apps}, según su menú impreso."
+  },
+  "activos": {
+    "picada": {
+      "archivo": "alfuego/picada.webp",
+      "alt": "Picada de carnes a la parrilla sobre una tabla de madera, con chorizos, pollo y cortes de res",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "tostones": {
+      "archivo": "alfuego/tostones.webp",
+      "alt": "Tostones con carne asada, queso y salsa verde sobre una tabla, con un vasito de salsa al lado",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "sandwich": {
+      "archivo": "alfuego/sandwich.webp",
+      "alt": "Sándwich de carne en rebanadas con papas fritas, en un envase para llevar",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (cuadricula). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "lomo": {
+      "archivo": "alfuego/lomo.webp",
+      "alt": "Lomo de cerdo envuelto en tocino y chorizo sobre una tabla con el logo de Al Fuego Grill",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (cuadricula). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "asador": {
+      "archivo": "alfuego/asador.webp",
+      "alt": "Asador vertical con brochetas y cortes de carne junto a las brasas",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "trailer": {
+      "archivo": "alfuego/trailer.webp",
+      "alt": "El trailer de Al Fuego Grill con su logo y su teléfono",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Foto publicada por el restaurante. Recorte de una captura de pantalla de la cuenta pública de Instagram @alfuego_grill (perfil). Sin retoques: solo recortado.",
+        "licencia": "Imagen del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    },
+    "logo": {
+      "archivo": "alfuego/logo.png",
+      "alt": "Logotipo de Al Fuego Grill Churrascaria",
+      "procedencia": {
+        "origen": "redes_del_restaurante",
+        "descripcion": "Logotipo del restaurante, recortado de su foto de perfil de Instagram @alfuego_grill con borde circular suave.",
+        "licencia": "Marca del propio restaurante; sin permiso de uso confirmado (muestra privada para el dueño)",
+        "permiso": "pendiente",
+        "recorte": "edumashow/activos/origen/alfuego/recortes.json"
+      }
+    }
+  },
+  "estilo": {
+    "personalidad": "urbano",
+    "paleta": "fuego",
+    "tipografia": "anton-archivo",
+    "portada": "mural_columnas",
+    "carta": "chips_tablero",
+    "galeria": "cuadricula_ig",
+    "forma": "recta",
+    "movimiento": "rapido",
+    "orden": [
+      "portada",
+      "carta",
+      "fotos",
+      "visita",
+      "cierre"
+    ]
+  },
+  "muestra": {
+    "ejemplo_ficticio": false,
+    "permiso": "pendiente",
+    "origen_datos": "Datos, menú y fotos tomados de las redes públicas de Al Fuego Grill (@alfuego_grill); por confirmar con el restaurante.",
+    "nota_panel": "El menú, los precios, el teléfono y las fotos de esta muestra salen de las redes públicas del restaurante. Faltan por confirmar los precios y el horario por días.",
+    "incluye": [
+      "Tu menú con precios claros y tus fotos, ordenado para encontrar rápido lo que se busca.",
+      "Un toque para llamar o llegar, y tu horario siempre al día.",
+      "Pensada para verse bien y cargar rápido en el móvil de tus clientes."
+    ],
+    "base_url": null
+  }
+}

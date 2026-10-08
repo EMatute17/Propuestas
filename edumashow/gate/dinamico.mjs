@@ -21,7 +21,7 @@ const lista = modo === 'rapido' ? dispositivos.filter((d) => d.representativo) :
 const registro = [];
 const srv = await servir(carpeta, { registro });
 const nav = await chromium.launch({ args: ['--no-sandbox'] });
-const R = { version_gate: '0.1.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {} };
+const R = { version_gate: '0.2.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {} };
 
 async function nuevaPagina(d, op = {}) {
   const movil = d.tipo !== 'escritorio';
@@ -53,11 +53,12 @@ async function recorrer(pag) {
 }
 
 // ---------------------------------------------------------------- medición del DOM (se ejecuta en la página)
-const medirDOM = () => {
+const medirDOM = (ignorarSticky) => {
   const vw = document.documentElement.clientWidth, vh = window.innerHeight, dpr = window.devicePixelRatio || 1;
   const visible = (e) => { const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') return false; const b = e.getBoundingClientRect(); return b.width >= 1 && b.height >= 1; };
   const eti = (e) => { let s = e.tagName.toLowerCase(); if (e.id) s += '#' + e.id; const c = (e.getAttribute('class') || '').split(/\s+/).filter(Boolean).slice(0, 2).join('.'); if (c) s += '.' + c; const t = (e.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 22); return s + (t ? ' "' + t + '"' : ''); };
   const enFijo = (e) => { for (let p = e; p && p !== document.body; p = p.parentElement) { if (getComputedStyle(p).position === 'fixed') return true; } return false; };
+  const enSticky = (e) => { for (let p = e; p && p !== document.body; p = p.parentElement) { if (getComputedStyle(p).position === 'sticky') return true; } return false; };
   const out = { vw, vh, dpr, scrollW: document.documentElement.scrollWidth, scrollH: document.documentElement.scrollHeight };
   out.desborde = out.scrollW - vw;
 
@@ -84,6 +85,7 @@ const medirDOM = () => {
     const a = hojas[i], b = hojas[j];
     if (a.e.contains(b.e) || b.e.contains(a.e)) continue;
     const ca = a.e.closest('[data-superpuesto]'); if (ca && ca === b.e.closest('[data-superpuesto]')) continue;   // capas que se superponen a proposito y estan declaradas (G02)
+    if (ignorarSticky && (enSticky(a.e) || enSticky(b.e))) continue;   // una barra pegajosa ya pegada arriba tapa lo que pasa por debajo: se comprueba en su sitio natural, con la pagina arriba
     const w = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0), h = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
     if (w > 2 && h > 2 && w * h > 12) solapes.push(`${a.nombre} con ${b.nombre} (${Math.round(w)}x${Math.round(h)})`);
   }
@@ -142,9 +144,11 @@ const medirDOM = () => {
     const cs = getComputedStyle(im), cubre = cs.objectFit === 'cover';
     const nw = im.naturalWidth, nh = im.naturalHeight;
     const archivo = im.currentSrc.split('/').slice(-1)[0];
-    imgs.push({ archivo, clave: archivo.replace(/-\d+\.(avif|webp|jpg)$/, ''), cajaW: b.width, cajaH: b.height, cubre });
+    imgs.push({ archivo, clave: archivo.replace(/-\d+\.(avif|webp|jpg|png)$/, ''), cajaW: b.width, cajaH: b.height, cubre });
   }
   out.imagenes = imgs;
+  const lg = document.querySelector('.logo-enlace img');
+  out.logo = lg ? (() => { const b = lg.getBoundingClientRect(); return { ancho: Math.round(b.width), alto: Math.round(b.height), nw: lg.naturalWidth, nh: lg.naturalHeight, cargada: lg.complete && lg.naturalWidth > 0, fit: getComputedStyle(lg).objectFit, archivo: (lg.currentSrc || '').split('/').slice(-1)[0] }; })() : null;
   const bm = document.querySelector('.barra-movil'); const bmc = bm && getComputedStyle(bm);
   out.barra = bm ? { enlaces: bm.querySelectorAll('a').length, visibilidad: bmc.visibility, display: bmc.display, claseVisible: bm.classList.contains('visible') } : null;
   out.estadoTexto = (document.querySelector('[data-open-text]') || {}).textContent || '';
@@ -188,16 +192,21 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
       const m = cs.color.match(/[\d.]+/g).map(Number);
       const rg = document.createRange(); rg.selectNodeContents(e);
       const rects = Array.from(rg.getClientRects()).filter((r) => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw && r.width < vw * 1.5)
-        .map((r) => [Math.max(0, r.left), Math.max(0, r.top), Math.min(vw, r.right) - Math.max(0, r.left), Math.min(vh, r.bottom) - Math.max(0, r.top)]);
+        // el texto se mide dentro de la caja del propio elemento (sus lineas): el area de contenido de una tipografia con mucho ascendente asoma por encima y por debajo de la linea y es del vecino
+        .map((r) => { const l = Math.max(0, r.left, b.left), t = Math.max(0, r.top, b.top), rr = Math.min(vw, r.right, b.right), bb = Math.min(vh, r.bottom, b.bottom); return [l, t, rr - l, bb - t]; })
+        .filter(([, , w, h]) => w > 1 && h > 1)
+        // solo lo que la persona ve: si otro elemento (la barra pegada de categorias, la barra fija del movil) tapa el centro del texto, no se mide
+        .filter(([x, y, w, h]) => { const t = document.elementFromPoint(x + w / 2, y + h / 2); return !t || e.contains(t) || t.contains(e); });
       if (!rects.length) continue;
       filas.push({ sel, texto: (e.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 30), rects, color: m.slice(0, 3), alfa: (m[3] ?? 1) * op, px: parseFloat(cs.fontSize), peso: parseInt(cs.fontWeight, 10) });
     }
     return filas;
   }, selectores);
-  await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;text-shadow:none !important;animation:none !important;transition:none !important;caret-color:transparent !important}' });
+  const ocultar = await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;text-shadow:none !important;animation:none !important;transition:none !important;caret-color:transparent !important}' });
   await pag.waitForTimeout(250);
   const img = path.join(CAP, `contraste_${d.id}_${etiqueta}.png`);
   await pag.screenshot({ path: img });
+  await ocultar.evaluate((el) => el.remove());   // la siguiente zona se mide con el texto visible
   R.contraste.push({ dispositivo: d.id, etiqueta, imagen: path.relative(salida, img), dpr: d.dpr, filas: datos });
 }
 
@@ -205,20 +214,25 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
 for (const d of lista) {
   const { ctx, pag, externas, errores } = await nuevaPagina(d);
   const reg = { id: d.id, nombre: d.nombre, tipo: d.tipo, w: d.w, h: d.h, dpr: d.dpr, estres: !!d.estres };
-  reg.arriba = await pag.evaluate(medirDOM);
+  reg.arriba = await pag.evaluate(medirDOM, false);
   await pag.screenshot({ path: path.join(CAP, `${d.id}.jpg`), type: 'jpeg', quality: 78 });
   if (d.representativo) {
-    await muestrearContraste(pag, d, ['.cinta p', '.cinta button', '.hero-barra .marca', '.hero-barra nav a', '.sobre', '.hero h1', '.lema', '.hero .btn', '.hero .estado', '.pausa', '.hero .acciones .btn.suave'], 'portada');
+    await muestrearContraste(pag, d, ['.cinta p', '.cinta button', '.hero-barra .marca', '.hero-barra nav a', '.sobre', '.hero h1', '.lema', '.lema-en', '.hero .btn', '.hero .estado', '.pausa', '.hero .acciones .btn.suave'], 'portada');
     await pag.evaluate(() => window.location.reload()); await pag.waitForTimeout(2300);
   }
   await recorrer(pag);
-  reg.pagina = await pag.evaluate(medirDOM);
+  reg.pagina = await pag.evaluate(medirDOM, true);
   if (d.representativo) {
     reg.estructura = await pag.evaluate(medirEstructura);
     // contraste de las leyendas de la galería sobre las fotos
     await pag.evaluate(() => { const g = document.querySelector('.galeria'); if (g) g.scrollIntoView({ block: 'center' }); });
     await pag.waitForTimeout(900);
     await muestrearContraste(pag, d, ['.galeria figcaption', '.barra-movil a'], 'galeria');
+    if (await pag.evaluate(() => !!document.querySelector('.chips'))) {   // menu en tablero: barra de categorias, nombres, descripciones y precios
+      await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; const c = document.querySelector('#cat-carnes') || document.querySelector('.cat'); c.scrollIntoView({ block: 'start' }); window.scrollBy(0, -110); });
+      await pag.waitForTimeout(900);
+      await muestrearContraste(pag, d, ['.chips a', '.cat h3', '.cat-nota', '.nom', '.nom-en', '.des', '.pre', '.eti', '.sup'], 'menu');
+    }
   }
   reg.externas = externas; reg.errores = errores;
   R.dispositivos.push(reg);
@@ -325,6 +339,7 @@ for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   const medirMov = () => ({
     infinitas: document.getAnimations().filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().iterations === Infinity).length,
     corriendo: document.getAnimations().filter((a) => a.playState === 'running').length,
+    largas: document.getAnimations().filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().endTime > 5000).length,
     brasas: (() => { const c = document.querySelector('.brasas'); if (!c) return -1; const x = c.getContext('2d'); const dts = x.getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < dts.length; i += 4 * 17) if (dts[i] > 8) n++; return n; })(),
     letras: Array.from(document.querySelectorAll('.hero h1 .l')).every((l) => parseFloat(getComputedStyle(l).opacity) === 1),
   });
@@ -345,7 +360,7 @@ for (const id of ['mini-360', 'pc-1280']) {
   const { ctx, pag } = await nuevaPagina(d);
   await pag.addStyleTag({ content: 'html{font-size:200% !important}' });
   await pag.waitForTimeout(600); await recorrer(pag);
-  const m = await pag.evaluate(medirDOM);
+  const m = await pag.evaluate(medirDOM, true);
   R.zoom[id] = { desborde: m.desborde, solapes: m.solapes, recortes: m.recortes };
   await ctx.close();
 }
@@ -380,8 +395,14 @@ if (ficha.horario && ficha.negocio) {
   F.horario.push(...cruce);
   await ctx.close();
 }
-// 6b) reserva por WhatsApp: mensaje, destino y validaciones
-{
+else {
+  // sin horario por dias la pagina no puede decir si esta abierto o cerrado: no debe haber ningun estado de apertura
+  const { ctx, pag } = await nuevaPagina(dM, { espera: 700 });
+  F.apertura = await pag.evaluate(() => ({ elementos: document.querySelectorAll('[data-open]').length, textoEstado: Array.from(document.querySelectorAll('.estado')).map((e) => e.textContent.trim().slice(0, 60)) }));
+  await ctx.close();
+}
+// 6b) reserva por WhatsApp: mensaje, destino y validaciones (solo si la ficha tiene reservas)
+if (ficha.reservas) {
   const { ctx, pag } = await nuevaPagina(dM, { reloj: '2026-10-07T19:00:00Z', espera: 900 });   // miércoles 15:00 en Caracas
   await pag.evaluate(() => { window.__wa = []; document.addEventListener('edu:wa', (e) => window.__wa.push(e.detail)); });
   await recorrer(pag);
@@ -402,12 +423,32 @@ if (ficha.horario && ficha.negocio) {
 {
   const { ctx, pag } = await nuevaPagina(dM, { espera: 900 });
   await pag.evaluate(() => document.querySelector('.carta').scrollIntoView());
+  if (await pag.evaluate(() => !!document.querySelector('[role=tab]'))) {
   const t0 = await pag.evaluate(() => ({ sel: Array.from(document.querySelectorAll('[role=tab]')).map((t) => t.getAttribute('aria-selected')), visibles: Array.from(document.querySelectorAll('[role=tabpanel]')).filter((p) => getComputedStyle(p).display !== 'none').length }));
   await pag.focus('#tab-c0'); await pag.keyboard.press('ArrowRight'); await pag.waitForTimeout(500);
   const t1 = await pag.evaluate(() => ({ sel: Array.from(document.querySelectorAll('[role=tab]')).map((t) => t.getAttribute('aria-selected')), activo: document.activeElement.id, visibles: Array.from(document.querySelectorAll('[role=tabpanel]')).filter((p) => getComputedStyle(p).display !== 'none').map((p) => p.id) }));
   await pag.keyboard.press('End'); await pag.waitForTimeout(300);
   const t2 = await pag.evaluate(() => ({ activo: document.activeElement.id }));
   F.pestanas = { t0, t1, t2 };
+  }
+  // categorias del menu en tablero: cada categoria se alcanza desde la barra, queda bajo ella y se marca como actual
+  if (await pag.evaluate(() => !!document.querySelector('.chips'))) {
+    await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector('.carta').scrollIntoView(); });
+    await pag.waitForTimeout(500);
+    const enlaces = await pag.evaluate(() => Array.from(document.querySelectorAll('.chips a')).map((a) => a.getAttribute('href')));
+    const resultados = [];
+    for (const i of [1, enlaces.length - 1, 0]) {
+      await pag.click(`.chips a[href="${enlaces[i]}"]`); await pag.waitForTimeout(900);
+      resultados.push(await pag.evaluate((h) => {
+        const el = document.querySelector(h), r = el.getBoundingClientRect(), c = document.querySelector('.chips').getBoundingClientRect();
+        return { enlace: h, actual: Array.from(document.querySelectorAll('.chips a[aria-current="true"]')).map((a) => a.getAttribute('href')), chipsTop: Math.round(c.top), bajoBarra: r.top >= c.bottom - 2, enPantalla: r.top < innerHeight };
+      }, enlaces[i]));
+    }
+    // con el teclado: Enter en una categoria lleva a ella
+    await pag.focus(`.chips a[href="${enlaces[2]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(900);
+    const teclado = await pag.evaluate((h) => ({ enlace: h, actual: Array.from(document.querySelectorAll('.chips a[aria-current="true"]')).map((a) => a.getAttribute('href')) }), enlaces[2]);
+    F.chips = { enlaces, resultados, teclado };
+  }
   if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
     await pag.evaluate(() => window.scrollTo(0, 0));
     await pag.click('.cinta button'); await pag.waitForTimeout(400);

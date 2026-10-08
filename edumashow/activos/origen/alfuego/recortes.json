@@ -1,0 +1,116 @@
+{
+ "capturas": {
+  "logo": {
+   "archivo": "a8de67ff-image.png",
+   "sha256": "a1c09ddcde412cc36df4aefaca7a402b4b7f397a0ac151267809cb86b020d40a"
+  },
+  "perfil": {
+   "archivo": "fab81f07-image.png",
+   "sha256": "34bcad4ee5a5eca170cc22d4bb65e3648b42946568e14ddf35c0a3dc5006979f"
+  },
+  "cuadricula": {
+   "archivo": "ece0c8f8-image.png",
+   "sha256": "86478c49b2265ed51c4fdaa2f6490e8f040f45287476c828b42b38d0fc94b1ca"
+  },
+  "volante": {
+   "archivo": "89ee87ca-image.png",
+   "sha256": "07b494beeb613cdce7d471655f84c7b948a216faf91e89ab1451e8c772550b99"
+  },
+  "menu": {
+   "archivo": "e9f05eca-image.jpg",
+   "sha256": "83e3f26043502f1076efa131b29dd92ebc3021f368c369eb7a9705be765d5362"
+  }
+ },
+ "recortes": {
+  "picada": {
+   "captura": "perfil",
+   "caja": [
+    398,
+    1313,
+    780,
+    1759
+   ],
+   "tam": [
+    382,
+    446
+   ]
+  },
+  "tostones": {
+   "captura": "perfil",
+   "caja": [
+    791,
+    1313,
+    1176,
+    1759
+   ],
+   "tam": [
+    385,
+    446
+   ]
+  },
+  "sandwich": {
+   "captura": "cuadricula",
+   "caja": [
+    398,
+    531,
+    780,
+    976
+   ],
+   "tam": [
+    382,
+    445
+   ]
+  },
+  "lomo": {
+   "captura": "cuadricula",
+   "caja": [
+    791,
+    2103,
+    1176,
+    2547
+   ],
+   "tam": [
+    385,
+    444
+   ]
+  },
+  "asador": {
+   "captura": "perfil",
+   "caja": [
+    791,
+    1838,
+    1176,
+    2283
+   ],
+   "tam": [
+    385,
+    445
+   ]
+  },
+  "trailer": {
+   "captura": "perfil",
+   "caja": [
+    3,
+    1838,
+    388,
+    2283
+   ],
+   "tam": [
+    385,
+    445
+   ]
+  },
+  "logo": {
+   "captura": "logo",
+   "centro": [
+    590,
+    1100
+   ],
+   "radio": 388,
+   "tam": [
+    784,
+    784
+   ]
+  }
+ }
+}

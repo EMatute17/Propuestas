@@ -6,7 +6,7 @@
     "dominio": "edumashow.online"
   },
   "gate": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "presupuesto": {
       "inicial_kb": 450,
       "total_kb": 1536,

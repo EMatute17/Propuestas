@@ -23,7 +23,7 @@ from edumashow.motor import dinero, huella as _huella, piezas, tipografia
 from edumashow.motor.generar import hash_paquete
 from . import estatico
 
-VERSION_GATE = "0.1.0"
+VERSION_GATE = "0.2.0"
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.normpath(os.path.join(AQUI, ".."))
 
@@ -144,7 +144,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
     I.add("G-COMILLAS", "Sin comillas angulares", ["R-ETI-12"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.marca(sitio)
     I.add("G-MARCA", "Sin menciones a IA ni a Peetfoodie", ["R-ETI-11"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
-    r = estatico.datos(sitio, ficha, dinero.formato_importe, piezas.rango_horario)
+    r = estatico.datos(sitio, ficha, dinero.importe_fn(ficha), piezas.rango_horario)
     I.add("G-DATOS", "Datos del HTML iguales a la ficha, sin relleno", ["R-DAT-01", "R-DAT-02", "R-DAT-03", "R-DAT-08", "R-SIG-06"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.etica(sitio)
     I.add("G-ETICA", "Sin escasez, testimonios ni promesas inventadas", ["R-ETI-01", "R-ETI-02", "R-ETI-03", "R-ETI-05", "R-SIG-11"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
@@ -166,7 +166,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
               f"distancia mínima {min(d for _, d in otras)} de 6 (se exigen {_huella.MINIMO_DISTINTAS})", [f"{k}: {d} dimensiones distintas" for k, d in otras])
     r = estatico.fuentes_glifos(sitio, tipografia.PAREJAS, ficha["estilo"]["tipografia"])
     I.add("G-FUENTES", "Todos los caracteres existen en las tipografías", ["R-LEG-04", "R-REN-03"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
-    r = estatico.red_estatica(sitio)
+    r = estatico.red_estatica(sitio, ficha)
     estatica_red = r
 
     D = None
@@ -254,9 +254,16 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         I.add("G-PRIMERA", "Nombre y acción principal visibles en la primera pantalla", ["R-SIG-01", "R-SIG-07", "R-MUE-02"], "bloqueo", res_p, f"{len(devs)} dispositivos, incluidos horizontales y plegables", pr)
         # ---- enlaces y barra fija
         links = repr_[0]["estructura"]["enlaces"] if repr_ else []
+        K = ficha.get("contacto", {})
+        redes_ok = {r["url"] for r in K.values() if isinstance(r, dict) and r.get("url")}
+        tel_ok = ("tel:" + K["telefono"]) if K.get("telefono") else None
         malos = []
+        if tel_ok and tel_ok not in links: malos.append("la ficha tiene teléfono y la página no tiene un enlace para llamar")
         for l in links:
             if l.startswith("#") and len(l) == 1: malos.append("enlace # sin destino")
+            elif l.startswith("tel:"):
+                if l != tel_ok: malos.append(f"enlace tel: distinto del teléfono de la ficha: {l}")
+            elif l in redes_ok: pass
             elif l.startswith("https://wa.me/"):
                 if not re.match(r"^https://wa\.me/\d{8,15}(\?text=.+)?$", l): malos.append(f"wa.me mal formado: {l[:50]}")
                 elif "?text=" not in l: malos.append(f"wa.me sin mensaje prellenado: {l}")
@@ -271,33 +278,67 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         Fn = D["funcional"]
         hs = Fn.get("horario", [])
         malos_h = [f"{h['caso']}: esperado \"{h['esperado']}\" y obtenido \"{h['obtenido']}\"" for h in hs if not h["ok"]]
-        I.add("G-HORARIO", "Abierto ahora con relojes simulados, otras zonas horarias y cierre pasada la medianoche", ["R-DAT-03", "R-SIG-02"], "bloqueo", "PASS" if hs and not malos_h else "FAIL", f"{len(hs)} casos simulados", malos_h)
-        rv = Fn.get("reserva", {})
-        fl = []
-        a = rv.get("antes", {})
-        if a.get("personas") != str(ficha["reservas"]["personas_por_defecto"]): fl.append(f"personas por defecto = {a.get('personas')}")
-        if not a.get("hora") or a.get("hora") not in a.get("horas", []): fl.append("hora por defecto fuera de las opciones")
-        if rv.get("sinNombre", {}).get("envios") != 0 or not rv.get("sinNombre", {}).get("visible"): fl.append("enviar sin nombre debía avisar y no abrir WhatsApp")
-        envio = (rv.get("envio") or [{}])[0]
-        url = envio.get("url", "")
-        if not url.startswith(f"https://wa.me/{ficha['_wa_destino']}?text="): fl.append("el mensaje no va al WhatsApp esperado")
-        tx = envio.get("texto", "")
-        for esperado in ("Ana Pérez", "4 personas", "20:00", "Cumpleaños, una silla para bebé", "Hola " + ficha["negocio"]["nombre"]):
-            if esperado not in tx: fl.append(f"el mensaje de WhatsApp no contiene: {esperado}")
-        if ejemplo and "(Prueba de la muestra de Edumashow" not in tx: fl.append("el mensaje de la muestra no se identifica como prueba")
-        if not (rv.get("cerrado", {}).get("deshabilitado") and "no hay mesas" in (rv.get("cerrado", {}).get("aviso") or "")): fl.append("un día cerrado debía deshabilitar la hora y avisar")
-        if min(a.get("horas", ["99:99"]), default="99:99") <= "16:00" and a.get("fecha") == "2026-10-07": fl.append("se ofrecen horas pasadas o sin antelacion")
-        I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y día cerrado", fl)
-        pe, dl = Fn.get("pestanas", {}), Fn.get("dialogo", {})
-        fl = []
-        if pe.get("t0", {}).get("sel") != ["true", "false", "false", "false"] or pe.get("t0", {}).get("visibles") != 1: fl.append("estado inicial de las pestañas")
-        if pe.get("t1", {}).get("sel") != ["false", "true", "false", "false"] or pe.get("t1", {}).get("visibles") != ["panel-c1"]: fl.append("la flecha derecha no cambia de pestaña")
-        if pe.get("t2", {}).get("activo") != "tab-c3": fl.append("la tecla Fin no va a la última pestaña")
+        if ficha.get("horario_estado") == "por_confirmar":
+            ap = Fn.get("apertura", {})
+            fl = [f"la página dice si está abierto o cerrado ({ap.get('textoEstado')}) y el horario está por confirmar"] if ap.get("elementos") else []
+            I.add("G-HORARIO", "Sin horario confirmado la página no afirma que esté abierto ni cerrado", ["R-DAT-03", "R-DAT-08"], "bloqueo", "PASS" if ap and not fl else ("FAIL" if fl else "UNAVAILABLE"),
+                  "horario por confirmar: se muestra el texto de la ficha y la página no afirma que esté abierto o cerrado", fl)
+        else:
+            I.add("G-HORARIO", "Abierto ahora con relojes simulados, otras zonas horarias y cierre pasada la medianoche", ["R-DAT-03", "R-SIG-02"], "bloqueo", "PASS" if hs and not malos_h else "FAIL", f"{len(hs)} casos simulados", malos_h)
+        if ficha.get("reservas"):
+            rv = Fn.get("reserva", {})
+            fl = []
+            a = rv.get("antes", {})
+            if a.get("personas") != str(ficha["reservas"]["personas_por_defecto"]): fl.append(f"personas por defecto = {a.get('personas')}")
+            if not a.get("hora") or a.get("hora") not in a.get("horas", []): fl.append("hora por defecto fuera de las opciones")
+            if rv.get("sinNombre", {}).get("envios") != 0 or not rv.get("sinNombre", {}).get("visible"): fl.append("enviar sin nombre debía avisar y no abrir WhatsApp")
+            envio = (rv.get("envio") or [{}])[0]
+            url = envio.get("url", "")
+            if not url.startswith(f"https://wa.me/{ficha['_wa_destino']}?text="): fl.append("el mensaje no va al WhatsApp esperado")
+            tx = envio.get("texto", "")
+            for esperado in ("Ana Pérez", "4 personas", "20:00", "Cumpleaños, una silla para bebé", "Hola " + ficha["negocio"]["nombre"]):
+                if esperado not in tx: fl.append(f"el mensaje de WhatsApp no contiene: {esperado}")
+            if ejemplo and "(Prueba de la muestra de Edumashow" not in tx: fl.append("el mensaje de la muestra no se identifica como prueba")
+            if not (rv.get("cerrado", {}).get("deshabilitado") and "no hay mesas" in (rv.get("cerrado", {}).get("aviso") or "")): fl.append("un día cerrado debía deshabilitar la hora y avisar")
+            if min(a.get("horas", ["99:99"]), default="99:99") <= "16:00" and a.get("fecha") == "2026-10-07": fl.append("se ofrecen horas pasadas o sin antelacion")
+            I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y día cerrado", fl)
+        else:
+            I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "NA", "no aplica: la ficha no tiene reservas y su acción principal es llamar")
+        pe, dl, ch = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("chips")
+        fl, partes = [], []
+        if pe:   # la carta con pestañas (personalidad elegante)
+            ids = [c["id"] for c in ficha["carta"]]
+            n = len(ids)
+            if pe.get("t0", {}).get("sel") != ["true"] + ["false"] * (n - 1) or pe.get("t0", {}).get("visibles") != 1: fl.append("estado inicial de las pestañas")
+            if pe.get("t1", {}).get("sel") != ["false", "true"] + ["false"] * (n - 2) or pe.get("t1", {}).get("visibles") != [f"panel-{ids[1]}"]: fl.append("la flecha derecha no cambia de pestaña")
+            if pe.get("t2", {}).get("activo") != f"tab-{ids[-1]}": fl.append("la tecla Fin no va a la última pestaña")
+            partes.append("flechas y Fin en las pestañas")
+        if ch:   # la carta en tablero con barra de categorías (personalidad urbana)
+            for r_ in ch["resultados"]:
+                if r_["actual"] != [r_["enlace"]]: fl.append(f"al pulsar {r_['enlace']} la categoría actual es {r_['actual']}")
+                if not r_["bajoBarra"]: fl.append(f"{r_['enlace']} queda tapada por la barra de categorías")
+                if not r_["enPantalla"]: fl.append(f"{r_['enlace']} no queda a la vista al pulsar su categoría")
+                if r_["chipsTop"] > 1: fl.append("la barra de categorías no queda pegada arriba mientras se recorre el menú")
+            if ch["teclado"]["actual"] != [ch["teclado"]["enlace"]]: fl.append("Enter en una categoría no la marca como actual")
+            partes.append(f"{len(ch['enlaces'])} categorías: clic, teclado y barra pegada")
         if muestra:   # el diálogo de Edumashow solo existe en la muestra
             if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
             if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
-        I.add("G-INTERACCION", "Pestañas de la carta con teclado" + (" y diálogo de la muestra" if muestra else ""), ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL",
-              "flechas, Fin, Escape y retorno del foco" if muestra else "flechas y Fin en las pestañas", fl)
+            partes.append("Escape y retorno del foco en el diálogo")
+        if not (pe or ch): fl.append("la carta no tiene pestañas ni barra de categorías que probar")
+        I.add("G-INTERACCION", "Navegación de la carta con teclado" + (" y diálogo de la muestra" if muestra else ""), ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", "; ".join(partes), fl)
+        # ---- logotipo
+        logos = [(d["id"], d["pagina"]["logo"]) for d in devs if d["pagina"].get("logo")]
+        if logos:
+            fl = []
+            for did, lg in logos:
+                if not lg["cargada"]: fl.append(f"{did}: el logotipo no cargó")
+                else:
+                    rp, ra = lg["ancho"] / max(lg["alto"], 1), lg["nw"] / max(lg["nh"], 1)
+                    if abs(rp / ra - 1) > 0.02: fl.append(f"{did}: el logotipo se deforma (en pantalla {rp:.2f} y en el archivo {ra:.2f})")
+                if lg["ancho"] < 40: fl.append(f"{did}: el logotipo mide {lg['ancho']} px de ancho (mínimo 40)")
+            I.add("G-LOGO", "El logotipo carga, no se deforma y se lee a su tamaño", ["R-IDE-04"], "defecto", "PASS" if not fl else "FAIL",
+                  f"{len(logos)} dispositivos; el logotipo más pequeño mide {min(lg['ancho'] for _, lg in logos)} px", fl)
         # ---- foco
         fl, av = [], []
         for did, f in D["foco"].items():
@@ -312,7 +353,8 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         # ---- movimiento
         m = D["movimiento"]
         fl = []
-        if m["pausado"]["infinitas"] or m["pausado"]["corriendo"] or m["pausado"]["brasas"]: fl.append(f"tras pausar siguen: {m['pausado']}")
+        # WCAG 2.2.2: lo que dura mas de 5 segundos o se repite tiene que poder pausarse; una transicion de revelado de un segundo no cuenta
+        if m["pausado"]["infinitas"] or m["pausado"].get("largas", 0) or m["pausado"]["brasas"]: fl.append(f"tras pausar siguen: {m['pausado']}")
         if not (m["pausaEstado"]["aria"] == "true" and m["pausaEstado"]["clase"]): fl.append("el botón de pausa no actualiza su estado")
         if m["reducido"]["infinitas"] or m["reducido"]["brasas"] or not m["reducido"]["letras"]: fl.append(f"con movimiento reducido: {m['reducido']}")
         I.add("G-MOVIMIENTO", "Movimiento reducido y pausa de las animaciones", ["R-LEG-06", "R-REN-04", "R-IDE-05"], "bloqueo", "PASS" if not fl else "FAIL",

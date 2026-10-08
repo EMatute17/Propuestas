@@ -14,6 +14,16 @@ PALETAS = {
         "aviso": "#8a2a05", "fondo-campo": "#ffffff", "borde-campo": "rgba(11,20,28,.4)", "texto-campo": "#0b141c",
         "meta-color": "#0b141c",
     },
+    # urbano, parrilla y comida de calle: negro de carbon, naranja de llama y papel crema (todos los pares medidos, minimo 4.7 a 1)
+    "fuego": {
+        "tinta": "#0b0908", "tinta-2": "#12100e", "tinta-3": "#1b1713",
+        "crema": "#f6efe6", "crema-2": "#d8cdbf", "papel": "#f6efe6", "papel-2": "#ece2d3",
+        "brasa": "#ff7a1a", "brasa-2": "#ffb02e", "brasa-papel": "#b13a05",
+        "bruma": "#a9a094", "bruma-papel": "#5c5349", "texto-suave-papel": "#40382f",
+        "sobre-brasa": "#0b0908", "foco-anillo": "#ffc477", "foco-anillo-claro": "#ffc477", "foco-anillo-papel": "#8a2a05",
+        "aviso": "#8a2a05", "fondo-campo": "#ffffff", "borde-campo": "rgba(11,9,8,.4)", "texto-campo": "#0b0908",
+        "meta-color": "#0b0908",
+    },
 }
 
 FORMAS = {
@@ -50,7 +60,28 @@ def grano_datauri():
     return "url(\"data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ") + "\")"
 
 
-def favicon_datauri(inicial, color_fondo, color_letra):
+def favicon_datauri(inicial, color_fondo, color_letra, estilo="elegante"):
+    if estilo == "elegante":
+        letra = "font-family='Georgia,serif' font-style='italic'"
+    else:   # personalidad urbana: letra recia y sin serifas
+        letra = "font-family='Impact,Arial Black,sans-serif' font-weight='900'"
     svg = (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='{color_fondo}'/>"
-           f"<text x='32' y='47' font-size='42' text-anchor='middle' font-family='Georgia,serif' font-style='italic' fill='{color_letra}'>{inicial}</text></svg>")
+           f"<text x='32' y='47' font-size='42' text-anchor='middle' {letra} fill='{color_letra}'>{inicial}</text></svg>")
     return "data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ")
+
+
+def lineas_titular(nombre, minimo=9):
+    """Reparte las palabras del nombre en lineas de portada sin partir ninguna palabra.
+    Cada linea cabe en max(minimo, la palabra mas larga) letras."""
+    palabras = nombre.split()
+    tope = max(minimo, max(len(w) for w in palabras))
+    lineas, actual = [], ""
+    for w in palabras:
+        if actual and len(actual) + 1 + len(w) > tope:
+            lineas.append(actual)
+            actual = w
+        else:
+            actual = (actual + " " + w) if actual else w
+    if actual:
+        lineas.append(actual)
+    return lineas

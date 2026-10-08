@@ -16,7 +16,7 @@ EXT_TEXTO = (".html", ".css", ".js", ".json", ".txt", ".svg", ".xml", ".md")
 MARCA_PROHIBIDA = re.compile(
     r"claude|chatgpt|gpt-?\d|openai|anthropic|peetfoodie|inteligencia artificial|generad[oa]\s+(con|por)\s+ia|modelo de lenguaje|\bIA\b",
     re.I)
-PLACEHOLDERS = ["lorem", "ipsum", "plato 1", "tu texto", "calculando", "todo:", "undefined", "nan", "{{", "}}", "xxx", "por definir", "pendiente de"]
+PLACEHOLDERS = [r"lorem", r"ipsum", r"plato 1", r"tu texto", r"calculando", r"todo:", r"undefined", r"\bnan\b", r"\{\{", r"\}\}", r"\bxxx\b", r"por definir", r"pendiente de"]
 ETICA = [
     ("escasez o urgencia", r"quedan\s+\d+|[uú]ltim[ao]s?\s+(mesas?|plazas?|unidades?)|solo\s+hoy|oferta\s+limitada|date\s+prisa|corre\s|no\s+te\s+lo\s+pierdas|no\s+te\s+quedes\s+sin|cuenta\s+atr[aá]s"),
     ("testimonios, reseñas o estrellas", r"testimonio|rese[nñ]as?\s+de\s+clientes|\d[.,]\d\s*/\s*5|\bestrellas?\b|" + chr(0x2605) + "|" + chr(0x2B50)),
@@ -115,52 +115,80 @@ def marca(carpeta):
     return res("PASS" if not malos else "FAIL", f"{len(malos)} menciones a herramientas de IA o a Peetfoodie", malos[:10])
 
 
-def datos(carpeta, ficha, formato_importe, rango_horario):
+def datos(carpeta, ficha, importe, rango_horario):
+    """Los datos de la página son los de la ficha, ni más ni menos: importes (con variantes y suplementos), horario,
+    teléfono y WhatsApp. `importe` es la función de formato de la ficha (un monto da su texto)."""
     html, p = leer_html(carpeta)
     texto = re.sub(r"\s+", " ", " ".join(p.texto))
     fallos = []
-    N = ficha["negocio"]
+    N, K = ficha["negocio"], ficha.get("contacto", {})
     for k in ("nombre", "ciudad", "direccion"):
         if N[k] not in texto:
             fallos.append(f"falta en el texto visible: {k} = {N[k]}")
-    # precios: cada plato con su importe exacto y ningún importe extra
+    # precios: cada importe de la carta (plato, variante o suplemento) con su texto exacto y ningún importe extra
     esperados = []
     for c in ficha["carta"]:
         for pl in c["platos"]:
-            esperados.append((pl["precio"], formato_importe(pl["precio"], N["pais"], ficha["moneda"])))
+            montos = ([pl["precio"]] if "precio" in pl else []) + [v["precio"] for v in pl.get("variantes", [])] + [s_["precio"] for s_ in pl.get("suplementos", [])]
+            esperados += [(m, importe(m)) for m in montos]
     obtenidos = [(d["value"], re.sub(r"\s+", " ", d["texto"]).strip()) for d in p.datas]
     nbsp = chr(0xA0)
-    norm = lambda s: s.replace(nbsp, " ")
-    esp_set = sorted((str(float(v)).rstrip("0").rstrip(".") if not str(v).isdigit() else str(v), norm(t)) for v, t in esperados)
-    obt_set = sorted((str(float(v)).rstrip("0").rstrip(".") if not str(v).isdigit() else str(v), norm(t)) for v, t in obtenidos)
+    norm = lambda s_: s_.replace(nbsp, " ")
+    clave_valor = lambda v: str(float(v)).rstrip("0").rstrip(".") if not str(v).isdigit() else str(v)
+    esp_set = sorted((clave_valor(v), norm(t)) for v, t in esperados)
+    obt_set = sorted((clave_valor(v), norm(t)) for v, t in obtenidos)
     if esp_set != obt_set:
-        fallos.append(f"los importes del HTML no coinciden con la ficha: esperados {esp_set} y obtenidos {obt_set}")
-    # importes sueltos en el texto que no pertenezcan a la carta
-    simbolo = norm(formato_importe(1, N["pais"], ficha["moneda"]))
-    patron = re.escape(simbolo).replace("1", r"\d[\d.,]*")
-    sueltos = [m for m in re.findall(patron, norm(texto)) if m not in [t for _, t in esp_set]]
+        faltan = [x for x in esp_set if x not in obt_set]
+        sobran = [x for x in obt_set if x not in esp_set]
+        fallos.append(f"los importes del HTML no coinciden con la ficha: faltan {faltan[:4]} y sobran {sobran[:4]}")
+    # importes sueltos en el texto que no pertenezcan a la carta (el patron sale del propio formato de la ficha)
+    base = norm(importe(1))
+    m = re.search(r"\d[\d.,]*", base)
+    patron = re.escape(base[:m.start()]) + r"\d[\d.,]*" + re.escape(base[m.end():])
+    sueltos = [x for x in re.findall(patron, norm(texto)) if x not in [t for _, t in esp_set]]
     if sueltos:
         fallos.append(f"importes en el texto que no estan en la carta: {sueltos[:5]}")
-    # horario
-    claves = [("lun", "Lunes"), ("mar", "Martes"), ("mie", "Miércoles"), ("jue", "Jueves"), ("vie", "Viernes"), ("sab", "Sábado"), ("dom", "Domingo")]
-    for k, nombre in claves:
-        esperado = f"{nombre} {rango_horario(ficha['horario'].get(k, []))}"
-        if esperado not in texto:
-            fallos.append(f"horario distinto del de la ficha: {esperado}")
+    # horario: por dias, o el texto que la ficha declara por confirmar (entonces la pagina no puede decir si esta abierto)
+    n_horarios = 0
+    if ficha.get("horario_estado") == "por_confirmar":
+        if re.sub(r"\s+", " ", ficha["horario_texto"]) not in texto:
+            fallos.append(f"falta el horario declarado en la ficha: {ficha['horario_texto']}")
+        if "por confirmar" not in texto.lower():
+            fallos.append("el horario esta por confirmar y la pagina no lo dice")
+        marcado = re.sub(r"<(script|style)\b.*?</\1>", "", html, flags=re.S)   # el atributo en las etiquetas, no la palabra dentro del codigo
+        if re.search(r"<[^>]*\sdata-open[\s>=]", marcado):
+            fallos.append("el horario esta por confirmar y la pagina muestra un estado de abierto o cerrado")
+        n_horarios = 1
+    else:
+        claves = [("lun", "Lunes"), ("mar", "Martes"), ("mie", "Miércoles"), ("jue", "Jueves"), ("vie", "Viernes"), ("sab", "Sábado"), ("dom", "Domingo")]
+        for k, nombre in claves:
+            esperado = f"{nombre} {rango_horario(ficha['horario'].get(k, []))}"
+            if esperado not in texto:
+                fallos.append(f"horario distinto del de la ficha: {esperado}")
+        n_horarios = 7
     # marcadores de relleno y ceros engañosos
     bajo = texto.lower()
     for ph in PLACEHOLDERS:
-        if ph in bajo:
+        if re.search(ph, bajo):
             fallos.append(f"marcador de relleno: {ph}")
     for patron_cero in (r"\b0\s?(us\$|€|\$|bs)", r"\bgratis\b", r"sin al[eé]rgenos"):
         if re.search(patron_cero, bajo) and not re.search(patron_cero, json.dumps(ficha, ensure_ascii=False).lower()):
             fallos.append(f"valor engañoso sin respaldo en la ficha: {patron_cero}")
-    # número de WhatsApp coherente con la ficha
+    # WhatsApp: solo el de la agencia (muestra) y el del restaurante si la ficha lo declara
     nums = set(re.findall(r"wa\.me/(\d+)", html))
-    permitidos = {ficha.get("_wa_destino")} if ficha.get("_wa_destino") else set()
-    if permitidos and not nums.issubset(permitidos | {ficha.get("_wa_agencia")}):
+    permitidos = {ficha.get("_wa_agencia")} | ({ficha["_wa_destino"]} if ficha.get("_wa_destino") else set())
+    if not nums.issubset(permitidos):
         fallos.append(f"números de WhatsApp inesperados: {sorted(nums - permitidos)}")
-    return res("PASS" if not fallos else "FAIL", f"{len(obtenidos)} importes y 7 horarios comparados con la ficha; {len(fallos)} discrepancias", fallos[:10])
+    # teléfono: los enlaces tel: son el de la ficha y el número visible es el que la ficha declara
+    tels = {l.get("href") for l in p.links if (l.get("href") or "").startswith("tel:")}
+    if K.get("telefono"):
+        if tels != {"tel:" + K["telefono"]}:
+            fallos.append(f"enlaces tel: distintos del telefono de la ficha: {sorted(tels)}")
+        if K.get("telefono_visible") and K["telefono_visible"] not in texto:
+            fallos.append(f"falta el telefono visible: {K['telefono_visible']}")
+    elif tels:
+        fallos.append(f"enlaces tel: y la ficha no declara telefono: {sorted(tels)}")
+    return res("PASS" if not fallos else "FAIL", f"{len(obtenidos)} importes y {n_horarios} {'horario' if n_horarios == 1 else 'horarios'} comparados con la ficha; {len(fallos)} discrepancias", fallos[:10])
 
 
 def etica(carpeta):
@@ -236,6 +264,9 @@ def muestra(carpeta, ficha, whatsapp_agencia):
                 fallos.append(f"negocio real: falta el permiso de la imagen {im['clave']}")
         if "redes" not in texto.lower() and "fotos del restaurante" not in texto.lower():
             fallos.append("negocio real: la página no dice de dónde salen las fotos y los datos")
+        origen = ficha.get("muestra", {}).get("origen_datos", "")
+        if not origen or re.sub(r"\s+", " ", origen) not in re.sub(r"\s+", " ", texto):
+            fallos.append("negocio real: el origen de los datos que declara la ficha no aparece en la página")
     return res("PASS" if not fallos else "FAIL",
                ("negocio real con permiso declarado" if real else "ejemplo ficticio") + f"; {len(fallos)} fallos",
                fallos[:8])
@@ -259,14 +290,15 @@ def fotos(carpeta, ficha):
     return res("PASS" if not fallos else "FAIL", f"{len(man['imagenes'])} imágenes con origen y licencia registrados; {len(p.imgs)} etiquetas img con alt", fallos[:8])
 
 
-def red_estatica(carpeta):
+def red_estatica(carpeta, ficha=None):
     html, p = leer_html(carpeta)
     css = html
     cargas = re.findall(r'(?:src|srcset)="(https?://[^"]+)"|url\((https?://[^)]+)\)|@import\s+["\']?(https?://[^"\')\s]+)', css)
     ext = [next(x for x in c if x) for c in cargas]
     enlaces = sorted({a.get("href") for a in p.links if a.get("href", "").startswith(("http", "mailto"))})
     permitidos = ("https://wa.me/", "https://www.google.com/maps/", "mailto:")
-    raros = [e for e in enlaces if not e.startswith(permitidos)]
+    redes = {r["url"] for r in (ficha or {}).get("contacto", {}).values() if isinstance(r, dict) and r.get("url")}   # solo las redes que declara la ficha
+    raros = [e for e in enlaces if not e.startswith(permitidos) and e not in redes]
     fallos = [f"recurso externo en la carga: {u}" for u in ext] + [f"enlace externo no previsto: {u}" for u in raros]
     return res("PASS" if not fallos else "FAIL", f"{len(ext)} recursos externos en la carga; {len(enlaces)} enlaces de salida revisados", fallos[:8])
 

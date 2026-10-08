@@ -163,11 +163,11 @@ R("R-IDE-01", "identidad", "Cada web tiene identidad propia a partir de datos re
   4, "defecto", "ambos", "E3", ["AL-25 pp.21,45", "AL-26 pp.7,9,13", "UX-27 pp.7,21,30"], ["G-HUELLA"],
   "El estudio de alianzas define adaptativo como responder a diferencias verificadas.")
 R("R-IDE-02", "identidad", "Las convenciones de la tarea se conservan (precio junto al nombre, categorías de carta, botón de acción reconocible en posición estable). Varia el estilo, no la tarea.",
-  4, "defecto", "ambos", "E3", ["PS-15 p.4", "UX-27 p.21"], ["G-SIGUIENTE"])
+  4, "defecto", "ambos", "E3", ["PS-15 p.4", "UX-27 p.21"], ["G-SIGUIENTE", "G-INTERACCION"])
 R("R-IDE-03", "identidad", "Paleta, tipografía y proporciones se eligen por contraste, marca y población, no por prestigio de tendencia. El 60/30/10 y las paletas de moda son punto de partida, no ensayos de conversión.",
   4, "defecto", "ambos", "E3", ["UX-28 pp.13,30", "UX-60 pp.6,11"], ["G-CONTRASTE"])
 R("R-IDE-04", "identidad", "Los activos de marca aprobados por el restaurante (logo, colores, tipografías, fotos) son restricciones fijas. La variación solo actúa sobre lo no fijado.",
-  4, "defecto", "ambos", "E3", ["AL-31 pp.9,14,24", "GR-A04 p.24"], ["G-HUELLA"])
+  4, "defecto", "ambos", "E3", ["AL-31 pp.9,14,24", "GR-A04 p.24"], ["G-HUELLA", "G-LOGO"])
 R("R-IDE-05", "identidad", "El movimiento tiene personalidad (elegante: lento y con aire; casual: rápido y grueso) y siempre respeta las reglas de legibilidad y rendimiento. Los efectos inmersivos son aditivos: la página es completa sin ellos.",
   4, "defecto", "ambos", "E3", ["AL-42 pp.4,5,33", "UX-58 p.10"], ["G-MOVIMIENTO", "G-AVANCE", "G-REND"])
 
@@ -268,7 +268,7 @@ def main():
     for r in REGLAS:
         por_tema[r["tema"]] = por_tema.get(r["tema"], 0) + 1
     salida = {
-        "version": "0.1.0",
+        "version": "0.2.0",
         "descripcion": "Núcleo de conocimiento unificado de Edumashow. Reglas con prioridad, fuente, evidencia y prueba.",
         "prioridades": {str(k): v for k, v in PRIORIDADES.items()},
         "resolucion_de_choques": "Gana la regla de menor número de prioridad. A igual prioridad, el bloqueo gana al defecto y el defecto a la hipótesis. Una regla de prioridad mayor nunca se cumple a costa de una de prioridad menor.",

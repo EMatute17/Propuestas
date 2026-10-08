@@ -30,6 +30,13 @@ def abrir(ruta):
     return im.convert("RGB")
 
 
+def abrir_rgba(ruta):
+    """Abre una imagen conservando la transparencia (para logotipos)."""
+    im = Image.open(ruta)
+    im.load()
+    return im.convert("RGBA")
+
+
 def ajustar(im, contraste=1.0, color=1.0, brillo=1.0):
     if contraste != 1.0:
         im = ImageEnhance.Contrast(im).enhance(contraste)
@@ -76,16 +83,19 @@ def lqip_datauri(im, ancho=24):
     return "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()
 
 
-def guardar(im, ruta_sin_ext, formato):
-    ext = {"avif": "avif", "webp": "webp", "jpg": "jpg"}[formato]
+def guardar(im, ruta_sin_ext, formato, calidad=None):
+    ext = {"avif": "avif", "webp": "webp", "jpg": "jpg", "png": "png"}[formato]
     ruta = f"{ruta_sin_ext}.{ext}"
     os.makedirs(os.path.dirname(ruta), exist_ok=True)
     if formato == "avif":
-        im.save(ruta, "AVIF", quality=CALIDAD["avif"], speed=6)
+        im.save(ruta, "AVIF", quality=calidad or CALIDAD["avif"], speed=6)
     elif formato == "webp":
-        im.save(ruta, "WEBP", quality=CALIDAD["webp"], method=5)
+        extra = {"alpha_quality": 100} if im.mode == "RGBA" else {}
+        im.save(ruta, "WEBP", quality=calidad or CALIDAD["webp"], method=5, **extra)
+    elif formato == "png":
+        im.save(ruta, "PNG", optimize=True)
     else:
-        im.save(ruta, "JPEG", quality=CALIDAD["jpg"], optimize=True, progressive=True)
+        im.save(ruta, "JPEG", quality=calidad or CALIDAD["jpg"], optimize=True, progressive=True)
     return ruta
 
 
@@ -141,6 +151,31 @@ class Activos:
         self._por_hash[h] = datos
         return datos
 
+    def procesar_logo(self, clave, im_rgba, anchos, procedencia):
+        """Logotipo con transparencia: AVIF y WebP con alfa y un PNG de respaldo. Nunca se amplía ni se recorta."""
+        anchos = sorted({a for a in anchos if a <= im_rgba.width}) or [im_rgba.width]
+        variantes = {"avif": [], "webp": []}
+        for a in anchos:
+            r = escalar_a_ancho(im_rgba, a)
+            base = os.path.join(self.carpeta, self.prefijo, f"{clave}-{a}")
+            if HAY_AVIF:
+                guardar(r, base, "avif", calidad=60)
+                variantes["avif"].append((f"{self.prefijo}/{clave}-{a}.avif", a))
+            guardar(r, base, "webp", calidad=86)
+            variantes["webp"].append((f"{self.prefijo}/{clave}-{a}.webp", a))
+        pa = anchos[len(anchos) // 2]
+        guardar(escalar_a_ancho(im_rgba, pa), os.path.join(self.carpeta, self.prefijo, f"{clave}-{pa}"), "png")
+        mayor = anchos[-1]
+        alto = max(1, round(im_rgba.height * mayor / im_rgba.width))
+        datos = {"clave": clave, "ancho": mayor, "alto": alto, "nativo": im_rgba.width, "variantes": variantes,
+                 "fallback": f"{self.prefijo}/{clave}-{pa}.png", "proporcion": f"{im_rgba.width} / {im_rgba.height}"}
+        reg = dict(procedencia)
+        reg.update({"clave": clave, "ancho_origen": im_rgba.width, "alto_origen": im_rgba.height,
+                    "ancho_nativo": im_rgba.width, "alto_nativo": im_rgba.height,
+                    "anchos_generados": anchos, "ampliada": False, "con_transparencia": True})
+        self.registro.append(reg)
+        return datos
+
 
 def picture_html(datos, alt, sizes, clases="", extra_attrs="", prioridad=False, ancho_img=None, alto_img=None, lazy=True):
     """Construye un picture con AVIF y WebP y un JPEG de respaldo. Las dimensiones evitan saltos de diseño."""
@@ -155,7 +190,7 @@ def picture_html(datos, alt, sizes, clases="", extra_attrs="", prioridad=False, 
     h = alto_img or datos["alto"]
     carga = 'fetchpriority="high" decoding="async"' if prioridad else ('loading="lazy" decoding="async"' if lazy else 'decoding="async"')
     cl = f' class="{clases}"' if clases else ""
-    partes.append(f'<img{cl} src="{datos["jpg"]}" alt="{escape(alt, quote=True)}" width="{w}" height="{h}" {carga} {extra_attrs}>'.replace("  ", " ").replace(" >", ">"))
+    partes.append(f'<img{cl} src="{datos.get("fallback") or datos["jpg"]}" alt="{escape(alt, quote=True)}" width="{w}" height="{h}" {carga} {extra_attrs}>'.replace("  ", " ").replace(" >", ">"))
     partes.append("</picture>")
     return "".join(partes)
 
@@ -176,4 +211,32 @@ def imagen_og(hero_im, nombre, lema, ttf_display, ttf_texto, destino, color_fond
     d.text((78, 520), lema, font=f2, fill=(243, 233, 216))
     os.makedirs(os.path.dirname(destino), exist_ok=True)
     base.save(destino, "JPEG", quality=82, optimize=True, progressive=True)
+    return os.path.getsize(destino)
+
+
+def imagen_og_logo(logo_rgba, lineas, lema, ttf_display, ttf_texto, destino,
+                   color_fondo=(11, 9, 8), color_texto=(246, 239, 230), color_acento=(255, 122, 26)):
+    """Vista previa para compartir el enlace cuando no hay foto de portada: fondo oscuro con brillo de brasa,
+    el logotipo a su tamaño y el nombre en letras de titular (1200 por 630). No inventa ninguna imagen."""
+    W, H = 1200, 630
+    base = Image.new("RGB", (W, H), color_fondo)
+    radial = Image.radial_gradient("L").resize((1000, 1000), Image.LANCZOS)   # negro en el centro, blanco en el borde
+    luz = radial.point(lambda v: int(max(0, 255 - v) * 0.42))
+    base.paste(Image.new("RGB", (1000, 1000), color_acento), (-260, 330), luz)
+    lado = 430
+    logo = logo_rgba.resize((lado, lado), Image.LANCZOS)
+    base.paste(logo, (86, (H - lado) // 2 - 6), logo)
+    d = ImageDraw.Draw(base)
+    n = len(lineas)
+    tam = 168 if n <= 2 else 124
+    f1 = ImageFont.truetype(ttf_display, tam)
+    f2 = ImageFont.truetype(ttf_texto, 34)
+    alto_bloque = n * int(tam * 0.98)
+    y = (H - alto_bloque) // 2 - 40
+    for i, t in enumerate(lineas):
+        d.text((580, y), t.upper(), font=f1, fill=color_acento if (n > 1 and i == n - 1) else color_texto)
+        y += int(tam * 0.98)
+    d.text((584, y + 18), lema, font=f2, fill=color_texto)
+    os.makedirs(os.path.dirname(destino), exist_ok=True)
+    base.save(destino, "JPEG", quality=84, optimize=True, progressive=True)
     return os.path.getsize(destino)

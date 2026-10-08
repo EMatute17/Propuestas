@@ -13,6 +13,8 @@ ICONO_WA = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill=
 ICONO_PAUSA = '<svg class="ico-pausa" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>'
 ICONO_PLAY = '<svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
 ICONO_MAPA = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>'
+ICONO_TEL = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1l-2.22 2.2Z"/></svg>'
+ICONO_IG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>'
 
 
 def e_(t):
@@ -31,6 +33,69 @@ def rango_horario(tramos):
     if not tramos:
         return "Cerrado"
     return " y ".join(f"{a}–{b}" for a, b in tramos)
+
+
+def nombre_pais(N):
+    return dinero.PAISES[N["pais"]][0].replace("Espana", "España").replace("Peru", "Perú").replace("Mexico", "México").replace("Canada", "Canadá").replace("Panama", "Panamá")
+
+
+# ------------------------------------------------------------------ acciones: lo que la ficha pide que se pueda hacer en un toque
+# Cada tipo trae su texto en la portada y en la barra del móvil. La ficha puede cambiar el texto (etiqueta) o el orden.
+ETIQUETAS_ACCION = {
+    "reservar": ("Reservar mesa", "Reservar"),
+    "carta": ("Ver la carta", "Carta"),
+    "mapa": ("Cómo llegar", "Cómo llegar"),
+    "llamar": ("Llamar", "Llamar"),
+    "whatsapp": ("Escribir por WhatsApp", "WhatsApp"),
+    "instagram": ("Ver el Instagram", "Instagram"),
+}
+ACCIONES_POR_DEFECTO = {"hero": ["reservar", "carta"], "barra": ["reservar", "carta", "mapa"]}
+
+
+def _accion(tipo, donde, F, C, etiqueta=None):
+    K = F["contacto"]
+    nombre = F["negocio"]["nombre"]
+    ext, icono = False, ""
+    if tipo == "reservar":
+        href = "#reservar"
+    elif tipo == "carta":
+        href = "#carta"
+    elif tipo == "mapa":
+        href, ext = mapa_url(K["mapa_consulta"]), True
+    elif tipo == "llamar":
+        href, icono = "tel:" + K["telefono"], ICONO_TEL
+    elif tipo == "whatsapp":
+        href, ext, icono = wa_url(C["wa_destino"], f'{C["prefijo_wa"]}Hola {nombre}, tengo una consulta.'), True, ICONO_WA
+    elif tipo == "instagram":
+        href, ext, icono = K["instagram"]["url"], True, ICONO_IG
+    else:
+        raise ValueError(f"tipo de acción desconocido: {tipo}")
+    if etiqueta is None:
+        etiqueta = ETIQUETAS_ACCION[tipo][0 if donde == "hero" else 1]
+        if tipo == "llamar" and donde == "hero" and K.get("telefono_visible"):
+            etiqueta = f'Llamar al {K["telefono_visible"]}'
+    return {"tipo": tipo, "etiqueta": etiqueta, "href": href, "externo": ext, "icono": icono if donde == "hero" else ""}
+
+
+def acciones(F, C):
+    """Acciones de la portada y de la barra fija del móvil, ya resueltas con su enlace."""
+    pedido = F.get("acciones") or {}
+    out = {}
+    for donde in ("hero", "barra"):
+        lista = pedido.get(donde) or ACCIONES_POR_DEFECTO[donde]
+        out[donde] = []
+        for a in lista:
+            if isinstance(a, str):
+                a = {"tipo": a}
+            out[donde].append(_accion(a["tipo"], donde, F, C, a.get("etiqueta")))
+    return out
+
+
+def _enlace_accion(a, clase=""):
+    ext = ' target="_blank" rel="noopener"' if a["externo"] else ""
+    ico = f'{a["icono"]} ' if a["icono"] else ""
+    cl = f' class="{clase}"' if clase else ""
+    return f'<a{cl} href="{a["href"]}"{ext}>{ico}{e_(a["etiqueta"])}</a>'
 
 
 # ------------------------------------------------------------------ cinta y portada
@@ -68,7 +133,8 @@ def portada(F, C):
         fuentes.append(f'<source type="{mime}" srcset="{srcset(esc["variantes"][tipo])}" sizes="100vw">')
     foco = f'{int(h["foco"][0] * 100)}% {int(h["foco"][1] * 100)}%'
     img = (f'<img src="{esc["jpg"]}" alt="" width="{esc["ancho"]}" height="{esc["alto"]}" fetchpriority="high" decoding="async">')
-    cta = "Reservar mesa"
+    hero_acc = acciones(F, C)["hero"]
+    botones = "".join(_enlace_accion(a, "btn" if i == 0 else "btn suave") for i, a in enumerate(hero_acc))
     nav = ('<nav aria-label="Secciones"><a href="#carta">Carta</a><a href="#ambiente">Ambiente</a>'
            '<a href="#reservar">Reservar</a><a href="#visitanos">Visítanos</a></nav>')
     return f'''<header class="hero" id="inicio" style="--c:{mas_larga};--foco:{foco}">
@@ -77,7 +143,7 @@ def portada(F, C):
 <div class="hero-cuerpo"><div class="hero-titulo"><p class="sobre">{e_(N["cocina"])} · {e_(N["ciudad"])}</p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1></div>
 <div class="hero-base"><p class="lema">{e_(N["lema"])}</p>
-<div class="hero-lado"><div class="acciones"><a class="btn" href="#reservar">{cta}</a><a class="btn suave" href="#carta">Ver la carta</a></div>
+<div class="hero-lado"><div class="acciones">{botones}</div>
 <p class="estado" data-open><span data-open-text>Ver horario</span></p></div></div></div>
 </header>'''
 
@@ -94,7 +160,7 @@ def idea(F, C):
 
 # ------------------------------------------------------------------ carta
 def _plato(F, C, p):
-    precio = dinero.formato_importe(p["precio"], F["negocio"]["pais"], F["moneda"])
+    precio = C["importe"](p["precio"])
     firma = '<span class="firma">de la casa</span>' if p.get("firma") else ""
     foto_html, vista, clase = "", "", ""
     if p.get("foto"):
@@ -177,7 +243,7 @@ def visita(F, C):
     N, T = F["negocio"], F["textos"]
     filas = "".join(f'<li data-dia="{k}"><span>{n}</span><span>{rango_horario(F["horario"].get(k, []))}</span></li>' for k, n in DIAS)
     como = mapa_url(F["contacto"]["mapa_consulta"])
-    pais = dinero.PAISES[N["pais"]][0].replace("Espana", "España").replace("Peru", "Perú").replace("Mexico", "México").replace("Canada", "Canadá").replace("Panama", "Panamá")
+    pais = nombre_pais(N)
     pref = C["prefijo_wa"]
     wa = wa_url(C["wa_destino"], f'{pref}Hola {N["nombre"]}, tengo una consulta.')
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja rej-2">
@@ -200,20 +266,23 @@ def cierre_muestra(F, C):
 
 def pie(F, C):
     N = F["negocio"]
-    pais = dinero.PAISES[N["pais"]][0].replace("Espana", "España").replace("Peru", "Perú").replace("Mexico", "México").replace("Canada", "Canadá").replace("Panama", "Panamá")
+    pais = nombre_pais(N)
     extra = ""
     if C["muestra"]:
         retirar = f'mailto:{C["agencia"]["correo"]}?subject=' + quote(f'Retirar la muestra de {N["nombre"]}')
-        extra = (f'<span>Página de muestra hecha por Edumashow.</span>'
-                 + ('<span>Fotos de referencia, solo para esta muestra.</span>' if C["ejemplo"] else "")
+        if C["ejemplo"]:
+            origen = '<span>Fotos de referencia, solo para esta muestra.</span>'
+        else:   # negocio real: se dice de dónde salen los datos y las fotos (R-MUE-05)
+            origen = f'<span>{e_(F["muestra"]["origen_datos"])}</span>'
+        extra = (f'<span>Página de muestra hecha por Edumashow.</span>' + origen
                  + f'<a href="{retirar}" data-retirada>Pedir que retiren esta muestra</a>')
     return f'<footer class="pie"><div class="caja"><b>{e_(N["nombre"])}</b><span>{e_(N["ciudad"])} · {e_(pais)}</span>{extra}</div></footer>'
 
 
 def barra_movil(F, C):
-    como = mapa_url(F["contacto"]["mapa_consulta"])
-    return (f'<nav class="barra-movil" aria-label="Acciones rápidas"><a class="principal" href="#reservar">Reservar</a>'
-            f'<a href="#carta">Carta</a><a href="{como}" target="_blank" rel="noopener">Cómo llegar</a></nav>')
+    barra = acciones(F, C)["barra"]
+    enlaces = "".join(_enlace_accion(a, "principal" if i == 0 else "") for i, a in enumerate(barra))
+    return f'<nav class="barra-movil" aria-label="Acciones rápidas">{enlaces}</nav>'
 
 
 def vista_plato(F, C):
@@ -226,13 +295,42 @@ def panel_edu(F, C):
     n = F["negocio"]["nombre"]
     ag = C["agencia"]
     wa = wa_url(ag["whatsapp"], f'Hola Edumashow, vi la muestra de la web de {n} y quiero una así para mi restaurante.')
+    incluye = F.get("muestra", {}).get("incluye") or [
+        "Tu carta, tus precios y tus fotos, con el diseño que le corresponde a tu estilo.",
+        "Reservas o pedidos que llegan directos a tu WhatsApp, y tu horario siempre al día.",
+        "Pensada para verse bien y cargar rápido en el móvil de tus clientes."]
+    lista = "\n".join(f"<li>{e_(t)}</li>" for t in incluye)
+    nota = ("Los textos, fotos y precios de esta muestra son de ejemplo." if C["ejemplo"]
+            else F["muestra"]["nota_panel"])
     return f'''<dialog class="panel-edu" id="panel-edu" aria-labelledby="t-panel"><div class="hoja"><button type="button" class="cerrar" data-cerrar-panel aria-label="Cerrar">{chr(0xD7)}</button>
 <h2 id="t-panel">Esta es una muestra de lo que Edumashow hace</h2>
 <p>La página final es la misma experiencia, completa y hecha con los datos de tu restaurante:</p>
-<ul><li>Tu carta, tus precios y tus fotos, con el diseño que le corresponde a tu estilo.</li>
-<li>Reservas o pedidos que llegan directos a tu WhatsApp, y tu horario siempre al día.</li>
-<li>Pensada para verse bien y cargar rápido en el móvil de tus clientes.</li></ul>
+<ul>{lista}</ul>
 <p>Esta muestra es gratuita y no te compromete a nada. Estará publicada {e_(ag["vigencia"])}. Si te interesa, hablamos del precio y los plazos por WhatsApp.</p>
 <div class="contacto"><a class="btn" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Escríbenos por WhatsApp</a>
 <div class="correo"><span>{e_(ag["correo"])}</span><button type="button" data-copiar="{e_(ag["correo"])}">Copiar</button></div></div>
-<p class="nota">Los textos, fotos y precios de esta muestra son de ejemplo.</p></div></dialog>'''
+<p class="nota">{e_(nota)}</p></div></dialog>'''
+
+
+# ------------------------------------------------------------------ registro de la personalidad elegante
+CSS_EXTRA = (".carta,.visita,.tarjeta,.panel-edu,.cinta{--foco-anillo:var(--foco-anillo-papel)}"
+             ".resumen{font-weight:600;min-height:1.6em}"
+             "@media (prefers-reduced-motion:reduce){.hero-fondo img{animation:none}.grano{animation:none}}")
+JS_EXTRA = "(function(){var f=document.getElementById('form-reserva');if(f)f.hidden=false;})();\n"
+
+
+def _extras(F, C):
+    return vista_plato(F, C)
+
+
+PERSONALIDAD = {
+    "portada": portada,
+    "secciones": {"idea": idea, "carta": carta, "ambiente": ambiente, "reserva": reserva, "visita": visita, "cierre": cierre_muestra},
+    "extras": _extras,
+    "css_extra": CSS_EXTRA,
+    "js_extra": JS_EXTRA,
+    "requiere_hero": True,
+    "admite_variantes": False,
+    "mide_apertura": True,
+    "textos": ["carta_titulo", "carta_sobretitulo", "ambiente_titulo", "reserva_titulo", "reserva_texto", "visita_titulo"],
+}
