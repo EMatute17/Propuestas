@@ -1,18 +1,24 @@
 {
  "alfuego": {
   "carta": "chips_tablero",
+  "clase_tipografica": "condensada",
+  "display": "Anton",
   "forma_movimiento": "recta+rapido",
   "orden": "8aad2002",
   "paleta": "fuego",
   "portada": "mural_columnas",
+  "secuencia": 2,
   "tipografia": "anton-archivo"
  },
  "lumbre": {
   "carta": "pestanas_lista",
+  "clase_tipografica": "serif",
+  "display": "Bodoni Moda",
   "forma_movimiento": "recta+lento",
   "orden": "6657c7aa",
   "paleta": "brasa",
   "portada": "luz_brasas",
+  "secuencia": 1,
   "tipografia": "bodoni-manrope"
  }
 }

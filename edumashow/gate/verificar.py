@@ -19,7 +19,9 @@ import sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-from edumashow.motor import dinero, huella as _huella, piezas, tipografia
+from urllib.parse import unquote
+
+from edumashow.motor import dinero, huella as _huella, pedido as _pedido, piezas, tipografia
 from edumashow.motor.generar import hash_paquete
 from . import estatico
 
@@ -123,6 +125,86 @@ def hoja_contacto(dir_informe, dispositivos, salida):
     return salida
 
 
+
+def juzgar_pedido(ficha, cfg, datos, muestra):
+    """Recalcula en Python lo que el ticket de la página tiene que decir y lo compara con lo que se vio en el navegador."""
+    if not datos:
+        return "UNAVAILABLE", "la prueba del pedido no se ejecutó", []
+    importe = dinero.importe_fn(ficha)
+    T = _pedido.textos(ficha)
+    platos = {pl["id"]: pl for c in ficha["carta"] for pl in c["platos"]}
+    esperadas, total_cent, n = [], 0, 0
+    for l in datos["lineas"]:
+        id_, _, k = l["op"].partition("~")
+        pl = platos[id_]
+        base = pl["variantes"][int(k)]["precio"] if k != "" else pl["precio"]
+        etiqueta = pl["variantes"][int(k)]["etiqueta"] if k != "" else None
+        sups = [pl["suplementos"][i] for i in l.get("suplementos", [])]
+        unit = round((base + sum(x["precio"] for x in sups)) * 100)
+        detalle = ", ".join(([etiqueta] if etiqueta else []) + [x["etiqueta"].lower() for x in sups]) or None
+        esperadas.append({"nombre": pl["nombre"], "detalle": detalle, "qty": str(l["cantidad"]), "precio": importe(unit * l["cantidad"] / 100), "unit": unit, "cantidad": l["cantidad"]})
+        total_cent += unit * l["cantidad"]
+        n += l["cantidad"]
+    total_txt = importe(total_cent / 100)
+    destino = cfg["agencia"]["whatsapp"] if muestra else ficha["contacto"].get("whatsapp")
+    prefijo = f"(Prueba de la muestra de Edumashow para {ficha['negocio']['nombre']}) " if muestra else ""
+    nbsp = chr(0xA0)
+    norm = lambda t: (t or "").replace(nbsp, " ")
+    fl = []
+    for did, R_ in datos["dispositivos"].items():
+        movil = did.startswith("iph")
+        if R_.get("faltaOp"): fl.append(f"{did}: la página no tiene estas opciones del menú: {R_['faltaOp']}")
+        a = R_["antes"]
+        if a["barraVisible"] or a["lineas"]: fl.append(f"{did}: el ticket no empieza vacío (barra {a['barraVisible']}, líneas {len(a['lineas'])})")
+        t = R_["tras"]
+        esp = [{"nombre": e["nombre"], "detalle": e["detalle"], "qty": e["qty"], "precio": norm(e["precio"])} for e in esperadas]
+        # en el teléfono las líneas se leen en la hoja; en la computadora, en el ticket lateral
+        lineas_vistas = R_["hoja"]["lineas"] if movil and R_.get("hoja") else t["lineas"]
+        obt = [{"nombre": x["nombre"], "detalle": x["detalle"], "qty": x["qty"], "precio": norm(x["precio"])} for x in lineas_vistas]
+        if obt != esp: fl.append(f"{did}: las líneas del ticket son {obt} y se esperaban {esp}")
+        fuente_total = R_["hoja"] if movil and R_.get("hoja") else t
+        if norm(fuente_total["total"]) != norm(total_txt): fl.append(f"{did}: el total del ticket es {fuente_total['total']} y la ficha da {total_txt}")
+        if fuente_total["n"] != str(n) or fuente_total["unidad"] != T["productos_varios"]: fl.append(f"{did}: el contador dice {fuente_total['n']} {fuente_total['unidad']} y son {n}")
+        if movil:
+            if not (t["barraVisible"] and t["barraN"] == str(n) and norm(t["barraTotal"]) == norm(total_txt)): fl.append(f"{did}: la barra del pedido dice {t['barraN']} y {t['barraTotal']}, y debía decir {n} y {total_txt}")
+            h = R_.get("hoja") or {}
+            if not (h.get("hojaAbierta") and "cerrar" in (h.get("foco") or "")): fl.append(f"{did}: la hoja del ticket no se abre con el foco en Cerrar ({h.get('foco')})")
+            c = R_.get("cerrada") or {}
+            if c.get("abierta") or "pb-ver" not in (c.get("foco") or ""): fl.append(f"{did}: Escape no cierra la hoja devolviendo el foco a la barra ({c})")
+        else:
+            if not t["ladoVisible"] or t["barraVisible"]: fl.append(f"{did}: con el ticket a la vista no debe haber barra del pedido (lateral {t['ladoVisible']}, barra {t['barraVisible']})")
+            if not (R_.get("barraLejos") or {}).get("barraVisible"): fl.append(f"{did}: con el ticket fuera de pantalla debía aparecer la barra del pedido")
+        primera = esperadas[0]
+        mas = R_["masUno"]
+        if norm(mas["total"]) != norm(importe((total_cent + primera["unit"]) / 100)): fl.append(f"{did}: al agregar uno desde el ticket el total es {mas['total']}")
+        menos = R_["menosUno"]
+        if norm(menos["total"]) != norm(total_txt): fl.append(f"{did}: al quitar uno desde el ticket el total es {menos['total']} y debía volver a {total_txt}")
+        sn = R_["sinNombre"]
+        if sn["envios"] != 0 or not sn["visible"] or sn["aviso"] != T["falta_nombre"] or sn["foco"] != "nombre": fl.append(f"{did}: enviar sin nombre debía avisar y no abrir WhatsApp ({sn})")
+        envio = R_["envio"]
+        if len(envio) != 1: fl.append(f"{did}: se esperaba un solo envío a WhatsApp y hubo {len(envio)}")
+        else:
+            url = envio[0]["url"]
+            if not url.startswith(f"https://wa.me/{destino}?text="): fl.append(f"{did}: el pedido no va al WhatsApp esperado ({url[:40]})")
+            texto = unquote(url.split("?text=", 1)[1]) if "?text=" in url else ""
+            saludo = T["saludo"].replace("{negocio}", ficha["negocio"]["nombre"])
+            if not texto.startswith(prefijo + saludo): fl.append(f"{did}: el mensaje no empieza con {prefijo + saludo!r}")
+            for e in esperadas:
+                nombre_l = e["nombre"] + (", " + e["detalle"] if e["detalle"] else "")
+                linea = f"\u2022 {e['cantidad']} \u00d7 {nombre_l} \u2014 {e['precio']}"
+                if norm(linea) not in norm(texto): fl.append(f"{did}: al mensaje le falta la línea {linea!r}")
+            if f"{T['total']}: {total_txt}" not in norm(texto): fl.append(f"{did}: al mensaje le falta el total {total_txt}")
+            if f"{T['a_nombre']}: Ana P\u00e9rez" not in texto: fl.append(f"{did}: al mensaje le falta el nombre")
+            if f"{T['notas']}: Sin cebolla, por favor" not in texto: fl.append(f"{did}: al mensaje le falta la nota")
+            na = R_.get("noAbrio") or {}
+            if not na.get("visible") or na.get("href") != url: fl.append(f"{did}: el aviso por si no se abrió WhatsApp no lleva el mismo enlace")
+        v = R_["vaciado"]
+        if v["lineas"] or v["barraVisible"] or v["pasosActivos"]: fl.append(f"{did}: tras vaciar quedan líneas {len(v['lineas'])}, barra {v['barraVisible']}, contadores {v['pasosActivos']}")
+        if v["almacenamiento"] or t["almacenamiento"]: fl.append(f"{did}: el pedido dejó cookies o almacenamiento")
+        if R_.get("errores"): fl.append(f"{did}: errores de consola durante el pedido: {R_['errores']}")
+    ok = "PASS" if not fl else "FAIL"
+    return ok, f"{len(datos['lineas'])} líneas de prueba ({n} productos, total {total_txt}) en {len(datos['dispositivos'])} dispositivos; destino {'la agencia (prueba)' if muestra else 'el restaurante'}", fl
+
 # ------------------------------------------------------------------ verificación completa
 def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimiento=True, dir_informe=None):
     ficha = leer(ruta_ficha)
@@ -158,12 +240,22 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
     r = estatico.manifiesto(sitio, reglas["version"], hash_paquete)
     I.add("G-MANIFIESTO", "Manifiesto completo y hash del paquete", ["R-PRO-02", "R-PRO-06"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     h = man["huella_diseno"]
-    otras, cumple = _huella.comparar(ficha["id"], h, _huella.cargar_registro(os.path.join(AQUI, "registro_huellas.json")))
+    registro = _huella.cargar_registro(os.path.join(AQUI, "registro_huellas.json"))
+    otras, cumple = _huella.comparar(ficha["id"], h, registro)
+    rot = _huella.rotacion(ficha["id"], h, registro)
+    previas = _huella.anteriores(ficha["id"], registro)
+    ev_rot = f"titular {h['display']} ({h['clase_tipografica']}); rotación frente a las {min(len(previas), _huella.ULTIMAS_FUENTE)} webs anteriores: " + ("sin repeticiones" if not rot else "; ".join(rot))
     if not otras:
-        I.add("G-HUELLA", "Unicidad de diseño frente a las webs registradas", ["R-VAR-01"], "bloqueo", "PASS", "no hay otras webs registradas con las que comparar (primera del registro)")
+        I.add("G-HUELLA", "Unicidad de diseño y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03"], "bloqueo", "PASS" if not rot else "FAIL",
+              "no hay otras webs registradas con las que comparar (primera del registro); " + ev_rot, rot)
     else:
-        I.add("G-HUELLA", "Unicidad de diseño frente a las webs registradas", ["R-VAR-01"], "bloqueo", "PASS" if cumple else "FAIL",
-              f"distancia mínima {min(d for _, d in otras)} de 6 (se exigen {_huella.MINIMO_DISTINTAS})", [f"{k}: {d} dimensiones distintas" for k, d in otras])
+        I.add("G-HUELLA", "Unicidad de diseño y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03"], "bloqueo", "PASS" if (cumple and not rot) else "FAIL",
+              f"distancia mínima {min(d for _, d in otras)} de 6 (se exigen {_huella.MINIMO_DISTINTAS}); " + ev_rot, [f"{k}: {d} dimensiones distintas" for k, d in otras] + rot)
+    r = estatico.paleta(sitio)
+    I.add("G-PALETA", "Pares de colores de lectura con contraste suficiente (4,5 a 1; 3 a 1 en anillos de foco)", ["R-LEG-01", "R-IDE-03", "R-IDE-06"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    r = estatico.antojo(sitio, ficha)
+    if r is not None:
+        I.add("G-ANTOJO", "Fotos ordenadas por antojo: juicio completo, fotos reales y orden visible igual al del ranking", ["R-IDE-07", "R-DAT-04"], "defecto", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.fuentes_glifos(sitio, tipografia.PAREJAS, ficha["estilo"]["tipografia"])
     I.add("G-FUENTES", "Todos los caracteres existen en las tipografías", ["R-LEG-04", "R-REN-03"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.red_estatica(sitio, ficha)
@@ -304,7 +396,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y día cerrado", fl)
         else:
             I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "NA", "no aplica: la ficha no tiene reservas y su acción principal es llamar")
-        pe, dl, ch = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("chips")
+        pe, dl, ch = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("filtros")
         fl, partes = [], []
         if pe:   # la carta con pestañas (personalidad elegante)
             ids = [c["id"] for c in ficha["carta"]]
@@ -313,20 +405,30 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             if pe.get("t1", {}).get("sel") != ["false", "true"] + ["false"] * (n - 2) or pe.get("t1", {}).get("visibles") != [f"panel-{ids[1]}"]: fl.append("la flecha derecha no cambia de pestaña")
             if pe.get("t2", {}).get("activo") != f"tab-{ids[-1]}": fl.append("la tecla Fin no va a la última pestaña")
             partes.append("flechas y Fin en las pestañas")
-        if ch:   # la carta en tablero con barra de categorías (personalidad urbana)
-            for r_ in ch["resultados"]:
-                if r_["actual"] != [r_["enlace"]]: fl.append(f"al pulsar {r_['enlace']} la categoría actual es {r_['actual']}")
-                if not r_["bajoBarra"]: fl.append(f"{r_['enlace']} queda tapada por la barra de categorías")
-                if not r_["enPantalla"]: fl.append(f"{r_['enlace']} no queda a la vista al pulsar su categoría")
-                if r_["chipsTop"] > 1: fl.append("la barra de categorías no queda pegada arriba mientras se recorre el menú")
-            if ch["teclado"]["actual"] != [ch["teclado"]["enlace"]]: fl.append("Enter en una categoría no la marca como actual")
-            partes.append(f"{len(ch['enlaces'])} categorías: clic, teclado y barra pegada")
+        if ch:   # el menú con filtros: una categoría a la vez, o todas (personalidad urbana)
+            ids, ini = ch["ids"], ch["inicial"]
+            if ini["presionados"] != [ids[0]] or ini["visibles"] != [ids[0]]: fl.append(f"estado inicial de los filtros: {ini['presionados']} y a la vista {ini['visibles']}")
+            for p_ in ch["pasos"]:
+                esperado = ini["todas"] if p_["id"] == "todo" else [p_["id"]]
+                if p_["visibles"] != esperado: fl.append(f"al pulsar {p_['id']} se ven {p_['visibles']} y se esperaba {esperado}")
+                if p_["presionados"] != [p_["id"]]: fl.append(f"al pulsar {p_['id']} el filtro marcado es {p_['presionados']}")
+                if p_["tarjetaTop"] is not None and p_["tarjetaTop"] < p_["barraAbajo"] - 2: fl.append(f"con {p_['id']} la primera tarjeta queda tapada por la barra de filtros")
+                if not p_["tarjetas"]: fl.append(f"con {p_['id']} no se ve ninguna tarjeta")
+            if ch["enter"]["presionados"] != [ids[0]]: fl.append("Enter sobre un filtro no lo activa")
+            if ch["espacio"]["presionados"] != [ids[2]]: fl.append("la barra espaciadora sobre un filtro no lo activa")
+            partes.append(f"{len(ids) - 1} categorías y Ver todo: clic, Enter y espacio")
         if muestra:   # el diálogo de Edumashow solo existe en la muestra
             if not (dl.get("abierto", {}).get("abierto") and dl.get("abierto", {}).get("foco") == "cerrar"): fl.append("el diálogo no se abre con el foco en Cerrar")
             if dl.get("cerrado", {}).get("abierto") or dl.get("cerrado", {}).get("foco") != "Quiero mi web": fl.append("Escape no cierra el diálogo devolviendo el foco")
             partes.append("Escape y retorno del foco en el diálogo")
-        if not (pe or ch): fl.append("la carta no tiene pestañas ni barra de categorías que probar")
+        if not (pe or ch): fl.append("la carta no tiene pestañas ni filtros que probar")
         I.add("G-INTERACCION", "Navegación de la carta con teclado" + (" y diálogo de la muestra" if muestra else ""), ["R-LEG-05"], "bloqueo", "PASS" if not fl else "FAIL", "; ".join(partes), fl)
+        # ---- pedido: ticket en vivo, totales, mensaje y destino
+        if ficha.get("pedido"):
+            I.add("G-PEDIDO", "Pedido: totales del ticket, mensaje de WhatsApp, destino y vaciado", ["R-DAT-03", "R-SIG-03", "R-SIG-04", "R-MUE-02"], "bloqueo",
+                  *juzgar_pedido(ficha, cfg, Fn.get("pedido"), muestra))
+        else:
+            I.add("G-PEDIDO", "Pedido: totales del ticket, mensaje de WhatsApp, destino y vaciado", ["R-DAT-03", "R-SIG-03", "R-SIG-04", "R-MUE-02"], "bloqueo", "NA", "no aplica: la ficha no tiene pedido en la página")
         # ---- logotipo
         logos = [(d["id"], d["pagina"]["logo"]) for d in devs if d["pagina"].get("logo")]
         if logos:
@@ -435,6 +537,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         "id": ficha["id"], "nombre": ficha["negocio"]["nombre"], "modo": ficha["modo"], "paquete_sha256": man["paquete_sha256"],
         "veredicto_tecnico": veredicto, "bloqueantes": [b["id"] for b in bl],
         "estados": {"tecnico": veredicto, "revision_visual": "pendiente: capturas generadas, falta la revisión de una persona", "aprobacion_de_eduardo": "pendiente", "entrega": "pendiente"},
+        "decisiones_de_diseno": man.get("decisiones_de_diseno"),
         "resultados": I.items, "dispositivos": D["dispositivos"] if D else [], "contraste": resumen_contraste, "rendimiento": perf, "peso": D["peso"] if D else None,
         "no_verifica": [
             "Safari y Firefox reales: solo se probó Chromium con los tamaños, la densidad y el tacto de cada dispositivo emulados.",
@@ -474,6 +577,9 @@ def escribir_md(inf, ficha, ruta):
             for d in r["detalle"][:12]:
                 L.append(f"- {d}")
             L.append("")
+    dd = inf.get("decisiones_de_diseno")
+    if dd:
+        L += lineas_decisiones(dd)
     L.append("## Dispositivos probados\n")
     L.append("| Dispositivo | Tamaño | Desborde | h1 y botón principal en la primera pantalla | Solapes | Recortes |\n|---|---|---|---|---|---|")
     for d in inf["dispositivos"]:
@@ -499,6 +605,45 @@ def escribir_md(inf, ficha, ruta):
 
 
 NOMBRE_PERFIL = {"movil": "móvil", "escritorio": "escritorio"}
+
+
+def lineas_decisiones(dd):
+    """Sección del informe con lo que decidió el director de estilo y por qué."""
+    L = [f"## Decisiones de diseño (director de estilo {dd['version_director']})\n"]
+    pa, ti, fo = dd["paleta"], dd["tipografia"], dd["fotos"]
+    L.append(f"**Paleta: {pa['id']}.** {pa['origen']}.\n")
+    rep = pa.get("informe")
+    if rep:
+        L.append(f"- Color de identidad sacado del logo: {rep['color_de_marca']}. Proporción: {rep['proporcion']}.")
+        ac = rep.get("acento")
+        if ac:
+            L.append(f"- Acento de temporada ({ac['temporada']}, {ac['fuente']}): {ac['elegido']}, afinado hacia la marca a {ac['afinado']}. "
+                     "Alternativas: " + "; ".join(f"{a['nombre']} (relación de tono {a['relacion']}, unidad {a['unidad']}, puntos {a['puntos']})" for a in ac["alternativas"]) + ".")
+        L.append(f"- Fondos: claro desde {rep['fondos']['claro_desde']}; oscuro desde {rep['fondos']['oscuro_desde']}.")
+        L.append("- Colores dominantes del logo: " + ", ".join(f"{d['hex']} ({round(d['peso'] * 100)} %{', neutro' if d['neutro'] else ''})" for d in rep["dominantes_del_logo"]) + ".")
+    L.append("\n| Rol | Color |\n|---|---|")
+    for k in ("tinta", "tinta-2", "tinta-3", "crema", "papel", "papel-2", "brasa", "brasa-2", "brasa-papel", "acento", "acento-papel"):
+        if k in pa["tokens"]:
+            L.append(f"| {k} | `{pa['tokens'][k]}` |")
+    pares = pa["pares"]
+    peor = min(pares, key=lambda f: f["contraste"] / f["minimo"])
+    L.append(f"\n{len(pares)} pares de contraste medidos al generar; el más justo: {peor['texto']} sobre {peor['fondo']} {peor['contraste']}:1 (se exigen {peor['minimo']}:1).\n")
+    el = ti["elegida"]
+    L.append(f"**Tipografía del titular: {el['display']} ({el['clase']}), pareja {ti['clave']}.** {ti['origen']}. Tonos del restaurante: {', '.join(dd['tonos']['lista'])} ({dd['tonos']['origen']}).\n")
+    L.append("| Pareja | Clase | Tonos que encajan | Puntos | Probada en el Gate | Rotación | Caracteres que faltan |\n|---|---|---|---|---|---|---|")
+    for f in ti["ranking"]:
+        L.append(f"| {f['clave']} | {f['clase']} | {', '.join(f['tonos_que_encajan']) or '-'} | {f['puntos']} | {'sí' if f['probada'] else 'no'} | {'; '.join(f['rotacion']) or 'sin repetición'} | {f['faltan_caracteres'] or '-'} |")
+    if fo["registros"]:
+        L.append(f"\n**Fotos por antojo** (juicio visual {int(fo['pesos']['juicio'] * 100)} % y medidas técnicas {int(fo['pesos']['tecnica'] * 100)} %; se usa el orden: {'sí' if fo['usa_el_orden'] else 'no'}).\n")
+        L.append("| Foto | Puntos | Juicio visual | Técnica | Nota |\n|---|---|---|---|---|")
+        for k in fo["orden_por_antojo"]:
+            r = fo["registros"][k]
+            L.append(f"| {k} | {r['puntos']} | {r['visual']} | {r['tecnica']} | {r['nota']} |")
+    if dd.get("idea"):
+        i = dd["idea"]
+        L.append(f"\n**Idea dibujada: {i['pieza']}** ({i['categoria']}, en {i['unidad']}; medidas {i['medidas']}). Datos: {i['datos']}.")
+    L.append("")
+    return L
 
 
 def main(argv=None):

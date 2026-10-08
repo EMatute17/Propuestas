@@ -1,0 +1,18 @@
+{
+ "anton-archivo": {
+  "urbano": {
+   "fecha": "2026-10-08",
+   "modo": "completo (27 dispositivos y Lighthouse)",
+   "sitio": "alfuego",
+   "veredicto": "APTO"
+  }
+ },
+ "bodoni-manrope": {
+  "elegante": {
+   "fecha": "2026-10-08",
+   "modo": "completo (27 dispositivos y Lighthouse)",
+   "sitio": "lumbre",
+   "veredicto": "APTO"
+  }
+ }
+}

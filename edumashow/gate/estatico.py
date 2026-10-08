@@ -60,7 +60,8 @@ class _Texto(HTMLParser):
         if tag == "a":
             self.links.append(a)
         if tag == "data":
-            self._data_actual = {"value": a.get("value"), "texto": ""}
+            # eco: repite el precio real de un plato en otro lugar (la regla de medidas); calc: cifra derivada de la ficha con su cuenta
+            self._data_actual = {"value": a.get("value"), "texto": "", "eco": "data-eco" in a, "calc": a.get("data-calc")}
 
     def handle_endtag(self, tag):
         if tag == "title":
@@ -131,7 +132,8 @@ def datos(carpeta, ficha, importe, rango_horario):
         for pl in c["platos"]:
             montos = ([pl["precio"]] if "precio" in pl else []) + [v["precio"] for v in pl.get("variantes", [])] + [s_["precio"] for s_ in pl.get("suplementos", [])]
             esperados += [(m, importe(m)) for m in montos]
-    obtenidos = [(d["value"], re.sub(r"\s+", " ", d["texto"]).strip()) for d in p.datas]
+    propios = [d for d in p.datas if not d.get("eco") and not d.get("calc")]
+    obtenidos = [(d["value"], re.sub(r"\s+", " ", d["texto"]).strip()) for d in propios]
     nbsp = chr(0xA0)
     norm = lambda s_: s_.replace(nbsp, " ")
     clave_valor = lambda v: str(float(v)).rstrip("0").rstrip(".") if not str(v).isdigit() else str(v)
@@ -141,11 +143,29 @@ def datos(carpeta, ficha, importe, rango_horario):
         faltan = [x for x in esp_set if x not in obt_set]
         sobran = [x for x in obt_set if x not in esp_set]
         fallos.append(f"los importes del HTML no coinciden con la ficha: faltan {faltan[:4]} y sobran {sobran[:4]}")
+    # ecos: el mismo precio real repetido en otro sitio de la pagina; cifras derivadas: el precio entre la medida, recalculado aqui
+    for d in p.datas:
+        if d.get("eco") and (clave_valor(d["value"]), norm(re.sub(r"\s+", " ", d["texto"]).strip())) not in esp_set:
+            fallos.append(f"un precio repetido en la pagina no coincide con la carta: {d['value']} {d['texto']}")
+    platos = {pl["id"]: pl for c in ficha["carta"] for pl in c["platos"]}
+    derivados = []
+    for d in p.datas:
+        if not d.get("calc"):
+            continue
+        pl = platos.get(d["calc"])
+        if not pl or not pl.get("medida") or not isinstance(pl.get("precio"), (int, float)):
+            fallos.append(f"cifra derivada de un plato sin precio o sin medida: {d['calc']}")
+            continue
+        esperado = round(pl["precio"] / pl["medida"], 2)
+        texto_d = norm(re.sub(r"\s+", " ", d["texto"]).strip())
+        if abs(float(d["value"]) - esperado) > 0.005 or texto_d != norm(importe(esperado)):
+            fallos.append(f"cifra derivada de {d['calc']}: la pagina dice {d['value']} ({texto_d}) y el calculo da {esperado}")
+        derivados.append(texto_d)
     # importes sueltos en el texto que no pertenezcan a la carta (el patron sale del propio formato de la ficha)
     base = norm(importe(1))
     m = re.search(r"\d[\d.,]*", base)
     patron = re.escape(base[:m.start()]) + r"\d[\d.,]*" + re.escape(base[m.end():])
-    sueltos = [x for x in re.findall(patron, norm(texto)) if x not in [t for _, t in esp_set]]
+    sueltos = [x for x in re.findall(patron, norm(texto)) if x not in [t for _, t in esp_set] and x not in derivados]
     if sueltos:
         fallos.append(f"importes en el texto que no estan en la carta: {sueltos[:5]}")
     # horario: por dias, o el texto que la ficha declara por confirmar (entonces la pagina no puede decir si esta abierto)
@@ -188,7 +208,8 @@ def datos(carpeta, ficha, importe, rango_horario):
             fallos.append(f"falta el telefono visible: {K['telefono_visible']}")
     elif tels:
         fallos.append(f"enlaces tel: y la ficha no declara telefono: {sorted(tels)}")
-    return res("PASS" if not fallos else "FAIL", f"{len(obtenidos)} importes y {n_horarios} {'horario' if n_horarios == 1 else 'horarios'} comparados con la ficha; {len(fallos)} discrepancias", fallos[:10])
+    extra = f" (más {len([d for d in p.datas if d.get('eco')])} repetidos y {len(derivados)} cifras derivadas recalculadas)" if (derivados or any(d.get("eco") for d in p.datas)) else ""
+    return res("PASS" if not fallos else "FAIL", f"{len(obtenidos)} importes{extra} y {n_horarios} {'horario' if n_horarios == 1 else 'horarios'} comparados con la ficha; {len(fallos)} discrepancias", fallos[:10])
 
 
 def etica(carpeta):
@@ -319,13 +340,75 @@ def fuentes_glifos(carpeta, parejas, clave):
     return res("PASS" if not faltan else "FAIL", f"{len(roles)} tipografías revisadas contra {len(set(texto))} caracteres distintos", [f"{a}: {''.join(f)}" for a, f in faltan.items()])
 
 
+def paleta(carpeta):
+    """G-PALETA: los colores finales de la página (los que lee el navegador, no los de la ficha) cumplen todos los pares de contraste
+    de lectura: 4,5 a 1 en texto y 3 a 1 en anillos de foco y grandes superficies de marca."""
+    from edumashow.motor import color
+    html, _ = leer_html(carpeta)
+    m = re.search(r":root\{([^}]*)\}", html)
+    if not m:
+        return res("FAIL", "no se encontraron los colores de diseño (:root) en la página")
+    tokens = {}
+    for par in m.group(1).split(";"):
+        if par.startswith("--") and ":" in par:
+            k, v = par[2:].split(":", 1)
+            tokens[k.strip()] = v.strip()
+    hexes = {k: v for k, v in tokens.items() if re.fullmatch(r"#[0-9a-fA-F]{6}", v)}
+    filas = color.pares_de_contraste(hexes)
+    fallos = [f"{f['texto']} sobre {f['fondo']}: {f['contraste']}:1 (se exige {f['minimo']}:1)" for f in filas if not f["ok"]]
+    peor = min(filas, key=lambda f: f["contraste"] / f["minimo"]) if filas else None
+    if not filas:
+        return res("FAIL", "no se pudo medir ningún par de colores")
+    return res("PASS" if not fallos else "FAIL",
+               f"{len(filas)} pares de colores medidos sobre los colores finales; el más justo: {peor['texto']} sobre {peor['fondo']} {peor['contraste']}:1 (se exige {peor['minimo']}:1)", fallos[:10])
+
+
+def antojo(carpeta, ficha):
+    """G-ANTOJO: si la web ordena sus fotos por antojo, cada foto tiene su juicio completo (7 criterios), es real y sin marcas ajenas, y el
+    orden que se ve en la portada y en la galería es el del ranking."""
+    html, p = leer_html(carpeta)
+    man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))
+    D = (man.get("decisiones_de_diseno") or {}).get("fotos") or {}
+    declaradas = [k for k, a in ficha.get("activos", {}).items() if "antojo" in a]
+    if not declaradas:
+        return None
+    fallos = []
+    reg = D.get("registros", {})
+    comida = [k for k in ficha.get("activos", {}) if k != "logo" and k != "hero"]
+    for k in comida:
+        if k not in reg:
+            fallos.append(f"la foto {k} no tiene juicio de antojo en la ficha")
+    for k, r in reg.items():
+        if sorted(r["juicio"]) != sorted(["textura", "reconocible", "accion", "protagonista", "luz", "calor", "mano"]) or any(v not in (0, 1, 2) for v in r["juicio"].values()):
+            fallos.append(f"{k}: el juicio no tiene los 7 criterios con 0, 1 o 2")
+        if r["descartada"]:
+            fallos.append(f"{k} se descarta del ranking: {', '.join(r['descartada'])}")
+    orden = D.get("orden_por_antojo", [])
+    if ficha["estilo"].get("orden_fotos") == "antojo" and orden:
+        def clave_de(src):
+            return re.sub(r"-\d+\.(avif|webp|jpg|png)$", "", src.split("/")[-1])
+        galeria_claves = [g["foto"] for g in ficha.get("galeria", [])]
+        esperado = [k for k in orden if k in galeria_claves] + [k for k in galeria_claves if k not in orden]
+        mural = re.search(r'<div class="mural">.*?<div class="tesela"[^>]*>.*?<img[^>]*src="([^"]+)"', html, re.S)
+        if mural and clave_de(mural.group(1)) != esperado[0]:
+            fallos.append(f"la primera foto del mural es {clave_de(mural.group(1))} y la mejor por antojo es {esperado[0]}")
+        galeria = re.search(r'<div class="galeria".*', html, re.S)
+        if galeria:
+            vistas = [clave_de(x) for x in re.findall(r'<figure[^>]*>.*?<img[^>]*src="([^"]+)"', galeria.group(0), re.S)]
+            if vistas != esperado:
+                fallos.append(f"el orden de la galería es {vistas} y el del ranking es {esperado}")
+    puntos = sorted(((r["puntos"], k) for k, r in reg.items()), reverse=True)
+    resumen = ", ".join(f"{k} {pt}" for pt, k in puntos[:3])
+    return res("PASS" if not fallos else "FAIL", f"{len(reg)} fotos juzgadas con los 7 criterios; las mejores: {resumen}", fallos[:8])
+
+
 def manifiesto(carpeta, version_reglas, hash_fn):
     ruta = os.path.join(carpeta, "manifiesto.json")
     if not os.path.exists(ruta):
         return res("FAIL", "no hay manifiesto.json")
     man = json.load(open(ruta, encoding="utf-8"))
     fallos = []
-    for k in ("id", "version_generador", "version_reglas", "fecha", "modo", "pais", "ciudad", "idioma", "huella_diseno", "imagenes", "tipografias", "pesos_bytes", "paquete_sha256"):
+    for k in ("id", "version_generador", "version_reglas", "fecha", "modo", "pais", "ciudad", "idioma", "huella_diseno", "decisiones_de_diseno", "imagenes", "tipografias", "pesos_bytes", "paquete_sha256"):
         if k not in man:
             fallos.append(f"falta {k}")
     actual = hash_fn(carpeta)

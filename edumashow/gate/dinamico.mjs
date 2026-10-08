@@ -18,10 +18,12 @@ const CAP = path.join(salida, 'capturas');
 fs.mkdirSync(CAP, { recursive: true });
 const lista = modo === 'rapido' ? dispositivos.filter((d) => d.representativo) : dispositivos;
 
+const SOLO = process.env.SOLO || '';   // para depurar: SOLO=pedido ejecuta solo esa prueba
+const puede = (n) => !SOLO || SOLO === n;
 const registro = [];
 const srv = await servir(carpeta, { registro });
 const nav = await chromium.launch({ args: ['--no-sandbox'] });
-const R = { version_gate: '0.2.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {} };
+const R = { version_gate: '0.2.0', dispositivos: [], axe: {}, foco: {}, movimiento: {}, funcional: {}, red: {}, contraste: [], zoom: {}, peso: {} };
 
 async function nuevaPagina(d, op = {}) {
   const movil = d.tipo !== 'escritorio';
@@ -70,15 +72,26 @@ const medirDOM = (ignorarSticky) => {
   const so = hero && hero.querySelector('.sobre'); out.primera.sobre = so ? { texto: so.textContent.trim().slice(0, 60), dentro: dentro(so.getBoundingClientRect()) } : null;
 
   // ---- hojas de texto (para solapes y recortes)
-  const hojas = [];
+  const hojas = [], solapesDeco = [];
   for (const e of document.body.querySelectorAll('*')) {
-    if (e.closest('.sr-only') || e.closest('dialog:not([open])') || e.closest('.vista') || e.closest('script,style,noscript')) continue;
+    if (e.closest('.sr-only') || e.closest('dialog:not([open])') || e.closest('.vista') || e.closest('script,style,noscript,template')) continue;
+    if (e.closest('[data-decorativo]')) continue;   // lo decorativo (sello, marquesina) se revisa aparte, como caja
     if (e.classList && e.classList.contains('l')) continue;
     const directo = Array.from(e.childNodes).some((n) => n.nodeType === 3 && n.textContent.trim().length > 0);
     const esControl = /^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/.test(e.tagName) && (e.getAttribute('href') || e.tagName !== 'A');
     if (!(directo || e.tagName === 'H1' || esControl) || !visible(e) || enFijo(e)) continue;
     const b = e.getBoundingClientRect();
+    if (b.width < 3 || b.height < 3) continue;   // un elemento recortado a 1 px (texto solo para lectores de pantalla) no se ve
     hojas.push({ e, x0: b.left + window.scrollX, y0: b.top + window.scrollY, x1: b.right + window.scrollX, y1: b.bottom + window.scrollY, nombre: eti(e) });
+  }
+  // capas decorativas: pueden estar sobre las fotos, nunca sobre un texto ni sobre un control
+  for (const dcr of Array.from(document.querySelectorAll('[data-decorativo]')).filter(visible)) {
+    const bd = dcr.getBoundingClientRect(), x0 = bd.left + window.scrollX, y0 = bd.top + window.scrollY, x1 = bd.right + window.scrollX, y1 = bd.bottom + window.scrollY;
+    for (const a of hojas) {
+      if (a.e.contains(dcr) || dcr.contains(a.e)) continue;
+      const w = Math.min(x1, a.x1) - Math.max(x0, a.x0), h = Math.min(y1, a.y1) - Math.max(y0, a.y0);
+      if (w > 2 && h > 2 && w * h > 12) solapesDeco.push(`capa decorativa ${eti(dcr)} sobre ${a.nombre} (${Math.round(w)}x${Math.round(h)})`);
+    }
   }
   const solapes = [];
   for (let i = 0; i < hojas.length && solapes.length < 12; i++) for (let j = i + 1; j < hojas.length; j++) {
@@ -89,7 +102,7 @@ const medirDOM = (ignorarSticky) => {
     const w = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0), h = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
     if (w > 2 && h > 2 && w * h > 12) solapes.push(`${a.nombre} con ${b.nombre} (${Math.round(w)}x${Math.round(h)})`);
   }
-  out.solapes = solapes;
+  out.solapes = solapes.concat(solapesDeco).slice(0, 12);
   // texto recortado por un ancestro con overflow hidden o clip, o fuera del documento
   const recortes = [];
   for (const a of hojas) {
@@ -185,6 +198,18 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
   await pag.waitForTimeout(500);
   const datos = await pag.evaluate((sels) => {
     const vw = document.documentElement.clientWidth, vh = window.innerHeight, filas = [];
+    // lo que tapan las barras fijas o pegadas (la barra de acciones del movil, la del pedido, la de filtros) no lo ve la persona: no se mide
+    const cubiertos = Array.from(document.body.querySelectorAll('*')).filter((e) => { const cs = getComputedStyle(e); if (!/^(fixed|sticky)$/.test(cs.position) || cs.visibility === 'hidden' || cs.display === 'none') return false; const b = e.getBoundingClientRect(); return b.width > 1 && b.height > 1 && b.bottom > 0 && b.top < vh; }).map((e) => e.getBoundingClientRect());
+    const recortar = ([l, t, w, h]) => {
+      let x0 = l, y0 = t, x1 = l + w, y1 = t + h;
+      for (const c of cubiertos) {
+        if (c.left >= x1 || c.right <= x0 || c.top >= y1 || c.bottom <= y0) continue;
+        if (c.top <= y0 && c.bottom >= y1) return null;
+        if (c.top > y0 && c.top < y1 && c.bottom >= y1) y1 = c.top;
+        else if (c.bottom > y0 && c.bottom < y1 && c.top <= y0) y0 = c.bottom;
+      }
+      return (x1 - x0 > 1 && y1 - y0 > 1) ? [x0, y0, x1 - x0, y1 - y0] : null;
+    };
     for (const sel of sels) for (const e of document.querySelectorAll(sel)) {
       const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') continue;
       const b = e.getBoundingClientRect(); if (b.width < 2 || b.height < 2 || b.bottom < 0 || b.top > vh || b.right < 0 || b.left > vw) continue;
@@ -196,6 +221,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
         .map((r) => { const l = Math.max(0, r.left, b.left), t = Math.max(0, r.top, b.top), rr = Math.min(vw, r.right, b.right), bb = Math.min(vh, r.bottom, b.bottom); return [l, t, rr - l, bb - t]; })
         .filter(([, , w, h]) => w > 1 && h > 1)
         // solo lo que la persona ve: si otro elemento (la barra pegada de categorias, la barra fija del movil) tapa el centro del texto, no se mide
+        .map(recortar).filter(Boolean)
         .filter(([x, y, w, h]) => { const t = document.elementFromPoint(x + w / 2, y + h / 2); return !t || e.contains(t) || t.contains(e); });
       if (!rects.length) continue;
       filas.push({ sel, texto: (e.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 30), rects, color: m.slice(0, 3), alfa: (m[3] ?? 1) * op, px: parseFloat(cs.fontSize), peso: parseInt(cs.fontWeight, 10) });
@@ -211,6 +237,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
 }
 
 // ---------------------------------------------------------------- 1) matriz de dispositivos
+if (puede('matriz')) {
 for (const d of lista) {
   const { ctx, pag, externas, errores } = await nuevaPagina(d);
   const reg = { id: d.id, nombre: d.nombre, tipo: d.tipo, w: d.w, h: d.h, dpr: d.dpr, estres: !!d.estres };
@@ -228,10 +255,22 @@ for (const d of lista) {
     await pag.evaluate(() => { const g = document.querySelector('.galeria'); if (g) g.scrollIntoView({ block: 'center' }); });
     await pag.waitForTimeout(900);
     await muestrearContraste(pag, d, ['.galeria figcaption', '.barra-movil a'], 'galeria');
-    if (await pag.evaluate(() => !!document.querySelector('.chips'))) {   // menu en tablero: barra de categorias, nombres, descripciones y precios
-      await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; const c = document.querySelector('#cat-carnes') || document.querySelector('.cat'); c.scrollIntoView({ block: 'start' }); window.scrollBy(0, -110); });
-      await pag.waitForTimeout(900);
-      await muestrearContraste(pag, d, ['.chips a', '.cat h3', '.cat-nota', '.nom', '.nom-en', '.des', '.pre', '.eti', '.sup'], 'menu');
+    if (await pag.evaluate(() => !!document.querySelector('.chips'))) {   // menu de tarjetas: barra de filtros, nombres, descripciones, precios y botones
+      await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector('.carta-cuerpo').scrollIntoView({ block: 'start' }); window.scrollBy(0, -110); });
+      await pag.waitForTimeout(1200);
+      await muestrearContraste(pag, d, ['.chip', '.chips-enlaces a', '.cat h3', '.cat-nota', '.nom', '.nom-en', '.des', '.pre', '.eti', '.sup-btn', '.add', '.sup', '.nota-precios', '.carta .sobretitulo'], 'menu');
+    }
+    // secciones con fondo propio: regla de medidas, como pedir y visita (se espera a que termine el revelado de cada una)
+    for (const [sec, sels, nombre] of [
+      ['#regla', ['.regla .sobretitulo', '.regla h2', '.regla-txt', '.b-lb', '.b-pre', '.b-xu', '.b-mejor', '.regla .add', '.b-q', '.regla-nota'], 'regla'],
+      ['#como-pedir', ['.como h2', '.paso-c h3', '.paso-c p', '.paso-c .n'], 'como'],
+      ['#visitanos', ['.visita h2', '.visita address', '.dato h3', '.dato p', '.dato .horario-texto', '.estado', '.horas li', '.visita .btn', '.aviso-datos'], 'visita'],
+    ]) {
+      if (await pag.evaluate((q) => !!document.querySelector(q), sec)) {
+        await pag.evaluate((q) => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector(q).scrollIntoView(); }, sec);
+        await pag.waitForTimeout(2200);
+        await muestrearContraste(pag, d, sels, nombre);
+      }
     }
   }
   reg.externas = externas; reg.errores = errores;
@@ -239,8 +278,10 @@ for (const d of lista) {
   await ctx.close();
   console.log('ok', d.id);
 }
+}
 
 // ---------------------------------------------------------------- 2) axe en tres tamanos
+if (puede('axe')) {
 const axeDisp = lista.filter((d) => ['iph-390', 'mini-768', 'pc-1440'].includes(d.id));
 for (const d of axeDisp) {
   const { ctx, pag } = await nuevaPagina(d);
@@ -252,8 +293,10 @@ for (const d of axeDisp) {
   });
   await ctx.close();
 }
+}
 
 // ---------------------------------------------------------------- 3) teclado y foco
+if (puede('foco')) {
 async function probarFoco(d) {
   const { ctx, pag } = await nuevaPagina(d);
   await pag.evaluate(() => {
@@ -296,8 +339,10 @@ async function probarFoco(d) {
   return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.fraccionTapada >= 0.5).map((s) => s.nombre).slice(0, 6), tapadoParcial: seq.filter((s) => s.fraccionTapada > 0 && s.fraccionTapada < 0.5).map((s) => s.nombre + ' ' + Math.round(s.fraccionTapada * 100) + '%').slice(0, 6), aroNoVisible: seq.filter((s) => !s.aroVisible).map((s) => s.nombre).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
 }
 for (const id of ['pc-1440', 'iph-390', 'se-horiz-667', 'mini-768']) { const d = lista.find((x) => x.id === id); if (d) R.foco[id] = await probarFoco(d); }
+}
 
 // ---------------------------------------------------------------- 3b) elementos que avanzan con el scroll
+if (puede('scroll')) {
 R.scroll = {};
 for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   const d = lista.find((x) => x.id === id); if (!d) continue;
@@ -332,8 +377,10 @@ for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   if (n2) R.scroll.sinJs = { elementos: n2, p: await p2.evaluate(() => parseFloat(getComputedStyle(document.querySelector('[data-progreso]')).getPropertyValue('--p'))) };
   await c2.close();
 }
+}
 
 // ---------------------------------------------------------------- 4b) sin JavaScript: lo que ve quien abre la pagina en un visor que no lo ejecuta
+if (puede('sinjs')) {
 {
   const d = lista.find((x) => x.id === 'iph-390') || lista[0];
   const c3 = await nav.newContext({ viewport: { width: d.w, height: d.h }, deviceScaleFactor: d.dpr, isMobile: true, hasTouch: true, javaScriptEnabled: false, locale: 'es-VE' });
@@ -378,8 +425,10 @@ for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   await p3.screenshot({ path: path.join(CAP, 'sin_js_iph-390.jpg'), type: 'jpeg', quality: 70 });
   await c3.close();
 }
+}
 
 // ---------------------------------------------------------------- 4) movimiento reducido y pausa
+if (puede('movimiento')) {
 {
   const d = lista.find((x) => x.id === 'iph-390') || lista[0];
   const medirMov = () => ({
@@ -399,8 +448,10 @@ for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   R.movimiento.reducido = await B.pag.evaluate(medirMov);
   await B.ctx.close();
 }
+}
 
 // ---------------------------------------------------------------- 5) zoom de texto al 200 por ciento
+if (puede('zoom')) {
 for (const id of ['mini-360', 'pc-1280']) {
   const d = lista.find((x) => x.id === id); if (!d) continue;
   const { ctx, pag } = await nuevaPagina(d);
@@ -410,11 +461,13 @@ for (const id of ['mini-360', 'pc-1280']) {
   R.zoom[id] = { desborde: m.desborde, solapes: m.solapes, recortes: m.recortes };
   await ctx.close();
 }
+}
 
 // ---------------------------------------------------------------- 6) pruebas funcionales
 const F = {};
 const dM = lista.find((x) => x.id === 'iph-390') || lista[0];
 // 6a) abierto ahora con relojes simulados y otra zona horaria del visitante
+if (puede('horario')) {
 if (ficha.horario && ficha.negocio) {
   F.horario = [];
   const casos = ficha.gate_pruebas_horario || [];
@@ -447,7 +500,9 @@ else {
   F.apertura = await pag.evaluate(() => ({ elementos: document.querySelectorAll('[data-open]').length, textoEstado: Array.from(document.querySelectorAll('.estado')).map((e) => e.textContent.trim().slice(0, 60)) }));
   await ctx.close();
 }
+}
 // 6b) reserva por WhatsApp: mensaje, destino y validaciones (solo si la ficha tiene reservas)
+if (puede('reserva')) {
 if (ficha.reservas) {
   const { ctx, pag } = await nuevaPagina(dM, { reloj: '2026-10-07T19:00:00Z', espera: 900 });   // miércoles 15:00 en Caracas
   await pag.evaluate(() => { window.__wa = []; document.addEventListener('edu:wa', (e) => window.__wa.push(e.detail)); });
@@ -465,7 +520,9 @@ if (ficha.reservas) {
   F.reserva = { antes, sinNombre, envio, cerrado };
   await ctx.close();
 }
+}
 // 6c) pestañas de la carta con teclado, y diálogo de la muestra
+if (puede('carta')) {
 {
   const { ctx, pag } = await nuevaPagina(dM, { espera: 900 });
   await pag.evaluate(() => document.querySelector('.carta').scrollIntoView());
@@ -477,23 +534,37 @@ if (ficha.reservas) {
   const t2 = await pag.evaluate(() => ({ activo: document.activeElement.id }));
   F.pestanas = { t0, t1, t2 };
   }
-  // categorias del menu en tablero: cada categoria se alcanza desde la barra, queda bajo ella y se marca como actual
-  if (await pag.evaluate(() => !!document.querySelector('.chips'))) {
+  // menu con filtros: una categoria a la vez, o todas; el estado se ve (aria-pressed) y la lista queda bajo la barra pegada
+  if (await pag.evaluate(() => !!document.querySelector('[data-filtro]'))) {
     await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector('.carta').scrollIntoView(); });
     await pag.waitForTimeout(500);
-    const enlaces = await pag.evaluate(() => Array.from(document.querySelectorAll('.chips a')).map((a) => a.getAttribute('href')));
-    const resultados = [];
-    for (const i of [1, enlaces.length - 1, 0]) {
-      await pag.click(`.chips a[href="${enlaces[i]}"]`); await pag.waitForTimeout(900);
-      resultados.push(await pag.evaluate((h) => {
-        const el = document.querySelector(h), r = el.getBoundingClientRect(), c = document.querySelector('.chips').getBoundingClientRect();
-        return { enlace: h, actual: Array.from(document.querySelectorAll('.chips a[aria-current="true"]')).map((a) => a.getAttribute('href')), chipsTop: Math.round(c.top), bajoBarra: r.top >= c.bottom - 2, enPantalla: r.top < innerHeight };
-      }, enlaces[i]));
+    const leer = () => pag.evaluate(() => {
+      const vis = (e) => getComputedStyle(e).display !== 'none';
+      const cats = Array.from(document.querySelectorAll('[data-cat]'));
+      const barra = document.querySelector('.chips').getBoundingClientRect();
+      const primera = cats.find(vis);
+      const t = primera ? primera.querySelector('.tarjeta').getBoundingClientRect() : null;
+      return {
+        presionados: Array.from(document.querySelectorAll('[data-filtro]')).filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.getAttribute('data-filtro')),
+        visibles: cats.filter(vis).map((c) => c.getAttribute('data-cat')), todas: cats.map((c) => c.getAttribute('data-cat')),
+        barraTop: Math.round(barra.top), barraAbajo: Math.round(barra.bottom), tarjetaTop: t ? Math.round(t.top) : null,
+        tarjetas: cats.filter(vis).reduce((n, c) => n + c.querySelectorAll('.tarjeta').length, 0),
+      };
+    });
+    const ids = await pag.evaluate(() => Array.from(document.querySelectorAll('[data-filtro]')).map((b) => b.getAttribute('data-filtro')));
+    const inicial = await leer();
+    const pasos = [];
+    for (const id of [ids[1], 'todo', ids[ids.length - 2]]) {
+      await pag.click(`[data-filtro="${id}"]`); await pag.waitForTimeout(900);
+      pasos.push({ id, ...(await leer()) });
     }
-    // con el teclado: Enter en una categoria lleva a ella
-    await pag.focus(`.chips a[href="${enlaces[2]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(900);
-    const teclado = await pag.evaluate((h) => ({ enlace: h, actual: Array.from(document.querySelectorAll('.chips a[aria-current="true"]')).map((a) => a.getAttribute('href')) }), enlaces[2]);
-    F.chips = { enlaces, resultados, teclado };
+    // con el teclado: Enter y espacio sobre un filtro
+    await pag.focus(`[data-filtro="${ids[0]}"]`); await pag.keyboard.press('Enter'); await pag.waitForTimeout(500);
+    const enter = await leer();
+    await pag.focus(`[data-filtro="${ids[2]}"]`); await pag.keyboard.press('Space'); await pag.waitForTimeout(500);
+    const espacio = await leer();
+    await pag.click(`[data-filtro="${ids[0]}"]`); await pag.waitForTimeout(500);   // se deja como estaba
+    F.filtros = { ids, inicial, pasos, enter, espacio };
   }
   if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
     await pag.evaluate(() => window.scrollTo(0, 0));
@@ -505,9 +576,94 @@ if (ficha.reservas) {
   }
   await ctx.close();
 }
+}
+// 6e) pedido: ticket en vivo, totales, mensaje de WhatsApp y destino (solo si la ficha tiene pedido)
+if (puede('pedido')) {
+if (ficha.pedido) {
+  const lineas = (ficha.gate_pruebas_pedido || {}).lineas || [];
+  F.pedido = { lineas, dispositivos: {} };
+  const leerPedido = () => pagGlobal.evaluate(() => {
+    const vis = (e) => { if (!e) return false; const cs = getComputedStyle(e), b = e.getBoundingClientRect(); return cs.display !== 'none' && cs.visibility !== 'hidden' && b.width > 0 && b.height > 0; };
+    const barra = document.querySelector('#pedido-barra'), lado = document.querySelector('[data-ticket="lado"]'), hoja = document.querySelector('#hoja-pedido');
+    const cont = vis(lado) ? lado : (hoja && hoja.open ? hoja.querySelector('[data-ticket]') : null);
+    const t = (e, s_) => { const x = e && e.querySelector(s_); return x ? x.textContent.trim().replace(/\s+/g, ' ') : null; };
+    return {
+      barraVisible: vis(barra), barraN: t(barra, '[data-barra-n]'), barraTotal: t(barra, '[data-barra-total]'), ladoVisible: vis(lado), hojaAbierta: !!(hoja && hoja.open),
+      contenedor: cont ? (cont === lado ? 'lado' : 'hoja') : null,
+      lineas: cont ? Array.from(cont.querySelectorAll('.tk-linea')).map((li) => ({ nombre: t(li, '.tk-nom'), detalle: t(li, '.tk-det'), qty: t(li, '.qty'), precio: t(li, '.tk-pre') })) : [],
+      total: t(cont, '[data-tk-total]'), n: t(cont, '[data-tk-n]'), unidad: t(cont, '[data-tk-unidad]'), vacioVisible: cont ? vis(cont.querySelector('[data-tk-vacio]')) : null,
+      pasosActivos: document.querySelectorAll('.tarjeta .paso:not([hidden])').length,
+      almacenamiento: localStorage.length + sessionStorage.length + document.cookie.length,
+    };
+  });
+  var pagGlobal = null;
+  for (const idDisp of ['iph-390', 'pc-1440']) {
+    const d = lista.find((x) => x.id === idDisp); if (!d) continue;
+    const { ctx, pag, errores } = await nuevaPagina(d, { espera: 1000 });
+    pagGlobal = pag;
+    await pag.evaluate(() => { window.__wa = []; document.addEventListener('edu:wa', (e) => window.__wa.push(e.detail)); document.documentElement.style.scrollBehavior = 'auto'; });
+    const Rd = {};
+    Rd.antes = await leerPedido();
+    await pag.evaluate(() => document.querySelector('.carta').scrollIntoView());
+    for (const l of lineas) {
+      const info = await pag.evaluate((op) => { const f = document.querySelector(`.op[data-op="${op}"]`); return f ? { cat: f.closest('[data-cat]').getAttribute('data-cat'), item: f.closest('[data-item]').getAttribute('data-item') } : null; }, l.op);
+      if (!info) { Rd.faltaOp = (Rd.faltaOp || []).concat(l.op); continue; }
+      await pag.click(`[data-filtro="${info.cat}"]`); await pag.waitForTimeout(450);
+      for (const sp of (l.suplementos || [])) await pag.click(`[data-item="${info.item}"] .sup-btn[data-sup="${sp}"]`);
+      await pag.click(`.op[data-op="${l.op}"] .add`);
+      for (let i = 1; i < l.cantidad; i++) await pag.click(`.op[data-op="${l.op}"] .mas-uno`);
+      for (const sp of (l.suplementos || [])) await pag.click(`[data-item="${info.item}"] .sup-btn[data-sup="${sp}"]`);   // se apaga para la siguiente
+    }
+    await pag.waitForTimeout(900);
+    Rd.tras = await leerPedido();
+    if (d.w < 1000) {
+      // hoja: se abre desde la barra, con el foco en Cerrar, y Escape la cierra devolviendo el foco
+      await pag.click('.pb-ver'); await pag.waitForTimeout(700);
+      Rd.hoja = { ...(await leerPedido()), foco: await pag.evaluate(() => document.activeElement.className) };
+      await muestrearContraste(pag, d, ['.tk-tit', '.tk-cuenta', '.tk-nom', '.tk-det', '.tk-pre', '.tk-total span', '.tk-total b', '.hoja-pedido .qty', '.hoja-pedido .cerrar'], 'ticket');
+    } else {
+      Rd.hoja = null;
+      await muestrearContraste(pag, d, ['.ticket .tk-tit', '.ticket .tk-cuenta', '.ticket .tk-nom', '.ticket .tk-det', '.ticket .tk-pre', '.ticket .tk-total span', '.ticket .tk-total b', '.ticket .qty', '.ticket label', '.ticket .tk-nota'], 'ticket');
+    }
+    const cont = d.w < 1000 ? '.hoja-pedido' : '.ticket';
+    // quitar uno y volver a ponerlo desde el propio ticket
+    const primera = `${cont} .tk-linea:first-child`;
+    const antesQty = await pag.evaluate((sel) => document.querySelector(sel + ' .qty').textContent, primera);
+    await pag.click(`${primera} .mas-uno`); await pag.waitForTimeout(250);
+    Rd.masUno = await leerPedido();
+    await pag.click(`${primera} .menos`); await pag.waitForTimeout(250);
+    Rd.menosUno = await leerPedido();
+    Rd.qtyPrimera = antesQty;
+    // enviar sin nombre: avisa y no abre WhatsApp
+    await pag.click(`${cont} .tk-enviar`); await pag.waitForTimeout(300);
+    Rd.sinNombre = await pag.evaluate((c) => ({ envios: window.__wa.length, aviso: (document.querySelector(c + ' [data-tk-error]') || {}).textContent, visible: !!document.querySelector(c + ' [data-tk-error]') && !document.querySelector(c + ' [data-tk-error]').hidden, foco: document.activeElement.name }), cont);
+    await pag.fill(`${cont} [name=nombre]`, 'Ana Pérez'); await pag.fill(`${cont} [name=nota]`, 'Sin cebolla, por favor');
+    await pag.click(`${cont} .tk-enviar`); await pag.waitForTimeout(400);
+    Rd.envio = await pag.evaluate(() => window.__wa.slice());
+    Rd.noAbrio = await pag.evaluate((c) => { const p_ = document.querySelector(c + ' [data-tk-noabrio]'); return p_ ? { visible: !p_.hidden, href: (p_.querySelector('a') || {}).href || '' } : null; }, cont);
+    if (d.w < 1000) {
+      await pag.keyboard.press('Escape'); await pag.waitForTimeout(400);
+      Rd.cerrada = await pag.evaluate(() => ({ abierta: document.querySelector('#hoja-pedido').open, foco: document.activeElement.className }));
+    } else {
+      // con el ticket fuera de pantalla aparece la barra para volver a el
+      await pag.evaluate(() => document.querySelector('#visitanos').scrollIntoView()); await pag.waitForTimeout(700);
+      Rd.barraLejos = await leerPedido();
+      await pag.evaluate(() => document.querySelector('.carta').scrollIntoView()); await pag.waitForTimeout(700);
+    }
+    // vaciar
+    if (d.w < 1000) { await pag.click('.pb-ver'); await pag.waitForTimeout(500); }
+    await pag.click(`${cont} [data-tk-vaciar]`); await pag.waitForTimeout(500);
+    Rd.vaciado = await leerPedido();
+    Rd.errores = errores.slice(0, 3);
+    F.pedido.dispositivos[idDisp] = Rd;
+    await ctx.close();
+  }
+}
+}
 R.funcional = F;
 
 // ---------------------------------------------------------------- 6d) peso descargado (inicial y total tras recorrer la pagina)
+if (puede('peso')) {
 R.peso = {};
 for (const id of ['iph-390', 'pc-1440']) {
   const d = lista.find((x) => x.id === id) || dispositivos.find((x) => x.id === id); if (!d) continue;
@@ -520,6 +676,7 @@ for (const id of ['iph-390', 'pc-1440']) {
   const porTipo = {}; for (const r of registro.slice(ini, total)) if (r.estado === 200) porTipo[r.tipo] = (porTipo[r.tipo] || 0) + (r.bytes || 0);
   R.peso[id] = { inicial: suma(ini, hasta), total: suma(ini, total), peticionesIniciales: hasta - ini, peticionesTotales: total - ini, porTipo };
   await ctx.close();
+}
 }
 
 // ---------------------------------------------------------------- 7) red: lo que el servidor sirvio y lo que se intento pedir fuera
