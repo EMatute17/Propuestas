@@ -196,7 +196,7 @@ def juzgar_pedido(ficha, cfg, datos, muestra):
                 nombre_l = e["nombre"] + (", " + e["detalle"] if e["detalle"] else "")
                 linea = f"\u2022 {e['cantidad']} \u00d7 {nombre_l} \u2014 {e['precio']}"
                 if norm(linea) not in norm(texto): fl.append(f"{did}: al mensaje le falta la línea {linea!r}")
-            if f"{T['total']}: {total_txt}" not in norm(texto): fl.append(f"{did}: al mensaje le falta el total {total_txt}")
+            if norm(f"{T['total']}: {total_txt}") not in norm(texto): fl.append(f"{did}: al mensaje le falta el total {total_txt}")   # con las dos partes normalizadas: en pesos el importe lleva espacios duros
             if f"{T['a_nombre']}: Ana P\u00e9rez" not in texto: fl.append(f"{did}: al mensaje le falta el nombre")
             if f"{T['notas']}: Sin cebolla, por favor" not in texto: fl.append(f"{did}: al mensaje le falta la nota")
             nav = R_.get("navegacion") or []

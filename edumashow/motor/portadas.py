@@ -61,7 +61,7 @@ def portada_cortina(F, C):
     letras, mas_larga = letras_titular(nombre)
     pic, foco, lqip = hero_picture(C, paralaje_attr(C))
     return f'''<header class="hero hero-cortina" id="inicio" style="--c:{mas_larga};--ln:{len(nombre.split())};--foco:{foco}">
-<div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
+<div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}{luz_html(C)}<div class="velo"></div><div class="grano"></div>{particulas_html(C)}</div>
 <span class="cortina-hoja izq" aria-hidden="true"></span><span class="cortina-hoja der" aria-hidden="true"></span>
 <div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
 <div class="hero-cuerpo cortina-cuerpo"><p class="cortina-sobre"><span>{e_(N["cocina"])}</span><b aria-hidden="true"></b><span>{e_(N["ciudad"])}</span></p>
@@ -88,7 +88,7 @@ def portada_collage(F, C):
     claves = list(dict.fromkeys(g["foto"] for g in U._galeria(F, C)))[:5]
     pols = "".join(f'<figure class="pol" style="--i:{i}">{picture_html(C["fotos"][k]["datos"], "", "(min-width:1000px) 15rem, 9rem", lazy=False)}</figure>' for i, k in enumerate(claves))
     lema_en = f'<span class="lema-en" lang="en">{e_(N["lema_en"])}</span>' if N.get("lema_en") else ""
-    return f'''<header class="hero hero-collage" id="inicio" style="--c:{mayor_linea};--ct:{len(nombre)}">
+    return f'''<header class="hero hero-collage" id="inicio" style="--c:{mayor_linea};--ct:{len(nombre)};--ln:{len(U.temas.lineas_titular(nombre))}">
 <div class="hero-fondo" aria-hidden="true"><div class="puntos"></div><div class="velo"></div><div class="grano"></div>{particulas_html(C)}</div>
 <div class="hero-barra">{_marca_urbana(F, C)}<div class="barra-der"><nav aria-label="Secciones">{U._nav(F, C)}</nav>{_pausa()}</div></div>
 <div class="collage" aria-hidden="true" data-decorativo>{pols}</div>
@@ -114,7 +114,7 @@ def portada_cartel(F, C):
     palabras = F.get("textos", {}).get("marquesina") or [c["titulo"] for c in F["carta"]] + [N["cocina"], N["ciudad"]]
     una = "".join(f"<span>{e_(w)}</span>" for w in palabras)
     lema_en = f'<span class="lema-en" lang="en">{e_(N["lema_en"])}</span>' if N.get("lema_en") else ""
-    return f'''<header class="hero hero-cartel" id="inicio" style="--c:{mayor_linea};--ct:{len(nombre)}">
+    return f'''<header class="hero hero-cartel" id="inicio" style="--c:{mayor_linea};--ct:{len(nombre)};--ln:{len(U.temas.lineas_titular(nombre))}">
 <div class="hero-fondo" aria-hidden="true"><div class="puntos"></div>{particulas_html(C)}</div>
 <div class="hero-barra">{_marca_urbana(F, C)}<div class="barra-der"><nav aria-label="Secciones">{U._nav(F, C)}</nav>{_pausa()}</div></div>
 {disco}

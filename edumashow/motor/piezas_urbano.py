@@ -102,7 +102,7 @@ def portada(F, C):
         marca = f'<a class="marca" href="#inicio">{e_(nombre)}</a>'
     botones = "".join(_enlace_accion(a, "btn" if i == 0 else "btn suave") for i, a in enumerate(acciones(F, C)["hero"]))
     lema_en = f'<span class="lema-en" lang="en">{e_(N["lema_en"])}</span>' if N.get("lema_en") else ""
-    return f'''<header class="hero" id="inicio" style="--c:{mayor_linea};--ct:{total}">
+    return f'''<header class="hero" id="inicio" style="--c:{mayor_linea};--ct:{total};--ln:{len(temas.lineas_titular(nombre))}">
 <div class="hero-fondo" aria-hidden="true">{_mural(F, C)}<div class="velo"></div><div class="luz"></div><div class="grano"></div>{particulas_html(C)}</div>
 <div class="hero-barra">{marca}<div class="barra-der"><nav aria-label="Secciones">{_nav(F, C)}</nav><button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
 {_pegatina(F, C)}

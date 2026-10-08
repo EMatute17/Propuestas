@@ -40,7 +40,7 @@
   .hero-cartel .acciones{width:100%}
   .hero-cartel .acciones .btn{flex:1 1 auto}
   body[data-boton="subrayado"] .hero-cartel .acciones .btn{flex:0 1 auto}
-  .hero-cartel h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .62 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh),12.5rem)}
+  .hero-cartel h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .62 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh,calc(44vh / (var(--ln,1) * .9))),12.5rem)}
 }
-@media (max-height:759px) and (max-width:699px){.cartel-disco{display:none}}
+@media (max-width:699px){.cartel-disco{display:none}}   /* en el teléfono un titular alto llegaría hasta el disco: se quita */
 @media (max-height:520px) and (min-width:560px){.cartel-disco,.cartel-cinta{display:none}.hero.hero-cartel{padding-bottom:2.25rem}.hero-cartel .hero-cuerpo{padding-right:var(--pad)}}

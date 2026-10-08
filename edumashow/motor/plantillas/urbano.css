@@ -40,8 +40,8 @@ html{scroll-padding-top:4.75rem}
 
 .hero-cuerpo{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem;width:100%;max-width:var(--max);margin:0 auto;padding:1rem var(--pad) 0}
 .hero-titulo{display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;gap:.9rem;min-width:0}
-.sobre{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:.4rem .8rem .35rem;background:var(--brasa);color:var(--sobre-brasa);font-size:.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.25;transform:rotate(-1.5deg)}
-.hero h1{margin:0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:.005em;font-size:clamp(1.5rem,min(calc((100vw - 2 * var(--pad)) / (var(--c) * var(--w-d,.47))),22vh),12.5rem);text-shadow:0 .04em .45em rgba(0,0,0,.55)}
+.sobre{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:.5rem .8rem .45rem;background:var(--brasa);color:var(--sobre-brasa);font-size:.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.25;transform:rotate(-1.5deg)}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:.005em;font-size:clamp(1.5rem,min(calc((100vw - 2 * var(--pad)) / (var(--c) * var(--w-d,.47))),22vh,calc(44vh / (var(--ln,1) * .9))),12.5rem);text-shadow:0 .04em .45em rgba(0,0,0,.55)}
 .hero h1 .linea{display:block;white-space:nowrap;clip-path:inset(-10% -4% 0 -4%)}
 .hero h1 .linea>span{display:block}
 .hero h1 .acento{display:inline-block;color:var(--brasa)}
@@ -112,7 +112,7 @@ html{scroll-padding-top:4.75rem}
 
 /* ---------- regla de medidas (la idea de la casa) ---------- */
 .regla{background:var(--tinta-2);color:var(--crema);padding:clamp(3.5rem,8vw,6.5rem) 0}
-.regla h2{padding-top:.14em;font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:clamp(3rem,9vw,6.5rem);line-height:.92;letter-spacing:.005em;text-wrap:balance}
+.regla h2{padding-top:.14em;font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,min(12vw,calc(6.5rem * .55 / max(.47, var(--w-d,.47)))),6.5rem);line-height:.92;letter-spacing:.005em;text-wrap:balance}
 .regla .sobretitulo{color:var(--acento)}
 .regla-cab{display:grid;grid-template-columns:minmax(0,1fr);gap:.9rem;max-width:46rem}
 .regla-txt{max-width:42ch;font-size:1.15rem;color:var(--crema-2)}
@@ -307,3 +307,6 @@ html{scroll-padding-top:4.75rem}
 /* dispositivo modesto: lo que se mueve solo se queda quieto */
 .bajo .pista,.bajo .luz,.bajo .pista-m,.bajo .p-giro,.bajo .pin-cuerpo,.bajo .pin-ojo{animation:none}
 @media (prefers-reduced-motion:reduce){.js .barra-lb .b-barra{transform:none;transition:none}[data-tilt]{transform:none!important}}
+
+/* el nombre escrito (sin logo) es un enlace: mide al menos 44 px de alto */
+.hero-barra .marca{display:inline-flex;align-items:center;min-height:2.75rem}

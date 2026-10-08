@@ -33,7 +33,7 @@
   .hero-collage .hero-datos{justify-content:flex-start}
   .hero-collage .acciones{width:100%}
   .hero-collage .acciones .btn{flex:1 1 auto}
-  .hero-collage h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .5 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh),11rem)}
+  .hero-collage h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .5 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh,calc(44vh / (var(--ln,1) * .9))),11rem)}
 }
 @media (hover:hover) and (pointer:fine){.pol{pointer-events:auto;transition:rotate .35s var(--ease),scale .35s var(--ease)}.pol:hover{rotate:0deg;scale:1.07;z-index:4}}
 @media (max-height:759px) and (max-width:699px){.hero-collage .pegatina{display:none}}
