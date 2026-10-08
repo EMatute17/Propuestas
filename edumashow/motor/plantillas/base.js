@@ -120,9 +120,9 @@
   });
 
   /* ---------- WhatsApp ---------- */
-  function waLink(texto) { return 'https://wa.me/' + F.wa + '?text=' + encodeURIComponent(texto); }
-  function abrirWA(texto, aviso) {
-    var url = waLink(texto);
+  function waLink(texto, numero) { return 'https://wa.me/' + (numero || F.wa) + '?text=' + encodeURIComponent(texto); }
+  function abrirWA(texto, aviso, numero) {
+    var url = waLink(texto, numero);
     if (aviso) { aviso.hidden = false; var a = qs('a', aviso); if (a) a.href = url; }
     var a2 = doc.createElement('a'); a2.href = url; a2.target = '_blank'; a2.rel = 'noopener'; a2.style.display = 'none';
     doc.body.appendChild(a2); a2.click(); a2.remove();

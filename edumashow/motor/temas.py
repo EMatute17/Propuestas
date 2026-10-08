@@ -8,10 +8,11 @@ PALETAS = {
     "brasa": {
         "tinta": "#0b141c", "tinta-2": "#0f1b25", "tinta-3": "#162532",
         "crema": "#f3e9d8", "crema-2": "#d8ccb7", "papel": "#f3e9d8", "papel-2": "#ebdfc9",
-        "brasa": "#ff6b2c", "brasa-2": "#ff9a52", "brasa-papel": "#b53a0a",
-        "bruma": "#9fb0bd", "bruma-papel": "#5a6670", "texto-suave-papel": "#3d4a55",
+        "brasa": "#ff6b2c", "brasa-2": "#ff9a52", "brasa-papel": "#af3500",
+        "bruma": "#9fb0bd", "bruma-papel": "#56616b", "texto-suave-papel": "#3d4a55",
         "sobre-brasa": "#0b141c", "foco-anillo": "#ffb27a", "foco-anillo-papel": "#8a2a05",
         "aviso": "#8a2a05", "fondo-campo": "#ffffff", "borde-campo": "rgba(11,20,28,.4)", "texto-campo": "#0b141c",
+        "acento": "#ff9a52", "acento-papel": "#af3500",
         "meta-color": "#0b141c",
     },
     # urbano, parrilla y comida de calle: negro de carbon, naranja de llama y papel crema (todos los pares medidos, minimo 4.7 a 1)
@@ -22,6 +23,7 @@ PALETAS = {
         "bruma": "#a9a094", "bruma-papel": "#5c5349", "texto-suave-papel": "#40382f",
         "sobre-brasa": "#0b0908", "foco-anillo": "#ffc477", "foco-anillo-claro": "#ffc477", "foco-anillo-papel": "#8a2a05",
         "aviso": "#8a2a05", "fondo-campo": "#ffffff", "borde-campo": "rgba(11,9,8,.4)", "texto-campo": "#0b0908",
+        "acento": "#ffb02e", "acento-papel": "#b13a05",
         "meta-color": "#0b0908",
     },
 }
@@ -37,9 +39,10 @@ MOVIMIENTOS = {
 }
 
 
-def tokens_css(paleta, forma, movimiento, fuentes, num_letras, cinta_h):
-    """Bloque :root con todas las variables de diseño de la página."""
-    p, f, m = PALETAS[paleta], FORMAS[forma], MOVIMIENTOS[movimiento]
+def tokens_css(paleta, forma, movimiento, fuentes, num_letras, cinta_h, ancho_titular=0.47):
+    """Bloque :root con todas las variables de diseño de la página. `paleta` es el diccionario de colores (o el nombre de una paleta hecha a mano).
+    ancho_titular: ancho medio de una mayúscula del titular, en em; con él el nombre ocupa el ancho disponible sea cual sea la tipografía."""
+    p, f, m = (PALETAS[paleta] if isinstance(paleta, str) else paleta), FORMAS[forma], MOVIMIENTOS[movimiento]
     linea = [f"--{k}:{v}" for k, v in p.items() if k != "meta-color"]
     linea += [f"--{k}:{v}" for k, v in f.items()]
     linea += [f"--{k}:{v}" for k, v in m.items()]
@@ -47,7 +50,7 @@ def tokens_css(paleta, forma, movimiento, fuentes, num_letras, cinta_h):
         f"--f-display:'{fuentes['familia_display']}',{fuentes['respaldo_display']}",
         f"--f-titulo:'{fuentes.get('familia_titulo', fuentes['familia_display'])}',{fuentes['respaldo_display']}",
         f"--f-texto:'{fuentes['familia_texto']}',{fuentes['respaldo_texto']}",
-        "--max:78rem", "--pad:clamp(1.25rem,4.5vw,3.5rem)", f"--c:{num_letras}", f"--cinta-h:{cinta_h}",
+        "--max:78rem", "--pad:clamp(1.25rem,4.5vw,3.5rem)", f"--c:{num_letras}", f"--cinta-h:{cinta_h}", f"--w-d:{ancho_titular}",
     ]
     return ":root{" + ";".join(linea) + "}"
 

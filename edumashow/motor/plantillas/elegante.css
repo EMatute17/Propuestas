@@ -6,12 +6,12 @@
 .hero-fondo{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;background:var(--lqip) center/cover no-repeat,var(--tinta)}
 .hero-fondo picture,.hero-fondo img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%}
 .hero-fondo img{object-fit:cover;object-position:var(--foco,50% 40%);transform-origin:var(--foco,50% 40%)}
-.js .hero-fondo img{animation:kenburns 30s ease-in-out infinite alternate;will-change:transform}
+.js .hero-fondo img{animation:kenburns 30s ease-in-out infinite alternate;animation-play-state:var(--anim-estado,running);will-change:transform}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
 .velo{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to bottom,rgba(8,15,21,.62) 0%,rgba(8,15,21,0) 20%),linear-gradient(to top,rgba(8,15,21,.97) 0%,rgba(8,15,21,.88) 30%,rgba(8,15,21,.55) 58%,rgba(8,15,21,.42) 100%)}
 .luz{position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle var(--rad,46vmax) at var(--mx,62%) var(--my,36%),rgba(255,130,50,.30),rgba(255,100,30,.12) 40%,rgba(255,100,30,0) 72%)}
 .grano{position:absolute;top:-10%;right:-10%;bottom:-10%;left:-10%;opacity:.08;background-image:var(--grano);background-size:160px 160px;pointer-events:none}
-.js .grano{animation:grano 1.1s steps(5) infinite}
+.js .grano{animation:grano 1.1s steps(5) infinite;animation-play-state:var(--anim-estado,running)}
 @keyframes grano{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
 .brasas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
 

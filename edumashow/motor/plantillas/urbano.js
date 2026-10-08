@@ -1,4 +1,4 @@
-/* Personalidad URBANA: brasas que suben sobre el mural y categorias del menu que se resaltan al desplazarse.
+/* Personalidad URBANA: brasas que suben sobre el mural, filtros del menu e inclinacion de las tarjetas con el puntero.
    Todo es aditivo: la pagina funciona sin esto. */
 (function () {
   'use strict';
@@ -67,30 +67,46 @@
     }
   }
 
-  /* ---------- menu: la categoria que se esta viendo se marca en la barra de categorias ---------- */
-  var chips = qs('.chips');
-  if (chips) {
-    var enlaces = qsa('a', chips), cats = enlaces.map(function (a) { return qs(a.getAttribute('href')); });
-    var lista = qs('ul', chips), activo = -2, pend = false, seccion = qs('.carta');
-    var marcar = function (i) {
-      if (i === activo) return; activo = i;
-      enlaces.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
-      if (i >= 0 && lista && lista.scrollWidth > lista.clientWidth + 1) {   /* la categoria activa se centra en la barra si esta se desplaza */
-        var r = enlaces[i].parentNode.getBoundingClientRect(), rl = lista.getBoundingClientRect();
-        var izq = lista.scrollLeft + (r.left - rl.left) - (lista.clientWidth - r.width) / 2;
-        if (lista.scrollTo) lista.scrollTo({ left: izq, behavior: E.reduce ? 'auto' : 'smooth' }); else lista.scrollLeft = izq;
+  /* ---------- menu: una categoria a la vez, o todas ---------- */
+  var filtros = qsa('[data-filtro]');
+  if (filtros.length) {
+    var cats = qsa('[data-cat]'), cuerpo = qs('.carta-cuerpo'), barra = qs('.chips'), fila = qs('.filtros');
+    var actual = null;
+    var mostrar = function (id, desplazar) {
+      actual = id;
+      filtros.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-filtro') === id ? 'true' : 'false'); });
+      cats.forEach(function (c) { c.hidden = !(id === 'todo' || c.getAttribute('data-cat') === id); });
+      /* el filtro activo queda a la vista si la barra se desplaza. Solo tras un toque: un desplazamiento al cargar la pagina hace que el navegador
+         deje de medir el pintado del contenido principal (LCP) */
+      if (fila && desplazar) {
+        var on = qs('[aria-pressed="true"]', fila);
+        if (on && fila.scrollWidth > fila.clientWidth + 1) {
+          var r = on.getBoundingClientRect(), rf = fila.getBoundingClientRect();
+          var izq = fila.scrollLeft + (r.left - rf.left) - (fila.clientWidth - r.width) / 2;
+          if (fila.scrollTo) fila.scrollTo({ left: izq, behavior: E.reduce ? 'auto' : 'smooth' }); else fila.scrollLeft = izq;
+        }
+      }
+      if (desplazar && cuerpo && barra) {   /* si se esta mas abajo del comienzo de la lista, se vuelve a su inicio, justo bajo la barra */
+        var top = cuerpo.getBoundingClientRect().top - barra.offsetHeight - 12;
+        if (top < 0) window.scrollTo({ top: window.pageYOffset + top, behavior: E.reduce ? 'auto' : 'smooth' });
       }
     };
-    var calcular = function () {
-      pend = false;
-      var linea = chips.offsetHeight + 28, k = -1, rs = seccion ? seccion.getBoundingClientRect() : null;
-      for (var i = 0; i < cats.length; i++) { if (cats[i] && cats[i].getBoundingClientRect().top <= linea) k = i; }
-      if (rs && rs.bottom < linea) k = -1;
-      marcar(k);
-    };
-    var pedir = function () { if (!pend) { pend = true; raf(calcular); } };
-    window.addEventListener('scroll', pedir, { passive: true }); window.addEventListener('resize', pedir, { passive: true });
-    enlaces.forEach(function (a, i) { a.addEventListener('click', function () { marcar(i); }); });
-    calcular();
+    filtros.forEach(function (b) { b.addEventListener('click', function () { mostrar(b.getAttribute('data-filtro'), true); }); });
+    var enlace = /^#cat-(.+)$/.exec(window.location.hash || ''), inicial = filtros[0].getAttribute('data-filtro');
+    if (enlace && qs('[data-cat="' + decodeURIComponent(enlace[1]) + '"]')) inicial = decodeURIComponent(enlace[1]);
+    mostrar(inicial, false);
+  }
+
+  /* ---------- inclinacion al pasar el puntero (solo con raton y si el movimiento esta permitido) ---------- */
+  var fino = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (fino && !E.bajo) {
+    qsa('[data-tilt]').forEach(function (el) {
+      el.addEventListener('pointermove', function (ev) {
+        if (!E.animar()) return;
+        var r = el.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width - 0.5, y = (ev.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty('--rx', (x * 7).toFixed(2) + 'deg'); el.style.setProperty('--ry', (-y * 7).toFixed(2) + 'deg');
+      });
+      el.addEventListener('pointerleave', function () { el.style.removeProperty('--rx'); el.style.removeProperty('--ry'); });
+    });
   }
 })();

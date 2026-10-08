@@ -111,14 +111,22 @@ def precios_de_carta(F):
     return out
 
 
+def usa_decimales_fijos(F):
+    """Si algún precio de la carta tiene centavos, todos los importes de la página llevan dos decimales."""
+    return any(float(m) != int(m) for m in precios_de_carta(F))
+
+
 def importe_fn(F):
     """Función de formato de la ficha: un solo formato por página (R-DAT-03). Si algún precio tiene centavos, todos llevan dos decimales."""
-    fijos = any(float(m) != int(m) for m in precios_de_carta(F))
+    fijos = usa_decimales_fijos(F)
     pais, moneda = F["negocio"]["pais"], F["moneda"]
     return lambda monto: formato_importe(monto, pais, moneda, fijos)
 
 
-def config_js(pais, moneda):
-    """Datos de formato para el JavaScript del navegador (misma lógica que formato_importe)."""
+def config_js(F):
+    """Datos de formato para el JavaScript del navegador: la misma plantilla, separadores y decimales que formato_importe,
+    para que el total del ticket se escriba igual que los precios de la carta."""
+    pais, moneda = F["negocio"]["pais"], F["moneda"]
     miles, dec = separadores(pais)
-    return {"pla": MONEDAS[moneda].replace("{n}", "{n}"), "miles": miles, "dec": dec, "es4": pais in ("ES", "AD")}
+    return {"pla": PLANTILLAS_PAIS.get((pais, moneda), MONEDAS[moneda]), "miles": miles, "dec": dec,
+            "es4": pais in ("ES", "AD"), "fijos": usa_decimales_fijos(F)}

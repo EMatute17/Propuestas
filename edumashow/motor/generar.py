@@ -19,7 +19,7 @@ import zipfile
 import rcssmin
 import rjsmin
 
-from . import dinero, huella as _huella, imagenes, piezas, temas, tipografia
+from . import color, dinero, estilo as _estilo, huella as _huella, imagenes, pedido, piezas, temas, tipografia
 
 VERSION_GENERADOR = "0.2.0"
 RAIZ = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
@@ -76,13 +76,13 @@ def validar_ficha(F):
     if P is None:
         falta.append("estilo.personalidad (desconocida)")
     else:
-        if est.get("paleta") not in temas.PALETAS:
+        if est.get("paleta") not in temas.PALETAS and est.get("paleta") != "auto":
             falta.append("estilo.paleta (desconocida)")
         if est.get("forma") not in temas.FORMAS:
             falta.append("estilo.forma (desconocida)")
         if est.get("movimiento") not in temas.MOVIMIENTOS:
             falta.append("estilo.movimiento (desconocido)")
-        if est.get("tipografia") not in tipografia.PAREJAS:
+        if est.get("tipografia") not in tipografia.PAREJAS and est.get("tipografia") != "auto":
             falta.append("estilo.tipografia (desconocida)")
         for s in est.get("orden", []):
             if s != "portada" and s not in P["secciones"]:
@@ -102,6 +102,21 @@ def validar_ficha(F):
             falta.append("textos.reparto_texto (debe llevar {apps})")
         if est.get("personalidad") == "urbano" and not F.get("galeria"):
             falta.append("galeria (el mural de la portada usa las fotos de la galería)")
+        if "como" in est.get("orden", []) and not pedido.activo(F):
+            falta.append("pedido (la sección como está en el orden)")
+        if "regla" in est.get("orden", []):
+            I = F.get("idea") or {}
+            for k in ("categoria", "unidad", "por", "sobretitulo", "titulo", "texto", "mejor", "nota"):
+                if not I.get(k):
+                    falta.append(f"idea.{k} (la sección regla está en el orden)")
+            cat = next((c for c in F.get("carta", []) if c.get("id") == I.get("categoria")), None)
+            if cat is None:
+                falta.append("idea.categoria no es una categoría de la carta")
+            else:
+                con_medida = [p_ for p_ in cat.get("platos", []) if p_.get("medida")]
+                if len(con_medida) < 2 or any(not isinstance(p_.get("precio"), (int, float)) for p_ in con_medida):
+                    falta.append("idea: la categoría necesita al menos dos platos con medida y un precio único cada uno")
+    falta += pedido.validar(F, F.get("modo") == "muestra")
 
     if not F.get("carta"):
         falta.append("carta")
@@ -228,10 +243,16 @@ def construir(ruta_ficha, salida_base, base_url=None):
     os.makedirs(carpeta)
     prefijo = f"assets/{bid}"
 
+    # ---- director de estilo: paleta, tipografía y orden de fotos, cada una con su razón (se guardan en el manifiesto)
+    registro_huellas = _huella.cargar_registro(REGISTRO_HUELLAS)
+    D = _estilo.decidir(F, ORIGEN_ACTIVOS, registro_huellas)
+    est_r = dict(est, paleta=D["paleta"]["id"], tipografia=D["tipografia"]["clave"])   # el estilo ya resuelto
+    tokens_paleta = D["paleta"]["tokens"]
+
     # ---- tipografía
-    fuentes = tipografia.preparar_pareja(est["tipografia"], os.path.join(carpeta, prefijo, "fonts"), f"{prefijo}/fonts")
+    fuentes = tipografia.preparar_pareja(est_r["tipografia"], os.path.join(carpeta, prefijo, "fonts"), f"{prefijo}/fonts")
     par = fuentes["pareja"]
-    textos_para_glifos = json.dumps(F, ensure_ascii=False)
+    textos_para_glifos = json.dumps(F, ensure_ascii=False) + (json.dumps(pedido.textos(F), ensure_ascii=False) if pedido.activo(F) else "")
     faltan = tipografia.glifos_faltantes(par["texto"][0][0], textos_para_glifos)
     if faltan:
         raise FichaIncompleta("La tipografía no tiene estos caracteres: " + "".join(faltan))
@@ -296,16 +317,18 @@ def construir(ruta_ficha, salida_base, base_url=None):
     # ---- contexto de construcción
     wa_destino = agencia["whatsapp"] if ejemplo else F["contacto"].get("whatsapp")
     prefijo_wa = f"(Prueba de la muestra de Edumashow para {N['nombre']}) " if ejemplo else ""
-    C = {"muestra": muestra, "ejemplo": ejemplo, "agencia": agencia, "hero": hero, "logo": logo, "fotos": fotos,
-         "wa_destino": wa_destino, "prefijo_wa": prefijo_wa, "importe": dinero.importe_fn(F), "horario_pendiente": horario_pendiente}
+    # un pedido de una muestra siempre va a la agencia y se rotula como prueba: nadie le manda un pedido de mentira a un restaurante real
+    prefijo_wa_pedido = f"(Prueba de la muestra de Edumashow para {N['nombre']}) " if muestra else ""
+    orden_fotos = D["fotos"]["orden_por_antojo"] if D["fotos"]["usa_el_orden"] else None
+    C = {"muestra": muestra, "ejemplo": ejemplo, "agencia": agencia, "hero": hero, "logo": logo, "fotos": fotos, "orden_fotos": orden_fotos,
+         "wa_destino": wa_destino, "prefijo_wa": prefijo_wa, "prefijo_wa_pedido": prefijo_wa_pedido, "importe": dinero.importe_fn(F), "horario_pendiente": horario_pendiente}
 
     # ---- CSS y JS
-    paleta = est["paleta"]
     cinta_h = "3.25rem" if muestra else "0rem"
-    css = temas.tokens_css(paleta, est["forma"], est["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h)
+    css = temas.tokens_css(tokens_paleta, est["forma"], est["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h, tipografia.ancho_em(est_r["tipografia"]))
     css += f"body{{--grano:{temas.grano_datauri()}}}"
     css += fuentes["css"]
-    for nombre in ("base.css", f"{est['personalidad']}.css"):
+    for nombre in ["base.css"] + (["pedido.css"] if pedido.activo(F) else []) + [f"{est['personalidad']}.css"]:
         with open(os.path.join(PLANTILLAS, nombre), encoding="utf-8") as f:
             css += "\n" + f.read()
     css += P["css_extra"]
@@ -321,9 +344,12 @@ def construir(ruta_ficha, salida_base, base_url=None):
         R_ = F["reservas"]
         Fjs["reservas"] = {"paso": R_["paso_minutos"], "ultima": R_["ultima_antes_del_cierre_min"],
                            "antelacion": R_["antelacion_min"], "preferida": R_["hora_preferida"], "personas": R_["personas_por_defecto"]}
+    Fjs["fmt"] = dinero.config_js(F)
+    if pedido.activo(F):
+        Fjs["pedido"] = pedido.config_js(F, C)
     Fjs["fuentes_carga"] = [_carga_fuente(par["familia_display"], disp["peso"], disp["estilo"]), _carga_fuente(par["familia_texto"], txt_min, "normal")]
     js = "window.__F=" + json.dumps(Fjs, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";\n"
-    for nombre in ("base.js", f"{est['personalidad']}.js"):
+    for nombre in ["base.js"] + (["pedido.js"] if pedido.activo(F) else []) + [f"{est['personalidad']}.js"]:
         with open(os.path.join(PLANTILLAS, nombre), encoding="utf-8") as f:
             js += f.read() + "\n"
     js += P["js_extra"]
@@ -336,7 +362,7 @@ def construir(ruta_ficha, salida_base, base_url=None):
     meta = [f'<meta name="description" content="{piezas.e_(N["descripcion"])}">']
     if muestra:
         meta.append('<meta name="robots" content="noindex,nofollow">')
-    meta += [f'<meta name="theme-color" content="{temas.PALETAS[paleta]["meta-color"]}">', '<meta name="color-scheme" content="dark light">',
+    meta += [f'<meta name="theme-color" content="{tokens_paleta["meta-color"]}">', '<meta name="color-scheme" content="dark light">',
              '<meta property="og:type" content="website">', f'<meta property="og:title" content="{piezas.e_(titulo)}">',
              f'<meta property="og:description" content="{piezas.e_(N["descripcion"])}">',
              f'<meta property="og:locale" content="{F["idioma"]}_{N["pais"]}">', '<meta name="twitter:card" content="summary_large_image">']
@@ -346,18 +372,19 @@ def construir(ruta_ficha, salida_base, base_url=None):
         if hero_im is not None:
             imagenes.imagen_og(hero_im, N["nombre"], N["cocina"], ttf_display, ttf_texto, os.path.join(carpeta, "og.jpg"))
         else:   # sin foto de portada: fondo oscuro con el logotipo y el nombre
+            rgb = lambda k: color.hex_rgb(tokens_paleta[k])
             imagenes.imagen_og_logo(imagenes.abrir_rgba(ruta_origen("logo")), temas.lineas_titular(N["nombre"]), N["lema"], ttf_display, ttf_texto,
-                                    os.path.join(carpeta, "og.jpg"))
+                                    os.path.join(carpeta, "og.jpg"), color_fondo=rgb("tinta"), color_texto=rgb("crema"), color_acento=rgb("brasa"))
         meta.append(f'<meta property="og:image" content="{base_url.rstrip("/")}/og.jpg">')
         meta.append(f'<meta property="og:url" content="{base_url}">')
     precarga = "".join(f'<link rel="preload" href="{p["archivo"]}" as="font" type="font/woff2" crossorigin>'
                        for p in fuentes["precarga"] if p is disp or (p["rol"] == "texto" and p["peso"] == txt_min))
-    icono = temas.favicon_datauri(N["nombre"][0].upper(), temas.PALETAS[paleta]["tinta"], temas.PALETAS[paleta]["brasa"], est["personalidad"])
+    icono = temas.favicon_datauri(N["nombre"][0].upper(), tokens_paleta["tinta"], tokens_paleta["brasa"], est["personalidad"])
     head = (f'<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             f'<title>{piezas.e_(titulo)}</title>{"".join(meta)}<link rel="icon" href="{icono}">{precarga}'
             f'<script>document.documentElement.className+=" js"</script><style>{css_min}</style></head>')
     body = (f'<body class="tema-{est["personalidad"]}"><a class="salto" href="#contenido">Saltar al contenido</a>'
-            f'{piezas.cinta(F, C)}{P["portada"](F, C)}<main id="contenido">{main}</main>{piezas.pie(F, C)}'
+            f'{piezas.cinta(F, C)}{P["portada"](F, C)}{P.get("tras_portada", lambda F_, C_: "")(F, C)}<main id="contenido">{main}</main>{piezas.pie(F, C)}'
             f'{piezas.barra_movil(F, C)}{P["extras"](F, C)}{piezas.panel_edu(F, C)}<script>{js_min}</script></body>')
     html = f'<!doctype html><html lang="{F["idioma"]}">{head}{body}</html>'
     with open(os.path.join(carpeta, "index.html"), "w", encoding="utf-8") as f:
@@ -382,7 +409,7 @@ def construir(ruta_ficha, salida_base, base_url=None):
                 f.write(f"--- {t} ---\n{g.read()}\n\n")
 
     # ---- huella, manifiesto y zip
-    hu = _huella.huella(F)
+    hu = _huella.huella(F, est_r)
     pesos = {"html": os.path.getsize(os.path.join(carpeta, "index.html")), "css_min": len(css_min.encode()), "js_min": len(js_min.encode())}
     dir_fuentes = os.path.join(carpeta, prefijo, "fonts")
     dir_img = os.path.join(carpeta, prefijo, "img")
@@ -393,7 +420,7 @@ def construir(ruta_ficha, salida_base, base_url=None):
         "id": F["id"], "version_ficha": F["version"], "version_generador": VERSION_GENERADOR, "version_reglas": leer(os.path.join(RAIZ, "nucleo", "reglas.json"))["version"],
         "fecha": _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "modo": F["modo"], "ejemplo_ficticio": ejemplo,
         "pais": N["pais"], "ciudad": N["ciudad"], "idioma": F["idioma"], "confirmacion": F["confirmacion"],
-        "huella_diseno": hu, "id_de_ensamblado": bid,
+        "huella_diseno": hu, "decisiones_de_diseno": _estilo.para_manifiesto(D), "id_de_ensamblado": bid,
         "tipografias": [{"familia": par["familia_display"] if p["rol"] == "display" else par["familia_texto"], "archivo": p["archivo"],
                          "peso": p["peso"], "estilo": p["estilo"], "licencia": "OFL-1.1"} for p in fuentes["precarga"]],
         "imagenes": A.registro, "enlaces_externos": enlaces, "pesos_bytes": pesos,
