@@ -2,7 +2,7 @@
    Todo lo que necesita programa queda oculto sin JavaScript: la carta se lee igual y se ofrece llamar. */
 
 /* sin JavaScript no hay carrito: se ocultan los controles y queda el aviso */
-html:not(.js) .ctl,html:not(.js) .sups,html:not(.js) .ticket,html:not(.js) .pedido-barra,html:not(.js) .hoja-pedido,html:not(.js) .solo-js{display:none}
+html:not(.js) .ctl,html:not(.js) .sups,html:not(.js) .sups-det,html:not(.js) .ticket,html:not(.js) .pedido-barra,html:not(.js) .hoja-pedido,html:not(.js) .solo-js{display:none}
 .js .sups-texto{display:none}
 .aviso-js{margin-top:1rem;padding:.8rem 1rem;border:2px dashed currentColor;font-weight:700}
 .aviso-js a{font-weight:800}
@@ -30,6 +30,16 @@ html:not(.js) .ctl,html:not(.js) .sups,html:not(.js) .ticket,html:not(.js) .pedi
 .sup-btn[aria-pressed="true"]{background:var(--tinta);color:var(--crema)}
 @media (forced-colors:active){.sup-btn[aria-pressed="true"]{background:Highlight;color:HighlightText;border-color:Highlight}}
 .sup-mas{font-weight:800}
+/* con muchos extras por plato quedan plegados bajo un boton (el que ya tiene alguno elegido se rellena) */
+.sups-det{margin-top:.35rem}
+.sups-det>summary{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem;padding:.35rem .95rem;border:2px solid var(--tinta);border-radius:var(--r-boton);background:transparent;color:var(--tinta);font-weight:700;font-size:.95rem;cursor:pointer;list-style:none}
+.sups-det>summary::-webkit-details-marker{display:none}
+.sups-det>summary::after{content:"";flex:none;width:.5rem;height:.5rem;margin-left:.15rem;border:solid currentColor;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-.12rem,-.12rem);transition:transform var(--dur) var(--ease)}
+.sups-det[open]>summary::after{transform:rotate(-135deg) translate(-.12rem,-.12rem)}
+.sups-det.con-sel>summary{background:var(--tinta);color:var(--crema)}
+.sups-det[open]>.sups{margin-top:.6rem}
+@media (forced-colors:active){.sups-det.con-sel>summary{background:Highlight;color:HighlightText;border-color:Highlight}}
+@media (prefers-reduced-motion:reduce){.sups-det>summary::after{transition:none}}
 .chk{position:relative;flex:none;width:1.15rem;height:1.15rem;border:2px solid currentColor;border-radius:2px}
 .sup-btn[aria-pressed="true"] .chk::after{content:"";position:absolute;left:.28rem;top:.02rem;width:.32rem;height:.62rem;border:solid currentColor;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
 

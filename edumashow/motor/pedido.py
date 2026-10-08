@@ -54,6 +54,7 @@ TEXTOS = {
     "paso3_t_llamada": "Llámanos",
     "paso3_x_llamada": "Con tu ticket a la mano, pides en una llamada.",
     "paso3_x_muestra": "Con un toque lo mandas por WhatsApp. En esta muestra llega a Edumashow como prueba.",
+    "extras": "Extras",
     "extra_si": "activado, se suma al tocar Agregar",
     "extra_no": "desactivado",
     "sin_js": "Para armar el pedido aquí hace falta JavaScript. Mientras tanto puedes llamar",
@@ -63,6 +64,9 @@ TEXTOS = {
 
 def activo(F):
     return bool(F.get("pedido"))
+
+
+EXTRAS_PLEGADOS_DESDE = 3      # un plato con más extras que estos los lleva plegados
 
 
 def textos(F):
@@ -137,7 +141,11 @@ def suplementos(F, C, p, pedir):
     texto = '<div class="sups-texto">' + "".join(f'<p class="sup">{e_(s["etiqueta"])} +{_precio(C, s["precio"], eco=True)}</p>' for s in p["suplementos"]) + '</div>'
     botones = "".join(f'<button type="button" class="sup-btn" data-sup="{k}" aria-pressed="false"><span class="chk" aria-hidden="true"></span>'
                       f'<span class="sup-et">{e_(s["etiqueta"])}</span><span class="sup-mas">+{_precio(C, s["precio"])}</span></button>' for k, s in enumerate(p["suplementos"]))
-    return texto + f'<div class="sups" role="group" aria-label="Extras de {e_(p["nombre"])}">{botones}</div>'
+    grupo = f'<div class="sups" role="group" aria-label="Extras de {e_(p["nombre"])}">{botones}</div>'
+    if len(p["suplementos"]) > EXTRAS_PLEGADOS_DESDE:
+        # con muchos extras por plato la tarjeta se alargaba más que el plato: quedan plegados bajo un botón que cuenta los elegidos (el JavaScript lo actualiza)
+        grupo = f'<details class="sups-det"><summary>{e_(textos(F)["extras"])} <span class="sups-n">({len(p["suplementos"])})</span></summary>{grupo}</details>'
+    return texto + grupo
 
 
 def molde(F, C):

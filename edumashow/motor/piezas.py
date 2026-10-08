@@ -1,5 +1,6 @@
 """Piezas HTML de la personalidad elegante. Cada función recibe la ficha (F) y el contexto de
 construcción (C) y devuelve HTML. Todo texto de la ficha se escapa (R-DAT-07)."""
+import unicodedata
 from html import escape
 from urllib.parse import quote
 
@@ -37,6 +38,18 @@ def rango_horario(tramos):
 
 def nombre_pais(N):
     return dinero.PAISES[N["pais"]][0].replace("Espana", "España").replace("Peru", "Perú").replace("Mexico", "México").replace("Canada", "Canadá").replace("Panama", "Panamá")
+
+
+def _plano(t):
+    """Minúsculas y sin tildes, para comparar textos sin que importen las mayúsculas ni los acentos."""
+    return "".join(c for c in unicodedata.normalize("NFD", t.lower()) if unicodedata.category(c) != "Mn")
+
+
+def direccion_html(N):
+    """La dirección y, en otra línea, la ciudad y el país que la dirección aún no dice (muchas fichas ya traen la dirección completa, con ciudad y país)."""
+    d = _plano(N["direccion"])
+    resto = [x for x in (N["ciudad"], nombre_pais(N)) if _plano(x) not in d]
+    return e_(N["direccion"]) + (f'<br>{e_(", ".join(resto))}' if resto else "")
 
 
 # ------------------------------------------------------------------ acciones: lo que la ficha pide que se pueda hacer en un toque
@@ -309,7 +322,6 @@ def visita(F, C):
     N, T = F["negocio"], F["textos"]
     filas = "".join(f'<li data-dia="{k}"><span>{n}</span><span>{rango_horario(F["horario"].get(k, []))}</span></li>' for k, n in DIAS)
     como = mapa_url(F["contacto"]["mapa_consulta"])
-    pais = nombre_pais(N)
     pref = C["prefijo_wa"]
     K = F["contacto"]
     # los contactos que la ficha trae, cada uno con su acción directa: sin WhatsApp no hay botón de escribir (un enlace sin número no lleva a ningún sitio)
@@ -320,7 +332,7 @@ def visita(F, C):
     if K.get("telefono"):
         botones.append(f'<a class="btn suave" href="tel:{K["telefono"]}">{ICONO_TEL} Llamar al {e_(K.get("telefono_visible") or K["telefono"])}</a>')
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja rej-2">
-<div class="rv"><h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{e_(N["direccion"])}<br>{e_(N["ciudad"])}, {e_(pais)}</address>
+<div class="rv"><h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{direccion_html(N)}</address>
 <p class="estado" data-open><span data-open-text>Ver horario</span></p>
 {valoracion.pieza(F, C, "en-visita")}{valoracion.nota_fuente(F)}
 <div class="botones">{"".join(botones)}</div></div>

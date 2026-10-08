@@ -4,8 +4,8 @@ Cada función recibe la ficha (F) y el contexto de construcción (C) y devuelve 
 Todo texto de la ficha se escapa (R-DAT-07). Comparte con la elegante la cinta de muestra, el pie, la barra móvil y el panel."""
 from . import pedido, temas, tipografia, valoracion
 from .imagenes import picture_html
-from .piezas import (ICONO_IG, ICONO_MAPA, ICONO_PAUSA, ICONO_PLAY, ICONO_TEL, ICONO_WA, _enlace_accion, acciones, e_, mapa_url,
-                     nombre_pais, wa_url, DIAS, rango_horario, cierre_muestra, estado_y_valoracion, particulas_html, banda_texto, paralaje_attr)
+from .piezas import (direccion_html, ICONO_IG, ICONO_MAPA, ICONO_PAUSA, ICONO_PLAY, ICONO_TEL, ICONO_WA, _enlace_accion, acciones, e_, mapa_url,
+                     wa_url, DIAS, rango_horario, cierre_muestra, estado_y_valoracion, particulas_html, banda_texto, paralaje_attr)
 
 ICONO_TIKTOK = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M19.6 7.7a4.7 4.7 0 0 1-3.5-1.6A4.7 4.7 0 0 1 '
                 '14.9 3h-3.2v12.6a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.8a5.9 5.9 0 0 0-.8-.1 5.8 5.8 0 1 0 5.8 5.8V9.2a7.9 7.9 0 0 0 4.7 1.5V7.7Z"/></svg>')
@@ -225,8 +225,6 @@ ICONO_PIN = ('<svg class="pin" viewBox="0 0 64 80" aria-hidden="true" focusable=
 def visita(F, C):
     N, K, T = F["negocio"], F["contacto"], F["textos"]
     como = mapa_url(K["mapa_consulta"])
-    # si la direccion ya nombra la ciudad (como en Estados Unidos), la segunda linea es solo el pais
-    linea_pais = e_(nombre_pais(N)) if N["ciudad"].lower() in N["direccion"].lower() else f'{e_(N["ciudad"])}, {e_(nombre_pais(N))}'
     botones = [f'<a class="btn" href="{como}" target="_blank" rel="noopener">{ICONO_MAPA} Cómo llegar</a>']
     if K.get("telefono"):
         etiqueta = f'Llamar al {K["telefono_visible"]}' if K.get("telefono_visible") else "Llamar"
@@ -254,7 +252,7 @@ def visita(F, C):
             redes.append(f'<a class="btn suave" href="{r["url"]}" target="_blank" rel="noopener">{icono} {nombre} @{e_(r["usuario"])}</a>')
     bloque_redes = f'<div class="dato"><h3>Redes</h3><div class="redes">{"".join(redes)}</div></div>' if redes else ""
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja">
-<div class="v-izq rv">{ICONO_PIN}<h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{e_(N["direccion"])}<br>{linea_pais}</address>
+<div class="v-izq rv">{ICONO_PIN}<h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{direccion_html(N)}</address>
 <div class="vis-botones">{"".join(botones)}</div></div>
 <div class="datos rv" data-tilt style="--d:120ms">{horas}{calificacion}{reparto}{bloque_redes}</div></div></section>'''
 

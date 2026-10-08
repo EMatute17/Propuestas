@@ -329,7 +329,7 @@ for (const d of lista) {
     if (await pag.evaluate(() => !!document.querySelector('.chips'))) {   // menu de tarjetas: barra de filtros, nombres, descripciones, precios y botones
       await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelector('.carta-cuerpo').scrollIntoView({ block: 'start' }); window.scrollBy(0, -110); });
       await pag.waitForTimeout(1200);
-      await muestrearContraste(pag, d, ['.chip', '.chips-enlaces a', '.cat h3', '.cat-nota', '.nom', '.nom-en', '.des', '.pre', '.eti', '.sup-btn', '.add', '.sup', '.nota-precios', '.carta .sobretitulo'], 'menu');
+      await muestrearContraste(pag, d, ['.chip', '.chips-enlaces a', '.cat h3', '.cat-nota', '.nom', '.nom-en', '.des', '.pre', '.eti', '.sup-btn', '.sups-det > summary', '.add', '.sup', '.nota-precios', '.carta .sobretitulo'], 'menu');
     }
     // secciones con fondo propio: regla de medidas, como pedir y visita (se espera a que termine el revelado de cada una)
     for (const [sec, sels, nombre] of [
@@ -708,6 +708,7 @@ if (ficha.pedido) {
       const info = await pag.evaluate((op) => { const f = document.querySelector(`.op[data-op="${op}"]`); return f ? { cat: f.closest('[data-cat]').getAttribute('data-cat'), item: f.closest('[data-item]').getAttribute('data-item') } : null; }, l.op);
       if (!info) { Rd.faltaOp = (Rd.faltaOp || []).concat(l.op); continue; }
       await pag.click(`[data-filtro="${info.cat}"]`); await pag.waitForTimeout(450);
+      if ((l.suplementos || []).length) { const plegado = await pag.$(`[data-item="${info.item}"] .sups-det:not([open]) > summary`); if (plegado) { await plegado.click(); await pag.waitForTimeout(250); } }   // con muchos extras van plegados bajo un boton: se abre como lo haria una persona
       for (const sp of (l.suplementos || [])) await pag.click(`[data-item="${info.item}"] .sup-btn[data-sup="${sp}"]`);
       await pag.click(`.op[data-op="${l.op}"] .add`);
       for (let i = 1; i < l.cantidad; i++) await pag.click(`.op[data-op="${l.op}"] .mas-uno`);
@@ -729,7 +730,7 @@ if (ficha.pedido) {
       }), sels);
       Rd.anillos.push(...r.map((x) => ({ ...x, donde })));
     };
-    await medirAnillos(['.filtros .chip', '.tarjeta .paso:not([hidden]) .menos', '.tarjeta .paso:not([hidden]) .mas-uno', '.tarjeta .sup-btn', '.tarjeta .add:not([hidden])'], 'menú');
+    await medirAnillos(['.filtros .chip', '.tarjeta .paso:not([hidden]) .menos', '.tarjeta .paso:not([hidden]) .mas-uno', '.tarjeta .sups-det > summary', '.tarjeta .sup-btn', '.tarjeta .add:not([hidden])'], 'menú');
     if (d.w < 1000) {
       // hoja: se abre desde la barra, con el foco en Cerrar, y Escape la cierra devolviendo el foco
       await pag.click('.pb-ver'); await pag.waitForTimeout(700);

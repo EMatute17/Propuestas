@@ -92,6 +92,11 @@
       for (var i = 0; i < lineas.length; i++) { if (lineas[i].item === id) { hay = true; break; } }
       t.classList.toggle('en-pedido', hay);
     });
+    qsa('.sups-det').forEach(function (d) {   /* el boton de extras plegados cuenta los elegidos: (8) o (2/8) */
+      var n = qsa('.sup-btn[aria-pressed="true"]', d).length, c = qs('.sups-n', d);
+      if (c) c.textContent = '(' + (n ? n + '/' : '') + qsa('.sup-btn', d).length + ')';
+      d.classList.toggle('con-sel', n > 0);
+    });
     qsa('[data-ref-q]').forEach(function (b) {
       var op = b.getAttribute('data-ref-q'), q = 0;
       for (var i = 0; i < lineas.length; i++) { if (lineas[i].op === op) q += lineas[i].qty; }

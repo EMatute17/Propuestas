@@ -191,6 +191,8 @@ def viable(dim, opcion, F):
     if dim == "galeria":
         minimo = {"mosaico": 1, "cuadricula_ig": 1, "cinta": 2, "polaroid": 3, "bento": 5}.get(opcion, 1)
         return n_gal >= minimo
+    if dim == "carta" and opcion == "pestanas_lista":
+        return len(F.get("carta") or []) <= 8   # las pestañas van en una sola fila que se desplaza de lado: con más categorías, en escritorio algunas quedarían ocultas
     return True
 
 
