@@ -1,11 +1,11 @@
 # Informe del Gate: Lumbre (lumbre)
 
 - **Veredicto técnico: APTO**
-- Fecha: 2026-10-08T02:36:36Z | Gate 0.1.0 | Reglas 0.1.0
-- Paquete (SHA-256): `c1cd5b849a4e76c28435dadd6e45b827cf61589471748c94a7e999728d2e07d5`
+- Fecha: 2026-10-08T02:46:01Z | Gate 0.1.0 | Reglas 0.1.0
+- Paquete (SHA-256): `22513a43c8a56f1ac330098a05a75367968ededa9c6901f333a15d1fba24b27d`
 - Estados: técnico = APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
 
-## Resultado por comprobacion
+## Resultado por comprobación
 
 | ID | Resultado | Gravedad | Reglas | Evidencia |
 |---|---|---|---|---|
@@ -15,7 +15,7 @@
 | G-ETICA | **PASS** | bloqueo | R-ETI-01, R-ETI-02, R-ETI-03, R-ETI-05, R-SIG-11 | 0 patrones de escasez, testimonios, promesas o refuerzo variable |
 | G-META | **WARN** | bloqueo | R-MUE-01, R-MUE-04 | 0 fallos y 1 avisos de metadatos |
 | G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 11 imágenes con origen y licencia registrados; 11 etiquetas img con alt |
-| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash c1cd5b849a4e verificado sobre 69 archivos |
+| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 22513a43c8a5 verificado sobre 69 archivos |
 | G-HUELLA | **PASS** | bloqueo | R-VAR-01 | no hay otras webs registradas con las que comparar (primera del registro) |
 | G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 3 tipografías revisadas contra 73 caracteres distintos |
 | G-RED | **PASS** | bloqueo | R-ETI-08, R-REN-05 | 27 dispositivos: 0 peticiones externas, 0 errores de consola, 0 con cookies o almacenamiento, 0 respuestas 404 |
@@ -28,7 +28,7 @@
 | G-DESBORDE | **PASS** | bloqueo | R-LEG-03, R-LEG-09 | 27 dispositivos y 2 pruebas de zoom |
 | G-TEXTO | **PASS** | defecto | R-LEG-07 | texto mínimo medido: 14 px |
 | G-PRIMERA | **PASS** | bloqueo | R-SIG-01, R-SIG-07, R-MUE-02 | 27 dispositivos, incluidos horizontales y plegables |
-| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 16 enlaces revisados; barra fija en 16 de 16 móviles |
+| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 17 enlaces revisados; barra fija en 16 de 16 móviles |
 | G-HORARIO | **PASS** | bloqueo | R-DAT-03, R-SIG-02 | 11 casos simulados |
 | G-FORMULARIO | **PASS** | defecto | R-SIG-03, R-SIG-04, R-DAT-03 | 5 campos; se probó envío vacío, envío completo y día cerrado |
 | G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | flechas, Fin, Escape y retorno del foco |
@@ -57,49 +57,49 @@
 
 | Dispositivo | Tamaño | Desborde | h1 y botón principal en la primera pantalla | Solapes | Recortes |
 |---|---|---|---|---|---|
-| iPhone SE (1.a gen) | 320x568 @2 | 0 px | si | 0 | 0 |
-| Galaxy Z Fold plegado (estres) | 280x653 @3 | 0 px | si | 0 | 0 |
-| iPhone SE (2.a y 3.a gen) | 375x667 @2 | 0 px | si | 0 | 0 |
-| iPhone 12 mini | 360x780 @3 | 0 px | si | 0 | 0 |
-| Galaxy S8 | 360x740 @4 | 0 px | si | 0 | 0 |
-| iPhone 12, 13 y 14 | 390x844 @3 | 0 px | si | 0 | 0 |
-| iPhone 14 Pro | 393x852 @3 | 0 px | si | 0 | 0 |
-| Pixel 7 | 412x915 @2.6 | 0 px | si | 0 | 0 |
-| Galaxy S20 Ultra | 412x915 @3.5 | 0 px | si | 0 | 0 |
-| iPhone 14 Pro Max | 430x932 @3 | 0 px | si | 0 | 0 |
-| iPhone SE horizontal | 667x375 @2 | 0 px | si | 0 | 0 |
-| iPhone 14 horizontal | 844x390 @3 | 0 px | si | 0 | 0 |
-| Pixel 7 horizontal | 915x412 @2.6 | 0 px | si | 0 | 0 |
-| Galaxy Z Fold desplegado | 673x841 @2.6 | 0 px | si | 0 | 0 |
-| iPad mini | 768x1024 @2 | 0 px | si | 0 | 0 |
-| iPad | 810x1080 @2 | 0 px | si | 0 | 0 |
-| iPad Pro 11 | 834x1194 @2 | 0 px | si | 0 | 0 |
-| iPad Pro 12.9 | 1024x1366 @2 | 0 px | si | 0 | 0 |
-| iPad horizontal | 1024x768 @2 | 0 px | si | 0 | 0 |
-| iPad Pro 11 horizontal | 1194x834 @2 | 0 px | si | 0 | 0 |
-| Portatil 1280 | 1280x720 @1 | 0 px | si | 0 | 0 |
-| Portatil 1366 | 1366x768 @1 | 0 px | si | 0 | 0 |
-| Escritorio 1440 | 1440x900 @1 | 0 px | si | 0 | 0 |
-| Portatil 1536 | 1536x864 @1.25 | 0 px | si | 0 | 0 |
-| Escritorio Full HD | 1920x1080 @1 | 0 px | si | 0 | 0 |
-| Escritorio 2K | 2560x1440 @1 | 0 px | si | 0 | 0 |
-| Ultrapanoramico | 3440x1440 @1 | 0 px | si | 0 | 0 |
+| iPhone SE (1.ª gen) | 320x568 @2 | 0 px | sí | 0 | 0 |
+| Galaxy Z Fold plegado (estrés) | 280x653 @3 | 0 px | sí | 0 | 0 |
+| iPhone SE (2.ª y 3.ª gen) | 375x667 @2 | 0 px | sí | 0 | 0 |
+| iPhone 12 mini | 360x780 @3 | 0 px | sí | 0 | 0 |
+| Galaxy S8 | 360x740 @4 | 0 px | sí | 0 | 0 |
+| iPhone 12, 13 y 14 | 390x844 @3 | 0 px | sí | 0 | 0 |
+| iPhone 14 Pro | 393x852 @3 | 0 px | sí | 0 | 0 |
+| Pixel 7 | 412x915 @2.6 | 0 px | sí | 0 | 0 |
+| Galaxy S20 Ultra | 412x915 @3.5 | 0 px | sí | 0 | 0 |
+| iPhone 14 Pro Max | 430x932 @3 | 0 px | sí | 0 | 0 |
+| iPhone SE horizontal | 667x375 @2 | 0 px | sí | 0 | 0 |
+| iPhone 14 horizontal | 844x390 @3 | 0 px | sí | 0 | 0 |
+| Pixel 7 horizontal | 915x412 @2.6 | 0 px | sí | 0 | 0 |
+| Galaxy Z Fold desplegado | 673x841 @2.6 | 0 px | sí | 0 | 0 |
+| iPad mini | 768x1024 @2 | 0 px | sí | 0 | 0 |
+| iPad | 810x1080 @2 | 0 px | sí | 0 | 0 |
+| iPad Pro 11 | 834x1194 @2 | 0 px | sí | 0 | 0 |
+| iPad Pro 12.9 | 1024x1366 @2 | 0 px | sí | 0 | 0 |
+| iPad horizontal | 1024x768 @2 | 0 px | sí | 0 | 0 |
+| iPad Pro 11 horizontal | 1194x834 @2 | 0 px | sí | 0 | 0 |
+| Portátil 1280 | 1280x720 @1 | 0 px | sí | 0 | 0 |
+| Portátil 1366 | 1366x768 @1 | 0 px | sí | 0 | 0 |
+| Escritorio 1440 | 1440x900 @1 | 0 px | sí | 0 | 0 |
+| Portátil 1536 | 1536x864 @1.25 | 0 px | sí | 0 | 0 |
+| Escritorio Full HD | 1920x1080 @1 | 0 px | sí | 0 | 0 |
+| Escritorio 2K | 2560x1440 @1 | 0 px | sí | 0 | 0 |
+| Ultrapanorámico | 3440x1440 @1 | 0 px | sí | 0 | 0 |
 
 ## Rendimiento (Lighthouse, mediana de 3 pasadas, servidor local con brotli)
 
 | Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |
 |---|---|---|---|---|---|---|---|
-| movil | 99 | 100 | 100 | 2181 ms | 0 | 0 ms | 180 KB |
-| escritorio | 100 | 100 | 100 | 606 ms | 0 | 0 ms | 310 KB |
+| móvil | 99 | 100 | 100 | 2181 ms | 0 | 0 ms | 180 KB |
+| escritorio | 100 | 100 | 100 | 605 ms | 0 | 0 ms | 310 KB |
 
 Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 420 KB, total tras recorrer la página 420 KB
 
 ## Contraste medido sobre píxeles reales (peores 8)
 
-| Elemento | Dispositivo | Contraste (5.o percentil) | Se exige | |
+| Elemento | Dispositivo | Contraste (5.º percentil) | Se exige | |
 |---|---|---|---|---|
 | .galeria figcaption "El rincón rojo" | iph-390 | 5.89:1 | 4.5:1 | ok |
-| .hero h1 "LumbreLumbre" | pc-1440 | 4.08:1 | 3.0:1 | ok |
+| .hero h1 "LumbreLumbre" | pc-1440 | 4.07:1 | 3.0:1 | ok |
 | .hero .btn "Reservar mesa" | iph-390 | 6.53:1 | 4.5:1 | ok |
 | .barra-movil a "Reservar" | iph-390 | 6.53:1 | 4.5:1 | ok |
 | .hero .btn "Reservar mesa" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |

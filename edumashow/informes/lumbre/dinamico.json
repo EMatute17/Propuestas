@@ -3,7 +3,7 @@
  "dispositivos": [
   {
    "id": "se1-320",
-   "nombre": "iPhone SE (1.a gen)",
+   "nombre": "iPhone SE (1.ª gen)",
    "tipo": "telefono",
    "w": 320,
    "h": 568,
@@ -48,8 +48,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 320.321044921875,
-      "cajaH": 596.28515625,
+      "cajaW": 320.32586669921875,
+      "cajaH": 596.2940673828125,
       "cubre": true
      },
      {
@@ -135,8 +135,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 322.25848388671875,
-      "cajaH": 599.8916015625,
+      "cajaW": 322.271728515625,
+      "cajaH": 599.91650390625,
       "cubre": true
      },
      {
@@ -234,7 +234,7 @@
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
       "cajaW": 280.2808837890625,
-      "cajaH": 652.6070556640625,
+      "cajaH": 652.607177734375,
       "cubre": true
      },
      {
@@ -320,8 +320,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 281.9646911621094,
-      "cajaH": 656.52783203125,
+      "cajaW": 281.9532470703125,
+      "cajaH": 656.5009765625,
       "cubre": true
      },
      {
@@ -373,7 +373,7 @@
   },
   {
    "id": "se3-375",
-   "nombre": "iPhone SE (2.a y 3.a gen)",
+   "nombre": "iPhone SE (2.ª y 3.ª gen)",
    "tipo": "telefono",
    "w": 375,
    "h": 667,
@@ -505,8 +505,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 377.1908874511719,
-      "cajaH": 618.59326171875,
+      "cajaW": 377.2049560546875,
+      "cajaH": 618.6162109375,
       "cubre": true
      },
      {
@@ -603,8 +603,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.3665771484375,
-      "cajaH": 728.7413330078125,
+      "cajaW": 360.3611755371094,
+      "cajaH": 728.7303466796875,
       "cubre": true
      },
      {
@@ -690,8 +690,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.2675476074219,
-      "cajaH": 732.58544921875,
+      "cajaW": 362.2956237792969,
+      "cajaH": 732.64208984375,
       "cubre": true
      },
      {
@@ -875,7 +875,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.5113525390625,
+      "cajaW": 362.51129150390625,
       "cajaH": 692.79931640625,
       "cubre": true
      },
@@ -1060,8 +1060,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 391.8505554199219,
-      "cajaH": 795.7578125,
+      "cajaW": 391.8635559082031,
+      "cajaH": 795.784423828125,
       "cubre": true
      },
      {
@@ -1162,6 +1162,7 @@
      "#visitanos",
      "#reservar",
      "#carta",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20quisiera%20reservar%20una%20mesa.",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
@@ -1222,8 +1223,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 393.394287109375,
-      "cajaH": 800.8026123046875,
+      "cajaW": 393.4001770019531,
+      "cajaH": 800.814697265625,
       "cubre": true
      },
      {
@@ -1309,8 +1310,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 395.5677185058594,
-      "cajaH": 805.22705078125,
+      "cajaW": 395.39984130859375,
+      "cajaH": 804.88525390625,
       "cubre": true
      },
      {
@@ -1407,8 +1408,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.40716552734375,
-      "cajaH": 863.852783203125,
+      "cajaW": 412.41326904296875,
+      "cajaH": 863.86572265625,
       "cubre": true
      },
      {
@@ -1494,8 +1495,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.4845275878906,
-      "cajaH": 868.2041015625,
+      "cajaW": 414.46893310546875,
+      "cajaH": 868.17138671875,
       "cubre": true
      },
      {
@@ -1592,8 +1593,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.40716552734375,
-      "cajaH": 863.85302734375,
+      "cajaW": 412.413330078125,
+      "cajaH": 863.8658447265625,
       "cubre": true
      },
      {
@@ -1679,8 +1680,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.9931640625,
-      "cajaH": 869.26953125,
+      "cajaW": 414.8238220214844,
+      "cajaH": 868.9150390625,
       "cubre": true
      },
      {
@@ -1864,8 +1865,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 432.67523193359375,
-      "cajaH": 885.474853515625,
+      "cajaW": 432.65869140625,
+      "cajaH": 885.44091796875,
       "cubre": true
      },
      {
@@ -2049,8 +2050,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 671.9578857421875,
-      "cajaH": 367.99609375,
+      "cajaW": 671.98583984375,
+      "cajaH": 368.01171875,
       "cubre": true
      },
      {
@@ -2151,6 +2152,7 @@
      "#visitanos",
      "#reservar",
      "#carta",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20quisiera%20reservar%20una%20mesa.",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
@@ -2211,8 +2213,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 844.8341674804688,
-      "cajaH": 368.87982177734375,
+      "cajaW": 844.8721923828125,
+      "cajaH": 368.8964538574219,
       "cubre": true
      },
      {
@@ -2305,8 +2307,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 852.1038208007812,
-      "cajaH": 372.05419921875,
+      "cajaW": 852.185302734375,
+      "cajaH": 372.08935546875,
       "cubre": true
      },
      {
@@ -2511,8 +2513,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 922.5150146484375,
-      "cajaH": 376.331298828125,
+      "cajaW": 922.3934326171875,
+      "cajaH": 376.281494140625,
       "cubre": true
      },
      {
@@ -2623,8 +2625,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 673.6551513671875,
-      "cajaH": 789.7681274414062,
+      "cajaW": 673.6751098632812,
+      "cajaH": 789.79150390625,
       "cubre": true
      },
      {
@@ -2710,8 +2712,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 677.5311279296875,
-      "cajaH": 794.31201171875,
+      "cajaW": 677.4506225585938,
+      "cajaH": 794.2177734375,
       "cubre": true
      },
      {
@@ -2808,8 +2810,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 768.7705078125,
-      "cajaH": 972.97509765625,
+      "cajaW": 768.7589721679688,
+      "cajaH": 972.9605712890625,
       "cubre": true
      },
      {
@@ -2895,8 +2897,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 771.4412841796875,
-      "cajaH": 976.355224609375,
+      "cajaW": 771.4163818359375,
+      "cajaH": 976.32373046875,
       "cubre": true
      },
      {
@@ -2997,6 +2999,7 @@
      "#visitanos",
      "#reservar",
      "#carta",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20quisiera%20reservar%20una%20mesa.",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
@@ -3057,8 +3060,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 810.7885131835938,
-      "cajaH": 1029.000732421875,
+      "cajaW": 810.800537109375,
+      "cajaH": 1029.0159912109375,
       "cubre": true
      },
      {
@@ -3144,8 +3147,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 814.7928466796875,
-      "cajaH": 1034.082763671875,
+      "cajaW": 814.8234252929688,
+      "cajaH": 1034.121826171875,
       "cubre": true
      },
      {
@@ -3242,8 +3245,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 834.8118896484375,
-      "cajaH": 1143.1116943359375,
+      "cajaW": 834.82421875,
+      "cajaH": 1143.128662109375,
       "cubre": true
      },
      {
@@ -3329,8 +3332,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 839.029296875,
-      "cajaH": 1148.88671875,
+      "cajaW": 838.6875,
+      "cajaH": 1148.418701171875,
       "cubre": true
      },
      {
@@ -3528,8 +3531,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.0592041015625,
-      "cajaH": 1321.775146484375,
+      "cajaW": 1029.9443359375,
+      "cajaH": 1321.6279296875,
       "cubre": true
      },
      {
@@ -3550,7 +3553,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 409.25244140625,
-      "cajaH": 586.389404296875,
+      "cajaH": 586.3894653320312,
       "cubre": true
      },
      {
@@ -3564,7 +3567,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 238.646240234375,
-      "cajaH": 178.976318359375,
+      "cajaH": 178.97625732421875,
       "cubre": true
      }
     ],
@@ -3640,7 +3643,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.98193359375,
+      "cajaW": 1024.981689453125,
       "cajaH": 716.6865234375,
       "cubre": true
      },
@@ -3741,8 +3744,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.4896240234375,
-      "cajaH": 720.53759765625,
+      "cajaW": 1030.52978515625,
+      "cajaH": 720.5654296875,
       "cubre": true
      },
      {
@@ -3777,7 +3780,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 238.646240234375,
-      "cajaH": 178.9761962890625,
+      "cajaH": 178.976318359375,
       "cubre": true
      }
     ],
@@ -3954,8 +3957,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1202.525634765625,
-      "cajaH": 787.583984375,
+      "cajaW": 1201.9434814453125,
+      "cajaH": 787.20263671875,
       "cubre": true
      },
      {
@@ -3969,7 +3972,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 677.328857421875,
-      "cajaH": 380.9869384765625,
+      "cajaH": 380.98681640625,
       "cubre": true
      },
      {
@@ -3983,7 +3986,7 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 379.63690185546875,
-      "cajaH": 284.715087890625,
+      "cajaH": 284.7149658203125,
       "cubre": true
      },
      {
@@ -4021,7 +4024,7 @@
   },
   {
    "id": "pc-1280",
-   "nombre": "Portatil 1280",
+   "nombre": "Portátil 1280",
    "tipo": "escritorio",
    "w": 1280,
    "h": 720,
@@ -4066,8 +4069,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1281.13525390625,
-      "cajaH": 668.592529296875,
+      "cajaW": 1281.227294921875,
+      "cajaH": 668.6405029296875,
       "cubre": true
      },
      {
@@ -4167,8 +4170,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1286.689453125,
-      "cajaH": 671.4912109375,
+      "cajaW": 1286.8707275390625,
+      "cajaH": 671.58544921875,
       "cubre": true
      },
      {
@@ -4189,7 +4192,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
@@ -4234,7 +4237,7 @@
   },
   {
    "id": "pc-1366",
-   "nombre": "Portatil 1366",
+   "nombre": "Portátil 1366",
    "tipo": "escritorio",
    "w": 1366,
    "h": 768,
@@ -4279,8 +4282,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1367.27001953125,
-      "cajaH": 716.665771484375,
+      "cajaW": 1367.25048828125,
+      "cajaH": 716.6554565429688,
       "cubre": true
      },
      {
@@ -4380,8 +4383,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1373.1868896484375,
-      "cajaH": 719.76708984375,
+      "cajaW": 1373.1385498046875,
+      "cajaH": 719.741455078125,
       "cubre": true
      },
      {
@@ -4409,14 +4412,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.44000244140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
@@ -4492,8 +4495,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1441.297607421875,
-      "cajaH": 848.76416015625,
+      "cajaW": 1441.3387451171875,
+      "cajaH": 848.7883911132812,
       "cubre": true
      },
      {
@@ -4593,7 +4596,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1446.784423828125,
+      "cajaW": 1446.7845458984375,
       "cajaH": 851.99560546875,
       "cubre": true
      },
@@ -4615,14 +4618,14 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
@@ -4709,6 +4712,7 @@
      "#visitanos",
      "#reservar",
      "#carta",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20quisiera%20reservar%20una%20mesa.",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
@@ -4724,7 +4728,7 @@
   },
   {
    "id": "pc-1536",
-   "nombre": "Portatil 1536",
+   "nombre": "Portátil 1536",
    "tipo": "escritorio",
    "w": 1536,
    "h": 864,
@@ -4769,8 +4773,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1537.3626708984375,
-      "cajaH": 812.7203979492188,
+      "cajaW": 1537.450439453125,
+      "cajaH": 812.7667236328125,
       "cubre": true
      },
      {
@@ -4870,8 +4874,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1544.354736328125,
-      "cajaH": 816.41650390625,
+      "cajaW": 1544.746337890625,
+      "cajaH": 816.62353515625,
       "cubre": true
      },
      {
@@ -4885,14 +4889,14 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5201416015625,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.880126953125,
       "cubre": true
      },
      {
@@ -4906,7 +4910,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -4982,8 +4986,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1921.7303466796875,
-      "cajaH": 1028.926513671875,
+      "cajaW": 1921.7850341796875,
+      "cajaH": 1028.95556640625,
       "cubre": true
      },
      {
@@ -5083,8 +5087,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1929.046142578125,
-      "cajaH": 1032.84326171875,
+      "cajaW": 1928.982421875,
+      "cajaH": 1032.8095703125,
       "cubre": true
      },
      {
@@ -5105,14 +5109,14 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8798828125,
+      "cajaH": 713.880126953125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
@@ -5195,8 +5199,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2562.19921875,
-      "cajaH": 1389.1925048828125,
+      "cajaW": 2562.129150390625,
+      "cajaH": 1389.1544189453125,
       "cubre": true
      },
      {
@@ -5296,8 +5300,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2572.40576171875,
-      "cajaH": 1394.726318359375,
+      "cajaW": 2571.806884765625,
+      "cajaH": 1394.4013671875,
       "cubre": true
      },
      {
@@ -5311,7 +5315,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5198974609375,
       "cubre": true
      },
      {
@@ -5325,14 +5329,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
@@ -5363,7 +5367,7 @@
   },
   {
    "id": "pc-3440",
-   "nombre": "Ultrapanoramico",
+   "nombre": "Ultrapanorámico",
    "tipo": "escritorio",
    "w": 3440,
    "h": 1440,
@@ -5408,8 +5412,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3442.6318359375,
-      "cajaH": 1389.06201171875,
+      "cajaW": 3442.861083984375,
+      "cajaH": 1389.1544189453125,
       "cubre": true
      },
      {
@@ -5509,8 +5513,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3456.670166015625,
-      "cajaH": 1394.726318359375,
+      "cajaW": 3457.376220703125,
+      "cajaH": 1395.01123046875,
       "cubre": true
      },
      {
@@ -5524,14 +5528,14 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5198974609375,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8799438476562,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
@@ -5634,7 +5638,7 @@
   "normal": {
    "infinitas": 2,
    "corriendo": 2,
-   "brasas": 134,
+   "brasas": 228,
    "letras": true
   },
   "pausado": {
@@ -5807,7 +5811,7 @@
  "red": {
   "peticiones404": [],
   "bytesPorTipo": {
-   ".html": 1025750,
+   ".html": 1025805,
    ".woff2": 5020180,
    ".avif": 12929893
   },
@@ -7453,23 +7457,23 @@
  },
  "peso": {
   "iph-390": {
-   "inicial": 300631,
-   "total": 300631,
+   "inicial": 300632,
+   "total": 300632,
    "peticionesIniciales": 10,
    "peticionesTotales": 10,
    "porTipo": {
-    ".html": 18650,
+    ".html": 18651,
     ".woff2": 91276,
     ".avif": 190705
    }
   },
   "pc-1440": {
-   "inicial": 431006,
-   "total": 431006,
+   "inicial": 431007,
+   "total": 431007,
    "peticionesIniciales": 12,
    "peticionesTotales": 12,
    "porTipo": {
-    ".html": 18650,
+    ".html": 18651,
     ".woff2": 91276,
     ".avif": 321080
    }
