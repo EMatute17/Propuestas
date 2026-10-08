@@ -11,7 +11,7 @@ El mismo motor, el mismo Gate y el mismo conocimiento sirven a los dos. Todo se 
 
 | Carpeta | Qué hay |
 |---|---|
-| `edumashow/nucleo/` | El conocimiento unificado de los cinco estudios: reglas con prioridad, fuente, evidencia y prueba. Ver su README. |
+| `edumashow/nucleo/` | El conocimiento unificado de los cinco estudios: reglas con prioridad, fuente, evidencia y prueba. Ver su README. En `edumashow/nucleo/estudios/` están los cinco estudios completos, su lectura y su síntesis. |
 | `edumashow/motor/` | El generador (ficha a sitio), las piezas de cada personalidad (elegante y urbana), los temas, las tipografías y el procesado de imágenes. |
 | `edumashow/gate/` | El verificador: comprobaciones estáticas y pruebas en navegador real en 27 dispositivos. |
 | `edumashow/fichas/` | Una ficha JSON por restaurante: datos, carta, horario, textos y estilo. |

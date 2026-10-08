@@ -35,6 +35,8 @@ Choques reales que se detectaron y cómo se resuelven:
 
 - reglas_fuente.py: fuente única de las reglas. Ejecutarlo regenera reglas.json y lo valida (campos obligatorios, sin comillas angulares).
 - reglas.json: el núcleo ejecutable que lee el Gate.
+- TRAZABILIDAD.md: dónde se aplica cada regla y cada control del informe del motor gráfico, y lo que falta (lo genera trazabilidad_fuente.py).
+- estudios/: el archivo de los cinco estudios de Eduardo. Texto completo de cada PDF, una lectura por estudio con sus hallazgos y su nivel de evidencia, una síntesis cruzada y el mapa de reglas a estudios. Es material de consulta, no se pega en prompts. Ver estudios/LEEME.md. Se valida con python3 edumashow/nucleo/estudios/archivo_fuente.py.
 
 ## Aviso legal
 
