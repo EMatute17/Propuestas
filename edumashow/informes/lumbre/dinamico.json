@@ -135,8 +135,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 322.28497314453125,
-      "cajaH": 599.94091796875,
+      "cajaW": 322.25848388671875,
+      "cajaH": 599.8916015625,
       "cubre": true
      },
      {
@@ -233,8 +233,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 280.28509521484375,
-      "cajaH": 652.616943359375,
+      "cajaW": 280.2808837890625,
+      "cajaH": 652.6070556640625,
       "cubre": true
      },
      {
@@ -320,8 +320,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 282.04583740234375,
-      "cajaH": 656.716796875,
+      "cajaW": 281.9646911621094,
+      "cajaH": 656.52783203125,
       "cubre": true
      },
      {
@@ -418,8 +418,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 375.3818359375,
-      "cajaH": 615.626220703125,
+      "cajaW": 375.376220703125,
+      "cajaH": 615.6170043945312,
       "cubre": true
      },
      {
@@ -505,8 +505,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 377.2188720703125,
-      "cajaH": 618.638671875,
+      "cajaW": 377.1908874511719,
+      "cajaH": 618.59326171875,
       "cubre": true
      },
      {
@@ -603,8 +603,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.36114501953125,
-      "cajaH": 728.7303466796875,
+      "cajaW": 360.3665771484375,
+      "cajaH": 728.7413330078125,
       "cubre": true
      },
      {
@@ -690,7 +690,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.267578125,
+      "cajaW": 362.2675476074219,
       "cajaH": 732.58544921875,
       "cubre": true
      },
@@ -788,8 +788,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.36114501953125,
-      "cajaH": 688.690185546875,
+      "cajaW": 360.3611755371094,
+      "cajaH": 688.6902465820312,
       "cubre": true
      },
      {
@@ -875,8 +875,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.64556884765625,
-      "cajaH": 693.05615234375,
+      "cajaW": 362.5113525390625,
+      "cajaH": 692.79931640625,
       "cubre": true
      },
      {
@@ -1060,7 +1060,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 391.85052490234375,
+      "cajaW": 391.8505554199219,
       "cajaH": 795.7578125,
       "cubre": true
      },
@@ -1222,8 +1222,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 393.38836669921875,
-      "cajaH": 800.79052734375,
+      "cajaW": 393.394287109375,
+      "cajaH": 800.8026123046875,
       "cubre": true
      },
      {
@@ -1309,8 +1309,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 395.39984130859375,
-      "cajaH": 804.88525390625,
+      "cajaW": 395.5677185058594,
+      "cajaH": 805.22705078125,
       "cubre": true
      },
      {
@@ -1592,8 +1592,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.41949462890625,
-      "cajaH": 863.8787841796875,
+      "cajaW": 412.40716552734375,
+      "cajaH": 863.85302734375,
       "cubre": true
      },
      {
@@ -1679,8 +1679,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 415.13238525390625,
-      "cajaH": 869.5615234375,
+      "cajaW": 414.9931640625,
+      "cajaH": 869.26953125,
       "cubre": true
      },
      {
@@ -1928,7 +1928,7 @@
     "vh": 375,
     "dpr": 2,
     "scrollW": 667,
-    "scrollH": 5231,
+    "scrollH": 4942,
     "desborde": 0,
     "primera": {
      "scrollY": 0,
@@ -1976,15 +1976,15 @@
      {
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 308,
+      "cajaH": 231,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 308,
+      "cajaH": 231,
       "cubre": true
      }
     ],
@@ -2015,18 +2015,18 @@
     "vh": 375,
     "dpr": 2,
     "scrollW": 667,
-    "scrollH": 5231,
+    "scrollH": 4942,
     "desborde": 0,
     "primera": {
-     "scrollY": 4856,
+     "scrollY": 4567,
      "h1": {
-      "top": -4702,
-      "bottom": -4621,
+      "top": -4413,
+      "bottom": -4332,
       "dentro": false
      },
      "cta": {
-      "top": -4591,
-      "bottom": -4539,
+      "top": -4302,
+      "bottom": -4250,
       "dentro": false
      },
      "sobre": {
@@ -2049,8 +2049,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 672.214599609375,
-      "cajaH": 368.13671875,
+      "cajaW": 671.9578857421875,
+      "cajaH": 367.99609375,
       "cubre": true
      },
      {
@@ -2063,15 +2063,15 @@
      {
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 308,
+      "cajaH": 231,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 308,
+      "cajaH": 231,
       "cubre": true
      }
     ],
@@ -2177,7 +2177,7 @@
     "vh": 390,
     "dpr": 3,
     "scrollW": 844,
-    "scrollH": 5534,
+    "scrollH": 5260,
     "desborde": 0,
     "primera": {
      "scrollY": 0,
@@ -2211,8 +2211,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 844.8467407226562,
-      "cajaH": 368.88531494140625,
+      "cajaW": 844.8341674804688,
+      "cajaH": 368.87982177734375,
       "cubre": true
      },
      {
@@ -2225,15 +2225,22 @@
      {
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 328,
+      "cajaH": 246,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 328,
+      "cajaH": 246,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 328,
+      "cajaH": 246,
       "cubre": true
      }
     ],
@@ -2264,18 +2271,18 @@
     "vh": 390,
     "dpr": 3,
     "scrollW": 844,
-    "scrollH": 5534,
+    "scrollH": 5260,
     "desborde": 0,
     "primera": {
-     "scrollY": 5144,
+     "scrollY": 4870,
      "h1": {
-      "top": -4990,
-      "bottom": -4906,
+      "top": -4716,
+      "bottom": -4632,
       "dentro": false
      },
      "cta": {
-      "top": -4876,
-      "bottom": -4824,
+      "top": -4602,
+      "bottom": -4550,
       "dentro": false
      },
      "sobre": {
@@ -2298,8 +2305,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 852.556884765625,
-      "cajaH": 372.251953125,
+      "cajaW": 852.1038208007812,
+      "cajaH": 372.05419921875,
       "cubre": true
      },
      {
@@ -2312,15 +2319,22 @@
      {
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 328,
+      "cajaH": 246,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
-      "cajaW": 416,
-      "cajaH": 520,
+      "cajaW": 328,
+      "cajaH": 246,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 328,
+      "cajaH": 246,
       "cubre": true
      }
     ],
@@ -2497,8 +2511,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 922.4742431640625,
-      "cajaH": 376.31494140625,
+      "cajaW": 922.5150146484375,
+      "cajaH": 376.331298828125,
       "cubre": true
      },
      {
@@ -2609,8 +2623,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 673.6751708984375,
-      "cajaH": 789.7915649414062,
+      "cajaW": 673.6551513671875,
+      "cajaH": 789.7681274414062,
       "cubre": true
      },
      {
@@ -2696,8 +2710,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 677.4237670898438,
-      "cajaH": 794.186279296875,
+      "cajaW": 677.5311279296875,
+      "cajaH": 794.31201171875,
       "cubre": true
      },
      {
@@ -2794,8 +2808,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 768.7589721679688,
-      "cajaH": 972.9605712890625,
+      "cajaW": 768.7705078125,
+      "cajaH": 972.97509765625,
       "cubre": true
      },
      {
@@ -2881,8 +2895,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 771.46630859375,
-      "cajaH": 976.38720703125,
+      "cajaW": 771.4412841796875,
+      "cajaH": 976.355224609375,
       "cubre": true
      },
      {
@@ -3043,8 +3057,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 810.776611328125,
-      "cajaH": 1028.985595703125,
+      "cajaW": 810.7885131835938,
+      "cajaH": 1029.000732421875,
       "cubre": true
      },
      {
@@ -3130,8 +3144,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 814.7021484375,
-      "cajaH": 1033.967529296875,
+      "cajaW": 814.7928466796875,
+      "cajaH": 1034.082763671875,
       "cubre": true
      },
      {
@@ -3228,8 +3242,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 834.82421875,
-      "cajaH": 1143.128662109375,
+      "cajaW": 834.8118896484375,
+      "cajaH": 1143.1116943359375,
       "cubre": true
      },
      {
@@ -3315,8 +3329,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 839.253173828125,
-      "cajaH": 1149.193115234375,
+      "cajaW": 839.029296875,
+      "cajaH": 1148.88671875,
       "cubre": true
      },
      {
@@ -3413,8 +3427,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.981689453125,
-      "cajaH": 1315.259765625,
+      "cajaW": 1024.9669189453125,
+      "cajaH": 1315.24072265625,
       "cubre": true
      },
      {
@@ -3514,8 +3528,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1031.311767578125,
-      "cajaH": 1323.38232421875,
+      "cajaW": 1030.0592041015625,
+      "cajaH": 1321.775146484375,
       "cubre": true
      },
      {
@@ -3543,14 +3557,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 323.9324951171875,
-      "cajaH": 242.94940185546875,
+      "cajaH": 242.9493408203125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 238.646240234375,
-      "cajaH": 178.9761962890625,
+      "cajaH": 178.976318359375,
       "cubre": true
      }
     ],
@@ -3626,7 +3640,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.981689453125,
+      "cajaW": 1024.98193359375,
       "cajaH": 716.6865234375,
       "cubre": true
      },
@@ -3727,8 +3741,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.52978515625,
-      "cajaH": 720.5654296875,
+      "cajaW": 1030.4896240234375,
+      "cajaH": 720.53759765625,
       "cubre": true
      },
      {
@@ -3742,7 +3756,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 579.8587646484375,
-      "cajaH": 326.159912109375,
+      "cajaH": 326.1600341796875,
       "cubre": true
      },
      {
@@ -3756,14 +3770,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 323.9324951171875,
-      "cajaH": 242.9493408203125,
+      "cajaH": 242.949462890625,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 238.646240234375,
-      "cajaH": 178.976318359375,
+      "cajaH": 178.9761962890625,
       "cubre": true
      }
     ],
@@ -3940,8 +3954,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1201.9912109375,
-      "cajaH": 787.23388671875,
+      "cajaW": 1202.525634765625,
+      "cajaH": 787.583984375,
       "cubre": true
      },
      {
@@ -3962,14 +3976,14 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 478.87884521484375,
-      "cajaH": 682.9818115234375,
+      "cajaH": 682.98193359375,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 379.63690185546875,
-      "cajaH": 284.7149658203125,
+      "cajaH": 284.715087890625,
       "cubre": true
      },
      {
@@ -4052,8 +4066,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1281.24609375,
-      "cajaH": 668.6502685546875,
+      "cajaW": 1281.13525390625,
+      "cajaH": 668.592529296875,
       "cubre": true
      },
      {
@@ -4153,8 +4167,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1286.8707275390625,
-      "cajaH": 671.58544921875,
+      "cajaW": 1286.689453125,
+      "cajaH": 671.4912109375,
       "cubre": true
      },
      {
@@ -4265,8 +4279,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1367.289794921875,
-      "cajaH": 716.676025390625,
+      "cajaW": 1367.27001953125,
+      "cajaH": 716.665771484375,
       "cubre": true
      },
      {
@@ -4366,8 +4380,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1373.43017578125,
-      "cajaH": 719.89453125,
+      "cajaW": 1373.1868896484375,
+      "cajaH": 719.76708984375,
       "cubre": true
      },
      {
@@ -4388,7 +4402,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8798828125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
@@ -4402,7 +4416,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -4478,8 +4492,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1441.339111328125,
-      "cajaH": 848.7885131835938,
+      "cajaW": 1441.297607421875,
+      "cajaH": 848.76416015625,
       "cubre": true
      },
      {
@@ -4579,8 +4593,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1446.68896484375,
-      "cajaH": 851.93896484375,
+      "cajaW": 1446.784423828125,
+      "cajaH": 851.99560546875,
       "cubre": true
      },
      {
@@ -4755,8 +4769,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1537.38427734375,
-      "cajaH": 812.7318115234375,
+      "cajaW": 1537.3626708984375,
+      "cajaH": 812.7203979492188,
       "cubre": true
      },
      {
@@ -4856,8 +4870,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1544.802734375,
-      "cajaH": 816.65380859375,
+      "cajaW": 1544.354736328125,
+      "cajaH": 816.41650390625,
       "cubre": true
      },
      {
@@ -4885,14 +4899,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
@@ -4968,8 +4982,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1921.7301025390625,
-      "cajaH": 1028.9263916015625,
+      "cajaW": 1921.7303466796875,
+      "cajaH": 1028.926513671875,
       "cubre": true
      },
      {
@@ -5069,7 +5083,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1929.0458984375,
+      "cajaW": 1929.046142578125,
       "cajaH": 1032.84326171875,
       "cubre": true
      },
@@ -5282,8 +5296,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2571.3056640625,
-      "cajaH": 1394.12939453125,
+      "cajaW": 2572.40576171875,
+      "cajaH": 1394.726318359375,
       "cubre": true
      },
      {
@@ -5304,7 +5318,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8800659179688,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
@@ -5318,7 +5332,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -5394,8 +5408,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3442.814453125,
-      "cajaH": 1389.1356201171875,
+      "cajaW": 3442.6318359375,
+      "cajaH": 1389.06201171875,
       "cubre": true
      },
      {
@@ -5495,8 +5509,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3456.904296875,
-      "cajaH": 1394.82080078125,
+      "cajaW": 3456.670166015625,
+      "cajaH": 1394.726318359375,
       "cubre": true
      },
      {
@@ -5517,21 +5531,21 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.8799438476562,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -5569,13 +5583,15 @@
  "foco": {
   "pc-1440": {
    "dispositivo": "pc-1440",
-   "interactivos": 23,
+   "interactivos": 22,
    "primero": "a.salto",
    "sinAnillo": [],
    "fueraDePantalla": [],
    "tapadoPorBarra": [],
+   "tapadoParcial": [],
+   "aroNoVisible": [],
    "noAlcanzados": 0,
-   "pasos": 32
+   "pasos": 31
   },
   "iph-390": {
    "dispositivo": "iph-390",
@@ -5584,6 +5600,8 @@
    "sinAnillo": [],
    "fueraDePantalla": [],
    "tapadoPorBarra": [],
+   "tapadoParcial": [],
+   "aroNoVisible": [],
    "noAlcanzados": 0,
    "pasos": 28
   },
@@ -5593,9 +5611,9 @@
    "primero": "a.salto",
    "sinAnillo": [],
    "fueraDePantalla": [],
-   "tapadoPorBarra": [
-    "div.galeria"
-   ],
+   "tapadoPorBarra": [],
+   "tapadoParcial": [],
+   "aroNoVisible": [],
    "noAlcanzados": 0,
    "pasos": 28
   },
@@ -5606,6 +5624,8 @@
    "sinAnillo": [],
    "fueraDePantalla": [],
    "tapadoPorBarra": [],
+   "tapadoParcial": [],
+   "aroNoVisible": [],
    "noAlcanzados": 0,
    "pasos": 28
   }
@@ -5614,7 +5634,7 @@
   "normal": {
    "infinitas": 2,
    "corriendo": 2,
-   "brasas": 249,
+   "brasas": 134,
    "letras": true
   },
   "pausado": {
@@ -5787,9 +5807,9 @@
  "red": {
   "peticiones404": [],
   "bytesPorTipo": {
-   ".html": 1018380,
+   ".html": 1025750,
    ".woff2": 5020180,
-   ".avif": 12901351
+   ".avif": 12929893
   },
   "externasIntentadas": []
  },
@@ -6494,9 +6514,9 @@
      "rects": [
       [
        46,
-       365.46875,
+       221.46875,
        68.328125,
-       9.53125
+       21
       ]
      ],
      "color": [
@@ -6513,10 +6533,10 @@
      "texto": "El rincón rojo",
      "rects": [
       [
-       474,
-       365.46875,
+       366,
+       221.46875,
        99.84375,
-       9.53125
+       21
       ]
      ],
      "color": [
@@ -7433,23 +7453,23 @@
  },
  "peso": {
   "iph-390": {
-   "inicial": 300497,
-   "total": 300497,
+   "inicial": 300631,
+   "total": 300631,
    "peticionesIniciales": 10,
    "peticionesTotales": 10,
    "porTipo": {
-    ".html": 18516,
+    ".html": 18650,
     ".woff2": 91276,
     ".avif": 190705
    }
   },
   "pc-1440": {
-   "inicial": 430872,
-   "total": 430872,
+   "inicial": 431006,
+   "total": 431006,
    "peticionesIniciales": 12,
    "peticionesTotales": 12,
    "porTipo": {
-    ".html": 18516,
+    ".html": 18650,
     ".woff2": 91276,
     ".avif": 321080
    }

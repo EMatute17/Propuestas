@@ -1,8 +1,8 @@
 {
   "dispositivos": [
-    {"id": "se1-320", "nombre": "iPhone SE (1.a gen)", "tipo": "telefono", "w": 320, "h": 568, "dpr": 2},
+    {"id": "se1-320", "nombre": "iPhone SE (1.ª gen)", "tipo": "telefono", "w": 320, "h": 568, "dpr": 2},
     {"id": "fold-280", "nombre": "Galaxy Z Fold plegado", "tipo": "telefono", "w": 280, "h": 653, "dpr": 3, "estres": true},
-    {"id": "se3-375", "nombre": "iPhone SE (2.a y 3.a gen)", "tipo": "telefono", "w": 375, "h": 667, "dpr": 2},
+    {"id": "se3-375", "nombre": "iPhone SE (2.ª y 3.ª gen)", "tipo": "telefono", "w": 375, "h": 667, "dpr": 2},
     {"id": "mini-360", "nombre": "iPhone 12 mini", "tipo": "telefono", "w": 360, "h": 780, "dpr": 3},
     {"id": "s8-360", "nombre": "Galaxy S8", "tipo": "telefono", "w": 360, "h": 740, "dpr": 4},
     {"id": "iph-390", "nombre": "iPhone 12, 13 y 14", "tipo": "telefono", "w": 390, "h": 844, "dpr": 3, "representativo": true},
@@ -20,12 +20,12 @@
     {"id": "pro13-1024", "nombre": "iPad Pro 12.9", "tipo": "tablet", "w": 1024, "h": 1366, "dpr": 2},
     {"id": "ipad-horiz-1024", "nombre": "iPad horizontal", "tipo": "tablet", "w": 1024, "h": 768, "dpr": 2, "horizontal": true},
     {"id": "pro11-horiz-1194", "nombre": "iPad Pro 11 horizontal", "tipo": "tablet", "w": 1194, "h": 834, "dpr": 2, "horizontal": true},
-    {"id": "pc-1280", "nombre": "Portatil 1280", "tipo": "escritorio", "w": 1280, "h": 720, "dpr": 1},
-    {"id": "pc-1366", "nombre": "Portatil 1366", "tipo": "escritorio", "w": 1366, "h": 768, "dpr": 1},
+    {"id": "pc-1280", "nombre": "Portátil 1280", "tipo": "escritorio", "w": 1280, "h": 720, "dpr": 1},
+    {"id": "pc-1366", "nombre": "Portátil 1366", "tipo": "escritorio", "w": 1366, "h": 768, "dpr": 1},
     {"id": "pc-1440", "nombre": "Escritorio 1440", "tipo": "escritorio", "w": 1440, "h": 900, "dpr": 1, "representativo": true},
-    {"id": "pc-1536", "nombre": "Portatil 1536", "tipo": "escritorio", "w": 1536, "h": 864, "dpr": 1.25},
+    {"id": "pc-1536", "nombre": "Portátil 1536", "tipo": "escritorio", "w": 1536, "h": 864, "dpr": 1.25},
     {"id": "pc-1920", "nombre": "Escritorio Full HD", "tipo": "escritorio", "w": 1920, "h": 1080, "dpr": 1},
     {"id": "pc-2560", "nombre": "Escritorio 2K", "tipo": "escritorio", "w": 2560, "h": 1440, "dpr": 1},
-    {"id": "pc-3440", "nombre": "Ultrapanoramico", "tipo": "escritorio", "w": 3440, "h": 1440, "dpr": 1}
+    {"id": "pc-3440", "nombre": "Ultrapanorámico", "tipo": "escritorio", "w": 3440, "h": 1440, "dpr": 1}
   ]
 }

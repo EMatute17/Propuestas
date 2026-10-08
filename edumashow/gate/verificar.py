@@ -227,12 +227,12 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         des, sol, rec = [], [], []
         for d in devs:
             p = d["pagina"]
-            tag = f"{d['id']} ({d['w']}x{d['h']})" + (" estres" if d.get("estres") else "")
+            tag = f"{d['id']} ({d['w']}x{d['h']})" + (" estrés" if d.get("estres") else "")
             if p["desborde"] > 0 or d["arriba"]["desborde"] > 0: des.append(f"{tag}: desborde {p['desborde']} px")
             sol += [f"{tag}: {s}" for s in p["solapes"]]
             rec += [f"{tag}: {s}" for s in p["recortes"]]
         zoom = [f"zoom 200% {k}: " + "; ".join([f"desborde {v['desborde']}"] * (v["desborde"] > 0) + v["solapes"][:2] + v["recortes"][:2]) for k, v in D["zoom"].items() if v["desborde"] > 0 or v["solapes"] or v["recortes"]]
-        solo_estres = lambda lst: all("estres" in x for x in lst) if lst else True
+        solo_estres = lambda lst: all("estrés" in x for x in lst) if lst else True
         res_d = "PASS" if not (des or sol or rec or zoom) else ("WARN" if solo_estres(des + sol + rec) and not zoom else "FAIL")
         I.add("G-DESBORDE", "Sin desborde, solapes ni texto recortado (320 px a 3440 px y zoom 200%)", ["R-LEG-03", "R-LEG-09"], "bloqueo", res_d,
               f"{len(devs)} dispositivos y {len(D['zoom'])} pruebas de zoom", des + sol + rec + zoom)
@@ -243,8 +243,8 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         for d in devs:
             pm = d["arriba"]["primera"]
             if not (pm["h1"] and pm["h1"]["dentro"] and pm["cta"] and pm["cta"]["dentro"]):
-                pr.append(f"{d['id']} ({d['w']}x{d['h']}): h1 {pm['h1']} cta {pm['cta']}" + (" [estres]" if d.get("estres") else ""))
-        res_p = "PASS" if not pr else ("WARN" if all("[estres]" in x for x in pr) else "FAIL")
+                pr.append(f"{d['id']} ({d['w']}x{d['h']}): h1 {pm['h1']} cta {pm['cta']}" + (" [estrés]" if d.get("estres") else ""))
+        res_p = "PASS" if not pr else ("WARN" if all("[estrés]" in x for x in pr) else "FAIL")
         I.add("G-PRIMERA", "Nombre y acción principal visibles en la primera pantalla", ["R-SIG-01", "R-SIG-07", "R-MUE-02"], "bloqueo", res_p, f"{len(devs)} dispositivos, incluidos horizontales y plegables", pr)
         # ---- enlaces y barra fija
         links = repr_[0]["estructura"]["enlaces"] if repr_ else []
@@ -381,7 +381,7 @@ def escribir_md(inf, ficha, ruta):
     L.append(f"- Fecha: {inf['fecha']} | Gate {inf['gate']} | Reglas {inf['reglas']}")
     L.append(f"- Paquete (SHA-256): `{inf['paquete_sha256']}`")
     L.append("- Estados: técnico = " + inf["estados"]["tecnico"] + "; revisión visual = " + inf["estados"]["revision_visual"] + "; aprobación de Eduardo = pendiente; entrega = pendiente\n")
-    L.append("## Resultado por comprobacion\n")
+    L.append("## Resultado por comprobación\n")
     L.append("| ID | Resultado | Gravedad | Reglas | Evidencia |\n|---|---|---|---|---|")
     for r in inf["resultados"]:
         ev = r["evidencia"].replace("|", "/")
@@ -400,24 +400,27 @@ def escribir_md(inf, ficha, ruta):
     L.append("| Dispositivo | Tamaño | Desborde | h1 y botón principal en la primera pantalla | Solapes | Recortes |\n|---|---|---|---|---|---|")
     for d in inf["dispositivos"]:
         p = d["arriba"]["primera"]
-        ok = "si" if (p["h1"] and p["h1"]["dentro"] and p["cta"] and p["cta"]["dentro"]) else "NO"
-        L.append(f"| {d['nombre']}{' (estres)' if d.get('estres') else ''} | {d['w']}x{d['h']} @{d['dpr']} | {d['pagina']['desborde']} px | {ok} | {len(d['pagina']['solapes'])} | {len(d['pagina']['recortes'])} |")
+        ok = "sí" if (p["h1"] and p["h1"]["dentro"] and p["cta"] and p["cta"]["dentro"]) else "NO"
+        L.append(f"| {d['nombre']}{' (estrés)' if d.get('estres') else ''} | {d['w']}x{d['h']} @{d['dpr']} | {d['pagina']['desborde']} px | {ok} | {len(d['pagina']['solapes'])} | {len(d['pagina']['recortes'])} |")
     if inf.get("rendimiento"):
         L.append("\n## Rendimiento (Lighthouse, mediana de 3 pasadas, servidor local con brotli)\n")
         L.append("| Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |\n|---|---|---|---|---|---|---|---|")
         for k, v in inf["rendimiento"]["perfiles"].items():
             pu = v["puntuaciones"]
-            L.append(f"| {k} | {pu['performance']} | {pu['accessibility']} | {pu['best-practices']} | {v['lcp_ms']} ms | {v['cls']} | {v['tbt_ms']} ms | {v['peso_KB']} KB |")
+            L.append(f"| {NOMBRE_PERFIL.get(k, k)} | {pu['performance']} | {pu['accessibility']} | {pu['best-practices']} | {v['lcp_ms']} ms | {v['cls']} | {v['tbt_ms']} ms | {v['peso_KB']} KB |")
     if inf.get("peso"):
         L.append("\nPeso realmente descargado (con compresión): " + "; ".join(f"{k}: inicial {v['inicial'] // 1024} KB, total tras recorrer la página {v['total'] // 1024} KB" for k, v in inf["peso"].items()))
     if inf["contraste"]:
         L.append("\n## Contraste medido sobre píxeles reales (peores 8)\n")
-        L.append("| Elemento | Dispositivo | Contraste (5.o percentil) | Se exige | |\n|---|---|---|---|---|")
+        L.append("| Elemento | Dispositivo | Contraste (5.º percentil) | Se exige | |\n|---|---|---|---|---|")
         for f in sorted(inf["contraste"], key=lambda f: f["p5"] / f["umbral"])[:8]:
             L.append(f"| {f['elemento']} \"{f['texto']}\" | {f['dispositivo']} | {f['p5']}:1 | {f['umbral']}:1 | {'ok' if f['ok'] else 'FALLA'} |")
     L.append("\n## Lo que este Gate no verifica\n")
     L += [f"- {x}" for x in inf["no_verifica"]]
     open(ruta, "w", encoding="utf-8").write("\n".join(L) + "\n")
+
+
+NOMBRE_PERFIL = {"movil": "móvil", "escritorio": "escritorio"}
 
 
 def main(argv=None):

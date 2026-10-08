@@ -1,9 +1,9 @@
 # Informe del Gate: Lumbre (lumbre)
 
-- **Veredicto técnico: NO APTO** (bloquean: G-FOCO)
-- Fecha: 2026-10-08T02:28:16Z | Gate 0.1.0 | Reglas 0.1.0
-- Paquete (SHA-256): `1c3006fec8411c7a05b4c90a43c99694940725c06c88091685dd6951170a2c29`
-- Estados: técnico = NO APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
+- **Veredicto técnico: APTO**
+- Fecha: 2026-10-08T02:36:36Z | Gate 0.1.0 | Reglas 0.1.0
+- Paquete (SHA-256): `c1cd5b849a4e76c28435dadd6e45b827cf61589471748c94a7e999728d2e07d5`
+- Estados: técnico = APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
 
 ## Resultado por comprobacion
 
@@ -15,7 +15,7 @@
 | G-ETICA | **PASS** | bloqueo | R-ETI-01, R-ETI-02, R-ETI-03, R-ETI-05, R-SIG-11 | 0 patrones de escasez, testimonios, promesas o refuerzo variable |
 | G-META | **WARN** | bloqueo | R-MUE-01, R-MUE-04 | 0 fallos y 1 avisos de metadatos |
 | G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 11 imágenes con origen y licencia registrados; 11 etiquetas img con alt |
-| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 1c3006fec841 verificado sobre 69 archivos |
+| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash c1cd5b849a4e verificado sobre 69 archivos |
 | G-HUELLA | **PASS** | bloqueo | R-VAR-01 | no hay otras webs registradas con las que comparar (primera del registro) |
 | G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 3 tipografías revisadas contra 73 caracteres distintos |
 | G-RED | **PASS** | bloqueo | R-ETI-08, R-REN-05 | 27 dispositivos: 0 peticiones externas, 0 errores de consola, 0 con cookies o almacenamiento, 0 respuestas 404 |
@@ -32,26 +32,22 @@
 | G-HORARIO | **PASS** | bloqueo | R-DAT-03, R-SIG-02 | 11 casos simulados |
 | G-FORMULARIO | **PASS** | defecto | R-SIG-03, R-SIG-04, R-DAT-03 | 5 campos; se probó envío vacío, envío completo y día cerrado |
 | G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | flechas, Fin, Escape y retorno del foco |
-| G-FOCO | **FAIL** | bloqueo | R-LEG-05 | 4 dispositivos recorridos con Tab |
+| G-FOCO | **PASS** | bloqueo | R-LEG-05 | 4 dispositivos recorridos con Tab |
 | G-MOVIMIENTO | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-IDE-05 | animaciones infinitas normales 2; con pausa 0; con movimiento reducido 0 |
-| G-RESOLUCION | **WARN** | defecto | R-REN-02 | 6 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
+| G-RESOLUCION | **WARN** | defecto | R-REN-02 | 5 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
 | G-VISUAL | **REVISAR** | asesor | R-PRO-05, R-MED-04 | 27 capturas en informes/lumbre/hoja_dispositivos.jpg; falta la revisión humana (Eduardo) y las pruebas con personas |
-| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2180 ms, CLS 0, TBT 0 ms; escritorio 100 |
+| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2181 ms, CLS 0, TBT 0 ms; escritorio 100 |
 
 ## Detalle de avisos, fallos y excepciones
 
 ### G-META: Metadatos, noindex y vista previa al compartir (WARN)
 - sin imagen de vista previa al compartir el enlace (se genera con --base-url)
 
-### G-FOCO: Teclado: orden, alcance y foco siempre visible (FAIL)
-- se-horiz-667: foco tapado por la barra fija en ['div.galeria']
-
 ### G-RESOLUCION: Resolución de las fotos suficiente para cada pantalla (WARN)
 - Excepción documentada en la ficha: Las fotos son de referencia y de baja resolución (la portada original mide 1398 px de ancho). Se sustituyen por fotos propias del restaurante o de banco libre en la versión final.
 - iph-390: hero-m necesita x2.48 su resolución original (770x962)
 - mini-768: hero necesita x2.03 su resolución original (1398x962)
 - se-horiz-667: hero-m necesita x1.75 su resolución original (770x962)
-- se-horiz-667: sala_azul necesita x1.44 su resolución original (1280x720)
 - mini-768: sala_azul necesita x1.44 su resolución original (1280x720)
 - iph-390: sala_azul necesita x1.42 su resolución original (1280x720)
 
@@ -93,8 +89,8 @@
 
 | Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |
 |---|---|---|---|---|---|---|---|
-| movil | 99 | 100 | 100 | 2180 ms | 0 | 0 ms | 179 KB |
-| escritorio | 100 | 100 | 100 | 605 ms | 0 | 0 ms | 310 KB |
+| movil | 99 | 100 | 100 | 2181 ms | 0 | 0 ms | 180 KB |
+| escritorio | 100 | 100 | 100 | 606 ms | 0 | 0 ms | 310 KB |
 
 Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 420 KB, total tras recorrer la página 420 KB
 
