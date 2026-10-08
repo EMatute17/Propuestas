@@ -299,7 +299,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
     }
     return filas;
   }, selectores);
-  const ocultar = await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;-webkit-text-stroke-color:transparent !important;text-decoration-color:transparent !important;text-shadow:none !important;animation:none !important;transition:none !important;caret-color:transparent !important}' });
+  const ocultar = await pag.addStyleTag({ content: '*{color:transparent !important;-webkit-text-fill-color:transparent !important;-webkit-text-stroke-color:transparent !important;text-decoration-color:transparent !important;text-shadow:none !important;animation-play-state:paused !important;transition:none !important;caret-color:transparent !important}' });
   await pag.waitForTimeout(250);
   const img = path.join(CAP, `contraste_${d.id}_${etiqueta}.png`);
   await pag.screenshot({ path: img });
