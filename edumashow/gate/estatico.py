@@ -210,6 +210,37 @@ def meta(carpeta, ficha, base_url):
     return res(estado, f"{len(fallos)} fallos y {len(avisos)} avisos de metadatos", fallos + avisos)
 
 
+def muestra(carpeta, ficha, whatsapp_agencia):
+    """R-MUE-01, R-MUE-02, R-ETI-07 y R-MUE-05: la muestra se rotula, deja pedir su retirada,
+    tiene una sola acción de contratación y, si es de un negocio real, declara el permiso."""
+    html, p = leer_html(carpeta)
+    texto = " ".join(p.texto)
+    fallos = []
+    if 'class="cinta"' not in html or "Muestra de Edumashow" not in texto:
+        fallos.append("falta la cinta que dice Muestra de Edumashow")
+    if not any("data-retirada" in l and (l.get("href") or "").startswith(("mailto:", "https://wa.me/")) for l in p.links):
+        fallos.append("falta el enlace para pedir que retiren la muestra")
+    if "data-abrir-panel" not in html:
+        fallos.append("falta el botón que abre el panel de contratación")
+    destino = f"https://wa.me/{whatsapp_agencia}?text="
+    if not any((l.get("href") or "").startswith(destino) for l in p.links):
+        fallos.append("ningún enlace lleva a WhatsApp de Edumashow con mensaje prellenado")
+    man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))
+    real = not ficha.get("muestra", {}).get("ejemplo_ficticio", False)
+    if real:
+        permiso = ficha.get("muestra", {}).get("permiso")
+        if permiso not in ("pendiente", "concedido"):
+            fallos.append("negocio real: la ficha debe declarar muestra.permiso como pendiente o concedido")
+        for im in man["imagenes"]:
+            if not im.get("permiso"):
+                fallos.append(f"negocio real: falta el permiso de la imagen {im['clave']}")
+        if "redes" not in texto.lower() and "fotos del restaurante" not in texto.lower():
+            fallos.append("negocio real: la página no dice de dónde salen las fotos y los datos")
+    return res("PASS" if not fallos else "FAIL",
+               ("negocio real con permiso declarado" if real else "ejemplo ficticio") + f"; {len(fallos)} fallos",
+               fallos[:8])
+
+
 def fotos(carpeta, ficha):
     html, p = leer_html(carpeta)
     man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))

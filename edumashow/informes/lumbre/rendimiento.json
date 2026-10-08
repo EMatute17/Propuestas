@@ -9,11 +9,11 @@
     "best-practices": 100,
     "seo": 66
    },
-   "fcp_ms": 1206,
-   "lcp_ms": 2181,
+   "fcp_ms": 1205,
+   "lcp_ms": 2180,
    "cls": 0,
    "tbt_ms": 0,
-   "speed_index_ms": 1206,
+   "speed_index_ms": 1205,
    "peso_KB": 180,
    "fallos": [
     "mainthread-work-breakdown (50)",
@@ -33,7 +33,7 @@
    "lcp_ms": 605,
    "cls": 0,
    "tbt_ms": 0,
-   "speed_index_ms": 417,
+   "speed_index_ms": 425,
    "peso_KB": 310,
    "fallos": [
     "uses-responsive-images (0)",

@@ -150,6 +150,9 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
     I.add("G-ETICA", "Sin escasez, testimonios ni promesas inventadas", ["R-ETI-01", "R-ETI-02", "R-ETI-03", "R-ETI-05", "R-SIG-11"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.meta(sitio, ficha, base_url)
     I.add("G-META", "Metadatos, noindex y vista previa al compartir", ["R-MUE-01", "R-MUE-04"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    if muestra:
+        r = estatico.muestra(sitio, ficha, cfg["agencia"]["whatsapp"])
+        I.add("G-MUESTRA", "La muestra se rotula, deja pedir su retirada y tiene una sola acción de contratación", ["R-MUE-01", "R-MUE-02", "R-ETI-07", "R-MUE-05"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.fotos(sitio, ficha)
     I.add("G-FOTOS", "Procedencia y licencia de cada imagen", ["R-DAT-04"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.manifiesto(sitio, reglas["version"], hash_paquete)
@@ -314,6 +317,18 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         if m["reducido"]["infinitas"] or m["reducido"]["brasas"] or not m["reducido"]["letras"]: fl.append(f"con movimiento reducido: {m['reducido']}")
         I.add("G-MOVIMIENTO", "Movimiento reducido y pausa de las animaciones", ["R-LEG-06", "R-REN-04", "R-IDE-05"], "bloqueo", "PASS" if not fl else "FAIL",
               f"animaciones infinitas normales {m['normal']['infinitas']}; con pausa {m['pausado']['infinitas']}; con movimiento reducido {m['reducido']['infinitas']}", fl)
+        # ---- efectos ligados al scroll (la cifra que se llena)
+        sc = D.get("scroll", {})
+        if sc:
+            fl, disp = [], [k for k in sc if k not in ("reducido", "sinJs")]
+            for did in disp:
+                pts = {x["fr"]: x for x in sc[did]["puntos"]}
+                if pts[0.95]["p"] > 0.2: fl.append(f"{did}: el efecto ya va por {pts[0.95]['p']} cuando el elemento apenas asoma por abajo")
+                if pts[0.4]["p"] < 0.95: fl.append(f"{did}: el efecto no se completa mientras el elemento se ve (con el elemento al 40 por ciento de la pantalla va por {pts[0.4]['p']})")
+            for clave, texto in (("reducido", "con movimiento reducido"), ("sinJs", "sin JavaScript")):
+                if clave in sc and abs(sc[clave]["p"] - 1) > 0.01: fl.append(f"{texto} el efecto no queda completo (avance {sc[clave]['p']})")
+            I.add("G-AVANCE", "Los efectos ligados al scroll se completan mientras se ven y la página queda completa sin ellos", ["R-IDE-05"], "defecto", "PASS" if not fl else "FAIL",
+                  f"{len(disp)} dispositivos; con movimiento reducido y sin JavaScript el efecto queda completo", fl)
         # ---- resolución de imágenes
         nat = {im["clave"]: im for im in man["imagenes"]}
         amp = []

@@ -48,8 +48,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 320.32586669921875,
-      "cajaH": 596.2940673828125,
+      "cajaW": 320.321044921875,
+      "cajaH": 596.28515625,
       "cubre": true
      },
      {
@@ -80,7 +80,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -135,8 +135,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 322.271728515625,
-      "cajaH": 599.91650390625,
+      "cajaW": 322.24542236328125,
+      "cajaH": 599.8671875,
       "cubre": true
      },
      {
@@ -167,7 +167,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -265,7 +265,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -320,8 +320,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 281.9532470703125,
-      "cajaH": 656.5009765625,
+      "cajaW": 281.93048095703125,
+      "cajaH": 656.44775390625,
       "cubre": true
      },
      {
@@ -352,7 +352,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -450,7 +450,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -505,8 +505,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 377.2049560546875,
-      "cajaH": 618.6162109375,
+      "cajaW": 377.1908874511719,
+      "cajaH": 618.59326171875,
       "cubre": true
      },
      {
@@ -537,7 +537,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -635,7 +635,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -690,7 +690,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.2956237792969,
+      "cajaW": 362.29559326171875,
       "cajaH": 732.64208984375,
       "cubre": true
      },
@@ -722,7 +722,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -788,8 +788,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.3611755371094,
-      "cajaH": 688.6902465820312,
+      "cajaW": 360.3665771484375,
+      "cajaH": 688.7005615234375,
       "cubre": true
      },
      {
@@ -820,7 +820,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -875,8 +875,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.51129150390625,
-      "cajaH": 692.79931640625,
+      "cajaW": 362.55572509765625,
+      "cajaH": 692.88427734375,
       "cubre": true
      },
      {
@@ -907,7 +907,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1005,7 +1005,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1060,7 +1060,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 391.8635559082031,
+      "cajaW": 391.8636169433594,
       "cajaH": 795.784423828125,
       "cubre": true
      },
@@ -1092,7 +1092,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1223,8 +1223,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 393.4001770019531,
-      "cajaH": 800.814697265625,
+      "cajaW": 393.394287109375,
+      "cajaH": 800.8026123046875,
       "cubre": true
      },
      {
@@ -1255,7 +1255,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1310,8 +1310,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 395.39984130859375,
-      "cajaH": 804.88525390625,
+      "cajaW": 395.4754638671875,
+      "cajaH": 805.0390625,
       "cubre": true
      },
      {
@@ -1342,7 +1342,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1440,7 +1440,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1495,8 +1495,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.46893310546875,
-      "cajaH": 868.17138671875,
+      "cajaW": 414.42242431640625,
+      "cajaH": 868.07421875,
       "cubre": true
      },
      {
@@ -1527,7 +1527,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1625,7 +1625,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1680,8 +1680,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.8238220214844,
-      "cajaH": 868.9150390625,
+      "cajaW": 414.8572082519531,
+      "cajaH": 868.98486328125,
       "cubre": true
      },
      {
@@ -1712,7 +1712,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1810,7 +1810,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1865,8 +1865,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 432.65869140625,
-      "cajaH": 885.44091796875,
+      "cajaW": 432.6422119140625,
+      "cajaH": 885.4072265625,
       "cubre": true
      },
      {
@@ -1897,7 +1897,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -1995,7 +1995,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2050,8 +2050,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 671.98583984375,
-      "cajaH": 368.01171875,
+      "cajaW": 671.957763671875,
+      "cajaH": 367.99609375,
       "cubre": true
      },
      {
@@ -2082,7 +2082,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2213,8 +2213,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 844.8721923828125,
-      "cajaH": 368.8964538574219,
+      "cajaW": 844.8467407226562,
+      "cajaH": 368.88531494140625,
       "cubre": true
      },
      {
@@ -2252,7 +2252,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2307,8 +2307,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 852.185302734375,
-      "cajaH": 372.08935546875,
+      "cajaW": 852.0631103515625,
+      "cajaH": 372.0361328125,
       "cubre": true
      },
      {
@@ -2346,7 +2346,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2412,8 +2412,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 915.91796875,
-      "cajaH": 373.6401062011719,
+      "cajaW": 915.9318237304688,
+      "cajaH": 373.645751953125,
       "cubre": true
      },
      {
@@ -2458,7 +2458,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2513,8 +2513,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 922.3934326171875,
-      "cajaH": 376.281494140625,
+      "cajaW": 922.433837890625,
+      "cajaH": 376.2978515625,
       "cubre": true
      },
      {
@@ -2559,7 +2559,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2625,8 +2625,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 673.6751098632812,
-      "cajaH": 789.79150390625,
+      "cajaW": 673.6751708984375,
+      "cajaH": 789.7915649414062,
       "cubre": true
      },
      {
@@ -2657,7 +2657,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2712,8 +2712,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 677.4506225585938,
-      "cajaH": 794.2177734375,
+      "cajaW": 677.2652587890625,
+      "cajaH": 794.00048828125,
       "cubre": true
      },
      {
@@ -2744,7 +2744,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2810,8 +2810,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 768.7589721679688,
-      "cajaH": 972.9605712890625,
+      "cajaW": 768.7476806640625,
+      "cajaH": 972.9462890625,
       "cubre": true
      },
      {
@@ -2842,7 +2842,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -2897,8 +2897,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 771.4163818359375,
-      "cajaH": 976.32373046875,
+      "cajaW": 771.4412841796875,
+      "cajaH": 976.355224609375,
       "cubre": true
      },
      {
@@ -2929,7 +2929,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3060,8 +3060,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 810.800537109375,
-      "cajaH": 1029.0159912109375,
+      "cajaW": 810.7885131835938,
+      "cajaH": 1029.000732421875,
       "cubre": true
      },
      {
@@ -3092,7 +3092,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3147,8 +3147,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 814.8234252929688,
-      "cajaH": 1034.121826171875,
+      "cajaW": 814.8539428710938,
+      "cajaH": 1034.160400390625,
       "cubre": true
      },
      {
@@ -3179,7 +3179,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3245,8 +3245,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 834.82421875,
-      "cajaH": 1143.128662109375,
+      "cajaW": 834.799560546875,
+      "cajaH": 1143.094970703125,
       "cubre": true
      },
      {
@@ -3277,7 +3277,7 @@
      "display": "grid",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3332,8 +3332,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 838.6875,
-      "cajaH": 1148.418701171875,
+      "cajaW": 838.5966796875,
+      "cajaH": 1148.294189453125,
       "cubre": true
      },
      {
@@ -3364,7 +3364,7 @@
      "display": "grid",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3430,8 +3430,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.9669189453125,
-      "cajaH": 1315.24072265625,
+      "cajaW": 1024.9373779296875,
+      "cajaH": 1315.202880859375,
       "cubre": true
      },
      {
@@ -3476,7 +3476,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3531,8 +3531,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1029.9443359375,
-      "cajaH": 1321.6279296875,
+      "cajaW": 1030.020751953125,
+      "cajaH": 1321.72607421875,
       "cubre": true
      },
      {
@@ -3577,7 +3577,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3643,8 +3643,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1024.981689453125,
-      "cajaH": 716.6865234375,
+      "cajaW": 1024.9969482421875,
+      "cajaH": 716.6970825195312,
       "cubre": true
      },
      {
@@ -3689,7 +3689,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3744,8 +3744,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.52978515625,
-      "cajaH": 720.5654296875,
+      "cajaW": 1030.48974609375,
+      "cajaH": 720.53759765625,
       "cubre": true
      },
      {
@@ -3759,7 +3759,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 579.8587646484375,
-      "cajaH": 326.1600341796875,
+      "cajaH": 326.159912109375,
       "cubre": true
      },
      {
@@ -3790,7 +3790,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3902,7 +3902,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -3957,8 +3957,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1201.9434814453125,
-      "cajaH": 787.20263671875,
+      "cajaW": 1201.9912109375,
+      "cajaH": 787.23388671875,
       "cubre": true
      },
      {
@@ -3993,7 +3993,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 280.411865234375,
-      "cajaH": 210.2962646484375,
+      "cajaH": 210.29638671875,
       "cubre": true
      }
     ],
@@ -4003,7 +4003,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4069,8 +4069,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1281.227294921875,
-      "cajaH": 668.6405029296875,
+      "cajaW": 1281.20849609375,
+      "cajaH": 668.6307373046875,
       "cubre": true
      },
      {
@@ -4115,7 +4115,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4170,8 +4170,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1286.8707275390625,
-      "cajaH": 671.58544921875,
+      "cajaW": 1286.734619140625,
+      "cajaH": 671.5146484375,
       "cubre": true
      },
      {
@@ -4185,21 +4185,21 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5198974609375,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8798828125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.44000244140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
@@ -4216,7 +4216,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4282,8 +4282,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1367.25048828125,
-      "cajaH": 716.6554565429688,
+      "cajaW": 1367.289794921875,
+      "cajaH": 716.676025390625,
       "cubre": true
      },
      {
@@ -4328,7 +4328,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4383,8 +4383,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1373.1385498046875,
-      "cajaH": 719.741455078125,
+      "cajaW": 1373.186767578125,
+      "cajaH": 719.766845703125,
       "cubre": true
      },
      {
@@ -4419,7 +4419,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -4429,7 +4429,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4495,8 +4495,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1441.3387451171875,
-      "cajaH": 848.7883911132812,
+      "cajaW": 1441.318359375,
+      "cajaH": 848.7762451171875,
       "cubre": true
      },
      {
@@ -4541,7 +4541,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4596,7 +4596,7 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1446.7845458984375,
+      "cajaW": 1446.7847900390625,
       "cajaH": 851.99560546875,
       "cubre": true
      },
@@ -4618,7 +4618,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
@@ -4642,7 +4642,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4773,8 +4773,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1537.450439453125,
-      "cajaH": 812.7667236328125,
+      "cajaW": 1537.427978515625,
+      "cajaH": 812.7549438476562,
       "cubre": true
      },
      {
@@ -4819,7 +4819,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4874,8 +4874,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1544.746337890625,
-      "cajaH": 816.62353515625,
+      "cajaW": 1544.35498046875,
+      "cajaH": 816.416748046875,
       "cubre": true
      },
      {
@@ -4896,7 +4896,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
@@ -4920,7 +4920,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -4986,8 +4986,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1921.7850341796875,
-      "cajaH": 1028.95556640625,
+      "cajaW": 1921.7303466796875,
+      "cajaH": 1028.926513671875,
       "cubre": true
      },
      {
@@ -5032,7 +5032,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5087,8 +5087,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1928.982421875,
-      "cajaH": 1032.8095703125,
+      "cajaW": 1929.04638671875,
+      "cajaH": 1032.84326171875,
       "cubre": true
      },
      {
@@ -5109,14 +5109,14 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
@@ -5133,7 +5133,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5199,8 +5199,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2562.129150390625,
-      "cajaH": 1389.1544189453125,
+      "cajaW": 2562.19921875,
+      "cajaH": 1389.1925048828125,
       "cubre": true
      },
      {
@@ -5245,7 +5245,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5300,8 +5300,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2571.806884765625,
-      "cajaH": 1394.4013671875,
+      "cajaW": 2571.722412109375,
+      "cajaH": 1394.355712890625,
       "cubre": true
      },
      {
@@ -5315,7 +5315,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5198974609375,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
@@ -5346,7 +5346,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5412,8 +5412,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3442.861083984375,
-      "cajaH": 1389.1544189453125,
+      "cajaW": 3442.72216796875,
+      "cajaH": 1389.098388671875,
       "cubre": true
      },
      {
@@ -5458,7 +5458,7 @@
      "display": "none",
      "claseVisible": false
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5513,8 +5513,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3457.376220703125,
-      "cajaH": 1395.01123046875,
+      "cajaW": 3456.32275390625,
+      "cajaH": 1394.5859375,
       "cubre": true
      },
      {
@@ -5528,21 +5528,21 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5198974609375,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8800048828125,
+      "cajaH": 713.8799438476562,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
@@ -5559,7 +5559,7 @@
      "display": "none",
      "claseVisible": true
     },
-    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "estadoTexto": "Cerrado · abre hoy a las 12:00",
     "fuentes": [
      "Bodoni Moda:loaded",
      "Playfair Display:loaded",
@@ -5638,7 +5638,7 @@
   "normal": {
    "infinitas": 2,
    "corriendo": 2,
-   "brasas": 228,
+   "brasas": 195,
    "letras": true
   },
   "pausado": {
@@ -5811,9 +5811,9 @@
  "red": {
   "peticiones404": [],
   "bytesPorTipo": {
-   ".html": 1025805,
-   ".woff2": 5020180,
-   ".avif": 12929893
+   ".html": 1123620,
+   ".woff2": 5476560,
+   ".avif": 13911237
   },
   "externasIntentadas": []
  },
@@ -6046,18 +6046,18 @@
     },
     {
      "sel": ".hero .estado",
-     "texto": "Cerrado · abre mañana a las 12",
+     "texto": "Cerrado · abre hoy a las 12:00",
      "rects": [
       [
        54.390625,
        737.28125,
-       220.1875,
+       191.265625,
        18.71875
       ],
       [
        54.390625,
        736.28125,
-       220.1875,
+       191.265625,
        19
       ]
      ],
@@ -6428,18 +6428,18 @@
     },
     {
      "sel": ".hero .estado",
-     "texto": "Cerrado · abre mañana a las 12",
+     "texto": "Cerrado · abre hoy a las 12:00",
      "rects": [
       [
-       376.8125,
+       405.734375,
        334.5625,
-       220.1875,
+       191.265625,
        18.71875
       ],
       [
-       376.8125,
+       405.734375,
        333.5625,
-       220.1875,
+       191.265625,
        19
       ]
      ],
@@ -6836,18 +6836,18 @@
     },
     {
      "sel": ".hero .estado",
-     "texto": "Cerrado · abre mañana a las 12",
+     "texto": "Cerrado · abre hoy a las 12:00",
      "rects": [
       [
        68.9375,
        917.28125,
-       220.1875,
+       191.265625,
        18.71875
       ],
       [
        68.9375,
        916.28125,
-       220.1875,
+       191.265625,
        19
       ]
      ],
@@ -7276,18 +7276,18 @@
     },
     {
      "sel": ".hero .estado",
-     "texto": "Cerrado · abre mañana a las 12",
+     "texto": "Cerrado · abre hoy a las 12:00",
      "rects": [
       [
-       1051.8125,
+       1080.734375,
        785.28125,
-       220.1875,
+       191.265625,
        18.71875
       ],
       [
-       1051.8125,
+       1080.734375,
        784.28125,
-       220.1875,
+       191.265625,
        19
       ]
      ],
@@ -7455,25 +7455,95 @@
    "recortes": []
   }
  },
+ "scroll": {
+  "iph-390": {
+   "elementos": 1,
+   "puntos": [
+    {
+     "fr": 0.95,
+     "p": 0,
+     "visible": true
+    },
+    {
+     "fr": 0.4,
+     "p": 0.999,
+     "visible": true
+    },
+    {
+     "fr": 0.15,
+     "p": 1,
+     "visible": true
+    }
+   ]
+  },
+  "pc-1440": {
+   "elementos": 1,
+   "puntos": [
+    {
+     "fr": 0.95,
+     "p": 0,
+     "visible": true
+    },
+    {
+     "fr": 0.4,
+     "p": 1,
+     "visible": true
+    },
+    {
+     "fr": 0.15,
+     "p": 1,
+     "visible": true
+    }
+   ]
+  },
+  "se-horiz-667": {
+   "elementos": 1,
+   "puntos": [
+    {
+     "fr": 0.95,
+     "p": 0,
+     "visible": true
+    },
+    {
+     "fr": 0.4,
+     "p": 0.999,
+     "visible": true
+    },
+    {
+     "fr": 0.15,
+     "p": 1,
+     "visible": true
+    }
+   ]
+  },
+  "reducido": {
+   "elementos": 1,
+   "p": 1
+  },
+  "sinJs": {
+   "elementos": 1,
+   "p": 1
+  }
+ },
  "peso": {
   "iph-390": {
-   "inicial": 300632,
-   "total": 300632,
+   "inicial": 300708,
+   "total": 300708,
    "peticionesIniciales": 10,
    "peticionesTotales": 10,
    "porTipo": {
-    ".html": 18651,
+    ".html": 18727,
     ".woff2": 91276,
     ".avif": 190705
    }
   },
   "pc-1440": {
-   "inicial": 431007,
-   "total": 431007,
+   "inicial": 431083,
+   "total": 431083,
    "peticionesIniciales": 12,
    "peticionesTotales": 12,
    "porTipo": {
-    ".html": 18651,
+    ".html": 18727,
     ".woff2": 91276,
     ".avif": 321080
    }

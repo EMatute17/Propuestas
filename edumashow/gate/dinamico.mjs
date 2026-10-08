@@ -83,6 +83,7 @@ const medirDOM = () => {
   for (let i = 0; i < hojas.length && solapes.length < 12; i++) for (let j = i + 1; j < hojas.length; j++) {
     const a = hojas[i], b = hojas[j];
     if (a.e.contains(b.e) || b.e.contains(a.e)) continue;
+    const ca = a.e.closest('[data-superpuesto]'); if (ca && ca === b.e.closest('[data-superpuesto]')) continue;   // capas que se superponen a proposito y estan declaradas (G02)
     const w = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0), h = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
     if (w > 2 && h > 2 && w * h > 12) solapes.push(`${a.nombre} con ${b.nombre} (${Math.round(w)}x${Math.round(h)})`);
   }
@@ -281,6 +282,42 @@ async function probarFoco(d) {
   return { dispositivo: d.id, interactivos: total, primero: seq[0] && seq[0].nombre, sinAnillo: (() => { const por = {}; for (const x of seq) { por[x.i] = por[x.i] || { nombre: x.nombre, estilo: x.estilo, ok: false }; por[x.i].ok = por[x.i].ok || x.anillo; } return Object.values(por).filter((x) => !x.ok).map((x) => x.nombre + ' [' + x.estilo + ']'); })(), fueraDePantalla: seq.filter((s) => !s.enPantalla).map((s) => s.nombre).slice(0, 6), tapadoPorBarra: seq.filter((s) => s.fraccionTapada >= 0.5).map((s) => s.nombre).slice(0, 6), tapadoParcial: seq.filter((s) => s.fraccionTapada > 0 && s.fraccionTapada < 0.5).map((s) => s.nombre + ' ' + Math.round(s.fraccionTapada * 100) + '%').slice(0, 6), aroNoVisible: seq.filter((s) => !s.aroVisible).map((s) => s.nombre).slice(0, 6), noAlcanzados: faltan.length, pasos: seq.length };
 }
 for (const id of ['pc-1440', 'iph-390', 'se-horiz-667', 'mini-768']) { const d = lista.find((x) => x.id === id); if (d) R.foco[id] = await probarFoco(d); }
+
+// ---------------------------------------------------------------- 3b) elementos que avanzan con el scroll
+R.scroll = {};
+for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
+  const d = lista.find((x) => x.id === id); if (!d) continue;
+  const { ctx, pag } = await nuevaPagina(d, { espera: 1200 });
+  await pag.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  const n = await pag.evaluate(() => document.querySelectorAll('[data-progreso]').length);
+  if (n) {
+    const puntos = [];
+    for (const f of [0.95, 0.4, 0.15]) {
+      await pag.evaluate((fr) => { const e = document.querySelector('[data-progreso]'); const t = e.getBoundingClientRect().top + scrollY; window.scrollTo(0, t - innerHeight * fr); }, f);
+      await pag.waitForTimeout(450);
+      puntos.push(await pag.evaluate((fr) => ({ fr, p: parseFloat(getComputedStyle(document.querySelector('[data-progreso]')).getPropertyValue('--p')), visible: (() => { const r = document.querySelector('[data-progreso]').getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; })() }), f));
+    }
+    R.scroll[id] = { elementos: n, puntos };
+  }
+  await ctx.close();
+}
+{
+  const d = lista.find((x) => x.id === 'iph-390') || lista[0];
+  const { ctx, pag } = await nuevaPagina(d, { reduce: true, espera: 1200 });
+  const n = await pag.evaluate(() => document.querySelectorAll('[data-progreso]').length);
+  if (n) R.scroll.reducido = { elementos: n, p: await pag.evaluate(() => parseFloat(getComputedStyle(document.querySelector('[data-progreso]')).getPropertyValue('--p'))) };
+  await ctx.close();
+}
+{
+  // sin JavaScript el efecto tiene que verse completo
+  const d = lista.find((x) => x.id === 'iph-390') || lista[0];
+  const c2 = await nav.newContext({ viewport: { width: d.w, height: d.h }, javaScriptEnabled: false, locale: 'es-VE' });
+  await c2.route('**/*', (route) => (route.request().url().startsWith(srv.url) || route.request().url().startsWith('data:') ? route.continue() : route.abort()));
+  const p2 = await c2.newPage(); await p2.goto(srv.url, { waitUntil: 'load' }); await p2.waitForTimeout(600);
+  const n2 = await p2.evaluate(() => document.querySelectorAll('[data-progreso]').length);
+  if (n2) R.scroll.sinJs = { elementos: n2, p: await p2.evaluate(() => parseFloat(getComputedStyle(document.querySelector('[data-progreso]')).getPropertyValue('--p'))) };
+  await c2.close();
+}
 
 // ---------------------------------------------------------------- 4) movimiento reducido y pausa
 {

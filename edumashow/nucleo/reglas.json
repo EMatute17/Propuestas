@@ -1163,6 +1163,7 @@
    ],
    "gate": [
     "G-MOVIMIENTO",
+    "G-AVANCE",
     "G-REND"
    ],
    "notas": ""

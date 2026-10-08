@@ -82,16 +82,16 @@
     arrancar();
   }
 
-  /* ---------- idea: el calor sube con el scroll ---------- */
+  /* ---------- idea: el calor sube con el scroll, atado a la posicion de la propia cifra ---------- */
   var idea = qs('.idea');
   if (idea) {
-    var pasos = qsa('.pasos li', idea), pend = false;
+    var cifra = qs('.num', idea), pasos = qsa('.pasos li', idea), pend = false;
     var progreso = function () {
       pend = false;
-      var r = idea.getBoundingClientRect(), vh = window.innerHeight || 800;
-      var p = E.reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (r.height * 0.85)));
+      var vh = window.innerHeight || 800, p = 1;
+      if (!E.reduce && cifra) { var r = cifra.getBoundingClientRect(); p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.5))); }
       idea.style.setProperty('--p', p.toFixed(3));
-      pasos.forEach(function (li, i) { li.classList.toggle('on', p >= (i + 0.6) / (pasos.length + 0.4)); });
+      pasos.forEach(function (li) { li.classList.toggle('on', E.reduce || li.getBoundingClientRect().top < vh * 0.78); });
     };
     var pedir = function () { if (!pend) { pend = true; raf(progreso); } };
     window.addEventListener('scroll', pedir, { passive: true }); window.addEventListener('resize', pedir, { passive: true }); progreso();

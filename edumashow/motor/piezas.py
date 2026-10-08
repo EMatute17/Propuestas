@@ -87,7 +87,7 @@ def idea(F, C):
     H = F["historia"]
     pasos = "".join(f'<li><h3>{e_(p["titulo"])}</h3><p>{e_(p["texto"])}</p></li>' for p in H["pasos"])
     return f'''<section class="idea" id="idea" aria-labelledby="t-idea"><div class="caja idea-rejilla">
-<div class="idea-cifra" aria-hidden="true"><span class="num">{e_(H["cifra"])}</span><span class="uni">{e_(H["unidad"])}</span></div>
+<div class="idea-cifra" aria-hidden="true"><span class="num" data-progreso data-superpuesto><span class="num-linea">{e_(H["cifra"])}</span><span class="num-brasa">{e_(H["cifra"])}</span></span><span class="uni">{e_(H["unidad"])}</span></div>
 <h2 class="sr-only" id="t-idea">{e_(H["cifra"])} {e_(H["unidad"])}</h2>
 <div><p class="lead rv">{e_(H["texto"])}</p><ol class="pasos rv" style="--d:120ms">{pasos}</ol></div></div></section>'''
 
@@ -206,7 +206,7 @@ def pie(F, C):
         retirar = f'mailto:{C["agencia"]["correo"]}?subject=' + quote(f'Retirar la muestra de {N["nombre"]}')
         extra = (f'<span>Página de muestra hecha por Edumashow.</span>'
                  + ('<span>Fotos de referencia, solo para esta muestra.</span>' if C["ejemplo"] else "")
-                 + f'<a href="{retirar}">Pedir que retiren esta muestra</a>')
+                 + f'<a href="{retirar}" data-retirada>Pedir que retiren esta muestra</a>')
     return f'<footer class="pie"><div class="caja"><b>{e_(N["nombre"])}</b><span>{e_(N["ciudad"])} · {e_(pais)}</span>{extra}</div></footer>'
 
 

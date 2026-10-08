@@ -169,7 +169,7 @@ R("R-IDE-03", "identidad", "Paleta, tipografía y proporciones se eligen por con
 R("R-IDE-04", "identidad", "Los activos de marca aprobados por el restaurante (logo, colores, tipografías, fotos) son restricciones fijas. La variación solo actúa sobre lo no fijado.",
   4, "defecto", "ambos", "E3", ["AL-31 pp.9,14,24", "GR-A04 p.24"], ["G-HUELLA"])
 R("R-IDE-05", "identidad", "El movimiento tiene personalidad (elegante: lento y con aire; casual: rápido y grueso) y siempre respeta las reglas de legibilidad y rendimiento. Los efectos inmersivos son aditivos: la página es completa sin ellos.",
-  4, "defecto", "ambos", "E3", ["AL-42 pp.4,5,33", "UX-58 p.10"], ["G-MOVIMIENTO", "G-REND"])
+  4, "defecto", "ambos", "E3", ["AL-42 pp.4,5,33", "UX-58 p.10"], ["G-MOVIMIENTO", "G-AVANCE", "G-REND"])
 
 # ------------------------------------------------------------------ PERSUASION (prioridad 5, solo hipótesis)
 R("R-PER-01", "persuasion", "Ninguna técnica de persuasión se activa por defecto en todas las webs. Cada módulo persuasivo lleva evidencia y estado (probada en este contexto o hipótesis), y las hipótesis no se activan sin prueba propia.",

@@ -64,14 +64,18 @@ MONEDAS = {
 }
 
 
+# plantilla propia del país cuando la costumbre local difiere de la general (en Estados Unidos el dólar se escribe $15.00)
+PLANTILLAS_PAIS = {("US", "USD"): "${n}"}
+
+
 def separadores(pais):
     if pais not in PAISES:
         raise ValueError(f"País desconocido: {pais}. El país lo da la ficha; no se supone.")
     return PAISES[pais][2], PAISES[pais][3]
 
 
-def formato_numero(monto, pais):
-    """Número con los separadores del país. En España, los enteros de 4 cifras van sin separador."""
+def formato_numero(monto, pais, fijos=False):
+    """Número con los separadores del país. En España, los enteros de 4 cifras van sin separador. Con fijos=True siempre lleva dos decimales."""
     miles, dec = separadores(pais)
     neg = monto < 0
     ent_s, dec_s = f"{abs(float(monto)):.2f}".split(".")
@@ -80,16 +84,36 @@ def formato_numero(monto, pais):
         txt = str(entero)
     else:
         txt = f"{entero:,}".replace(",", miles)
-    if dec_s != "00":
+    if dec_s != "00" or fijos:
         txt += dec + dec_s
     return ("-" if neg else "") + txt
 
 
-def formato_importe(monto, pais, moneda):
+def formato_importe(monto, pais, moneda, fijos=False):
     """Importe listo para mostrar, por ejemplo formato_importe(18, 'VE', 'USD') da 'US$ 18'."""
     if moneda not in MONEDAS:
         raise ValueError(f"Moneda desconocida: {moneda}. La moneda la da la ficha; no se supone.")
-    return MONEDAS[moneda].format(n=formato_numero(monto, pais))
+    plantilla = PLANTILLAS_PAIS.get((pais, moneda), MONEDAS[moneda])
+    return plantilla.format(n=formato_numero(monto, pais, fijos))
+
+
+def precios_de_carta(F):
+    """Todos los precios de la carta, incluidos los de cada variante (media libra, una libra...)."""
+    out = []
+    for c in F.get("carta", []):
+        for p in c.get("platos", []):
+            if isinstance(p.get("precio"), (int, float)):
+                out.append(p["precio"])
+            for v in p.get("variantes", []):
+                out.append(v["precio"])
+    return out
+
+
+def importe_fn(F):
+    """Función de formato de la ficha: un solo formato por página (R-DAT-03). Si algún precio tiene centavos, todos llevan dos decimales."""
+    fijos = any(float(m) != int(m) for m in precios_de_carta(F))
+    pais, moneda = F["negocio"]["pais"], F["moneda"]
+    return lambda monto: formato_importe(monto, pais, moneda, fijos)
 
 
 def config_js(pais, moneda):

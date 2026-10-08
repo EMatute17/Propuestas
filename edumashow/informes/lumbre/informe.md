@@ -1,8 +1,8 @@
 # Informe del Gate: Lumbre (lumbre)
 
 - **Veredicto técnico: APTO**
-- Fecha: 2026-10-08T02:46:01Z | Gate 0.1.0 | Reglas 0.1.0
-- Paquete (SHA-256): `22513a43c8a56f1ac330098a05a75367968ededa9c6901f333a15d1fba24b27d`
+- Fecha: 2026-10-08T04:07:12Z | Gate 0.1.0 | Reglas 0.1.0
+- Paquete (SHA-256): `9dbfd7be45a44bdecfc0f26e15868bc7505a883d0674d6a9ed79d166d587c43c`
 - Estados: técnico = APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
 
 ## Resultado por comprobación
@@ -14,8 +14,9 @@
 | G-DATOS | **PASS** | bloqueo | R-DAT-01, R-DAT-02, R-DAT-03, R-DAT-08, R-SIG-06 | 10 importes y 7 horarios comparados con la ficha; 0 discrepancias |
 | G-ETICA | **PASS** | bloqueo | R-ETI-01, R-ETI-02, R-ETI-03, R-ETI-05, R-SIG-11 | 0 patrones de escasez, testimonios, promesas o refuerzo variable |
 | G-META | **WARN** | bloqueo | R-MUE-01, R-MUE-04 | 0 fallos y 1 avisos de metadatos |
+| G-MUESTRA | **PASS** | bloqueo | R-MUE-01, R-MUE-02, R-ETI-07, R-MUE-05 | ejemplo ficticio; 0 fallos |
 | G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 11 imágenes con origen y licencia registrados; 11 etiquetas img con alt |
-| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 22513a43c8a5 verificado sobre 69 archivos |
+| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 9dbfd7be45a4 verificado sobre 69 archivos |
 | G-HUELLA | **PASS** | bloqueo | R-VAR-01 | no hay otras webs registradas con las que comparar (primera del registro) |
 | G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 3 tipografías revisadas contra 73 caracteres distintos |
 | G-RED | **PASS** | bloqueo | R-ETI-08, R-REN-05 | 27 dispositivos: 0 peticiones externas, 0 errores de consola, 0 con cookies o almacenamiento, 0 respuestas 404 |
@@ -34,9 +35,10 @@
 | G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | flechas, Fin, Escape y retorno del foco |
 | G-FOCO | **PASS** | bloqueo | R-LEG-05 | 4 dispositivos recorridos con Tab |
 | G-MOVIMIENTO | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-IDE-05 | animaciones infinitas normales 2; con pausa 0; con movimiento reducido 0 |
+| G-AVANCE | **PASS** | defecto | R-IDE-05 | 3 dispositivos; con movimiento reducido y sin JavaScript el efecto queda completo |
 | G-RESOLUCION | **WARN** | defecto | R-REN-02 | 5 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
 | G-VISUAL | **REVISAR** | asesor | R-PRO-05, R-MED-04 | 27 capturas en informes/lumbre/hoja_dispositivos.jpg; falta la revisión humana (Eduardo) y las pruebas con personas |
-| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2181 ms, CLS 0, TBT 0 ms; escritorio 100 |
+| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2180 ms, CLS 0, TBT 0 ms; escritorio 100 |
 
 ## Detalle de avisos, fallos y excepciones
 
@@ -89,7 +91,7 @@
 
 | Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |
 |---|---|---|---|---|---|---|---|
-| móvil | 99 | 100 | 100 | 2181 ms | 0 | 0 ms | 180 KB |
+| móvil | 99 | 100 | 100 | 2180 ms | 0 | 0 ms | 180 KB |
 | escritorio | 100 | 100 | 100 | 605 ms | 0 | 0 ms | 310 KB |
 
 Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 420 KB, total tras recorrer la página 420 KB
@@ -99,13 +101,13 @@ Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras
 | Elemento | Dispositivo | Contraste (5.º percentil) | Se exige | |
 |---|---|---|---|---|
 | .galeria figcaption "El rincón rojo" | iph-390 | 5.89:1 | 4.5:1 | ok |
-| .hero h1 "LumbreLumbre" | pc-1440 | 4.07:1 | 3.0:1 | ok |
+| .hero h1 "LumbreLumbre" | pc-1440 | 4.08:1 | 3.0:1 | ok |
 | .hero .btn "Reservar mesa" | iph-390 | 6.53:1 | 4.5:1 | ok |
 | .barra-movil a "Reservar" | iph-390 | 6.53:1 | 4.5:1 | ok |
 | .hero .btn "Reservar mesa" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
 | .barra-movil a "Reservar" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
 | .hero .btn "Reservar mesa" | mini-768 | 6.53:1 | 4.5:1 | ok |
-| .hero-barra nav a "Carta" | pc-1440 | 6.53:1 | 4.5:1 | ok |
+| .hero .btn "Reservar mesa" | pc-1440 | 6.53:1 | 4.5:1 | ok |
 
 ## Lo que este Gate no verifica
 
