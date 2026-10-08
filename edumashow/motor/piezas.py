@@ -168,7 +168,7 @@ def reserva(F, C):
 <p class="resumen" data-r-resumen aria-live="polite"></p>
 <p class="aviso" data-r-mensaje role="alert" hidden></p>
 <button class="btn" type="submit">{ICONO_WA} Pedir mesa por WhatsApp</button>
-<p class="aviso-wa" data-aviso-wa hidden>Si no se abrió WhatsApp, <a target="_blank" rel="noopener">tócalo aquí</a>.</p>
+<p class="aviso-wa" data-aviso-wa hidden>Si no se abrió WhatsApp, <a href="{wa_sin_js}" target="_blank" rel="noopener">tócalo aquí</a>.</p>
 </form>{aviso_muestra}</div></div></section>'''
 
 
