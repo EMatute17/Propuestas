@@ -1,5 +1,5 @@
 {
- "version_gate": "0.2.0",
+ "version_gate": "0.3.0",
  "dispositivos": [
   {
    "id": "se1-320",
@@ -136,8 +136,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 322.258544921875,
-      "cajaH": 599.8916015625,
+      "cajaW": 322.28497314453125,
+      "cajaH": 599.94091796875,
       "cubre": true
      },
      {
@@ -236,7 +236,7 @@
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
       "cajaW": 280.2808837890625,
-      "cajaH": 652.6070556640625,
+      "cajaH": 652.607177734375,
       "cubre": true
      },
      {
@@ -323,8 +323,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 281.93048095703125,
-      "cajaH": 656.44775390625,
+      "cajaW": 281.9418029785156,
+      "cajaH": 656.47412109375,
       "cubre": true
      },
      {
@@ -510,8 +510,8 @@
      {
       "archivo": "hero-m-768.avif",
       "clave": "hero-m",
-      "cajaW": 377.20489501953125,
-      "cajaH": 618.61572265625,
+      "cajaW": 377.2756652832031,
+      "cajaH": 618.73193359375,
       "cubre": true
      },
      {
@@ -609,8 +609,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 360.3611755371094,
-      "cajaH": 728.7303466796875,
+      "cajaW": 360.3504638671875,
+      "cajaH": 728.7086181640625,
       "cubre": true
      },
      {
@@ -697,8 +697,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.29559326171875,
-      "cajaH": 732.64208984375,
+      "cajaW": 362.3096618652344,
+      "cajaH": 732.6708984375,
       "cubre": true
      },
      {
@@ -884,8 +884,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 362.6153564453125,
-      "cajaH": 692.998046875,
+      "cajaW": 362.75250244140625,
+      "cajaH": 693.26025390625,
       "cubre": true
      },
      {
@@ -983,7 +983,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 390.397216796875,
+      "cajaW": 390.3971252441406,
       "cajaH": 792.8065185546875,
       "cubre": true
      },
@@ -1071,7 +1071,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 391.8375244140625,
+      "cajaW": 391.8374328613281,
       "cajaH": 795.731689453125,
       "cubre": true
      },
@@ -1167,6 +1167,7 @@
     "anclasRotas": [],
     "enlaces": [
      "#contenido",
+     "#panel-edu",
      "#inicio",
      "#carta",
      "#ambiente",
@@ -1178,10 +1179,12 @@
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "#panel-edu",
      "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
      "#reservar",
      "#carta",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "#contenido",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
     ]
    },
@@ -1235,8 +1238,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 393.38836669921875,
-      "cajaH": 800.79052734375,
+      "cajaW": 393.4001770019531,
+      "cajaH": 800.814697265625,
       "cubre": true
      },
      {
@@ -1323,8 +1326,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 395.429931640625,
-      "cajaH": 804.946533203125,
+      "cajaW": 395.5059814453125,
+      "cajaH": 805.101318359375,
       "cubre": true
      },
      {
@@ -1422,8 +1425,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.41949462890625,
-      "cajaH": 863.8787841796875,
+      "cajaW": 412.40716552734375,
+      "cajaH": 863.85302734375,
       "cubre": true
      },
      {
@@ -1510,8 +1513,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.468994140625,
-      "cajaH": 868.17138671875,
+      "cajaW": 414.54736328125,
+      "cajaH": 868.3359375,
       "cubre": true
      },
      {
@@ -1609,8 +1612,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 412.41949462890625,
-      "cajaH": 863.8787841796875,
+      "cajaW": 412.413330078125,
+      "cajaH": 863.8658447265625,
       "cubre": true
      },
      {
@@ -1697,7 +1700,7 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 414.8909606933594,
+      "cajaW": 414.89093017578125,
       "cajaH": 869.0556640625,
       "cubre": true
      },
@@ -1884,8 +1887,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 432.609375,
-      "cajaH": 885.33984375,
+      "cajaW": 432.8094482421875,
+      "cajaH": 885.749755859375,
       "cubre": true
      },
      {
@@ -2071,8 +2074,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 671.957763671875,
-      "cajaH": 367.99609375,
+      "cajaW": 671.9860229492188,
+      "cajaH": 368.01220703125,
       "cubre": true
      },
      {
@@ -2167,6 +2170,7 @@
     "anclasRotas": [],
     "enlaces": [
      "#contenido",
+     "#panel-edu",
      "#inicio",
      "#carta",
      "#ambiente",
@@ -2178,10 +2182,12 @@
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "#panel-edu",
      "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
      "#reservar",
      "#carta",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "#contenido",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
     ]
    },
@@ -2330,8 +2336,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 852.22607421875,
-      "cajaH": 372.107421875,
+      "cajaW": 852.1444091796875,
+      "cajaH": 372.07177734375,
       "cubre": true
      },
      {
@@ -2538,8 +2544,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 922.555908203125,
-      "cajaH": 376.347900390625,
+      "cajaW": 922.885498046875,
+      "cajaH": 376.482421875,
       "cubre": true
      },
      {
@@ -2553,14 +2559,14 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 517.37060546875,
-      "cajaH": 291.0093994140625,
+      "cajaH": 291.00927734375,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 364.6181640625,
-      "cajaH": 524.4581298828125,
+      "cajaH": 524.4580078125,
       "cubre": true
      },
      {
@@ -2574,7 +2580,7 @@
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 211.8656005859375,
-      "cajaH": 158.89501953125,
+      "cajaH": 158.8948974609375,
       "cubre": true
      }
     ],
@@ -2651,8 +2657,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 673.6650390625,
-      "cajaH": 789.77978515625,
+      "cajaW": 673.6751708984375,
+      "cajaH": 789.7915649414062,
       "cubre": true
      },
      {
@@ -2739,8 +2745,8 @@
      {
       "archivo": "hero-m-960.avif",
       "clave": "hero-m",
-      "cajaW": 677.7223510742188,
-      "cajaH": 794.5361328125,
+      "cajaW": 677.6398315429688,
+      "cajaH": 794.439697265625,
       "cubre": true
      },
      {
@@ -2838,8 +2844,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 768.759033203125,
-      "cajaH": 972.9606323242188,
+      "cajaW": 768.7476806640625,
+      "cajaH": 972.9462280273438,
       "cubre": true
      },
      {
@@ -2926,8 +2932,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 771.44140625,
-      "cajaH": 976.355224609375,
+      "cajaW": 771.3668212890625,
+      "cajaH": 976.260986328125,
       "cubre": true
      },
      {
@@ -3022,6 +3028,7 @@
     "anclasRotas": [],
     "enlaces": [
      "#contenido",
+     "#panel-edu",
      "#inicio",
      "#carta",
      "#ambiente",
@@ -3033,10 +3040,12 @@
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "#panel-edu",
      "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
      "#reservar",
      "#carta",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "#contenido",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
     ]
    },
@@ -3090,8 +3099,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 810.7885131835938,
-      "cajaH": 1029.000732421875,
+      "cajaW": 810.776611328125,
+      "cajaH": 1028.985595703125,
       "cubre": true
      },
      {
@@ -3178,8 +3187,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 814.7020874023438,
-      "cajaH": 1033.967529296875,
+      "cajaW": 814.9154052734375,
+      "cajaH": 1034.23828125,
       "cubre": true
      },
      {
@@ -3277,8 +3286,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 834.8118896484375,
-      "cajaH": 1143.1116943359375,
+      "cajaW": 834.81201171875,
+      "cajaH": 1143.11181640625,
       "cubre": true
      },
      {
@@ -3365,8 +3374,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 838.9976806640625,
-      "cajaH": 1148.84326171875,
+      "cajaW": 839.1248168945312,
+      "cajaH": 1149.017333984375,
       "cubre": true
      },
      {
@@ -3566,8 +3575,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.37060546875,
-      "cajaH": 1322.175048828125,
+      "cajaW": 1030.6500244140625,
+      "cajaH": 1322.533203125,
       "cubre": true
      },
      {
@@ -3595,7 +3604,7 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 323.9324951171875,
-      "cajaH": 242.949462890625,
+      "cajaH": 242.9493408203125,
       "cubre": true
      },
      {
@@ -3781,8 +3790,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1030.6904296875,
-      "cajaH": 720.67822265625,
+      "cajaW": 1030.8125,
+      "cajaH": 720.76318359375,
       "cubre": true
      },
      {
@@ -3796,7 +3805,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 579.8587646484375,
-      "cajaH": 326.159912109375,
+      "cajaH": 326.1600341796875,
       "cubre": true
      },
      {
@@ -3810,7 +3819,7 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 323.9324951171875,
-      "cajaH": 242.949462890625,
+      "cajaH": 242.9493408203125,
       "cubre": true
      },
      {
@@ -3996,8 +4005,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1202.0389404296875,
-      "cajaH": 787.26513671875,
+      "cajaW": 1202.875,
+      "cajaH": 787.812744140625,
       "cubre": true
      },
      {
@@ -4011,21 +4020,21 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 677.328857421875,
-      "cajaH": 380.9869384765625,
+      "cajaH": 380.98681640625,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 478.87884521484375,
-      "cajaH": 682.9818115234375,
+      "cajaH": 682.98193359375,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 379.63690185546875,
-      "cajaH": 284.715087890625,
+      "cajaH": 284.7149658203125,
       "cubre": true
      },
      {
@@ -4109,8 +4118,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1281.227294921875,
-      "cajaH": 668.6405029296875,
+      "cajaW": 1281.171875,
+      "cajaH": 668.6115112304688,
       "cubre": true
      },
      {
@@ -4211,8 +4220,8 @@
      {
       "archivo": "hero-1280.avif",
       "clave": "hero",
-      "cajaW": 1286.8250732421875,
-      "cajaH": 671.56201171875,
+      "cajaW": 1287.0546875,
+      "cajaH": 671.681640625,
       "cubre": true
      },
      {
@@ -4233,21 +4242,21 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.44000244140625,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -4324,8 +4333,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1367.27001953125,
-      "cajaH": 716.6656494140625,
+      "cajaW": 1367.289794921875,
+      "cajaH": 716.676025390625,
       "cubre": true
      },
      {
@@ -4426,8 +4435,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1373.2838134765625,
-      "cajaH": 719.81787109375,
+      "cajaW": 1373.235107421875,
+      "cajaH": 719.79248046875,
       "cubre": true
      },
      {
@@ -4448,21 +4457,21 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.8798828125,
+      "cajaH": 713.880126953125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.44000244140625,
-      "cajaH": 298.080078125,
+      "cajaH": 298.0799560546875,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -4539,8 +4548,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1441.318359375,
-      "cajaH": 848.7762451171875,
+      "cajaW": 1441.2977294921875,
+      "cajaH": 848.7642211914062,
       "cubre": true
      },
      {
@@ -4641,8 +4650,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1446.7847900390625,
-      "cajaH": 851.99560546875,
+      "cajaW": 1446.68896484375,
+      "cajaH": 851.93896484375,
       "cubre": true
      },
      {
@@ -4656,7 +4665,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5201416015625,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
@@ -4670,14 +4679,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.3199462890625,
+      "cajaH": 220.320068359375,
       "cubre": true
      }
     ],
@@ -4751,6 +4760,7 @@
     "anclasRotas": [],
     "enlaces": [
      "#contenido",
+     "#panel-edu",
      "#inicio",
      "#carta",
      "#ambiente",
@@ -4762,10 +4772,12 @@
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
      "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "#panel-edu",
      "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
      "#reservar",
      "#carta",
      "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "#contenido",
      "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
     ]
    },
@@ -4819,8 +4831,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1537.406005859375,
-      "cajaH": 812.7432861328125,
+      "cajaW": 1537.427978515625,
+      "cajaH": 812.7549438476562,
       "cubre": true
      },
      {
@@ -4921,8 +4933,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1544.6334228515625,
-      "cajaH": 816.56396484375,
+      "cajaW": 1544.973876953125,
+      "cajaH": 816.744140625,
       "cubre": true
      },
      {
@@ -4936,28 +4948,28 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.52001953125,
+      "cajaH": 398.5201416015625,
       "cubre": true
      },
      {
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.12005615234375,
-      "cajaH": 713.880126953125,
+      "cajaH": 713.8798828125,
       "cubre": true
      },
      {
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.4399719238281,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -5136,8 +5148,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 1928.982421875,
-      "cajaH": 1032.8095703125,
+      "cajaW": 1929.369384765625,
+      "cajaH": 1033.0166015625,
       "cubre": true
      },
      {
@@ -5158,7 +5170,7 @@
       "archivo": "rincon_rojo-716.avif",
       "clave": "rincon_rojo",
       "cajaW": 501.1201171875,
-      "cajaH": 713.8798828125,
+      "cajaH": 713.8800048828125,
       "cubre": true
      },
      {
@@ -5249,8 +5261,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2562.23486328125,
-      "cajaH": 1389.2119140625,
+      "cajaW": 2562.0263671875,
+      "cajaH": 1389.0986328125,
       "cubre": true
      },
      {
@@ -5351,8 +5363,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 2572.49267578125,
-      "cajaH": 1394.773193359375,
+      "cajaW": 2571.63818359375,
+      "cajaH": 1394.310302734375,
       "cubre": true
      },
      {
@@ -5366,7 +5378,7 @@
       "archivo": "sala_azul-1280.avif",
       "clave": "sala_azul",
       "cajaW": 708.47998046875,
-      "cajaH": 398.5198974609375,
+      "cajaH": 398.52001953125,
       "cubre": true
      },
      {
@@ -5380,14 +5392,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -5464,8 +5476,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3442.861083984375,
-      "cajaH": 1389.1544189453125,
+      "cajaW": 3442.6318359375,
+      "cajaH": 1389.06201171875,
       "cubre": true
      },
      {
@@ -5566,8 +5578,8 @@
      {
       "archivo": "hero-1920.avif",
       "clave": "hero",
-      "cajaW": 3456.09326171875,
-      "cajaH": 1394.4931640625,
+      "cajaW": 3456.670166015625,
+      "cajaH": 1394.726318359375,
       "cubre": true
      },
      {
@@ -5595,14 +5607,14 @@
       "archivo": "sala_roja-800.avif",
       "clave": "sala_roja",
       "cajaW": 397.43994140625,
-      "cajaH": 298.0799560546875,
+      "cajaH": 298.080078125,
       "cubre": true
      },
      {
       "archivo": "reservado-800.avif",
       "clave": "reservado",
       "cajaW": 293.760009765625,
-      "cajaH": 220.320068359375,
+      "cajaH": 220.3199462890625,
       "cubre": true
      }
     ],
@@ -5648,6 +5660,8 @@
    "tapadoPorBarra": [],
    "tapadoParcial": [],
    "aroNoVisible": [],
+   "aroRecortado": [],
+   "aroPocoContraste": [],
    "noAlcanzados": 0,
    "pasos": 31
   },
@@ -5660,6 +5674,8 @@
    "tapadoPorBarra": [],
    "tapadoParcial": [],
    "aroNoVisible": [],
+   "aroRecortado": [],
+   "aroPocoContraste": [],
    "noAlcanzados": 0,
    "pasos": 28
   },
@@ -5672,6 +5688,8 @@
    "tapadoPorBarra": [],
    "tapadoParcial": [],
    "aroNoVisible": [],
+   "aroRecortado": [],
+   "aroPocoContraste": [],
    "noAlcanzados": 0,
    "pasos": 28
   },
@@ -5684,6 +5702,8 @@
    "tapadoPorBarra": [],
    "tapadoParcial": [],
    "aroNoVisible": [],
+   "aroRecortado": [],
+   "aroPocoContraste": [],
    "noAlcanzados": 0,
    "pasos": 28
   }
@@ -5693,7 +5713,7 @@
    "infinitas": 2,
    "corriendo": 2,
    "largas": 2,
-   "brasas": 214,
+   "brasas": 228,
    "letras": true
   },
   "pausado": {
@@ -5868,9 +5888,9 @@
  "red": {
   "peticiones404": [],
   "bytesPorTipo": {
-   ".html": 1123440,
-   ".woff2": 5476560,
-   ".avif": 13911237
+   ".html": 1163270,
+   ".woff2": 5567836,
+   ".avif": 14211889
   },
   "externasIntentadas": []
  },
@@ -5908,7 +5928,7 @@
      "peso": 400
     },
     {
-     "sel": ".cinta button",
+     "sel": ".cinta .cinta-btn",
      "texto": "Quiero mi web",
      "rects": [
       [
@@ -6214,16 +6234,24 @@
      "alfa": 1,
      "px": 15.2,
      "peso": 600
-    },
+    }
+   ]
+  },
+  {
+   "dispositivo": "iph-390",
+   "etiqueta": "visita",
+   "imagen": "capturas/contraste_iph-390_visita.png",
+   "dpr": 3,
+   "filas": [
     {
-     "sel": ".barra-movil a",
-     "texto": "Reservar",
+     "sel": ".visita h2",
+     "texto": "Visítanos",
      "rects": [
       [
-       56.078125,
-       799.671875,
-       65.34375,
-       21
+       20,
+       87.734375,
+       153.140625,
+       39.9375
       ]
      ],
      "color": [
@@ -6232,53 +6260,339 @@
       28
      ],
      "alfa": 1,
-     "px": 15.2,
-     "peso": 700
+     "px": 38.4,
+     "peso": 400
     },
     {
-     "sel": ".barra-movil a",
-     "texto": "Carta",
+     "sel": ".visita address",
+     "texto": "Av. Principal de Las Mercedes,",
      "rects": [
       [
-       193.953125,
-       799.671875,
-       41.359375,
-       21
+       20,
+       148.671875,
+       322.4375,
+       26
+      ],
+      [
+       20,
+       177.46875,
+       173.609375,
+       26
       ]
      ],
      "color": [
-      243,
-      233,
-      216
+      11,
+      20,
+      28
      ],
      "alfa": 1,
-     "px": 15.2,
-     "peso": 700
+     "px": 19.2,
+     "peso": 400
     },
     {
-     "sel": ".barra-movil a",
+     "sel": ".estado",
+     "texto": "Cerrado · abre hoy a las 12:00",
+     "rects": [
+      [
+       54.390625,
+       233.265625,
+       191.265625,
+       18.71875
+      ],
+      [
+       54.390625,
+       232.265625,
+       191.265625,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "LunesCerrado",
+     "rects": [
+      [
+       20,
+       460.171875,
+       47.078125,
+       26.875
+      ],
+      [
+       20,
+       461.171875,
+       47.078125,
+       23
+      ],
+      [
+       307.21875,
+       460.171875,
+       62.78125,
+       26.875
+      ],
+      [
+       307.21875,
+       461.171875,
+       62.78125,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Martes12:00–22:00",
+     "rects": [
+      [
+       20,
+       518.421875,
+       54.484375,
+       26.875
+      ],
+      [
+       20,
+       519.421875,
+       54.484375,
+       23
+      ],
+      [
+       274.703125,
+       518.421875,
+       95.296875,
+       26.875
+      ],
+      [
+       274.703125,
+       519.421875,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Miércoles12:00–22:00",
+     "rects": [
+      [
+       20,
+       576.671875,
+       75.21875,
+       26.875
+      ],
+      [
+       20,
+       577.671875,
+       75.21875,
+       23
+      ],
+      [
+       274.703125,
+       576.671875,
+       95.296875,
+       26.875
+      ],
+      [
+       274.703125,
+       577.671875,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Jueves12:00–22:00",
+     "rects": [
+      [
+       20,
+       634.921875,
+       56.796875,
+       26.875
+      ],
+      [
+       20,
+       635.921875,
+       56.796875,
+       23
+      ],
+      [
+       267.9375,
+       634.921875,
+       102.0625,
+       26.875
+      ],
+      [
+       267.9375,
+       635.921875,
+       102.0625,
+       23
+      ]
+     ],
+     "color": [
+      175,
+      53,
+      0
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 800
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Viernes12:00–23:30",
+     "rects": [
+      [
+       20,
+       693.171875,
+       58.109375,
+       26.875
+      ],
+      [
+       20,
+       694.171875,
+       58.109375,
+       23
+      ],
+      [
+       275.953125,
+       693.171875,
+       94.046875,
+       26.875
+      ],
+      [
+       275.953125,
+       694.171875,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Sábado12:00–23:30",
+     "rects": [
+      [
+       20,
+       751.421875,
+       58.796875,
+       24.390625
+      ],
+      [
+       20,
+       752.421875,
+       58.796875,
+       23
+      ],
+      [
+       275.953125,
+       751.421875,
+       94.046875,
+       24.390625
+      ],
+      [
+       275.953125,
+       752.421875,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".visita .btn",
      "texto": "Cómo llegar",
      "rects": [
       [
-       299.109375,
-       790.9375,
-       43.515625,
-       21
+       46.34375,
+       303.984375,
+       20,
+       20
       ],
       [
-       299.953125,
-       808.40625,
-       41.828125,
-       21
+       75.9375,
+       302.1875,
+       96.625,
+       22
       ]
      ],
      "color": [
-      243,
-      233,
-      216
+      11,
+      20,
+      28
      ],
      "alfa": 1,
-     "px": 15.2,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Escribirnos",
+     "rects": [
+      [
+       46.34375,
+       367.984375,
+       20,
+       20
+      ],
+      [
+       75.9375,
+       366.1875,
+       90.578125,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
      "peso": 700
     }
    ]
@@ -6316,7 +6630,7 @@
      "peso": 400
     },
     {
-     "sel": ".cinta button",
+     "sel": ".cinta .cinta-btn",
      "texto": "Quiero mi web",
      "rects": [
       [
@@ -6582,16 +6896,24 @@
      "alfa": 1,
      "px": 15.2,
      "peso": 600
-    },
+    }
+   ]
+  },
+  {
+   "dispositivo": "se-horiz-667",
+   "etiqueta": "visita",
+   "imagen": "capturas/contraste_se-horiz-667_visita.png",
+   "dpr": 2,
+   "filas": [
     {
-     "sel": ".barra-movil a",
-     "texto": "Reservar",
+     "sel": ".visita h2",
+     "texto": "Visítanos",
      "rects": [
       [
-       119,
-       330.671875,
-       65.34375,
-       21
+       30,
+       88.484375,
+       159.625,
+       41.609375
       ]
      ],
      "color": [
@@ -6600,47 +6922,99 @@
       28
      ],
      "alfa": 1,
-     "px": 15.2,
-     "peso": 700
+     "px": 40.02,
+     "peso": 400
     },
     {
-     "sel": ".barra-movil a",
-     "texto": "Carta",
+     "sel": ".visita address",
+     "texto": "Av. Principal de Las Mercedes,",
      "rects": [
       [
-       347.578125,
-       330.671875,
-       41.359375,
-       21
+       30,
+       151.09375,
+       322.4375,
+       26
+      ],
+      [
+       30,
+       179.890625,
+       173.609375,
+       26
       ]
      ],
      "color": [
-      243,
-      233,
-      216
+      11,
+      20,
+      28
      ],
      "alfa": 1,
-     "px": 15.2,
-     "peso": 700
+     "px": 19.2,
+     "peso": 400
     },
     {
-     "sel": ".barra-movil a",
+     "sel": ".estado",
+     "texto": "Cerrado · abre hoy a las 12:00",
+     "rects": [
+      [
+       64.390625,
+       235.6875,
+       191.265625,
+       18.71875
+      ],
+      [
+       64.390625,
+       234.6875,
+       191.265625,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".visita .btn",
      "texto": "Cómo llegar",
      "rects": [
       [
-       505.890625,
-       330.671875,
-       88.375,
-       21
+       86.1875,
+       304.609375,
+       96.625,
+       2.203125
       ]
      ],
      "color": [
-      243,
-      233,
-      216
+      11,
+      20,
+      28
      ],
      "alfa": 1,
-     "px": 15.2,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Escribirnos",
+     "rects": [
+      [
+       277.59375,
+       304.609375,
+       90.578125,
+       2.203125
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
      "peso": 700
     }
    ]
@@ -6678,7 +7052,7 @@
      "peso": 400
     },
     {
-     "sel": ".cinta button",
+     "sel": ".cinta .cinta-btn",
      "texto": "Quiero mi web",
      "rects": [
       [
@@ -6968,6 +7342,404 @@
    ]
   },
   {
+   "dispositivo": "mini-768",
+   "etiqueta": "visita",
+   "imagen": "capturas/contraste_mini-768_visita.png",
+   "dpr": 2,
+   "filas": [
+    {
+     "sel": ".visita h2",
+     "texto": "Visítanos",
+     "rects": [
+      [
+       34.546875,
+       92.9375,
+       183.8125,
+       47.90625
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 46.08,
+     "peso": 400
+    },
+    {
+     "sel": ".visita address",
+     "texto": "Av. Principal de Las Mercedes,",
+     "rects": [
+      [
+       34.546875,
+       161.84375,
+       322.4375,
+       26
+      ],
+      [
+       34.546875,
+       190.640625,
+       173.609375,
+       26
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 19.2,
+     "peso": 400
+    },
+    {
+     "sel": ".estado",
+     "texto": "Cerrado · abre hoy a las 12:00",
+     "rects": [
+      [
+       68.9375,
+       246.4375,
+       191.265625,
+       18.71875
+      ],
+      [
+       68.9375,
+       245.4375,
+       191.265625,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "LunesCerrado",
+     "rects": [
+      [
+       34.546875,
+       409.34375,
+       47.078125,
+       26.875
+      ],
+      [
+       34.546875,
+       410.34375,
+       47.078125,
+       23
+      ],
+      [
+       670.671875,
+       409.34375,
+       62.78125,
+       26.875
+      ],
+      [
+       670.671875,
+       410.34375,
+       62.78125,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Martes12:00–22:00",
+     "rects": [
+      [
+       34.546875,
+       467.59375,
+       54.484375,
+       26.875
+      ],
+      [
+       34.546875,
+       468.59375,
+       54.484375,
+       23
+      ],
+      [
+       638.15625,
+       467.59375,
+       95.296875,
+       26.875
+      ],
+      [
+       638.15625,
+       468.59375,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Miércoles12:00–22:00",
+     "rects": [
+      [
+       34.546875,
+       525.84375,
+       75.21875,
+       26.875
+      ],
+      [
+       34.546875,
+       526.84375,
+       75.21875,
+       23
+      ],
+      [
+       638.15625,
+       525.84375,
+       95.296875,
+       26.875
+      ],
+      [
+       638.15625,
+       526.84375,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Jueves12:00–22:00",
+     "rects": [
+      [
+       34.546875,
+       584.09375,
+       56.796875,
+       26.875
+      ],
+      [
+       34.546875,
+       585.09375,
+       56.796875,
+       23
+      ],
+      [
+       631.390625,
+       584.09375,
+       102.0625,
+       26.875
+      ],
+      [
+       631.390625,
+       585.09375,
+       102.0625,
+       23
+      ]
+     ],
+     "color": [
+      175,
+      53,
+      0
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 800
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Viernes12:00–23:30",
+     "rects": [
+      [
+       34.546875,
+       642.34375,
+       58.109375,
+       26.875
+      ],
+      [
+       34.546875,
+       643.34375,
+       58.109375,
+       23
+      ],
+      [
+       639.40625,
+       642.34375,
+       94.046875,
+       26.875
+      ],
+      [
+       639.40625,
+       643.34375,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Sábado12:00–23:30",
+     "rects": [
+      [
+       34.546875,
+       700.59375,
+       58.796875,
+       26.875
+      ],
+      [
+       34.546875,
+       701.59375,
+       58.796875,
+       23
+      ],
+      [
+       639.40625,
+       700.59375,
+       94.046875,
+       26.875
+      ],
+      [
+       639.40625,
+       701.59375,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Domingo12:00–17:00",
+     "rects": [
+      [
+       34.546875,
+       758.84375,
+       69.1875,
+       26.875
+      ],
+      [
+       34.546875,
+       759.84375,
+       69.1875,
+       23
+      ],
+      [
+       642.65625,
+       758.84375,
+       90.796875,
+       26.875
+      ],
+      [
+       642.65625,
+       759.84375,
+       90.796875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Cómo llegar",
+     "rects": [
+      [
+       61.140625,
+       317.15625,
+       20,
+       20
+      ],
+      [
+       90.734375,
+       315.359375,
+       96.625,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Escribirnos",
+     "rects": [
+      [
+       252.546875,
+       317.15625,
+       20,
+       20
+      ],
+      [
+       282.140625,
+       315.359375,
+       90.578125,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
+  },
+  {
    "dispositivo": "pc-1440",
    "etiqueta": "portada",
    "imagen": "capturas/contraste_pc-1440_portada.png",
@@ -7012,7 +7784,7 @@
      "peso": 400
     },
     {
-     "sel": ".cinta button",
+     "sel": ".cinta .cinta-btn",
      "texto": "Quiero mi web",
      "rects": [
       [
@@ -7400,6 +8172,404 @@
      "peso": 600
     }
    ]
+  },
+  {
+   "dispositivo": "pc-1440",
+   "etiqueta": "visita",
+   "imagen": "capturas/contraste_pc-1440_visita.png",
+   "dpr": 1,
+   "filas": [
+    {
+     "sel": ".visita h2",
+     "texto": "Visítanos",
+     "rects": [
+      [
+       152,
+       159.921875,
+       280.796875,
+       73.21875
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 70.4,
+     "peso": 400
+    },
+    {
+     "sel": ".visita address",
+     "texto": "Av. Principal de Las Mercedes,",
+     "rects": [
+      [
+       152,
+       254.140625,
+       322.4375,
+       26
+      ],
+      [
+       152,
+       282.9375,
+       173.609375,
+       26
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 19.2,
+     "peso": 400
+    },
+    {
+     "sel": ".estado",
+     "texto": "Cerrado · abre hoy a las 12:00",
+     "rects": [
+      [
+       186.390625,
+       338.734375,
+       191.265625,
+       18.71875
+      ],
+      [
+       186.390625,
+       337.734375,
+       191.265625,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "LunesCerrado",
+     "rects": [
+      [
+       808,
+       176.109375,
+       47.078125,
+       26.875
+      ],
+      [
+       808,
+       177.109375,
+       47.078125,
+       23
+      ],
+      [
+       1225.21875,
+       176.109375,
+       62.78125,
+       26.875
+      ],
+      [
+       1225.21875,
+       177.109375,
+       62.78125,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Martes12:00–22:00",
+     "rects": [
+      [
+       808,
+       234.359375,
+       54.484375,
+       26.875
+      ],
+      [
+       808,
+       235.359375,
+       54.484375,
+       23
+      ],
+      [
+       1192.703125,
+       234.359375,
+       95.296875,
+       26.875
+      ],
+      [
+       1192.703125,
+       235.359375,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Miércoles12:00–22:00",
+     "rects": [
+      [
+       808,
+       292.609375,
+       75.21875,
+       26.875
+      ],
+      [
+       808,
+       293.609375,
+       75.21875,
+       23
+      ],
+      [
+       1192.703125,
+       292.609375,
+       95.296875,
+       26.875
+      ],
+      [
+       1192.703125,
+       293.609375,
+       95.296875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Jueves12:00–22:00",
+     "rects": [
+      [
+       808,
+       350.859375,
+       56.796875,
+       26.875
+      ],
+      [
+       808,
+       351.859375,
+       56.796875,
+       23
+      ],
+      [
+       1185.9375,
+       350.859375,
+       102.0625,
+       26.875
+      ],
+      [
+       1185.9375,
+       351.859375,
+       102.0625,
+       23
+      ]
+     ],
+     "color": [
+      175,
+      53,
+      0
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 800
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Viernes12:00–23:30",
+     "rects": [
+      [
+       808,
+       409.109375,
+       58.109375,
+       26.875
+      ],
+      [
+       808,
+       410.109375,
+       58.109375,
+       23
+      ],
+      [
+       1193.953125,
+       409.109375,
+       94.046875,
+       26.875
+      ],
+      [
+       1193.953125,
+       410.109375,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Sábado12:00–23:30",
+     "rects": [
+      [
+       808,
+       467.359375,
+       58.796875,
+       26.875
+      ],
+      [
+       808,
+       468.359375,
+       58.796875,
+       23
+      ],
+      [
+       1193.953125,
+       467.359375,
+       94.046875,
+       26.875
+      ],
+      [
+       1193.953125,
+       468.359375,
+       94.046875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".horas li",
+     "texto": "Domingo12:00–17:00",
+     "rects": [
+      [
+       808,
+       525.609375,
+       69.1875,
+       26.875
+      ],
+      [
+       808,
+       526.609375,
+       69.1875,
+       23
+      ],
+      [
+       1197.203125,
+       525.609375,
+       90.796875,
+       26.875
+      ],
+      [
+       1197.203125,
+       526.609375,
+       90.796875,
+       23
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16.8,
+     "peso": 400
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Cómo llegar",
+     "rects": [
+      [
+       178.59375,
+       409.453125,
+       20,
+       20
+      ],
+      [
+       208.1875,
+       407.65625,
+       96.625,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".visita .btn",
+     "texto": "Escribirnos",
+     "rects": [
+      [
+       370,
+       409.453125,
+       20,
+       20
+      ],
+      [
+       399.59375,
+       407.65625,
+       90.578125,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
   }
  ],
  "zoom": {
@@ -7412,6 +8582,30 @@
    "desborde": 0,
    "solapes": [],
    "recortes": []
+  }
+ },
+ "peso": {
+  "iph-390": {
+   "inicial": 301051,
+   "total": 301051,
+   "peticionesIniciales": 10,
+   "peticionesTotales": 10,
+   "porTipo": {
+    ".html": 19070,
+    ".woff2": 91276,
+    ".avif": 190705
+   }
+  },
+  "pc-1440": {
+   "inicial": 431426,
+   "total": 431426,
+   "peticionesIniciales": 12,
+   "peticionesTotales": 12,
+   "porTipo": {
+    ".html": 19070,
+    ".woff2": 91276,
+    ".avif": 321080
+   }
   }
  },
  "scroll": {
@@ -7484,28 +8678,30 @@
    "p": 1
   }
  },
- "peso": {
-  "iph-390": {
-   "inicial": 300705,
-   "total": 300705,
-   "peticionesIniciales": 10,
-   "peticionesTotales": 10,
-   "porTipo": {
-    ".html": 18724,
-    ".woff2": 91276,
-    ".avif": 190705
+ "sinjs": {
+  "desborde": 0,
+  "imagenes": 10,
+  "imagenesFallan": [],
+  "ocultos": [],
+  "infinitas": 0,
+  "largas": 0,
+  "pausaVisible": false,
+  "copiarVisible": 0,
+  "enlacePanel": {
+   "tag": "a",
+   "href": "#panel-edu"
+  },
+  "panel": {
+   "display": "block",
+   "dentro": true,
+   "ancho": 358,
+   "alto": 766,
+   "cabe": true,
+   "cerrar": {
+    "tag": "a",
+    "href": "#contenido"
    }
   },
-  "pc-1440": {
-   "inicial": 431080,
-   "total": 431080,
-   "peticionesIniciales": 12,
-   "peticionesTotales": 12,
-   "porTipo": {
-    ".html": 18724,
-    ".woff2": 91276,
-    ".avif": 321080
-   }
-  }
+  "panelCerrado": true
  }
 }

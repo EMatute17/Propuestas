@@ -9,11 +9,11 @@
     "best-practices": 100,
     "seo": 66
    },
-   "fcp_ms": 1204,
-   "lcp_ms": 2179,
+   "fcp_ms": 1208,
+   "lcp_ms": 2183,
    "cls": 0,
    "tbt_ms": 0,
-   "speed_index_ms": 1204,
+   "speed_index_ms": 1211,
    "peso_KB": 180,
    "fallos": [
     "mainthread-work-breakdown (50)",
@@ -29,11 +29,11 @@
     "best-practices": 100,
     "seo": 66
    },
-   "fcp_ms": 324,
-   "lcp_ms": 604,
+   "fcp_ms": 325,
+   "lcp_ms": 605,
    "cls": 0,
    "tbt_ms": 0,
-   "speed_index_ms": 415,
+   "speed_index_ms": 459,
    "peso_KB": 310,
    "fallos": [
     "uses-responsive-images (0)",

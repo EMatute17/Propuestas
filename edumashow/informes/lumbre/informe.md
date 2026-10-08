@@ -1,8 +1,8 @@
 # Informe del Gate: Lumbre (lumbre)
 
 - **Veredicto técnico: APTO**
-- Fecha: 2026-10-08T05:12:17Z | Gate 0.2.0 | Reglas 0.2.0
-- Paquete (SHA-256): `04aab5f2b5fc36a5bb2f9578cced5f8b1142dca93235224da7d13f20d1179a21`
+- Fecha: 2026-10-08T13:57:51Z | Gate 0.3.0 | Reglas 0.2.0
+- Paquete (SHA-256): `ef967ca79b68e12203438e551b0b167113a7a752295ccd2dd0e5af4ab0baefe9`
 - Estados: técnico = APTO; revisión visual = pendiente: capturas generadas, falta la revisión de una persona; aprobación de Eduardo = pendiente; entrega = pendiente
 
 ## Resultado por comprobación
@@ -16,29 +16,32 @@
 | G-META | **WARN** | bloqueo | R-MUE-01, R-MUE-04 | 0 fallos y 1 avisos de metadatos |
 | G-MUESTRA | **PASS** | bloqueo | R-MUE-01, R-MUE-02, R-ETI-07, R-MUE-05 | ejemplo ficticio; 0 fallos |
 | G-FOTOS | **PASS** | bloqueo | R-DAT-04 | 11 imágenes con origen y licencia registrados; 11 etiquetas img con alt |
-| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash 04aab5f2b5fc verificado sobre 69 archivos |
-| G-HUELLA | **PASS** | bloqueo | R-VAR-01 | distancia mínima 6 de 6 (se exigen 3) |
+| G-MANIFIESTO | **PASS** | bloqueo | R-PRO-02, R-PRO-06 | manifiesto completo y hash ef967ca79b68 verificado sobre 69 archivos |
+| G-HUELLA | **PASS** | bloqueo | R-VAR-01, R-VAR-03 | distancia mínima 6 de 6 (se exigen 3); titular Bodoni Moda (serif); rotación frente a las 1 webs anteriores: sin repeticiones |
+| G-PALETA | **PASS** | bloqueo | R-LEG-01, R-IDE-03, R-IDE-06 | 33 pares de colores medidos sobre los colores finales; el más justo: brasa-papel sobre papel-2 4.78:1 (se exige 4.5:1) |
 | G-FUENTES | **PASS** | bloqueo | R-LEG-04, R-REN-03 | 3 tipografías revisadas contra 73 caracteres distintos |
 | G-RED | **PASS** | bloqueo | R-ETI-08, R-REN-05 | 27 dispositivos: 0 peticiones externas, 0 errores de consola, 0 con cookies o almacenamiento, 0 respuestas 404 |
 | G-ETICA-VISTA | **PASS** | bloqueo | R-ETI-04 | 27 dispositivos revisados |
 | G-ESTRUCTURA | **PASS** | bloqueo | R-LEG-05, R-SIG-12 | 25 encabezados, 11 imágenes, 2 navegaciones |
-| G-AXE | **PASS** | bloqueo | R-LEG-05, R-LEG-08 | 3 tamaños: 0 graves y 0 leves |
-| G-CONTRASTE | **PASS** | bloqueo | R-LEG-01, R-IDE-03 | 59 textos medidos sobre píxeles reales; el peor: .galeria figcaption 5.89:1 (se exige 4.5:1) |
+| G-AXE | **PASS** | bloqueo | R-LEG-05, R-LEG-08 | 3 pruebas (tamaños y, con pedido, la hoja y el ticket armados): 0 graves y 0 leves |
+| G-CONTRASTE | **PASS** | bloqueo | R-LEG-01, R-IDE-03 | 93 textos medidos sobre píxeles reales; el peor: .horas li 5.24:1 (se exige 4.5:1) |
 | G-TACTIL24 | **PASS** | bloqueo | R-LEG-02 | 20 teléfonos y tablets |
 | G-TACTIL44 | **PASS** | defecto | R-LEG-02 | 20 teléfonos y tablets |
 | G-DESBORDE | **PASS** | bloqueo | R-LEG-03, R-LEG-09 | 27 dispositivos y 2 pruebas de zoom |
 | G-TEXTO | **PASS** | defecto | R-LEG-07 | texto mínimo medido: 14 px |
 | G-PRIMERA | **PASS** | bloqueo | R-SIG-01, R-SIG-07, R-MUE-02 | 27 dispositivos, incluidos horizontales y plegables |
-| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 17 enlaces revisados; barra fija en 16 de 16 móviles |
+| G-SIGUIENTE | **PASS** | bloqueo | R-SIG-02, R-SIG-03, R-SIG-08 | 20 enlaces revisados; barra fija en 16 de 16 móviles |
 | G-HORARIO | **PASS** | bloqueo | R-DAT-03, R-SIG-02 | 11 casos simulados |
 | G-FORMULARIO | **PASS** | defecto | R-SIG-03, R-SIG-04, R-DAT-03 | 5 campos; se probó envío vacío, envío completo y día cerrado |
 | G-INTERACCION | **PASS** | bloqueo | R-LEG-05 | flechas y Fin en las pestañas; Escape y retorno del foco en el diálogo |
+| G-PEDIDO | **NA** | bloqueo | R-DAT-03, R-SIG-03, R-SIG-04, R-MUE-02 | no aplica: la ficha no tiene pedido en la página |
 | G-FOCO | **PASS** | bloqueo | R-LEG-05 | 4 dispositivos recorridos con Tab |
 | G-MOVIMIENTO | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-IDE-05 | animaciones infinitas normales 2; con pausa 0; con movimiento reducido 0 |
 | G-AVANCE | **PASS** | defecto | R-IDE-05 | 3 dispositivos; con movimiento reducido y sin JavaScript el efecto queda completo |
+| G-SINJS | **PASS** | bloqueo | R-LEG-06, R-REN-04, R-SIG-01 | 10 fotos revisadas con el JavaScript apagado en un teléfono de 390 px; el panel de la muestra abre y cierra por enlace |
 | G-RESOLUCION | **WARN** | defecto | R-REN-02 | 5 fotos mostradas ampliadas más de un 25 por ciento en 4 dispositivos |
 | G-VISUAL | **REVISAR** | asesor | R-PRO-05, R-MED-04 | 27 capturas en informes/lumbre/hoja_dispositivos.jpg; falta la revisión humana (Eduardo) y las pruebas con personas |
-| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2179 ms, CLS 0, TBT 0 ms; escritorio 100 |
+| G-REND | **PASS** | bloqueo | R-REN-01, R-REN-02, R-REN-03, R-REN-04 | Lighthouse móvil 99, LCP 2183 ms, CLS 0, TBT 0 ms; escritorio 100 |
 
 ## Detalle de avisos, fallos y excepciones
 
@@ -54,6 +57,38 @@
 - iph-390: sala_azul necesita x1.42 su resolución original (1280x720)
 
 ### G-VISUAL: Revisión visual sobre el render real (REVISAR)
+
+## Decisiones de diseño (director de estilo 0.1.0)
+
+**Paleta: brasa.** paleta hecha a mano, validada con los mismos pares de contraste.
+
+
+| Rol | Color |
+|---|---|
+| tinta | `#0b141c` |
+| tinta-2 | `#0f1b25` |
+| tinta-3 | `#162532` |
+| crema | `#f3e9d8` |
+| papel | `#f3e9d8` |
+| papel-2 | `#ebdfc9` |
+| brasa | `#ff6b2c` |
+| brasa-2 | `#ff9a52` |
+| brasa-papel | `#af3500` |
+| acento | `#ff9a52` |
+| acento-papel | `#af3500` |
+
+33 pares de contraste medidos al generar; el más justo: brasa-papel sobre papel-2 4.78:1 (se exigen 4.5:1).
+
+**Tipografía del titular: Bodoni Moda (serif), pareja bodoni-manrope.** fijada en la ficha. Tonos del restaurante: parrilla, potente, callejero, urbano, italiana, clasico, calido, trattoria, elegante, premium (sacados de la cocina, el nombre y la descripción).
+
+| Pareja | Clase | Tonos que encajan | Puntos | Probada en el Gate | Rotación | Caracteres que faltan |
+|---|---|---|---|---|---|---|
+| dmserif-inter | serif | clasico, italiana, trattoria, calido | 0.45 | sí | sin repetición | - |
+| bodoni-manrope | serif | elegante, premium, calido | 0.35 | sí | sin repetición | - |
+| playfair-inter | serif | elegante, clasico, premium | 0.35 | sí | sin repetición | - |
+| bodoni-outfit | serif | premium, elegante | 0.25 | sí | sin repetición | - |
+| fraunces-manrope | serif | calido | 0.15 | sí | sin repetición | - |
+| instrument-inter | serif | elegante | 0.15 | sí | sin repetición | - |
 
 ## Dispositivos probados
 
@@ -91,23 +126,23 @@
 
 | Perfil | Rendimiento | Accesibilidad | Buenas prácticas | LCP | CLS | TBT | Peso |
 |---|---|---|---|---|---|---|---|
-| móvil | 99 | 100 | 100 | 2179 ms | 0 | 0 ms | 180 KB |
-| escritorio | 100 | 100 | 100 | 604 ms | 0 | 0 ms | 310 KB |
+| móvil | 99 | 100 | 100 | 2183 ms | 0 | 0 ms | 180 KB |
+| escritorio | 100 | 100 | 100 | 605 ms | 0 | 0 ms | 310 KB |
 
-Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 420 KB, total tras recorrer la página 420 KB
+Peso realmente descargado (con compresión): iph-390: inicial 293 KB, total tras recorrer la página 293 KB; pc-1440: inicial 421 KB, total tras recorrer la página 421 KB
 
 ## Contraste medido sobre píxeles reales (peores 8)
 
 | Elemento | Dispositivo | Contraste (5.º percentil) | Se exige | |
 |---|---|---|---|---|
+| .horas li "Jueves12:00–22:00" | iph-390 | 5.24:1 | 4.5:1 | ok |
+| .horas li "Jueves12:00–22:00" | mini-768 | 5.24:1 | 4.5:1 | ok |
+| .horas li "Jueves12:00–22:00" | pc-1440 | 5.24:1 | 4.5:1 | ok |
 | .galeria figcaption "El rincón rojo" | iph-390 | 5.89:1 | 4.5:1 | ok |
-| .hero-barra nav a "Carta" | pc-1440 | 6.52:1 | 4.5:1 | ok |
 | .hero .btn "Reservar mesa" | iph-390 | 6.53:1 | 4.5:1 | ok |
-| .barra-movil a "Reservar" | iph-390 | 6.53:1 | 4.5:1 | ok |
+| .visita .btn "Cómo llegar" | iph-390 | 6.53:1 | 4.5:1 | ok |
 | .hero .btn "Reservar mesa" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
-| .barra-movil a "Reservar" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
-| .hero .btn "Reservar mesa" | mini-768 | 6.53:1 | 4.5:1 | ok |
-| .hero h1 "LumbreLumbre" | se-horiz-667 | 4.48:1 | 3.0:1 | ok |
+| .visita .btn "Cómo llegar" | se-horiz-667 | 6.53:1 | 4.5:1 | ok |
 
 ## Lo que este Gate no verifica
 

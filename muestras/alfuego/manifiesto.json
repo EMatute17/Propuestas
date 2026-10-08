@@ -1,9 +1,9 @@
 {
  "id": "alfuego",
  "version_ficha": "1.0.0",
- "version_generador": "0.2.0",
+ "version_generador": "0.3.0",
  "version_reglas": "0.2.0",
- "fecha": "2026-10-08T05:06:35Z",
+ "fecha": "2026-10-08T14:08:26Z",
  "modo": "muestra",
  "ejemplo_ficticio": false,
  "pais": "US",
@@ -15,32 +15,997 @@
   "nota": "Datos tomados de capturas del Instagram público @alfuego_grill, de su volante y de su menú impreso. Nada está confirmado por el restaurante."
  },
  "huella_diseno": {
-  "paleta": "fuego",
+  "paleta": "auto:fd751c",
   "tipografia": "anton-archivo",
+  "display": "Anton",
+  "clase_tipografica": "condensada",
   "portada": "mural_columnas",
   "carta": "chips_tablero",
-  "orden": "8aad2002",
+  "orden": "ce29b833",
   "forma_movimiento": "recta+rapido"
  },
- "id_de_ensamblado": "dd28aedf",
+ "decisiones_de_diseno": {
+  "version_director": "0.1.0",
+  "fecha_de_referencia": "2026-10-08",
+  "tonos": {
+   "lista": [
+    "parrilla",
+    "potente",
+    "callejero",
+    "urbano"
+   ],
+   "origen": "sacados de la cocina, el nombre y la descripción"
+  },
+  "paleta": {
+   "id": "auto:fd751c",
+   "origen": "derivada del logo (color de identidad #de7031, tono 47)",
+   "tokens": {
+    "tinta": "#0f0807",
+    "tinta-2": "#180f0d",
+    "tinta-3": "#211614",
+    "crema": "#f9f1e9",
+    "crema-2": "#dacfc3",
+    "papel": "#faf1e7",
+    "papel-2": "#f1e4d6",
+    "sobre-brasa": "#0f0807",
+    "brasa": "#fd751c",
+    "brasa-2": "#f99e31",
+    "brasa-papel": "#9f4503",
+    "bruma": "#ab9a97",
+    "bruma-papel": "#635451",
+    "texto-suave-papel": "#473937",
+    "aviso": "#831c0b",
+    "foco-anillo": "#f99e31",
+    "foco-anillo-claro": "#f99e31",
+    "foco-anillo-papel": "#7d3402",
+    "fondo-campo": "#ffffff",
+    "borde-campo": "rgba(15,8,7,.4)",
+    "texto-campo": "#0f0807",
+    "acento": "#69c9d2",
+    "acento-papel": "#04585e",
+    "meta-color": "#0f0807"
+   },
+   "pares": [
+    {
+     "texto": "crema",
+     "fondo": "tinta",
+     "contraste": 17.75,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema",
+     "fondo": "tinta-2",
+     "contraste": 16.88,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema",
+     "fondo": "tinta-3",
+     "contraste": 15.79,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta",
+     "contraste": 12.94,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta-2",
+     "contraste": 12.3,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta-3",
+     "contraste": 11.51,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta",
+     "contraste": 7.37,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta-2",
+     "contraste": 7.01,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta-3",
+     "contraste": 6.56,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa",
+     "fondo": "tinta",
+     "contraste": 7.31,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta",
+     "contraste": 9.42,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta-2",
+     "contraste": 8.95,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta-3",
+     "contraste": 8.38,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "sobre-brasa",
+     "fondo": "brasa",
+     "contraste": 7.31,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "sobre-brasa",
+     "fondo": "brasa-2",
+     "contraste": 9.42,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "tinta",
+     "fondo": "papel",
+     "contraste": 17.77,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "tinta",
+     "fondo": "papel-2",
+     "contraste": 15.89,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-papel",
+     "fondo": "papel",
+     "contraste": 5.65,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-papel",
+     "fondo": "papel-2",
+     "contraste": 5.05,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "texto-suave-papel",
+     "fondo": "papel",
+     "contraste": 9.85,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "texto-suave-papel",
+     "fondo": "papel-2",
+     "contraste": 8.81,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma-papel",
+     "fondo": "papel",
+     "contraste": 6.44,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma-papel",
+     "fondo": "papel-2",
+     "contraste": 5.76,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "aviso",
+     "fondo": "papel",
+     "contraste": 8.8,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "aviso",
+     "fondo": "papel-2",
+     "contraste": 7.87,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo",
+     "fondo": "tinta",
+     "contraste": 9.42,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo-papel",
+     "fondo": "papel",
+     "contraste": 7.95,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo-papel",
+     "fondo": "papel-2",
+     "contraste": 7.11,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta",
+     "contraste": 10.29,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta-2",
+     "contraste": 9.78,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta-3",
+     "contraste": 9.15,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento-papel",
+     "fondo": "papel",
+     "contraste": 7.34,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento-papel",
+     "fondo": "papel-2",
+     "contraste": 6.56,
+     "minimo": 4.5,
+     "ok": true
+    }
+   ],
+   "informe": {
+    "color_de_marca": "#de7031",
+    "marca_oklch": [
+     0.664,
+     0.156,
+     47.2
+    ],
+    "marca_cromatica": true,
+    "fondos": {
+     "claro_desde": "Wax Paper (#ECDCAF) teñido hacia el tono 69",
+     "oscuro_desde": "Cocoa Powder teñido hacia el tono 32"
+    },
+    "proporcion": "60 % fondo, 30 % color de marca, 10 % acento de temporada",
+    "acento": {
+     "temporada": "AW26/27",
+     "fuente": "WGSN x Coloro, 12-09-2024",
+     "elegido": "Transformative Teal (#016168)",
+     "afinado": "#057e87",
+     "alternativas": [
+      {
+       "nombre": "Transformative Teal",
+       "hex": "#016168",
+       "relacion": 0.66,
+       "unidad": 0.25,
+       "puntos": 0.476,
+       "dh": 156.4
+      },
+      {
+       "nombre": "Green Glow",
+       "hex": "#9EDE69",
+       "relacion": 0.15,
+       "unidad": 0.75,
+       "puntos": 0.418,
+       "dh": 85.6
+      },
+      {
+       "nombre": "Fresh Purple",
+       "hex": "#712892",
+       "relacion": 0.15,
+       "unidad": 0.55,
+       "puntos": 0.328,
+       "dh": 94.0
+      }
+     ],
+     "neutros_de_temporada": [
+      "Wax Paper (#ECDCAF)",
+      "Cocoa Powder (#664C4D)"
+     ]
+    },
+    "variante": 0,
+    "nota": "Los hex de WGSN son aproximaciones digitales no oficiales de los códigos Coloro publicados.",
+    "pares": [
+     {
+      "texto": "crema",
+      "fondo": "tinta",
+      "contraste": 17.75,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "crema",
+      "fondo": "tinta-2",
+      "contraste": 16.88,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "crema",
+      "fondo": "tinta-3",
+      "contraste": 15.79,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "crema-2",
+      "fondo": "tinta",
+      "contraste": 12.94,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "crema-2",
+      "fondo": "tinta-2",
+      "contraste": 12.3,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "crema-2",
+      "fondo": "tinta-3",
+      "contraste": 11.51,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "bruma",
+      "fondo": "tinta",
+      "contraste": 7.37,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "bruma",
+      "fondo": "tinta-2",
+      "contraste": 7.01,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "bruma",
+      "fondo": "tinta-3",
+      "contraste": 6.56,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "brasa",
+      "fondo": "tinta",
+      "contraste": 7.31,
+      "minimo": 3.0,
+      "ok": true
+     },
+     {
+      "texto": "brasa-2",
+      "fondo": "tinta",
+      "contraste": 9.42,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "brasa-2",
+      "fondo": "tinta-2",
+      "contraste": 8.95,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "brasa-2",
+      "fondo": "tinta-3",
+      "contraste": 8.38,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "sobre-brasa",
+      "fondo": "brasa",
+      "contraste": 7.31,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "sobre-brasa",
+      "fondo": "brasa-2",
+      "contraste": 9.42,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "tinta",
+      "fondo": "papel",
+      "contraste": 17.77,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "tinta",
+      "fondo": "papel-2",
+      "contraste": 15.89,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "brasa-papel",
+      "fondo": "papel",
+      "contraste": 5.65,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "brasa-papel",
+      "fondo": "papel-2",
+      "contraste": 5.05,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "texto-suave-papel",
+      "fondo": "papel",
+      "contraste": 9.85,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "texto-suave-papel",
+      "fondo": "papel-2",
+      "contraste": 8.81,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "bruma-papel",
+      "fondo": "papel",
+      "contraste": 6.44,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "bruma-papel",
+      "fondo": "papel-2",
+      "contraste": 5.76,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "aviso",
+      "fondo": "papel",
+      "contraste": 8.8,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "aviso",
+      "fondo": "papel-2",
+      "contraste": 7.87,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "foco-anillo",
+      "fondo": "tinta",
+      "contraste": 9.42,
+      "minimo": 3.0,
+      "ok": true
+     },
+     {
+      "texto": "foco-anillo-papel",
+      "fondo": "papel",
+      "contraste": 7.95,
+      "minimo": 3.0,
+      "ok": true
+     },
+     {
+      "texto": "foco-anillo-papel",
+      "fondo": "papel-2",
+      "contraste": 7.11,
+      "minimo": 3.0,
+      "ok": true
+     },
+     {
+      "texto": "acento",
+      "fondo": "tinta",
+      "contraste": 10.29,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "acento",
+      "fondo": "tinta-2",
+      "contraste": 9.78,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "acento",
+      "fondo": "tinta-3",
+      "contraste": 9.15,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "acento-papel",
+      "fondo": "papel",
+      "contraste": 7.34,
+      "minimo": 4.5,
+      "ok": true
+     },
+     {
+      "texto": "acento-papel",
+      "fondo": "papel-2",
+      "contraste": 6.56,
+      "minimo": 4.5,
+      "ok": true
+     }
+    ],
+    "dominantes_del_logo": [
+     {
+      "hex": "#010101",
+      "peso": 0.4698,
+      "L": 0.063,
+      "C": 0.005,
+      "h": 30.2,
+      "neutro": true
+     },
+     {
+      "hex": "#de7031",
+      "peso": 0.121,
+      "L": 0.663,
+      "C": 0.156,
+      "h": 47.0,
+      "neutro": false
+     },
+     {
+      "hex": "#854131",
+      "peso": 0.1128,
+      "L": 0.458,
+      "C": 0.098,
+      "h": 34.2,
+      "neutro": false
+     },
+     {
+      "hex": "#d9d3ca",
+      "peso": 0.1091,
+      "L": 0.868,
+      "C": 0.014,
+      "h": 74.5,
+      "neutro": true
+     },
+     {
+      "hex": "#331611",
+      "peso": 0.0971,
+      "L": 0.243,
+      "C": 0.048,
+      "h": 31.9,
+      "neutro": false
+     },
+     {
+      "hex": "#9b9391",
+      "peso": 0.0902,
+      "L": 0.67,
+      "C": 0.01,
+      "h": 33.4,
+      "neutro": true
+     }
+    ]
+   }
+  },
+  "tipografia": {
+   "clave": "anton-archivo",
+   "origen": "elegida por el director: la mejor probada que cubre los caracteres y cumple la rotación",
+   "elegida": {
+    "clave": "anton-archivo",
+    "display": "Anton",
+    "clase": "condensada",
+    "tonos_que_encajan": [
+     "callejero",
+     "potente",
+     "parrilla",
+     "urbano"
+    ],
+    "puntos": 1.05,
+    "orden": 1.052007397532904,
+    "faltan_caracteres": "",
+    "rotacion": [],
+    "probada": true,
+    "ancho_em": 0.474
+   },
+   "ranking": [
+    {
+     "clave": "anton-archivo",
+     "display": "Anton",
+     "clase": "condensada",
+     "tonos_que_encajan": [
+      "callejero",
+      "potente",
+      "parrilla",
+      "urbano"
+     ],
+     "puntos": 1.05,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.474
+    },
+    {
+     "clave": "bebas-manrope",
+     "display": "Bebas Neue",
+     "clase": "condensada",
+     "tonos_que_encajan": [
+      "potente",
+      "callejero",
+      "urbano"
+     ],
+     "puntos": 0.8,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.389
+    },
+    {
+     "clave": "archivo-condensado-inter",
+     "display": "Archivo Condensed",
+     "clase": "condensada",
+     "tonos_que_encajan": [
+      "urbano",
+      "potente",
+      "parrilla"
+     ],
+     "puntos": 0.8,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.503
+    },
+    {
+     "clave": "archivo-expandido",
+     "display": "Archivo Expanded",
+     "clase": "expandida",
+     "tonos_que_encajan": [
+      "urbano"
+     ],
+     "puntos": 0.3,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.927
+    },
+    {
+     "clave": "unbounded-manrope",
+     "display": "Unbounded",
+     "clase": "expandida",
+     "tonos_que_encajan": [],
+     "puntos": 0.05,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.916
+    },
+    {
+     "clave": "bricolage-outfit",
+     "display": "Bricolage Grotesque",
+     "clase": "grotesca",
+     "tonos_que_encajan": [],
+     "puntos": 0.05,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.599
+    },
+    {
+     "clave": "outfit-outfit",
+     "display": "Outfit",
+     "clase": "geometrica",
+     "tonos_que_encajan": [],
+     "puntos": 0.0,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": false,
+     "ancho_em": 0.702
+    }
+   ]
+  },
+  "fotos": {
+   "registros": {
+    "picada": {
+     "puntos": 70.5,
+     "visual": 67.0,
+     "tecnica": 77.1,
+     "medidas": {
+      "px": [
+       382,
+       446
+      ],
+      "nitidez_plato": 335.0,
+      "calidez": 0.207,
+      "saturacion": 0.583,
+      "contraste": 0.184,
+      "puntos": 77.1
+     },
+     "juicio": {
+      "textura": 2,
+      "reconocible": 2,
+      "accion": 0,
+      "protagonista": 1,
+      "luz": 1,
+      "calor": 1,
+      "mano": 2
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Chorizos, pollo y cortes a la parrilla sobre una tabla; el fondo de acero enfría la luz y la tabla es larga, no un solo plato.",
+     "descartada": []
+    },
+    "tostones": {
+     "puntos": 71.0,
+     "visual": 67.0,
+     "tecnica": 78.3,
+     "medidas": {
+      "px": [
+       385,
+       446
+      ],
+      "nitidez_plato": 674.2,
+      "calidez": 0.19,
+      "saturacion": 0.609,
+      "contraste": 0.152,
+      "puntos": 78.3
+     },
+     "juicio": {
+      "textura": 2,
+      "reconocible": 2,
+      "accion": 0,
+      "protagonista": 1,
+      "luz": 1,
+      "calor": 1,
+      "mano": 2
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Tostones con carne asada, queso y hierbas; el acero y el vasito de salsa le restan protagonismo.",
+     "descartada": []
+    },
+    "sandwich": {
+     "puntos": 82.5,
+     "visual": 81.0,
+     "tecnica": 85.2,
+     "medidas": {
+      "px": [
+       382,
+       445
+      ],
+      "nitidez_plato": 586.6,
+      "calidez": 0.345,
+      "saturacion": 0.553,
+      "contraste": 0.213,
+      "puntos": 85.2
+     },
+     "juicio": {
+      "textura": 2,
+      "reconocible": 2,
+      "accion": 1,
+      "protagonista": 2,
+      "luz": 1,
+      "calor": 1,
+      "mano": 2
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Carne en rebanadas con papas, plano cerrado y un solo plato; la carne apilada invita a morder.",
+     "descartada": []
+    },
+    "lomo": {
+     "puntos": 89.0,
+     "visual": 87.0,
+     "tecnica": 92.7,
+     "medidas": {
+      "px": [
+       385,
+       444
+      ],
+      "nitidez_plato": 1527.7,
+      "calidez": 0.283,
+      "saturacion": 0.76,
+      "contraste": 0.185,
+      "puntos": 92.7
+     },
+     "juicio": {
+      "textura": 2,
+      "reconocible": 2,
+      "accion": 1,
+      "protagonista": 2,
+      "luz": 2,
+      "calor": 1,
+      "mano": 2
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Lomo con tocino ya cortado, con luz cálida lateral y la tabla con el nombre de la casa; se ve el interior jugoso.",
+     "descartada": []
+    },
+    "asador": {
+     "puntos": 81.7,
+     "visual": 73.0,
+     "tecnica": 97.8,
+     "medidas": {
+      "px": [
+       385,
+       445
+      ],
+      "nitidez_plato": 2023.6,
+      "calidez": 0.238,
+      "saturacion": 0.506,
+      "contraste": 0.262,
+      "puntos": 97.8
+     },
+     "juicio": {
+      "textura": 2,
+      "reconocible": 1,
+      "accion": 1,
+      "protagonista": 1,
+      "luz": 2,
+      "calor": 2,
+      "mano": 1
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Asador vertical con brochetas junto a las brasas: calor y fuego a la vista, pero la composición está cargada y una barra metálica estorba.",
+     "descartada": []
+    },
+    "trailer": {
+     "puntos": 65.4,
+     "visual": 49.0,
+     "tecnica": 96.0,
+     "medidas": {
+      "px": [
+       385,
+       445
+      ],
+      "nitidez_plato": 2259.4,
+      "calidez": 0.242,
+      "saturacion": 0.764,
+      "contraste": 0.18,
+      "puntos": 96.0
+     },
+     "juicio": {
+      "textura": 0,
+      "reconocible": 1,
+      "accion": 0,
+      "protagonista": 2,
+      "luz": 2,
+      "calor": 1,
+      "mano": 2
+     },
+     "real": true,
+     "sin_marcas_ajenas": true,
+     "nota": "Foto del lugar (el trailer con su logo), no de un plato: sirve para reconocer la marca, no para dar antojo.",
+     "descartada": []
+    }
+   },
+   "orden_por_antojo": [
+    "lomo",
+    "sandwich",
+    "asador",
+    "tostones",
+    "picada",
+    "trailer"
+   ],
+   "usa_el_orden": true,
+   "criterios": {
+    "textura": {
+     "descripcion": "Primer plano con textura visible: costra, brillo, fundido, glaseado",
+     "peso": 22
+    },
+    "reconocible": {
+     "descripcion": "Reconocible como el plato que el texto nombra",
+     "peso": 18
+    },
+    "accion": {
+     "descripcion": "Momento de acción: corte, salsa cayendo, mordisco, vapor",
+     "peso": 14
+    },
+    "protagonista": {
+     "descripcion": "Un solo protagonista sobre un fondo que contrasta",
+     "peso": 14
+    },
+    "luz": {
+     "descripcion": "Luz lateral cálida, sin dominante azulada",
+     "peso": 12
+    },
+    "calor": {
+     "descripcion": "Señal de calor o frescura: vapor, fundido, gotas de frío",
+     "peso": 12
+    },
+    "mano": {
+     "descripcion": "Mano o cubierto hacia la derecha, o nada que estorbe",
+     "peso": 8
+    }
+   },
+   "pesos": {
+    "juicio": 0.65,
+    "tecnica": 0.35
+   }
+  },
+  "estilo_resuelto": {
+   "paleta": "auto:fd751c",
+   "tipografia": "anton-archivo"
+  },
+  "idea": {
+   "pieza": "regla de medidas",
+   "categoria": "picadas",
+   "unidad": "lb",
+   "medidas": [
+    1,
+    2,
+    3,
+    5
+   ],
+   "datos": "medida y precio de cada plato, de la carta de la ficha"
+  }
+ },
+ "id_de_ensamblado": "033186ac",
  "tipografias": [
   {
    "familia": "Anton",
-   "archivo": "assets/dd28aedf/fonts/anton-regular.woff2",
+   "archivo": "assets/033186ac/fonts/anton-regular.woff2",
    "peso": 400,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Archivo",
-   "archivo": "assets/dd28aedf/fonts/archivo-medium.woff2",
+   "archivo": "assets/033186ac/fonts/archivo-medium.woff2",
    "peso": 500,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Archivo",
-   "archivo": "assets/dd28aedf/fonts/archivo-bold.woff2",
+   "archivo": "assets/033186ac/fonts/archivo-bold.woff2",
    "peso": 700,
    "estilo": "normal",
    "licencia": "OFL-1.1"
@@ -178,6 +1143,7 @@
   }
  ],
  "enlaces_externos": [
+  "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Al%20Fuego%20Grill%29%20Hola%20Al%20Fuego%20Grill%2C%20quiero%20hacer%20este%20pedido%3A",
   "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Al%20Fuego%20Grill%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
   "https://www.google.com/maps/search/?api=1&query=Al%20Fuego%20Grill%2C%209100%20S%20Dixie%20Hwy%2C%20Miami%2C%20FL%2033156",
   "https://www.instagram.com/alfuego_grill/",
@@ -186,12 +1152,12 @@
   "tel:+17867282934"
  ],
  "pesos_bytes": {
-  "html": 103016,
-  "css_min": 24288,
-  "js_min": 10575,
+  "html": 193501,
+  "css_min": 44199,
+  "js_min": 28088,
   "fuentes": 41312,
   "imagenes": 625978
  },
  "base_url": null,
- "paquete_sha256": "7f71a00bc6273784136774997d317e1b9d8867e5852c5da71388b7a7cad485b0"
+ "paquete_sha256": "3cf436c7fc3c4cede483d4580a2e6e663f35304ad5fa606b0677fbfacc703c70"
 }

@@ -1,9 +1,9 @@
 {
  "id": "lumbre",
  "version_ficha": "2.0.0",
- "version_generador": "0.2.0",
+ "version_generador": "0.3.0",
  "version_reglas": "0.2.0",
- "fecha": "2026-10-08T05:06:33Z",
+ "fecha": "2026-10-08T13:51:29Z",
  "modo": "muestra",
  "ejemplo_ficticio": true,
  "pais": "VE",
@@ -17,44 +17,479 @@
  "huella_diseno": {
   "paleta": "brasa",
   "tipografia": "bodoni-manrope",
+  "display": "Bodoni Moda",
+  "clase_tipografica": "serif",
   "portada": "luz_brasas",
   "carta": "pestanas_lista",
   "orden": "6657c7aa",
   "forma_movimiento": "recta+lento"
  },
- "id_de_ensamblado": "a75365a5",
+ "decisiones_de_diseno": {
+  "version_director": "0.1.0",
+  "fecha_de_referencia": "2026-10-08",
+  "tonos": {
+   "lista": [
+    "parrilla",
+    "potente",
+    "callejero",
+    "urbano",
+    "italiana",
+    "clasico",
+    "calido",
+    "trattoria",
+    "elegante",
+    "premium"
+   ],
+   "origen": "sacados de la cocina, el nombre y la descripción"
+  },
+  "paleta": {
+   "id": "brasa",
+   "origen": "paleta hecha a mano, validada con los mismos pares de contraste",
+   "tokens": {
+    "tinta": "#0b141c",
+    "tinta-2": "#0f1b25",
+    "tinta-3": "#162532",
+    "crema": "#f3e9d8",
+    "crema-2": "#d8ccb7",
+    "papel": "#f3e9d8",
+    "papel-2": "#ebdfc9",
+    "brasa": "#ff6b2c",
+    "brasa-2": "#ff9a52",
+    "brasa-papel": "#af3500",
+    "bruma": "#9fb0bd",
+    "bruma-papel": "#56616b",
+    "texto-suave-papel": "#3d4a55",
+    "sobre-brasa": "#0b141c",
+    "foco-anillo": "#ffb27a",
+    "foco-anillo-papel": "#8a2a05",
+    "aviso": "#8a2a05",
+    "fondo-campo": "#ffffff",
+    "borde-campo": "rgba(11,20,28,.4)",
+    "texto-campo": "#0b141c",
+    "acento": "#ff9a52",
+    "acento-papel": "#af3500",
+    "meta-color": "#0b141c"
+   },
+   "pares": [
+    {
+     "texto": "crema",
+     "fondo": "tinta",
+     "contraste": 15.44,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema",
+     "fondo": "tinta-2",
+     "contraste": 14.5,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema",
+     "fondo": "tinta-3",
+     "contraste": 12.98,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta",
+     "contraste": 11.71,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta-2",
+     "contraste": 11.0,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "crema-2",
+     "fondo": "tinta-3",
+     "contraste": 9.85,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta",
+     "contraste": 8.33,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta-2",
+     "contraste": 7.82,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma",
+     "fondo": "tinta-3",
+     "contraste": 7.0,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa",
+     "fondo": "tinta",
+     "contraste": 6.53,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta",
+     "contraste": 8.84,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta-2",
+     "contraste": 8.3,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-2",
+     "fondo": "tinta-3",
+     "contraste": 7.43,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "sobre-brasa",
+     "fondo": "brasa",
+     "contraste": 6.53,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "sobre-brasa",
+     "fondo": "brasa-2",
+     "contraste": 8.84,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "tinta",
+     "fondo": "papel",
+     "contraste": 15.44,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "tinta",
+     "fondo": "papel-2",
+     "contraste": 14.08,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-papel",
+     "fondo": "papel",
+     "contraste": 5.24,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "brasa-papel",
+     "fondo": "papel-2",
+     "contraste": 4.78,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "texto-suave-papel",
+     "fondo": "papel",
+     "contraste": 7.56,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "texto-suave-papel",
+     "fondo": "papel-2",
+     "contraste": 6.9,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma-papel",
+     "fondo": "papel",
+     "contraste": 5.26,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "bruma-papel",
+     "fondo": "papel-2",
+     "contraste": 4.8,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "aviso",
+     "fondo": "papel",
+     "contraste": 7.23,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "aviso",
+     "fondo": "papel-2",
+     "contraste": 6.6,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo",
+     "fondo": "tinta",
+     "contraste": 10.52,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo-papel",
+     "fondo": "papel",
+     "contraste": 7.23,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "foco-anillo-papel",
+     "fondo": "papel-2",
+     "contraste": 6.6,
+     "minimo": 3.0,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta",
+     "contraste": 8.84,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta-2",
+     "contraste": 8.3,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento",
+     "fondo": "tinta-3",
+     "contraste": 7.43,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento-papel",
+     "fondo": "papel",
+     "contraste": 5.24,
+     "minimo": 4.5,
+     "ok": true
+    },
+    {
+     "texto": "acento-papel",
+     "fondo": "papel-2",
+     "contraste": 4.78,
+     "minimo": 4.5,
+     "ok": true
+    }
+   ],
+   "informe": null
+  },
+  "tipografia": {
+   "clave": "bodoni-manrope",
+   "origen": "fijada en la ficha",
+   "elegida": {
+    "clave": "bodoni-manrope",
+    "display": "Bodoni Moda",
+    "clase": "serif",
+    "tonos_que_encajan": [
+     "elegante",
+     "premium",
+     "calido"
+    ],
+    "puntos": 0.35,
+    "orden": 0.35216911567265485,
+    "faltan_caracteres": "",
+    "rotacion": [],
+    "probada": true,
+    "ancho_em": 0.673
+   },
+   "ranking": [
+    {
+     "clave": "dmserif-inter",
+     "display": "DM Serif Display",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "clasico",
+      "italiana",
+      "trattoria",
+      "calido"
+     ],
+     "puntos": 0.45,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.607
+    },
+    {
+     "clave": "bodoni-manrope",
+     "display": "Bodoni Moda",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "elegante",
+      "premium",
+      "calido"
+     ],
+     "puntos": 0.35,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.673
+    },
+    {
+     "clave": "playfair-inter",
+     "display": "Playfair Display",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "elegante",
+      "clasico",
+      "premium"
+     ],
+     "puntos": 0.35,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.708
+    },
+    {
+     "clave": "bodoni-outfit",
+     "display": "Bodoni Moda",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "premium",
+      "elegante"
+     ],
+     "puntos": 0.25,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.673
+    },
+    {
+     "clave": "fraunces-manrope",
+     "display": "Fraunces",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "calido"
+     ],
+     "puntos": 0.15,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.618
+    },
+    {
+     "clave": "instrument-inter",
+     "display": "Instrument Serif",
+     "clase": "serif",
+     "tonos_que_encajan": [
+      "elegante"
+     ],
+     "puntos": 0.15,
+     "faltan_caracteres": "",
+     "rotacion": [],
+     "probada": true,
+     "ancho_em": 0.483
+    }
+   ]
+  },
+  "fotos": {
+   "registros": {},
+   "orden_por_antojo": [],
+   "usa_el_orden": false,
+   "criterios": {
+    "textura": {
+     "descripcion": "Primer plano con textura visible: costra, brillo, fundido, glaseado",
+     "peso": 22
+    },
+    "reconocible": {
+     "descripcion": "Reconocible como el plato que el texto nombra",
+     "peso": 18
+    },
+    "accion": {
+     "descripcion": "Momento de acción: corte, salsa cayendo, mordisco, vapor",
+     "peso": 14
+    },
+    "protagonista": {
+     "descripcion": "Un solo protagonista sobre un fondo que contrasta",
+     "peso": 14
+    },
+    "luz": {
+     "descripcion": "Luz lateral cálida, sin dominante azulada",
+     "peso": 12
+    },
+    "calor": {
+     "descripcion": "Señal de calor o frescura: vapor, fundido, gotas de frío",
+     "peso": 12
+    },
+    "mano": {
+     "descripcion": "Mano o cubierto hacia la derecha, o nada que estorbe",
+     "peso": 8
+    }
+   },
+   "pesos": {
+    "juicio": 0.65,
+    "tecnica": 0.35
+   }
+  },
+  "estilo_resuelto": {
+   "paleta": "brasa",
+   "tipografia": "bodoni-manrope"
+  }
+ },
+ "id_de_ensamblado": "715a778b",
  "tipografias": [
   {
    "familia": "Bodoni Moda",
-   "archivo": "assets/a75365a5/fonts/bodonimoda-displayitalic.woff2",
+   "archivo": "assets/715a778b/fonts/bodonimoda-displayitalic.woff2",
    "peso": 400,
    "estilo": "italic",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/a75365a5/fonts/playfairdisplay-regular.woff2",
+   "archivo": "assets/715a778b/fonts/playfairdisplay-regular.woff2",
    "peso": 400,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/a75365a5/fonts/manrope-regular.woff2",
+   "archivo": "assets/715a778b/fonts/manrope-regular.woff2",
    "peso": 400,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/a75365a5/fonts/manrope-semibold.woff2",
+   "archivo": "assets/715a778b/fonts/manrope-semibold.woff2",
    "peso": 600,
    "estilo": "normal",
    "licencia": "OFL-1.1"
   },
   {
    "familia": "Manrope",
-   "archivo": "assets/a75365a5/fonts/manrope-bold.woff2",
+   "archivo": "assets/715a778b/fonts/manrope-bold.woff2",
    "peso": 700,
    "estilo": "normal",
    "licencia": "OFL-1.1"
@@ -259,12 +694,12 @@
   "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre"
  ],
  "pesos_bytes": {
-  "html": 71280,
-  "css_min": 24990,
-  "js_min": 17766,
+  "html": 72766,
+  "css_min": 25601,
+  "js_min": 18641,
   "fuentes": 91276,
   "imagenes": 3324883
  },
  "base_url": null,
- "paquete_sha256": "04aab5f2b5fc36a5bb2f9578cced5f8b1142dca93235224da7d13f20d1179a21"
+ "paquete_sha256": "ef967ca79b68e12203438e551b0b167113a7a752295ccd2dd0e5af4ab0baefe9"
 }
