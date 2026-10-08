@@ -83,7 +83,7 @@ galeria (OBLIGATORIO en URBANO, recomendado en ELEGANTE): [{"foto": "clave_del_a
 
 textos (OBLIGATORIO): frases cortas de las secciones. Claves obligatorias:
 - URBANO: carta_titulo, carta_sobretitulo, fotos_sobretitulo, fotos_titulo, fotos_texto, fotos_aria, visita_titulo. Además: horario_aviso si horario_estado es por_confirmar; reparto_texto (con {apps}) si hay reparto. OPCIONALES: carta_nota, nav_carta, nav_fotos, nav_regla, carta_todo, horario_pendiente, marquesina.
-- ELEGANTE: carta_titulo, carta_sobretitulo, ambiente_titulo, reserva_titulo, reserva_texto, visita_titulo.
+- ELEGANTE: carta_titulo, carta_sobretitulo, ambiente_titulo, reserva_titulo, reserva_texto, visita_titulo. OPCIONALES (se muestran en la web): carta_nota (por ejemplo, que los precios son referenciales o que no incluyen el IVA), ambiente_texto (aclarar que las fotos son de ejemplo), hero_pie (pie de la foto de portada, por ejemplo "Imagen de ejemplo de banco libre.") y horario_aviso (cuando el horario no está confirmado).
 - Cómo redactar cada una: archivo 05.
 
 activos (OBLIGATORIO): un objeto cuyas claves son nombres cortos de foto (picada, costilla, logo, hero, sala_azul). Cada activo:

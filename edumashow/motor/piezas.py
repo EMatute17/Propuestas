@@ -181,6 +181,32 @@ def letras_titular(nombre):
     return " ".join(partes), max(len(w) for w in palabras)
 
 
+def lema_en_html(N):
+    """La frase de marca en inglés (si la ficha la trae), debajo del lema."""
+    return f'<span class="lema-en" lang="en">{e_(N["lema_en"])}</span>' if N.get("lema_en") else ""
+
+
+def hero_pie_html(F):
+    """Pie de la foto de portada (por ejemplo, que es una imagen de ejemplo de banco libre): texto visible junto a la portada."""
+    t = (F.get("textos") or {}).get("hero_pie")
+    return f'<p class="hero-pie">{e_(t)}</p>' if t else ""
+
+
+def nota_precios_html(F):
+    t = (F.get("textos") or {}).get("carta_nota")
+    return f'<p class="nota-precios">{e_(t)}</p>' if t else ""
+
+
+def marca_elegante(F, C):
+    """La marca de la cabecera: el logotipo si la ficha lo trae y, si no, el nombre escrito. Un logotipo de un solo tono va en negativo sobre el fondo del tono contrario (CSS)."""
+    nombre = F["negocio"]["nombre"]
+    logo = C.get("logo")
+    if not logo:
+        return f'<a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a>'
+    return (f'<a class="marca marca-logo" href="#inicio" aria-label="{e_(nombre)}, inicio" data-logo="{logo.get("tono", "color")}">'
+            f'{picture_html(logo, "", "(min-width:900px) 120px, 96px", lazy=False)}</a>')
+
+
 def nav_elegante(F):
     """Los enlaces de la cabecera llevan solo a las secciones que la ficha tiene (un enlace a una sección que no existe no lleva a ningún sitio)."""
     enlaces = ['<a href="#carta">Carta</a>']
@@ -202,12 +228,12 @@ def portada(F, C):
     nav = nav_elegante(F)
     return f'''<header class="hero" id="inicio" style="--c:{mas_larga};--ln:{len(nombre.split())};--foco:{foco}">
 <div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
-<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav}<button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
+<div class="hero-barra">{marca_elegante(F, C)}<div class="barra-der">{nav}<button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
 <div class="hero-cuerpo"><div class="hero-titulo"><p class="sobre">{e_(N["cocina"])} · {e_(N["ciudad"])}</p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1></div>
-<div class="hero-base"><p class="lema">{e_(N["lema"])}</p>
+<div class="hero-base"><p class="lema">{e_(N["lema"])}{lema_en_html(N)}</p>
 <div class="hero-lado"><div class="acciones">{botones}</div>
-{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}</div></div></div>
+{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}</div></div>{hero_pie_html(F)}</div>
 </header>'''
 
 
@@ -245,11 +271,12 @@ def carta(F, C):
     )
     paneles = "".join(
         f'<div class="panel-cat{" activo" if i == 0 else ""}" role="tabpanel" id="panel-{c["id"]}" aria-labelledby="tab-{c["id"]}">'
-        f'<h3 class="cat-titulo">{e_(c["titulo"])}</h3><ul class="lista">{"".join(_plato(F, C, p) for p in c["platos"])}</ul></div>'
+        f'<h3 class="cat-titulo">{e_(c["titulo"])}</h3>' + (f'<p class="cat-nota">{e_(c["nota"])}</p>' if c.get("nota") else "")
+        + f'<ul class="lista">{"".join(_plato(F, C, p) for p in c["platos"])}</ul></div>'
         for i, c in enumerate(F["carta"])
     )
     return f'''<section class="carta" id="carta" aria-labelledby="t-carta"><div class="caja">
-<div class="carta-cab"><p class="sobretitulo">{e_(T["carta_sobretitulo"])}</p><h2 id="t-carta">{e_(T["carta_titulo"])}</h2>
+<div class="carta-cab"><p class="sobretitulo">{e_(T["carta_sobretitulo"])}</p><h2 id="t-carta">{e_(T["carta_titulo"])}</h2>{nota_precios_html(F)}
 <div class="tabs" role="tablist" aria-label="Categorías de la carta">{tabs}<span class="tab-ind" aria-hidden="true"></span></div></div>
 <div class="paneles">{paneles}</div></div></section>'''
 
@@ -263,7 +290,7 @@ def carta_indice(F, C):
         + (f'<p class="cat-i-nota">{e_(c["nota"])}</p>' if c.get("nota") else "")
         + f'<ul class="lista">{"".join(_plato(F, C, p) for p in c["platos"])}</ul></section>' for c in F["carta"])
     return f'''<section class="carta carta-indice" id="carta" aria-labelledby="t-carta"><div class="caja">
-<div class="carta-lado"><div class="carta-cab"><p class="sobretitulo">{e_(T["carta_sobretitulo"])}</p><h2 id="t-carta">{e_(T["carta_titulo"])}</h2></div>
+<div class="carta-lado"><div class="carta-cab"><p class="sobretitulo">{e_(T["carta_sobretitulo"])}</p><h2 id="t-carta">{e_(T["carta_titulo"])}</h2>{nota_precios_html(F)}</div>
 <nav class="indice" aria-label="Categorías de la carta"><ol>{indice}</ol></nav></div>
 <div class="carta-cuerpo-i">{cats}</div></div></section>'''
 
@@ -279,7 +306,7 @@ def ambiente(F, C):
         a = C["fotos"][g["foto"]]
         pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 58vw, 78vw").replace("<picture>", f"<picture{paralaje_attr(C, 3)}>", 1)
         figs.append(f'<figure class="{clase} rv" style="--c:{a["color"]};--d:{i * 90}ms"><div class="marco">{pic}</div><figcaption>{e_(g["pie"])}</figcaption></figure>')
-    return f'''<section class="ambiente" id="ambiente" aria-labelledby="t-amb"><div class="caja"><h2 id="t-amb" class="rv">{e_(T["ambiente_titulo"])}</h2>
+    return f'''<section class="ambiente" id="ambiente" aria-labelledby="t-amb"><div class="caja"><h2 id="t-amb" class="rv">{e_(T["ambiente_titulo"])}</h2>{('<p class="amb-texto rv">' + e_(T["ambiente_texto"]) + '</p>') if T.get("ambiente_texto") else ""}
 <div class="galeria" role="group" aria-label="Fotos del local" tabindex="0">{"".join(figs)}</div></div></section>'''
 
 
@@ -331,9 +358,11 @@ def visita(F, C):
         botones.append(f'<a class="btn suave" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Escribirnos</a>')
     if K.get("telefono"):
         botones.append(f'<a class="btn suave" href="tel:{K["telefono"]}">{ICONO_TEL} Llamar al {e_(K.get("telefono_visible") or K["telefono"])}</a>')
+    if K.get("instagram"):
+        botones.append(f'<a class="btn suave" href="{e_(K["instagram"]["url"])}" target="_blank" rel="noopener">{ICONO_IG} Instagram @{e_(K["instagram"]["usuario"])}</a>')
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja rej-2">
 <div class="rv"><h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{direccion_html(N)}</address>
-<p class="estado" data-open><span data-open-text>Ver horario</span></p>
+<p class="estado" data-open><span data-open-text>Ver horario</span></p>{('<p class="aviso-datos">' + e_(T["horario_aviso"]) + '</p>') if T.get("horario_aviso") else ""}
 {valoracion.pieza(F, C, "en-visita")}{valoracion.nota_fuente(F)}
 <div class="botones">{"".join(botones)}</div></div>
 <ul class="horas rv" style="--d:120ms" aria-label="Horario">{filas}</ul></div></section>'''
@@ -350,6 +379,18 @@ def cierre_muestra(F, C):
 <div class="cierre-btns rv"><a class="btn" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Hablar por WhatsApp</a><a class="btn suave" href="#panel-edu" data-abrir-panel>Ver qué incluye</a></div></div></section>'''
 
 
+def _origen_fotos(F):
+    """De dónde salen las fotos de la muestra, dicho en el pie (R-MUE-05): las del restaurante, las de ejemplo de banco libre o ambas."""
+    origenes = {(a.get("procedencia") or {}).get("origen") for k, a in F["activos"].items() if k != "logo"}
+    propias = "propia_del_restaurante" in origenes
+    ajenas = bool(origenes - {"propia_del_restaurante"})
+    if propias and not ajenas:
+        return "Fotos del restaurante, aportadas por el propio restaurante."
+    if propias:
+        return "Las fotos del restaurante son las que aportó el propio restaurante; el resto son de ejemplo, de banco libre."
+    return "Las fotos son de ejemplo, de banco libre: no son las fotos del restaurante, que se pondrán cuando las aporte."
+
+
 def pie(F, C):
     N = F["negocio"]
     pais = nombre_pais(N)
@@ -359,10 +400,12 @@ def pie(F, C):
         if C["ejemplo"]:
             origen = '<span>Fotos de referencia, solo para esta muestra.</span>'
         else:   # negocio real: se dice de dónde salen los datos y las fotos (R-MUE-05)
-            origen = f'<span>{e_(F["muestra"]["origen_datos"])}</span>'
+            origen = f'<span>{e_(F["muestra"]["origen_datos"])}</span><span>{e_(_origen_fotos(F))}</span>'
         extra = (f'<span>Página de muestra hecha por Edumashow.</span>' + origen
                  + f'<a href="{retirar}" data-retirada>Pedir que retiren esta muestra</a>')
-    return f'<footer class="pie"><div class="caja"><b>{e_(N["nombre"])}</b><span>{e_(N["ciudad"])} · {e_(pais)}</span>{extra}</div></footer>'
+    logo = C.get("logo")
+    sello = (f'<span class="pie-logo" data-logo="{logo.get("tono", "color")}" aria-hidden="true">{picture_html(logo, "", "120px")}</span>' if logo else "")
+    return f'<footer class="pie"><div class="caja">{sello}<b>{e_(N["nombre"])}</b><span>{e_(N["ciudad"])} · {e_(pais)}</span>{extra}</div></footer>'
 
 
 def barra_movil(F, C):

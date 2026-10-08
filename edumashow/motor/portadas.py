@@ -5,7 +5,7 @@ de la portada. Comparten con las clásicas los datos, los botones, el estado de 
   urbano:   collage_pegatinas (fotos como polaroids que caen sobre un fondo de puntos) y cartel_rotulo (cartel de color de marca con disco de foto y cinta que corre).
 """
 from .imagenes import picture_html
-from .piezas import (ICONO_PAUSA, ICONO_PLAY, _enlace_accion, acciones, e_, estado_y_valoracion, hero_picture, letras_titular, luz_html, nav_elegante,
+from .piezas import (ICONO_PAUSA, ICONO_PLAY, _enlace_accion, acciones, e_, estado_y_valoracion, hero_picture, hero_pie_html, lema_en_html, letras_titular, luz_html, marca_elegante, nav_elegante,
                      paralaje_attr, particulas_html)
 from . import piezas_urbano as U
 
@@ -44,12 +44,12 @@ def portada_marco(F, C):
     hs = "".join(f'<span class="mp"><span class="mp-i{" mp-ultima" if i == n - 1 else ""}" data-anim-titulo style="--i:{i}">{e_(w)}</span></span>' for i, w in enumerate(palabras))
     mas_larga = max(len(w) for w in palabras)
     return f'''<header class="hero hero-marco" id="inicio" style="--c:{mas_larga};--ln:{n};--foco:{foco}">
-<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
+<div class="hero-barra">{marca_elegante(F, C)}<div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
 <div class="marco-cuerpo"><div class="marco-texto"><p class="marco-sobre"><span>{e_(N["cocina"])}</span><i aria-hidden="true"></i><span>{e_(N["ciudad"])}</span></p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true" class="marco-h1">{hs}</span></h1>
-<p class="lema">{e_(N["lema"])}</p>
+<p class="lema">{e_(N["lema"])}{lema_en_html(N)}</p>
 <div class="acciones">{_botones(F, C)}</div>
-{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}</div>
+{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}{hero_pie_html(F)}</div>
 <div class="marco-foto" aria-hidden="true"><div class="arco">{pic}{luz_html(C)}{particulas_html(C, "claro")}</div><span class="filete"></span>{sello_circular(F, "sello-marco", "marco")}</div></div>
 </header>'''
 
@@ -63,12 +63,12 @@ def portada_cortina(F, C):
     return f'''<header class="hero hero-cortina" id="inicio" style="--c:{mas_larga};--ln:{len(nombre.split())};--foco:{foco}">
 <div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}{luz_html(C)}<div class="velo"></div><div class="grano"></div>{particulas_html(C)}</div>
 <span class="cortina-hoja izq" aria-hidden="true"></span><span class="cortina-hoja der" aria-hidden="true"></span>
-<div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
+<div class="hero-barra">{marca_elegante(F, C)}<div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
 <div class="hero-cuerpo cortina-cuerpo"><p class="cortina-sobre"><span>{e_(N["cocina"])}</span><b aria-hidden="true"></b><span>{e_(N["ciudad"])}</span></p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1>
-<p class="lema">{e_(N["lema"])}</p>
+<p class="lema">{e_(N["lema"])}{lema_en_html(N)}</p>
 <div class="acciones">{_botones(F, C)}</div>
-{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}</div>
+{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}{hero_pie_html(F)}</div>
 </header>'''
 
 

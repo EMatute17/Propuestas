@@ -115,6 +115,7 @@ def esquema():
                             "forma": {"type": "string", "enum": ["auto", "recta", "suave"]}, "movimiento": {"type": "string", "enum": ["auto", "lento", "rapido"]},
                             "orden": {"type": "array", "minItems": 3, "items": {"type": "string", "enum": ["portada", "idea", "carta", "ambiente", "reserva", "visita", "cierre", "regla", "como", "fotos"]}},
                             "orden_fotos": {"type": "string", "enum": ["antojo", "ficha"]}, "variante_paleta": {"type": "integer"}, "acento_temporada": {"type": "boolean"},
+                            "matiz": {"type": "integer", "minimum": 0, "maximum": 359},
                             "tono": {"type": "array", "items": TEXTO}},
                            **{d: {"type": "string", "enum": ["auto"] + sorted({o for f in catalogo.FAMILIAS for o in catalogo.OPCIONES[d][f]})} for d in catalogo.DIMENSIONES})},
             "perfil": {"type": "object", "additionalProperties": False,

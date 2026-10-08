@@ -8,6 +8,8 @@ import hashlib
 import io
 import os
 
+import numpy as np
+
 from PIL import Image, ImageEnhance, ImageFilter, ImageDraw, ImageFont
 
 try:  # el complemento AVIF se registra solo al importarlo
@@ -35,6 +37,22 @@ def abrir_rgba(ruta):
     im = Image.open(ruta)
     im.load()
     return im.convert("RGBA")
+
+
+def tono_del_logo(im_rgba):
+    """'oscuro' o 'claro' si el logotipo es de un solo tono (negro, blanco o grises) y 'color' si tiene color. Sirve para ponerlo en negativo
+    cuando el fondo es del tono contrario: la web lo hace con CSS y el archivo original no se toca."""
+    chico = im_rgba.convert("RGBA").resize((160, max(1, round(160 * im_rgba.height / im_rgba.width))), Image.BILINEAR)
+    a = np.asarray(chico, dtype=np.float32) / 255
+    opacos = a[..., 3] > 0.5
+    if not opacos.any():
+        return "color"
+    rgb = a[..., :3][opacos]
+    croma = float((rgb.max(axis=1) - rgb.min(axis=1)).mean())
+    luz = float((0.2126 * rgb[:, 0] + 0.7152 * rgb[:, 1] + 0.0722 * rgb[:, 2]).mean())
+    if croma > 0.12:
+        return "color"
+    return "oscuro" if luz < 0.5 else "claro"
 
 
 def ajustar(im, contraste=1.0, color=1.0, brillo=1.0):

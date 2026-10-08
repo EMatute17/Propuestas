@@ -297,6 +297,7 @@ html{scroll-padding-top:4.75rem}
 .cierre-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:1.75rem}
 .pie{background:var(--tinta);padding:2.5rem 0 calc(2.5rem + env(safe-area-inset-bottom,0px));color:var(--bruma);font-size:.95rem}
 .pie .caja{display:grid;gap:.4rem}
+.pie span{overflow-wrap:anywhere}
 .pie b{font-family:var(--f-display);font-weight:400;font-size:2rem;letter-spacing:.01em;text-transform:uppercase;color:var(--crema)}
 .pie a{display:inline-flex;align-items:center;min-height:2.75rem}
 @media (max-width:899px){body{padding-bottom:4.5rem}}

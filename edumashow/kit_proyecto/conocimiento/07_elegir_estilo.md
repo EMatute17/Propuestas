@@ -47,7 +47,7 @@ Las cifras de arriba son opciones del catálogo actual; el motor combina una de 
 
 - personalidad: "elegante" o "urbano".
 - orden_fotos: "antojo" en URBANO cuando juzgaste las fotos (archivo 06). Si no, omítelo.
-- paleta: "auto" siempre: con logo (activo logo), la paleta sale de sus colores más un acento de temporada; sin logo, el motor propone un color de marca según el tono de la cocina y lo aparta de los de las últimas webs (anota en Por confirmar que el dueño lo confirme). En los dos casos el motor comprueba todos los pares de contraste. Las paletas con nombre (brasa y fuego) solo se fijan si el dueño lo pide.
+- paleta: "auto" siempre: con logo (activo logo), la paleta sale de sus colores más un acento de temporada; sin logo, el motor propone un color de marca según el tono de la cocina y lo aparta de los de las últimas webs (anota en Por confirmar que el dueño lo confirme). En los dos casos el motor comprueba todos los pares de contraste. Las paletas con nombre (brasa y fuego) solo se fijan si el dueño lo pide. Un logo de un solo tono (negro, blanco o grises) no trae color de marca: el motor lo trata como un restaurante sin logo y muestra el logo tal cual. matiz (OPCIONAL, un número de 0 a 359): fija el matiz del color de marca propuesto por el motor cuando el dueño o el usuario piden un color (por ejemplo 158 es un verde jade, 262 un azul índigo, 25 un rojo bermellón); no lo escribas si nadie lo pidió.
 - tipografia: omítela. El motor elige entre las parejas ya probadas según la cocina, el nombre y las webs anteriores, para no repetir titular en webs seguidas. No fijes una tipografía a mano.
 
 Parejas tipográficas probadas hoy (para que conozcas el abanico; no las eliges tú):

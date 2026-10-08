@@ -13,6 +13,8 @@
 @media (min-width:700px){.cortina-sobre{flex-wrap:nowrap}.cortina-sobre::before,.cortina-sobre::after{content:"";flex:1 1 1.5rem;max-width:4rem;height:1px;background:rgba(243,233,216,.5)}}
 .hero.hero-cortina h1{margin:.2rem 0 .2rem;text-align:center}
 .hero-cortina .lema{margin:0 auto;text-align:center}
+.hero-cortina .hero-pie{margin-left:auto;margin-right:auto}
+.hero-cortina .lema .lema-en{justify-content:center}.hero-cortina .lema .lema-en::before{display:block}
 .hero-cortina .acciones{justify-content:center}
 .hero-cortina .hero-datos{justify-content:center;margin-top:.4rem}
 .hero-cortina .hero-fondo::after{content:"";position:absolute;z-index:4;top:.9rem;right:.9rem;bottom:.9rem;left:.9rem;border:1px solid rgba(243,233,216,.35);pointer-events:none}

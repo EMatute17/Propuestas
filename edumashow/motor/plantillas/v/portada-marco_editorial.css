@@ -2,6 +2,8 @@
 .hero.hero-marco{display:block;min-height:calc(100vh - var(--cinta-real,var(--cinta-h)));min-height:calc(100svh - var(--cinta-real,var(--cinta-h)));padding:0 0 clamp(2.5rem,7vw,5rem);background:var(--papel);color:var(--tinta);--foco-anillo:var(--foco-anillo-papel);--b-tx:var(--tinta);--b-ac:var(--brasa-papel);--b-sobre:var(--papel);--b-sh:var(--tinta)}
 .hero-marco .hero-barra{margin:0 auto}
 .hero-marco .marca{color:var(--tinta)}
+.hero-marco .marca-logo[data-logo="oscuro"] img{filter:none}
+.hero-marco .marca-logo[data-logo="claro"] img{filter:brightness(0)}
 .hero-marco .pausa{border-color:rgba(11,20,28,.4);background:rgba(255,255,255,.6);color:var(--tinta)}
 @media (min-width:900px){.hero-marco .hero-barra nav a:hover{background:rgba(11,20,28,.08)}}
 .marco-cuerpo{display:grid;grid-template-columns:minmax(0,1fr);gap:2.4rem;width:100%;max-width:var(--max);margin:0 auto;padding:1.4rem var(--pad) 0}
@@ -20,6 +22,7 @@
 .js.listo .mp-i{animation:pm-sube 1.05s var(--ease) forwards;animation-delay:calc(var(--i) * 150ms + 180ms)}
 @keyframes pm-sube{to{transform:none}}
 .hero-marco .lema{max-width:32ch;color:var(--texto-suave-papel)}
+.hero-marco .lema .lema-en{color:var(--tinta)}.hero-marco .lema .lema-en::before,.hero-marco .lema .lema-en::after{background:var(--brasa-papel)}
 .hero-marco .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.4rem}
 .hero-marco .btn.suave:hover{background:rgba(11,20,28,.06)}
 .hero-marco .hero-datos{margin-top:1.2rem}

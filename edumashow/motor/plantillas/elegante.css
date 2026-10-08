@@ -17,6 +17,14 @@
 
 .hero-barra{position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.25rem 1rem;width:100%;max-width:var(--max);margin:0 auto auto;padding:1.1rem var(--pad)}
 .hero-barra .marca{display:inline-flex;align-items:center;min-height:2.75rem;font-family:var(--f-display);font-style:var(--e-display,italic);font-size:min(2rem,10vw);line-height:1;text-decoration:none}
+/* logotipo del restaurante en la cabecera y en el pie; el de un solo tono (negro o blanco) se pone en negativo sobre el fondo oscuro, sin tocar el archivo */
+.hero-barra .marca-logo{min-height:3.5rem;max-width:calc(100% - 7.5rem)}   /* deja libre el sitio del boton de pausa: con zoom o en pantallas muy estrechas el logo se encoge sin deformarse */
+.marca-logo picture,.marca-logo img,.pie-logo picture,.pie-logo img{display:block;width:auto}
+.marca-logo picture{max-width:100%}
+.marca-logo img{height:3.5rem;max-width:100%;object-fit:contain}
+.pie-logo{display:block;margin-bottom:.5rem}
+.pie-logo img{height:4rem}
+[data-logo="oscuro"] img{filter:brightness(0) invert(1)}
 .barra-der{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:.25rem}
 .hero-barra nav{display:none}
 @media (min-width:900px){
@@ -34,6 +42,10 @@
 .js.listo .hero h1 .l{animation:letra 1.25s var(--ease) forwards;animation-delay:calc(var(--i) * 85ms + 180ms)}
 @keyframes letra{to{opacity:1;transform:none}}
 .lema{max-width:30ch;font-size:clamp(1.1rem,2.4vw,1.55rem);line-height:1.45;color:var(--crema-2)}
+.lema .lema-en{display:flex;align-items:center;gap:.9rem;margin-top:.7rem;font-size:.875rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--crema)}
+.lema .lema-en::before,.lema .lema-en::after{content:"";flex:none;width:1.6rem;height:1px;background:var(--brasa-2)}
+.lema .lema-en::before{display:none}
+.hero-pie{display:block;width:fit-content;max-width:100%;margin:1.1rem 0 0;padding:.3rem .8rem;border-radius:999px;background:rgba(0,0,0,.58);color:#fff;font-size:.875rem;line-height:1.35}
 .hero-titulo{min-width:0}
 .hero-base{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem}
 .acciones{display:flex;flex-wrap:wrap;gap:.75rem}
@@ -84,6 +96,9 @@
 /* ---------- carta (papel) ---------- */
 .carta{background:var(--papel);color:var(--tinta);padding:clamp(4.5rem,10vw,9rem) 0}
 .carta .caja{display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+.nota-precios{max-width:52ch;font-size:1rem;color:var(--texto-suave-papel)}
+.cat-nota{margin:-.4rem 0 .8rem;color:var(--texto-suave-papel);font-size:1rem}
+.aviso-datos{max-width:44ch;margin-top:1rem;font-size:.95rem;color:var(--texto-suave-papel)}
 .sobretitulo{font-size:.875rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--brasa-papel)}
 .carta h2,.ambiente h2,.reserva h2,.visita h2,.cierre-muestra h2{font-family:var(--f-titulo);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
 .tabs{position:relative;display:none;overflow-x:auto;scroll-snap-type:x proximity;margin:1rem calc(var(--pad) * -1) 0;padding:0 var(--pad);border-bottom:1px solid rgba(11,20,28,.2)}
@@ -132,6 +147,7 @@
 /* ---------- ambiente (galeria) ---------- */
 .ambiente{background:var(--tinta-2);padding:clamp(4.5rem,10vw,9rem) 0;overflow:hidden;overflow:clip}
 .ambiente h2{max-width:14ch}
+.amb-texto{max-width:52ch;margin-top:1rem;color:var(--bruma)}
 .galeria{display:flex;gap:.75rem;margin:2.5rem calc(var(--pad) * -1) 0;padding:0 var(--pad) 1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .galeria::-webkit-scrollbar{display:none}
 /* el aro de foco va por dentro: la banda llega de borde a borde y por fuera quedaria recortado */
@@ -191,6 +207,7 @@
 .cierre-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:1.75rem}
 .pie{background:var(--tinta);padding:2.5rem 0 calc(2.5rem + env(safe-area-inset-bottom,0px));color:var(--bruma);font-size:.95rem}
 .pie .caja{display:grid;gap:.4rem}
+.pie span{overflow-wrap:anywhere}
 .pie b{font-family:var(--f-display);font-style:var(--e-display,italic);font-weight:400;font-size:2rem;color:var(--crema)}
 .pie a{display:inline-flex;align-items:center;min-height:2.75rem}
 @media (max-width:899px){body{padding-bottom:4.5rem}}

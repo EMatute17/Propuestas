@@ -1091,6 +1091,11 @@
     "acento_temporada": {
      "type": "boolean"
     },
+    "matiz": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 359
+    },
     "tono": {
      "type": "array",
      "items": {

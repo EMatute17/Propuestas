@@ -285,7 +285,7 @@ async function muestrearContraste(pag, d, selectores, etiqueta, antes) {
       const crudas = [], tw = document.createTreeWalker(e, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
       for (let n = tw.nextNode(); n; n = tw.nextNode()) {
         if (n.nodeType === 3) { if (!n.textContent.trim() || oculto(n)) continue; const r1 = document.createRange(); r1.selectNodeContents(n); crudas.push(...Array.from(r1.getClientRects())); }
-        else if (/^(svg|img|canvas)$/i.test(n.tagName) && !oculto(n)) crudas.push(n.getBoundingClientRect());
+        else if (/^(svg|canvas)$/i.test(n.tagName) && !oculto(n)) crudas.push(n.getBoundingClientRect());   // los iconos (svg) toman el color del texto; una imagen (el logotipo) lleva sus propios colores y no se mide como texto
       }
       const rects = crudas.filter((r) => r.width > 1 && r.height > 1 && r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw && r.width < vw * 1.5)
         // el texto se mide dentro de la caja del propio elemento (sus lineas): el area de contenido de una tipografia con mucho ascendente asoma por encima y por debajo de la linea y es del vecino

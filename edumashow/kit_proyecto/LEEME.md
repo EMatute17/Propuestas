@@ -70,7 +70,7 @@ Archivos del kit:
 - conocimiento/04_reglas_que_aplican.md (13 KB): Las reglas del núcleo que dependen de lo que escribes, con su puesto, su evidencia y qué haces tú
 - conocimiento/05_guia_de_redaccion.md (8 KB): Cómo se redacta cada texto: principios, ejemplos, tono y lo que nunca se escribe
 - conocimiento/06_juicio_de_antojo.md (3 KB): Cómo juzgar cada foto con los siete criterios (solo URBANO)
-- conocimiento/07_elegir_estilo.md (8 KB): Cómo elegir la personalidad, el perfil del restaurante y qué decide el motor
+- conocimiento/07_elegir_estilo.md (9 KB): Cómo elegir la personalidad, el perfil del restaurante y qué decide el motor
 - conocimiento/08_hoja_de_entrada.md (6 KB): La plantilla de lo que te pega el usuario, con dos ejemplos y las reglas de las fotos
 - conocimiento/09_checklist_y_errores.md (5 KB): Lista de comprobación antes de responder y los errores más comunes del validador
 - conocimiento/10_ficha.schema.json (23 KB): El esquema de la ficha en JSON Schema (la forma exacta que acepta el validador)

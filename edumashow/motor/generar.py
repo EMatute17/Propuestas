@@ -346,7 +346,9 @@ def construir(ruta_ficha, salida_base, base_url=None, redisenar=False):
         }
     logo = None
     if "logo" in F["activos"]:
-        logo = A.procesar_logo("logo", imagenes.abrir_rgba(ruta_origen("logo")), [128, 256, 512], prov("logo"))
+        im_logo = imagenes.abrir_rgba(ruta_origen("logo"))
+        logo = A.procesar_logo("logo", im_logo, [128, 256, 512], prov("logo"))
+        logo["tono"] = imagenes.tono_del_logo(im_logo)
     fotos = {}
 
     def foto_general(k):

@@ -192,7 +192,7 @@ def datos(carpeta, ficha, importe, rango_horario):
     for ph in PLACEHOLDERS:
         if re.search(ph, bajo):
             fallos.append(f"marcador de relleno: {ph}")
-    for patron_cero in (r"\b0\s?(us\$|€|\$|bs)", r"\bgratis\b", r"sin al[eé]rgenos"):
+    for patron_cero in (r"(?<![\d.,])0\s?(us\$|€|\$|bs)", r"\bgratis\b", r"sin al[eé]rgenos"):   # el cero de 2.0 o de 10,0 no es un precio cero
         if re.search(patron_cero, bajo) and not re.search(patron_cero, json.dumps(ficha, ensure_ascii=False).lower()):
             fallos.append(f"valor engañoso sin respaldo en la ficha: {patron_cero}")
     # WhatsApp: solo el de la agencia (muestra) y el del restaurante si la ficha lo declara

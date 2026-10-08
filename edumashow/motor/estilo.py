@@ -92,6 +92,8 @@ def _paleta_sin_logo(F, fecha, tonos, registro):
     if not rangos:
         rangos, grupo = [(0, 359)], "ningún tono concreto"
     matices = sorted({h % 360 for a, b in rangos for h in range(a, b + 1, 6)})
+    if est.get("matiz") is not None:   # el dueño o quien arma la ficha fija el matiz (grados OKLCH); el director solo comprueba que el contraste se cumpla
+        matices, grupo = [int(est["matiz"]) % 360], "matiz fijado en la ficha (estilo.matiz)"
     recientes = [_huella.normalizar(v).get("paleta") for _, v in _huella.vecinas(F["id"], registro, 8)]
     semilla = hashlib.sha1(F["id"].encode()).hexdigest()
     # primero los matices cuyo cubo de tono no está en las últimas webs; entre ellos, un orden fijo por el id de la ficha
@@ -128,6 +130,13 @@ def resolver_paleta(F, origen_activos, fecha=None, tonos=(), registro=None):
     if marca is None:
         from .generar import FichaIncompleta
         raise FichaIncompleta("no se pudo sacar un color de identidad del logo")
+    if marca.get("neutro"):
+        # logotipo de un solo tono (negro, blanco o grises): no trae color de marca, y un gris como color de marca dejaría los botones apagados.
+        # El director propone el color como si no hubiera logo (el logo se muestra tal cual, en negro o blanco) y el dueño lo confirma
+        p = _paleta_sin_logo(F, fecha, list(tonos), registro or {})
+        p["origen"] = p["origen"].replace("propuesta del director (sin logo)", "propuesta del director (el logo es de un solo tono, sin color de marca)")
+        p["informe"]["dominantes_del_logo"] = dominantes
+        return p
     tokens, rep = color.paleta_marca(marca["hex"], fecha, variante=est.get("variante_paleta", 0), con_acento=est.get("acento_temporada", True))
     rep["dominantes_del_logo"] = dominantes
     malos = [f'{p["texto"]} sobre {p["fondo"]} ({p["contraste"]}:1, mínimo {p["minimo"]})' for p in rep["pares"] if not p["ok"]]
