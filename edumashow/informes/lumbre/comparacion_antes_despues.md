@@ -62,6 +62,11 @@ Problemas de accesibilidad que detecta axe: antes heading-order[moderate]x1, htm
 - Antes: una sola pantalla de móvil (390 px) y el desborde a 320 px.
 - Después: 27 dispositivos emulados (de 280 a 3440 px de ancho, horizontales y plegables), texto al 200 por ciento, teclado, contraste medido sobre píxeles reales, movimiento reducido, pausa y 11 casos de horario con relojes simulados.
 
+## Prueba interna del modo final
+
+Se generó la misma Lumbre en modo final (sin cinta, sin noindex y con el WhatsApp del restaurante) y se pasó por el Gate completo. Pasan todas las pruebas en navegador (27 dispositivos, teclado, horarios y reserva) y el SEO de Lighthouse es 100.
+El Gate la bloquea solo por dos motivos, y los dos son los correctos: las fotos siguen siendo de referencia (en modo final deben ser del restaurante o de licencia libre) y el diseño es idéntico al de la muestra ya registrada (la regla de variedad exige que difieran al menos 3 de 6 dimensiones). Es decir, el Gate no deja salir como final una web con fotos prestadas ni repetida.
+
 ## Lo que no se puede comparar con números
 
 - Si el diseño nuevo gusta más o convence más: solo lo dicen personas reales y, después, los datos del restaurante.
