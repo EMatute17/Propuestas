@@ -10,16 +10,18 @@ html{scroll-padding-top:4.75rem}
 .mural{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:0 .5rem}
 .mural .col{position:relative;overflow:hidden;overflow:clip}
 .mural .col:nth-child(n+4){display:none}
-.pista{display:flex;flex-direction:column;animation:sube 84s linear infinite;will-change:transform}
-.mural .col:nth-child(even) .pista{animation-name:baja;animation-duration:70s}
-.mural .col:nth-child(3n) .pista{animation-duration:96s}
+.pista{display:flex;flex-direction:column}
+.js .pista{animation:sube 84s linear infinite;will-change:transform}
+.js .mural .col:nth-child(even) .pista{animation-name:baja;animation-duration:70s}
+.js .mural .col:nth-child(3n) .pista{animation-duration:96s}
 @keyframes sube{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-50%,0)}}
 @keyframes baja{from{transform:translate3d(0,-50%,0)}to{transform:translate3d(0,0,0)}}
 .tesela{position:relative;flex:none;margin-bottom:.5rem;overflow:hidden;border-radius:var(--r);background:var(--c,#222)}
 .tesela::before{content:"";display:block;padding-top:115.58%}
 .tesela picture,.tesela img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
 .velo{position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to bottom,rgba(11,9,8,.78) 0%,rgba(11,9,8,.2) 24%),linear-gradient(to top,rgba(11,9,8,.99) 0%,rgba(11,9,8,.93) 40%,rgba(11,9,8,.66) 68%,rgba(11,9,8,.5) 100%)}
-.luz{position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(ellipse 90% 46% at 50% 108%,rgba(255,110,20,.5),rgba(255,110,20,.16) 48%,rgba(255,110,20,0) 74%);animation:pulso 3.4s ease-in-out infinite alternate}
+.luz{position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(ellipse 90% 46% at 50% 108%,rgba(255,110,20,.5),rgba(255,110,20,.16) 48%,rgba(255,110,20,0) 74%)}
+.js .luz{animation:pulso 3.4s ease-in-out infinite alternate}
 @keyframes pulso{from{opacity:.7}to{opacity:1}}
 .grano{position:absolute;top:-10%;right:-10%;bottom:-10%;left:-10%;opacity:.07;background-image:var(--grano);background-size:160px 160px;pointer-events:none}
 .brasas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}

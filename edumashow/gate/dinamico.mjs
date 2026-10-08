@@ -217,7 +217,7 @@ for (const d of lista) {
   reg.arriba = await pag.evaluate(medirDOM, false);
   await pag.screenshot({ path: path.join(CAP, `${d.id}.jpg`), type: 'jpeg', quality: 78 });
   if (d.representativo) {
-    await muestrearContraste(pag, d, ['.cinta p', '.cinta button', '.hero-barra .marca', '.hero-barra nav a', '.sobre', '.hero h1', '.lema', '.lema-en', '.hero .btn', '.hero .estado', '.pausa', '.hero .acciones .btn.suave'], 'portada');
+    await muestrearContraste(pag, d, ['.cinta p', '.cinta .cinta-btn', '.hero-barra .marca', '.hero-barra nav a', '.sobre', '.hero h1', '.lema', '.lema-en', '.hero .btn', '.hero .estado', '.pausa', '.hero .acciones .btn.suave'], 'portada');
     await pag.evaluate(() => window.location.reload()); await pag.waitForTimeout(2300);
   }
   await recorrer(pag);
@@ -331,6 +331,52 @@ for (const id of ['iph-390', 'pc-1440', 'se-horiz-667']) {
   const n2 = await p2.evaluate(() => document.querySelectorAll('[data-progreso]').length);
   if (n2) R.scroll.sinJs = { elementos: n2, p: await p2.evaluate(() => parseFloat(getComputedStyle(document.querySelector('[data-progreso]')).getPropertyValue('--p'))) };
   await c2.close();
+}
+
+// ---------------------------------------------------------------- 4b) sin JavaScript: lo que ve quien abre la pagina en un visor que no lo ejecuta
+{
+  const d = lista.find((x) => x.id === 'iph-390') || lista[0];
+  const c3 = await nav.newContext({ viewport: { width: d.w, height: d.h }, deviceScaleFactor: d.dpr, isMobile: true, hasTouch: true, javaScriptEnabled: false, locale: 'es-VE' });
+  await c3.route('**/*', (route) => (route.request().url().startsWith(srv.url) || route.request().url().startsWith('data:') ? route.continue() : route.abort()));
+  const p3 = await c3.newPage();
+  await p3.goto(srv.url, { waitUntil: 'load' }); await p3.waitForTimeout(900);
+  await recorrer(p3);   // el motor de pruebas desplaza la pagina; ella no ejecuta nada
+  await p3.evaluate(() => window.scrollTo(0, 0)); await p3.waitForTimeout(500);
+  R.sinjs = await p3.evaluate(() => {
+    const vw = document.documentElement.clientWidth;
+    const imgs = Array.from(document.querySelectorAll('img')).filter((i) => i.getAttribute('src') && !i.closest('dialog:not([open])') && !i.closest('.vista') && !i.closest('noscript'));
+    const falla = imgs.filter((i) => !(i.complete && i.naturalWidth > 1)).map((i) => (i.getAttribute('alt') || i.getAttribute('src') || '').slice(0, 40));
+    const velo = (e) => { let op = 1; for (let p = e; p && p.nodeType === 1; p = p.parentElement) { const c = getComputedStyle(p); if (c.display === 'none' || c.visibility === 'hidden') return null; op *= parseFloat(c.opacity); } return op; };
+    const ocultos = [];
+    for (const e of document.querySelectorAll('h1,h2,h3,p,figcaption,.btn,.nom,.pre,.lema,.sobre,li,address')) {
+      if (e.closest('dialog:not([open])') || e.closest('.sr-only') || e.closest('[hidden]') || e.closest('noscript')) continue;
+      const b = e.getBoundingClientRect(); if (b.width < 2 || b.height < 2) continue;
+      const op = velo(e); if (op !== null && op < 0.9) ocultos.push((e.className || e.tagName).toString().slice(0, 24) + ' ' + (e.textContent || '').trim().slice(0, 24));
+    }
+    const pausa = document.querySelector('[data-pausa]');
+    const anim = document.getAnimations();
+    return {
+      desborde: document.documentElement.scrollWidth - vw, imagenes: imgs.length, imagenesFallan: falla.slice(0, 6),
+      ocultos: ocultos.slice(0, 8),
+      infinitas: anim.filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().iterations === Infinity).length,
+      largas: anim.filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().endTime > 5000).length,
+      pausaVisible: !!pausa && getComputedStyle(pausa).display !== 'none',
+      copiarVisible: Array.from(document.querySelectorAll('[data-copiar]')).filter((e) => getComputedStyle(e).display !== 'none').length,
+      enlacePanel: (() => { const a = document.querySelector('.cinta [data-abrir-panel]'); return a ? { tag: a.tagName.toLowerCase(), href: a.getAttribute('href') } : null; })(),
+    };
+  });
+  if (R.sinjs.enlacePanel) {
+    await p3.goto(srv.url + '#panel-edu', { waitUntil: 'load' }); await p3.waitForTimeout(500);
+    R.sinjs.panel = await p3.evaluate(() => {
+      const e = document.querySelector('#panel-edu'), b = e.getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = innerHeight;
+      const cerrar = e.querySelector('.cerrar');
+      return { display: getComputedStyle(e).display, dentro: b.left >= -0.5 && b.right <= vw + 0.5 && b.top >= -0.5, ancho: Math.round(b.width), alto: Math.round(b.height), cabe: b.height <= vh + 1 || getComputedStyle(e).overflowY !== 'visible', cerrar: cerrar ? { tag: cerrar.tagName.toLowerCase(), href: cerrar.getAttribute('href') } : null };
+    });
+    await p3.click('#panel-edu .cerrar'); await p3.waitForTimeout(400);
+    R.sinjs.panelCerrado = await p3.evaluate(() => getComputedStyle(document.querySelector('#panel-edu')).display === 'none');
+  }
+  await p3.screenshot({ path: path.join(CAP, 'sin_js_iph-390.jpg'), type: 'jpeg', quality: 70 });
+  await c3.close();
 }
 
 // ---------------------------------------------------------------- 4) movimiento reducido y pausa
@@ -451,7 +497,7 @@ if (ficha.reservas) {
   }
   if (ficha.modo === 'muestra') {   // la cinta y el panel de Edumashow solo existen en la muestra
     await pag.evaluate(() => window.scrollTo(0, 0));
-    await pag.click('.cinta button'); await pag.waitForTimeout(400);
+    await pag.click('.cinta [data-abrir-panel]'); await pag.waitForTimeout(400);
     const abierto = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.className }));
     await pag.keyboard.press('Escape'); await pag.waitForTimeout(300);
     const cerrado = await pag.evaluate(() => ({ abierto: document.querySelector('#panel-edu').open, foco: document.activeElement.textContent.trim() }));

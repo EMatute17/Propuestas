@@ -371,6 +371,22 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
                 if clave in sc and abs(sc[clave]["p"] - 1) > 0.01: fl.append(f"{texto} el efecto no queda completo (avance {sc[clave]['p']})")
             I.add("G-AVANCE", "Los efectos ligados al scroll se completan mientras se ven y la página queda completa sin ellos", ["R-IDE-05"], "defecto", "PASS" if not fl else "FAIL",
                   f"{len(disp)} dispositivos; con movimiento reducido y sin JavaScript el efecto queda completo", fl)
+        # ---- sin JavaScript (visores de teléfono, correo o mensajería que no lo ejecutan)
+        sj = D.get("sinjs")
+        if sj:
+            fl = []
+            if sj["desborde"] > 0: fl.append(f"desborde horizontal de {sj['desborde']} px")
+            if sj["imagenesFallan"]: fl.append(f"fotos que no se ven: {sj['imagenesFallan']}")
+            if sj["ocultos"]: fl.append(f"contenido invisible hasta que corra el JavaScript: {sj['ocultos']}")
+            if (sj["infinitas"] or sj["largas"]) and not sj["pausaVisible"]: fl.append(f"animaciones de más de 5 segundos sin botón de pausa ({sj['infinitas']} en bucle, {sj['largas']} largas)")
+            if sj["copiarVisible"]: fl.append(f"{sj['copiarVisible']} controles de copiar visibles que sin JavaScript no hacen nada")
+            if muestra:
+                pn = sj.get("panel")
+                if not sj.get("enlacePanel") or sj["enlacePanel"]["tag"] != "a" or sj["enlacePanel"]["href"] != "#panel-edu": fl.append("el acceso a 'Quiero mi web' no es un enlace a #panel-edu que funcione sin JavaScript")
+                elif not pn or pn["display"] == "none" or not pn["dentro"] or not pn["cabe"]: fl.append(f"el panel no se abre bien por enlace sin JavaScript: {pn}")
+                elif not pn["cerrar"] or pn["cerrar"]["tag"] != "a" or not sj.get("panelCerrado"): fl.append("el panel no se puede cerrar sin JavaScript")
+            I.add("G-SINJS", "Sin JavaScript la página se ve completa: fotos, textos, panel y sin movimiento sin pausa", ["R-LEG-06", "R-REN-04", "R-SIG-01"], "bloqueo", "PASS" if not fl else "FAIL",
+                  f"{sj['imagenes']} fotos revisadas con el JavaScript apagado en un teléfono de 390 px" + ("; el panel de la muestra abre y cierra por enlace" if muestra else ""), fl)
         # ---- resolución de imágenes
         nat = {im["clave"]: im for im in man["imagenes"]}
         amp = []

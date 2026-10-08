@@ -107,7 +107,7 @@ def cinta(F, C):
              else f"Muestra de Edumashow preparada para <b>{n}</b>")
     corto = "Muestra de Edumashow"
     return (f'<div class="cinta" role="region" aria-label="Aviso de muestra"><p><span class="largo">{largo}</span>'
-            f'<span class="corto">{corto}</span></p><button type="button" data-abrir-panel>Quiero mi web</button></div>')
+            f'<span class="corto">{corto}</span></p><a class="cinta-btn" href="#panel-edu" data-abrir-panel>Quiero mi web</a></div>')
 
 
 def portada(F, C):
@@ -261,7 +261,7 @@ def cierre_muestra(F, C):
     wa = wa_url(C["agencia"]["whatsapp"], f'Hola Edumashow, vi la muestra de la web de {n} y quiero una así para mi restaurante.')
     return f'''<section class="cierre-muestra" id="tu-web" aria-labelledby="t-cierre"><div class="caja"><h2 id="t-cierre" class="rv">Así se vería tu restaurante</h2>
 <p class="rv">Si te gusta cómo queda, la dejamos lista con tu carta, tus fotos y tu horario.</p>
-<div class="cierre-btns rv"><a class="btn" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Hablar por WhatsApp</a><button type="button" class="btn suave" data-abrir-panel>Ver qué incluye</button></div></div></section>'''
+<div class="cierre-btns rv"><a class="btn" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Hablar por WhatsApp</a><a class="btn suave" href="#panel-edu" data-abrir-panel>Ver qué incluye</a></div></div></section>'''
 
 
 def pie(F, C):
@@ -302,7 +302,7 @@ def panel_edu(F, C):
     lista = "\n".join(f"<li>{e_(t)}</li>" for t in incluye)
     nota = ("Los textos, fotos y precios de esta muestra son de ejemplo." if C["ejemplo"]
             else F["muestra"]["nota_panel"])
-    return f'''<dialog class="panel-edu" id="panel-edu" aria-labelledby="t-panel"><div class="hoja"><button type="button" class="cerrar" data-cerrar-panel aria-label="Cerrar">{chr(0xD7)}</button>
+    return f'''<dialog class="panel-edu" id="panel-edu" aria-labelledby="t-panel"><div class="hoja"><a class="cerrar" href="#contenido" data-cerrar-panel aria-label="Cerrar">{chr(0xD7)}</a>
 <h2 id="t-panel">Esta es una muestra de lo que Edumashow hace</h2>
 <p>La página final es la misma experiencia, completa y hecha con los datos de tu restaurante:</p>
 <ul>{lista}</ul>

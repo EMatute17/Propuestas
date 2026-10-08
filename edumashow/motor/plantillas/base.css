@@ -31,7 +31,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cinta{position:relative;z-index:30;min-height:var(--cinta-h);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.25rem .75rem;padding:.15rem var(--pad);background:var(--crema);color:var(--tinta);font-size:.9rem;line-height:1.2}
 .cinta p{min-width:0;flex:1 1 5rem;overflow-wrap:break-word}
 .cinta .corto{display:inline}.cinta .largo{display:none}
-.cinta button{flex:none;min-height:2.75rem;padding:0 min(1rem,3.6vw);border:0;border-radius:var(--r-boton);background:var(--tinta);color:var(--crema);font-weight:700;font-size:.9rem}
+.cinta button,.cinta .cinta-btn{flex:none;display:inline-flex;align-items:center;min-height:2.75rem;padding:0 min(1rem,3.6vw);border:0;border-radius:var(--r-boton);background:var(--tinta);color:var(--crema);font-weight:700;font-size:.9rem;text-decoration:none}
 @media (min-width:860px){.cinta .corto{display:none}.cinta .largo{display:inline}}
 
 /* botones */
@@ -58,11 +58,15 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .panel-edu h2{font-family:var(--f-titulo);font-weight:400;font-size:2rem;line-height:1.12;padding-right:2.5rem}
 .panel-edu p,.panel-edu li{margin-top:.8rem}
 .panel-edu ul{margin-top:.5rem;padding-left:1.2rem;list-style:disc}
-.panel-edu .cerrar{position:absolute;top:.5rem;right:.5rem;width:2.75rem;height:2.75rem;border:0;border-radius:50%;background:transparent;font-size:1.6rem;line-height:1}
+.panel-edu .cerrar{position:absolute;top:.5rem;right:.5rem;display:inline-flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border:0;border-radius:50%;background:transparent;color:inherit;font-size:1.6rem;line-height:1;text-decoration:none}
 .panel-edu .contacto{margin-top:1.25rem;display:grid;gap:.75rem}
 .panel-edu .correo{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.35rem .35rem .35rem 1rem;border:1px solid rgba(11,20,28,.25);border-radius:var(--r-boton);font-size:.95rem}
 .panel-edu .correo button{min-height:2.75rem;padding:0 1rem;border:0;border-radius:var(--r-boton);background:var(--tinta);color:var(--crema);font-weight:700}
 .panel-edu .nota{font-size:.9rem;color:var(--bruma-papel)}
+
+/* sin JavaScript (algunos visores del telefono lo bloquean): el panel de la muestra se abre con el enlace #panel-edu, y lo que necesita programa no se muestra */
+.panel-edu:target:not([open]){display:block;position:fixed;top:0;right:0;bottom:0;left:0;z-index:90;box-shadow:0 0 0 100vmax rgba(8,6,5,.78)}
+html:not(.js) [data-copiar],html:not(.js) .pausa{display:none}
 
 /* control de pausa del movimiento automatico (WCAG 2.2.2) */
 .pausa{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-width:2.75rem;min-height:2.75rem;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(8,15,21,.7);color:var(--crema);font-size:.875rem}

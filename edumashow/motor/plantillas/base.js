@@ -87,19 +87,20 @@
 
   /* ---------- panel informativo de la muestra ---------- */
   var panel = qs('#panel-edu'), ultimoFoco = null;
-  function abrirPanel() {
-    if (!panel) return; ultimoFoco = doc.activeElement;
+  function abrirPanel(ev) {
+    if (!panel) return; if (ev && ev.preventDefault) ev.preventDefault(); ultimoFoco = doc.activeElement;
     if (typeof panel.showModal === 'function') { try { panel.showModal(); } catch (e) { panel.setAttribute('open', ''); } } else { panel.setAttribute('open', ''); }
     var c = qs('.cerrar', panel); if (c) c.focus();
   }
-  function cerrarPanel() {
-    if (!panel) return;
+  function cerrarPanel(ev) {
+    if (!panel) return; if (ev && ev.preventDefault) ev.preventDefault();
     if (typeof panel.close === 'function') { try { panel.close(); } catch (e) { panel.removeAttribute('open'); } } else { panel.removeAttribute('open'); }
     if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
   }
   qsa('[data-abrir-panel]').forEach(function (b) { b.addEventListener('click', abrirPanel); });
   qsa('[data-cerrar-panel]').forEach(function (b) { b.addEventListener('click', cerrarPanel); });
-  if (panel) panel.addEventListener('click', function (e) { if (e.target === panel) cerrarPanel(); });
+  if (panel) panel.addEventListener('click', function (e) { if (e.target === panel) cerrarPanel(e); });
+  if (panel) panel.addEventListener('close', function () { if (doc.location.hash === '#panel-edu') { try { history.replaceState(null, '', doc.location.pathname + doc.location.search); } catch (x) {} } });
   qsa('[data-copiar]').forEach(function (b) {
     b.addEventListener('click', function () {
       var tx = b.getAttribute('data-copiar'), ok = function () { var o = b.textContent; b.textContent = 'Copiado'; setTimeout(function () { b.textContent = o; }, 1600); };
