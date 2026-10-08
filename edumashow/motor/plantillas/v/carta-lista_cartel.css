@@ -1,0 +1,13 @@
+/* carta lista_cartel: el menú como un cartel de precios, en renglones con el precio enorme a la derecha, sin tarjetas */
+body[data-carta="lista_cartel"] .items{grid-template-columns:minmax(0,1fr);gap:0}
+body[data-carta="lista_cartel"] .cat h3{display:inline;padding:0 .12em;background:linear-gradient(to top,var(--brasa) 0 .32em,transparent .32em);font-size:clamp(2.6rem,9vw,5.2rem)}
+body[data-carta="lista_cartel"] .cat-cab{border-bottom-width:4px}
+body[data-carta="lista_cartel"] .tarjeta{padding:1rem .2rem 1.05rem;background:transparent;border:0;border-bottom:2px dashed rgba(11,9,8,.32);border-radius:0;box-shadow:none}
+body[data-carta="lista_cartel"] .tarjeta.en-pedido{background:rgba(255,122,26,.1);border-bottom-style:solid;border-bottom-color:var(--brasa-papel);box-shadow:none}
+body[data-carta="lista_cartel"] .nom{font-size:1.3rem;letter-spacing:.015em}
+body[data-carta="lista_cartel"] .pre{font-size:2.5rem}
+body[data-carta="lista_cartel"] .varias .pre{font-size:2.15rem}
+body[data-carta="lista_cartel"] .varias .op{border-width:0 0 0 4px;border-radius:0;border-color:var(--brasa);background:transparent;padding:.2rem .2rem .2rem .8rem}
+body[data-carta="lista_cartel"] .lista .tarjeta{padding:.8rem .2rem}
+@media (hover:hover){body[data-carta="lista_cartel"] .tarjeta:hover{background:rgba(255,122,26,.08);border-color:rgba(11,9,8,.32);box-shadow:none}}
+@media (min-width:900px){body[data-carta="lista_cartel"] .items{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:3.5rem}}

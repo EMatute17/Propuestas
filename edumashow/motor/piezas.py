@@ -3,7 +3,7 @@ construcción (C) y devuelve HTML. Todo texto de la ficha se escapa (R-DAT-07)."
 from html import escape
 from urllib.parse import quote
 
-from . import dinero
+from . import dinero, valoracion
 from .imagenes import picture_html
 
 NBSP = chr(0xA0)
@@ -98,6 +98,36 @@ def _enlace_accion(a, clase=""):
     return f'<a{cl} href="{a["href"]}"{ext}>{ico}{e_(a["etiqueta"])}</a>'
 
 
+def estado_y_valoracion(F, C, estado_html):
+    """El estado de apertura y, si la ficha trae calificacion de Google, la pastilla con las estrellas, en una misma fila."""
+    v = valoracion.pieza(F, C)
+    return f'<div class="hero-datos">{estado_html}{v}</div>' if v else estado_html
+
+
+# ------------------------------------------------------------------ piezas que dependen del paquete de animaciones
+def particulas_html(C, fondo="oscuro"):
+    """El lienzo de partículas de la portada, del tipo que pide el paquete (vacío si el paquete no lleva partículas)."""
+    tipo = C["paquete"].get("particulas")
+    return f'<canvas class="particulas" data-tipo="{tipo}" data-fondo="{fondo}"></canvas>' if tipo else ""
+
+
+def luz_html(C):
+    return '<div class="luz"></div>' if "luz" in C["modulos"] else ""
+
+
+def paralaje_attr(C, fuerza=6):
+    return f' data-paralaje="{fuerza}"' if "paralaje" in C["modulos"] else ""
+
+
+def banda_texto(F, C):
+    """Banda de texto muy grande que se desliza con el scroll (módulo texto_corre). Solo repite el nombre, la cocina y la ciudad de la ficha."""
+    if "texto_corre" not in C["modulos"]:
+        return ""
+    N = F["negocio"]
+    una = "".join(f"<span>{e_(w)}</span>" for w in (N["nombre"], N["cocina"], N["ciudad"]))
+    return f'<div class="banda-texto" aria-hidden="true" data-decorativo><div class="pista-t">{una * 4}</div></div>'
+
+
 # ------------------------------------------------------------------ cinta y portada
 def cinta(F, C):
     if not C["muestra"]:
@@ -110,20 +140,9 @@ def cinta(F, C):
             f'<span class="corto">{corto}</span></p><a class="cinta-btn" href="#panel-edu" data-abrir-panel>Quiero mi web</a></div>')
 
 
-def portada(F, C):
-    N = F["negocio"]
-    nombre = N["nombre"]
+def hero_picture(C, atributos=""):
+    """La foto de portada como picture (AVIF y WebP con srcset, uno para móvil y otro para escritorio) y su punto de foco en porcentajes."""
     h = C["hero"]
-    palabras, idx, partes = nombre.split(" "), 0, []
-    for w in palabras:
-        ls = []
-        for ch in w:
-            ls.append(f'<span class="l" style="--i:{idx}">{e_(ch)}</span>')
-            idx += 1
-        idx += 1
-        partes.append('<span class="pal">' + "".join(ls) + "</span>")
-    letras = " ".join(partes)
-    mas_larga = max(len(w) for w in palabras)
     srcset = lambda v: ", ".join(f"{u} {a}w" for u, a in v)
     movil, esc = h["movil"], h["escritorio"]
     fuentes = []
@@ -133,18 +152,43 @@ def portada(F, C):
         fuentes.append(f'<source type="{mime}" srcset="{srcset(esc["variantes"][tipo])}" sizes="100vw">')
     foco = f'{int(h["foco"][0] * 100)}% {int(h["foco"][1] * 100)}%'
     img = (f'<img src="{esc["jpg"]}" alt="" width="{esc["ancho"]}" height="{esc["alto"]}" fetchpriority="high" decoding="async">')
+    return f'<picture{atributos}>{"".join(fuentes)}{img}</picture>', foco, esc["lqip"]
+
+
+def letras_titular(nombre):
+    """El nombre letra a letra (cada letra entra con su retardo); las palabras no se parten."""
+    palabras, idx, partes = nombre.split(" "), 0, []
+    for w in palabras:
+        ls = []
+        for ch in w:
+            ls.append(f'<span class="l" style="--i:{idx}">{e_(ch)}</span>')
+            idx += 1
+        idx += 1
+        partes.append('<span class="pal">' + "".join(ls) + "</span>")
+    return " ".join(partes), max(len(w) for w in palabras)
+
+
+def nav_elegante():
+    return ('<nav aria-label="Secciones"><a href="#carta">Carta</a><a href="#ambiente">Ambiente</a>'
+            '<a href="#reservar">Reservar</a><a href="#visitanos">Visítanos</a></nav>')
+
+
+def portada(F, C):
+    N = F["negocio"]
+    nombre = N["nombre"]
+    letras, mas_larga = letras_titular(nombre)
+    pic, foco, lqip = hero_picture(C, paralaje_attr(C))
     hero_acc = acciones(F, C)["hero"]
     botones = "".join(_enlace_accion(a, "btn" if i == 0 else "btn suave") for i, a in enumerate(hero_acc))
-    nav = ('<nav aria-label="Secciones"><a href="#carta">Carta</a><a href="#ambiente">Ambiente</a>'
-           '<a href="#reservar">Reservar</a><a href="#visitanos">Visítanos</a></nav>')
+    nav = nav_elegante()
     return f'''<header class="hero" id="inicio" style="--c:{mas_larga};--foco:{foco}">
-<div class="hero-fondo" aria-hidden="true" style="--lqip:url({esc["lqip"]})"><picture>{"".join(fuentes)}{img}</picture><div class="velo"></div><div class="luz"></div><div class="grano"></div><canvas class="brasas"></canvas></div>
+<div class="hero-fondo" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div>{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
 <div class="hero-barra"><a class="marca" href="#inicio" aria-label="{e_(nombre)}, inicio">{e_(nombre)}</a><div class="barra-der">{nav}<button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
 <div class="hero-cuerpo"><div class="hero-titulo"><p class="sobre">{e_(N["cocina"])} · {e_(N["ciudad"])}</p>
 <h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1></div>
 <div class="hero-base"><p class="lema">{e_(N["lema"])}</p>
 <div class="hero-lado"><div class="acciones">{botones}</div>
-<p class="estado" data-open><span data-open-text>Ver horario</span></p></div></div></div>
+{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}</div></div></div>
 </header>'''
 
 
@@ -191,6 +235,20 @@ def carta(F, C):
 <div class="paneles">{paneles}</div></div></section>'''
 
 
+def carta_indice(F, C):
+    """Carta con todas las categorías a la vista, una tras otra, con un índice pegado al lado (escritorio) o arriba (móvil) que marca dónde se está."""
+    T = F["textos"]
+    indice = "".join(f'<li><a href="#cat-{e_(c["id"])}" data-cat-link="{e_(c["id"])}">{e_(c.get("chip") or c["titulo"])}</a></li>' for c in F["carta"])
+    cats = "".join(
+        f'<section class="cat-i" id="cat-{e_(c["id"])}" aria-labelledby="h-{e_(c["id"])}"><h3 class="cat-i-titulo" id="h-{e_(c["id"])}">{e_(c["titulo"])}</h3>'
+        + (f'<p class="cat-i-nota">{e_(c["nota"])}</p>' if c.get("nota") else "")
+        + f'<ul class="lista">{"".join(_plato(F, C, p) for p in c["platos"])}</ul></section>' for c in F["carta"])
+    return f'''<section class="carta carta-indice" id="carta" aria-labelledby="t-carta"><div class="caja">
+<div class="carta-lado"><div class="carta-cab"><p class="sobretitulo">{e_(T["carta_sobretitulo"])}</p><h2 id="t-carta">{e_(T["carta_titulo"])}</h2></div>
+<nav class="indice" aria-label="Categorías de la carta"><ol>{indice}</ol></nav></div>
+<div class="carta-cuerpo-i">{cats}</div></div></section>'''
+
+
 # ------------------------------------------------------------------ ambiente
 def ambiente(F, C):
     T = F["textos"]
@@ -198,7 +256,7 @@ def ambiente(F, C):
     for i, g in enumerate(F["galeria"]):
         clase = "abcd"[i % 4]
         a = C["fotos"][g["foto"]]
-        pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 58vw, 78vw")
+        pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 58vw, 78vw").replace("<picture>", f"<picture{paralaje_attr(C, 3)}>", 1)
         figs.append(f'<figure class="{clase} rv" style="--c:{a["color"]};--d:{i * 90}ms"><div class="marco">{pic}</div><figcaption>{e_(g["pie"])}</figcaption></figure>')
     return f'''<section class="ambiente" id="ambiente" aria-labelledby="t-amb"><div class="caja"><h2 id="t-amb" class="rv">{e_(T["ambiente_titulo"])}</h2>
 <div class="galeria" role="group" aria-label="Fotos del local" tabindex="0">{"".join(figs)}</div></div></section>'''
@@ -249,6 +307,7 @@ def visita(F, C):
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja rej-2">
 <div class="rv"><h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{e_(N["direccion"])}<br>{e_(N["ciudad"])}, {e_(pais)}</address>
 <p class="estado" data-open><span data-open-text>Ver horario</span></p>
+{valoracion.pieza(F, C, "en-visita")}{valoracion.nota_fuente(F)}
 <div class="botones"><a class="btn" href="{como}" target="_blank" rel="noopener">{ICONO_MAPA} Cómo llegar</a><a class="btn suave" href="{wa}" target="_blank" rel="noopener">{ICONO_WA} Escribirnos</a></div></div>
 <ul class="horas rv" style="--d:120ms" aria-label="Horario">{filas}</ul></div></section>'''
 
@@ -325,6 +384,9 @@ def _extras(F, C):
 
 PERSONALIDAD = {
     "portada": portada,
+    "portadas": {"luz_brasas": portada},
+    "cartas": {"pestanas_lista": carta, "indice_columnas": carta_indice},
+    "tras_portada": banda_texto,
     "secciones": {"idea": idea, "carta": carta, "ambiente": ambiente, "reserva": reserva, "visita": visita, "cierre": cierre_muestra},
     "extras": _extras,
     "css_extra": CSS_EXTRA,

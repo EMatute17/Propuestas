@@ -1,0 +1,15 @@
+/* galería bento: mosaico de recuadros de distinto tamaño que encajan entre sí */
+.tema-urbano .fotos .caja{grid-template-columns:minmax(0,1fr);gap:2rem}
+body[data-galeria="bento"] .galeria{display:grid;grid-template-areas:none;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:9.6rem;grid-auto-flow:dense;gap:.7rem;width:100%;max-width:none;margin:2.4rem 0 0;padding:0;overflow:visible}
+body[data-galeria="bento"] .galeria figure{position:relative;flex:none;grid-area:auto;max-width:none;overflow:hidden;border:0;border-radius:var(--r-tarjeta);background:var(--c,#222);rotate:0deg}
+body[data-galeria="bento"] .galeria figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+body[data-galeria="bento"] .galeria figure:nth-child(4){grid-row:span 2}
+body[data-galeria="bento"] .galeria figure:nth-child(6){grid-column:span 2}
+body[data-galeria="bento"] .galeria figure .marco{position:absolute;top:0;right:0;bottom:0;left:0;display:block}
+body[data-galeria="bento"] .galeria figure .marco::before{display:none}
+body[data-galeria="bento"] .galeria figure .marco picture,body[data-galeria="bento"] .galeria figure .marco img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+body[data-galeria="bento"] .galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.2rem .8rem .7rem;background:linear-gradient(to top,rgba(5,10,14,.9),rgba(5,10,14,0));color:var(--crema);font-size:.95rem;font-weight:700;letter-spacing:.03em;line-height:1.2}
+@media (hover:hover){body[data-galeria="bento"] .galeria img{transition:transform .7s var(--ease)}body[data-galeria="bento"] .galeria figure:hover img{transform:scale(1.06)}}
+@media (min-width:700px){body[data-galeria="bento"] .galeria{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:12rem;gap:.9rem}}
+@media (min-width:1000px){body[data-galeria="bento"] .galeria{grid-auto-rows:14rem}}
+body[data-galeria="bento"] .js .galeria figure.rv.in,.js body[data-galeria="bento"] .galeria figure.rv.in{clip-path:none}

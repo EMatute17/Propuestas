@@ -1,0 +1,41 @@
+/* portada collage_pegatinas: fotos como polaroids pegadas con cinta que caen sobre un fondo de puntos */
+.hero-collage .hero-fondo{background:var(--tinta)}
+.hero-collage .puntos{position:absolute;top:0;right:0;bottom:0;left:0;background-image:radial-gradient(circle,rgba(255,255,255,.13) 1.3px,transparent 1.8px);background-size:15px 15px}
+.hero-collage .velo{background:linear-gradient(to top,rgba(11,9,8,.97) 0%,rgba(11,9,8,.72) 45%,rgba(11,9,8,0) 100%)}
+.hero-collage .luz{display:none}
+.collage{position:relative;z-index:1;order:5;flex:none;width:100%;height:13.5rem;margin:1.4rem 0 .4rem;pointer-events:none}
+.pol{position:absolute;left:var(--x);top:var(--y);width:var(--w,6.4rem);aspect-ratio:4/5;padding:.35rem .35rem 1.2rem;background:var(--crema);border-radius:2px;box-shadow:0 .7rem 1.4rem rgba(0,0,0,.55);rotate:var(--r)}
+.pol picture{display:block;width:100%;height:100%}
+.pol img{display:block;width:100%;height:100%;object-fit:cover}
+.pol::after{content:"";position:absolute;top:-.55rem;left:50%;width:3.2rem;height:1.1rem;margin-left:-1.6rem;background:rgba(255,205,120,.82);rotate:-3deg;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.pol:nth-child(1){--x:2%;--y:8%;--r:-8deg}
+.pol:nth-child(2){--x:27%;--y:0%;--r:5deg;--w:6.7rem}
+.pol:nth-child(3){--x:52%;--y:12%;--r:-4deg}
+.pol:nth-child(4){--x:74%;--y:3%;--r:8deg;--w:6.2rem}
+.pol:nth-child(5){display:none}
+.js .pol{translate:0 -70vh;opacity:0}
+.js.listo .pol{animation:pcl-cae .95s cubic-bezier(.34,1.5,.5,1) forwards,pcl-flota 7s ease-in-out 1.6s infinite alternate;animation-delay:calc(var(--i) * 120ms + 150ms),calc(var(--i) * 120ms + 1.6s);animation-play-state:running,var(--anim-estado,running)}
+@keyframes pcl-cae{from{translate:0 -70vh;opacity:0}15%{opacity:1}to{translate:0 0;opacity:1}}
+@keyframes pcl-flota{from{translate:0 0}to{translate:0 -.45rem}}
+.hero-collage .pegatina{top:auto;bottom:auto}
+@media (min-width:700px){.collage{height:17rem}.pol{--w:8.2rem}.pol:nth-child(2){--w:8.6rem}.pol:nth-child(4){--w:7.8rem}.pol:nth-child(5){display:block;--x:88%;--y:14%;--r:-6deg;--w:7.4rem}}
+@media (min-width:1000px){
+  .collage{position:absolute;order:0;margin:0;left:auto;right:0;top:5.5rem;bottom:4rem;height:auto;width:50%}
+  .pol{--w:13rem}
+  .pol:nth-child(1){--x:4%;--y:5%;--r:-7deg}
+  .pol:nth-child(2){--x:42%;--y:0%;--r:4deg;--w:14rem}
+  .pol:nth-child(3){--x:64%;--y:33%;--r:-3deg;--w:12.5rem}
+  .pol:nth-child(4){--x:16%;--y:42%;--r:6deg;--w:13.5rem}
+  .pol:nth-child(5){--x:44%;--y:54%;--r:-6deg;--w:11.5rem}
+  .hero-collage .hero-cuerpo{padding-right:calc(50% + 1rem)}
+  .hero-collage .hero-base{grid-template-columns:minmax(0,1fr);gap:1.1rem}
+  .hero-collage .hero-lado{grid-template-columns:minmax(0,1fr);justify-items:start}
+  .hero-collage .hero-datos{justify-content:flex-start}
+  .hero-collage .acciones{width:100%}
+  .hero-collage .acciones .btn{flex:1 1 auto}
+  .hero-collage h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .5 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh),11rem)}
+}
+@media (hover:hover) and (pointer:fine){.pol{pointer-events:auto;transition:rotate .35s var(--ease),scale .35s var(--ease)}.pol:hover{rotate:0deg;scale:1.07;z-index:4}}
+@media (max-height:759px) and (max-width:699px){.hero-collage .pegatina{display:none}}
+@media (max-height:520px) and (min-width:560px){.collage,.hero-collage .pegatina{display:none}.hero-collage .hero-cuerpo{padding-right:var(--pad)}}
+@media (prefers-reduced-motion:reduce){.js .pol{translate:0 0;opacity:1}}

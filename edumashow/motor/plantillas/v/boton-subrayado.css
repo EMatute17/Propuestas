@@ -1,0 +1,10 @@
+/* botones de texto subrayado: sin caja, con una flecha que avanza al pasar el puntero */
+.tema-elegante{--b-tx:var(--crema);--b-ac:var(--brasa)}
+.tema-elegante :is(.tarjeta,.visita,.panel-edu){--b-tx:var(--tinta);--b-ac:var(--brasa-papel)}
+.tema-urbano{--b-tx:var(--crema);--b-ac:var(--brasa)}
+.tema-urbano .panel-edu{--b-tx:var(--tinta);--b-ac:var(--brasa-papel)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave){background:transparent;color:var(--b-tx);border:0;border-bottom:3px solid var(--b-ac);border-radius:0;padding:0 .2rem;justify-content:flex-start;font-size:1.1rem}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave)::after{content:"\2192";flex:none;margin-left:.3rem;font-size:1.35em;line-height:1;transition:transform var(--dur) var(--ease)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn.suave{border-color:transparent;padding:0 .2rem;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.35em}
+@media (hover:hover){:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave):hover{background:transparent;transform:none}:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave):hover::after{transform:translateX(.4rem)}:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn.suave:hover{background:transparent}}
+.tarjeta .btn:not(.suave),.panel-edu .btn:not(.suave){width:100%}

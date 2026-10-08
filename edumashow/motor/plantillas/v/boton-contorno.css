@@ -1,0 +1,9 @@
+/* botones de contorno: el principal es una línea del color de marca que se rellena al pasar el puntero */
+.tema-elegante{--b-tx:var(--crema);--b-ac:var(--brasa);--b-sobre:var(--sobre-brasa)}
+.tema-elegante :is(.tarjeta,.visita,.panel-edu){--b-tx:var(--tinta);--b-ac:var(--brasa-papel);--b-sobre:var(--papel)}
+.tema-urbano{--b-tx:var(--crema);--b-ac:var(--brasa);--b-sobre:var(--sobre-brasa)}
+.tema-urbano .panel-edu{--b-tx:var(--tinta);--b-ac:var(--brasa-papel);--b-sobre:var(--papel)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave){background:transparent;color:var(--b-tx);border:2px solid var(--b-ac)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave) svg{color:var(--b-ac)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn.suave{border-width:1px}
+@media (hover:hover){:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave):hover{background:var(--b-ac);color:var(--b-sobre)}:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:not(.suave):hover svg{color:inherit}}

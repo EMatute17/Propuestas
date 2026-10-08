@@ -22,7 +22,7 @@ from PIL import Image, ImageDraw, ImageFont
 from urllib.parse import unquote
 
 from edumashow.motor import dinero, huella as _huella, pedido as _pedido, piezas, tipografia
-from edumashow.motor.generar import hash_paquete
+from edumashow.motor.generar import ORIGEN_ACTIVOS, hash_paquete
 from . import estatico
 
 VERSION_GATE = "0.3.0"
@@ -225,12 +225,13 @@ def juzgar_pedido(ficha, cfg, datos, muestra):
     return ok, f"{len(datos['lineas'])} líneas de prueba ({n} productos, total {total_txt}) en {len(datos['dispositivos'])} dispositivos; destino {'la agencia (prueba)' if muestra else 'el restaurante'}", fl
 
 # ------------------------------------------------------------------ verificación completa
-def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimiento=True, dir_informe=None):
+def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimiento=True, dir_informe=None, variedad_bloquea=True, fotos_de_prueba=False):
     ficha = leer(ruta_ficha)
     cfg = leer(os.path.join(RAIZ, "config.json"))
     reglas = leer(os.path.join(RAIZ, "nucleo", "reglas.json"))
     excep = ficha.get("excepciones_gate", {})
     I = Informe(excep)
+    prueba = []   # comprobaciones de calidad de fotos que fallaron y no bloquean porque se pidio el modo prueba
     dir_informe = dir_informe or os.path.join(RAIZ, "informes", ficha["id"])
     os.makedirs(dir_informe, exist_ok=True)
     muestra = ficha["modo"] == "muestra"
@@ -255,21 +256,35 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         r = estatico.muestra(sitio, ficha, cfg["agencia"]["whatsapp"])
         I.add("G-MUESTRA", "La muestra se rotula, deja pedir su retirada y tiene una sola acción de contratación", ["R-MUE-01", "R-MUE-02", "R-ETI-07", "R-MUE-05"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.fotos(sitio, ficha)
-    I.add("G-FOTOS", "Procedencia y licencia de cada imagen", ["R-DAT-04"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    I.add("G-FOTOS", "Procedencia y licencia de cada imagen; ninguna de redes sociales salvo el logo", ["R-DAT-04", "R-FOT-01"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    r = estatico.valoracion(sitio, ficha)
+    I.add("G-VALORACION", "Calificación de Google solo si es real y de 4,0 o más, con enlace y fecha, sin comentarios", ["R-VAL-01", "R-VAL-02", "R-DAT-05"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
+    r = estatico.fotos_calidad(sitio, ficha, ORIGEN_ACTIVOS)
+    grav_f = "asesor" if fotos_de_prueba else "bloqueo"
+    res_f = "WARN" if r["resultado"] == "PASS" and r["avisos"] else r["resultado"]
+    I.add("G-FOTOS-CALIDAD", "Calidad máxima de los originales de las fotos" + (" (MODO PRUEBA: no bloquea y el resultado no es entregable)" if fotos_de_prueba else ""),
+          ["R-FOT-02"], grav_f, res_f, r["evidencia"], r["detalle"] + r["avisos"])
+    if fotos_de_prueba and r["resultado"] == "FAIL":
+        prueba.append("G-FOTOS-CALIDAD")
     r = estatico.manifiesto(sitio, reglas["version"], hash_paquete)
     I.add("G-MANIFIESTO", "Manifiesto completo y hash del paquete", ["R-PRO-02", "R-PRO-06"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     h = man["huella_diseno"]
-    registro = _huella.cargar_registro(os.path.join(AQUI, "registro_huellas.json"))
-    otras, cumple = _huella.comparar(ficha["id"], h, registro)
-    rot = _huella.rotacion(ficha["id"], h, registro)
-    previas = _huella.anteriores(ficha["id"], registro)
-    ev_rot = f"titular {h['display']} ({h['clase_tipografica']}); rotación frente a las {min(len(previas), _huella.ULTIMAS_FUENTE)} webs anteriores: " + ("sin repeticiones" if not rot else "; ".join(rot))
-    if not otras:
-        I.add("G-HUELLA", "Unicidad de diseño y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03"], "bloqueo", "PASS" if not rot else "FAIL",
-              "no hay otras webs registradas con las que comparar (primera del registro); " + ev_rot, rot)
+    registro = _huella.cargar_registro(_huella.ruta_registro())
+    otras, cumple, copias = _huella.comparar(ficha["id"], h, registro)
+    rot = _huella.rotacion(ficha["id"], h, registro, familia=h.get("familia"))
+    previas = [v for v in _huella.anteriores(ficha["id"], registro) if _huella.normalizar(v)["familia"] == h.get("familia")]
+    ev_rot = f"titular {h['display']} ({h['clase_tipografica']}); rotación frente a las {min(len(previas), _huella.ULTIMAS_FUENTE)} webs anteriores de su familia: " + ("sin repeticiones" if not rot else "; ".join(rot))
+    # en un lote grande la variedad entre webs no se juzga web a web (con variedad_bloquea=False pasa a aviso): se decide para el lote entero
+    grav_h = "bloqueo" if variedad_bloquea else "asesor"
+    suma = sum(_huella.PESOS.values())
+    comp_txt = f"{h.get('familia')}: portada {h['portada']}, carta {h['carta']}, galería {h.get('galeria')}, ornamento {h.get('ornamento')}, botones {h.get('boton')}, animaciones {h.get('animaciones')}"
+    detalle_h = [f"{k}: distancia {d} de {suma}" for k, d in otras] + [f"copia exacta de {k}" for k in copias] + rot
+    if not otras and not copias:
+        I.add("G-HUELLA", "Unicidad de diseño (composición, no solo colores) y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03", "R-VAR-04"], grav_h, "PASS" if not rot else "FAIL",
+              "no hay otras webs registradas con las que comparar (primera del registro); " + comp_txt + "; " + ev_rot, rot)
     else:
-        I.add("G-HUELLA", "Unicidad de diseño y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03"], "bloqueo", "PASS" if (cumple and not rot) else "FAIL",
-              f"distancia mínima {min(d for _, d in otras)} de 6 (se exigen {_huella.MINIMO_DISTINTAS}); " + ev_rot, [f"{k}: {d} dimensiones distintas" for k, d in otras] + rot)
+        I.add("G-HUELLA", "Unicidad de diseño (composición, no solo colores) y rotación de la tipografía de titular", ["R-VAR-01", "R-VAR-03", "R-VAR-04"], grav_h, "PASS" if (cumple and not rot) else "FAIL",
+              f"distancia mínima {min([d for _, d in otras] or [suma])} de {suma} frente a las últimas {len(otras)} webs (se exigen {_huella.UMBRAL}); {len(copias)} copias exactas; " + comp_txt + "; " + ev_rot, detalle_h)
     r = estatico.paleta(sitio)
     I.add("G-PALETA", "Pares de colores de lectura con contraste suficiente (4,5 a 1; 3 a 1 en anillos de foco)", ["R-LEG-01", "R-IDE-03", "R-IDE-06"], "bloqueo", r["resultado"], r["evidencia"], r["detalle"])
     r = estatico.antojo(sitio, ficha)
@@ -367,6 +382,8 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         links = repr_[0]["estructura"]["enlaces"] if repr_ else []
         K = ficha.get("contacto", {})
         redes_ok = {r["url"] for r in K.values() if isinstance(r, dict) and r.get("url")}
+        if (ficha.get("valoracion") or {}).get("url"):
+            redes_ok.add(ficha["valoracion"]["url"])   # el enlace de la calificación a la ficha de Google Maps
         tel_ok = ("tel:" + K["telefono"]) if K.get("telefono") else None
         malos = []
         if tel_ok and tel_ok not in links: malos.append("la ficha tiene teléfono y la página no tiene un enlace para llamar")
@@ -510,6 +527,17 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
                 elif not pn["cerrar"] or pn["cerrar"]["tag"] != "a" or not sj.get("panelCerrado"): fl.append("el panel no se puede cerrar sin JavaScript")
             I.add("G-SINJS", "Sin JavaScript la página se ve completa: fotos, textos, panel y sin movimiento sin pausa", ["R-LEG-06", "R-REN-04", "R-SIG-01"], "bloqueo", "PASS" if not fl else "FAIL",
                   f"{sj['imagenes']} fotos revisadas con el JavaScript apagado en un teléfono de 390 px" + ("; el panel de la muestra abre y cierra por enlace" if muestra else ""), fl)
+        # ---- paquete de animaciones: cada módulo declarado tiene que haber arrancado en el navegador (R-IDE-08)
+        comp = (man.get("decisiones_de_diseno") or {}).get("composicion") or {}
+        mods = comp.get("animaciones_modulos")
+        if mods:
+            fl = [] if len(mods) >= 3 else [f"el paquete lleva solo {len(mods)} módulos y se exigen al menos 3"]
+            for d in repr_:
+                ok = {x for x in (d["pagina"].get("animOk") or "").split(",") if x}
+                if ok != set(mods):
+                    fl.append(f"{d['id']}: arrancaron {sorted(ok)} y el paquete declara {sorted(mods)}")
+            I.add("G-ANIMACION", f"Paquete de animaciones {comp['paquete']['nombre']}: cada módulo arrancó en el navegador", ["R-IDE-08"], "bloqueo", "PASS" if not fl else "FAIL",
+                  f"{len(mods)} módulos ({', '.join(mods)}) en {len(repr_)} dispositivos; {comp['paquete'].get('descripcion', '')}", fl)
         # ---- resolución de imágenes
         nat = {im["clave"]: im for im in man["imagenes"]}
         amp = []
@@ -521,7 +549,11 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
                 f = max(bw / n["ancho_nativo"], bh / n["alto_nativo"]) if im["cubre"] else bw / n["ancho_nativo"]
                 if f > 1.25: amp.append((round(f, 2), f"{d['id']}: {im['clave']} necesita x{round(f, 2)} su resolución original ({n['ancho_nativo']}x{n['alto_nativo']})"))
         amp.sort(reverse=True)
-        I.add("G-RESOLUCION", "Resolución de las fotos suficiente para cada pantalla", ["R-REN-02"], "defecto", "PASS" if not amp else "FAIL", f"{len(amp)} fotos mostradas ampliadas más de un 25 por ciento en {len(repr_)} dispositivos", [x for _, x in amp[:8]])
+        # sin excepciones (R-FOT-02): una foto que se ve ampliada se sustituye por un original mejor
+        I.add("G-RESOLUCION", "Resolución de las fotos suficiente para cada pantalla" + (" (MODO PRUEBA: no bloquea y el resultado no es entregable)" if fotos_de_prueba else ""), ["R-REN-02", "R-FOT-02"], grav_f,
+              "PASS" if not amp else "FAIL", f"{len(amp)} fotos mostradas ampliadas más de un 25 por ciento en {len(repr_)} dispositivos", [x for _, x in amp[:8]])
+        if fotos_de_prueba and amp:
+            prueba.append("G-RESOLUCION")
         # ---- visual
         hoja = hoja_contacto(dir_informe, devs, os.path.join(dir_informe, "hoja_dispositivos.jpg"))
         I.add("G-VISUAL", "Revisión visual sobre el render real", ["R-PRO-05", "R-MED-04"], "asesor", "REVISAR", f"{len(devs)} capturas en {os.path.relpath(hoja, RAIZ) if hoja else 'sin hoja'}; falta la revisión humana (Eduardo) y las pruebas con personas")
@@ -553,10 +585,12 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
     # ---- veredicto
     bl = I.bloqueantes()
     veredicto = "APTO" if not bl else "NO APTO"
+    if not bl and prueba:
+        veredicto = "SOLO PRUEBA"   # todo lo demás pasa, pero las fotos no cumplen la regla de calidad: no se puede entregar
     informe = {
         "gate": VERSION_GATE, "reglas": reglas["version"], "fecha": _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "id": ficha["id"], "nombre": ficha["negocio"]["nombre"], "modo": ficha["modo"], "paquete_sha256": man["paquete_sha256"],
-        "veredicto_tecnico": veredicto, "bloqueantes": [b["id"] for b in bl],
+        "veredicto_tecnico": veredicto, "bloqueantes": [b["id"] for b in bl], "solo_prueba": sorted(set(prueba)),
         "estados": {"tecnico": veredicto, "revision_visual": "pendiente: capturas generadas, falta la revisión de una persona", "aprobacion_de_eduardo": "pendiente", "entrega": "pendiente"},
         "decisiones_de_diseno": man.get("decisiones_de_diseno"),
         "resultados": I.items, "dispositivos": D["dispositivos"] if D else [], "contraste": resumen_contraste, "rendimiento": perf, "peso": D["peso"] if D else None,
@@ -572,7 +606,7 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
         json.dump(informe, f, ensure_ascii=False, indent=1)
     escribir_md(informe, ficha, os.path.join(dir_informe, "informe.md"))
     if veredicto == "APTO" and D and not rapido:
-        _huella.registrar(ficha["id"], h, os.path.join(AQUI, "registro_huellas.json"))
+        _huella.registrar(ficha["id"], h, _huella.ruta_registro())
     return informe
 
 
@@ -580,6 +614,8 @@ def escribir_md(inf, ficha, ruta):
     L = []
     L.append(f"# Informe del Gate: {inf['nombre']} ({inf['id']})\n")
     L.append(f"- **Veredicto técnico: {inf['veredicto_tecnico']}**" + (f" (bloquean: {', '.join(inf['bloqueantes'])})" if inf["bloqueantes"] else ""))
+    if inf.get("solo_prueba"):
+        L.append(f"- **NO ENTREGABLE:** esta verificación se hizo en modo prueba y no cumple la regla de calidad de las fotos ({', '.join(inf['solo_prueba'])}). Sirve para probar el resto, no para entregar.")
     L.append(f"- Fecha: {inf['fecha']} | Gate {inf['gate']} | Reglas {inf['reglas']}")
     L.append(f"- Paquete (SHA-256): `{inf['paquete_sha256']}`")
     L.append("- Estados: técnico = " + inf["estados"]["tecnico"] + "; revisión visual = " + inf["estados"]["revision_visual"] + "; aprobación de Eduardo = pendiente; entrega = pendiente\n")
@@ -654,6 +690,17 @@ def lineas_decisiones(dd):
     L.append("| Pareja | Clase | Tonos que encajan | Puntos | Probada en el Gate | Rotación | Caracteres que faltan |\n|---|---|---|---|---|---|---|")
     for f in ti["ranking"]:
         L.append(f"| {f['clave']} | {f['clase']} | {', '.join(f['tonos_que_encajan']) or '-'} | {f['puntos']} | {'sí' if f['probada'] else 'no'} | {'; '.join(f['rotacion']) or 'sin repetición'} | {f['faltan_caracteres'] or '-'} |")
+    co = dd.get("composicion")
+    if co:
+        pk = co["paquete"]
+        L.append(f"\n**Composición ({co['elegidas'] and dd['huella']['familia']}).** Cada dimensión se elige del catálogo según los rasgos del restaurante ({', '.join(sorted(co['rasgos']))}) y la rotación frente a las últimas webs.\n")
+        L.append("| Dimensión | Elegida | Motivo |\n|---|---|---|")
+        for k, v in co["elegidas"].items():
+            L.append(f"| {k} | {v} | {co['motivos'].get(k, '')} |")
+        L.append(f"| forma y movimiento | {co['forma']} y {co['movimiento']} | por el carácter del restaurante y del paquete |")
+        L.append(f"\nPaquete de animaciones **{pk['nombre']}**: {pk.get('descripcion', '')}. Módulos: {', '.join(co['animaciones_modulos'])}.")
+        if co.get("ajustes_por_variedad"):
+            L.append("\nAjustes por variedad: " + "; ".join(co["ajustes_por_variedad"]) + ".")
     if fo["registros"]:
         L.append(f"\n**Fotos por antojo** (juicio visual {int(fo['pesos']['juicio'] * 100)} % y medidas técnicas {int(fo['pesos']['tecnica'] * 100)} %; se usa el orden: {'sí' if fo['usa_el_orden'] else 'no'}).\n")
         L.append("| Foto | Puntos | Juicio visual | Técnica | Nota |\n|---|---|---|---|---|")
@@ -674,8 +721,11 @@ def main(argv=None):
     ap.add_argument("--rapido", action="store_true", help="solo los dispositivos representativos")
     ap.add_argument("--sin-navegador", action="store_true")
     ap.add_argument("--sin-rendimiento", action="store_true")
+    ap.add_argument("--informe", help="carpeta donde se escribe el informe (por defecto edumashow/informes/ID)")
+    ap.add_argument("--fotos-de-prueba", action="store_true",
+                    help="solo para pruebas: la calidad de las fotos (G-FOTOS-CALIDAD y G-RESOLUCION) no bloquea y el veredicto queda como SOLO PRUEBA, no entregable")
     a = ap.parse_args(argv)
-    inf = verificar(a.ficha, a.sitio, a.rapido, not a.sin_navegador, not a.sin_rendimiento)
+    inf = verificar(a.ficha, a.sitio, a.rapido, not a.sin_navegador, not a.sin_rendimiento, dir_informe=a.informe, fotos_de_prueba=a.fotos_de_prueba)
     for r in inf["resultados"]:
         print(f"{r['resultado']:12s} {r['id']:16s} {r['evidencia'][:110]}")
     print("VEREDICTO TÉCNICO:", inf["veredicto_tecnico"], "| bloquean:", inf["bloqueantes"] or "ninguna")

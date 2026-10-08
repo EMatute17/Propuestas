@@ -2,10 +2,10 @@
 regla de medidas, menú de tarjetas con filtros y ticket en vivo, y la tarjeta de visita.
 Cada función recibe la ficha (F) y el contexto de construcción (C) y devuelve HTML.
 Todo texto de la ficha se escapa (R-DAT-07). Comparte con la elegante la cinta de muestra, el pie, la barra móvil y el panel."""
-from . import pedido, temas
+from . import pedido, temas, valoracion
 from .imagenes import picture_html
 from .piezas import (ICONO_IG, ICONO_MAPA, ICONO_PAUSA, ICONO_PLAY, ICONO_TEL, ICONO_WA, _enlace_accion, acciones, e_, mapa_url,
-                     nombre_pais, wa_url, DIAS, rango_horario, cierre_muestra)
+                     nombre_pais, wa_url, DIAS, rango_horario, cierre_muestra, estado_y_valoracion, particulas_html, banda_texto, paralaje_attr)
 
 ICONO_TIKTOK = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M19.6 7.7a4.7 4.7 0 0 1-3.5-1.6A4.7 4.7 0 0 1 '
                 '14.9 3h-3.2v12.6a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.8a5.9 5.9 0 0 0-.8-.1 5.8 5.8 0 1 0 5.8 5.8V9.2a7.9 7.9 0 0 0 4.7 1.5V7.7Z"/></svg>')
@@ -59,11 +59,11 @@ def _titular(nombre):
     return "".join(lineas), max(len(x) for x in temas.lineas_titular(nombre))
 
 
-def _nav(F):
+def _nav(F, C):
     T = F.get("textos", {})
     destinos = {"carta": ("#carta", T.get("nav_carta", "Menú")), "regla": ("#regla", T.get("nav_regla", "Picadas")),
                 "fotos": ("#fotos", T.get("nav_fotos", "Fotos")), "visita": ("#visitanos", "Visítanos")}
-    return "".join(f'<a href="{h}">{e_(t)}</a>' for s in F["estilo"]["orden"] if s in destinos for h, t in [destinos[s]])
+    return "".join(f'<a href="{h}">{e_(t)}</a>' for s in C["comp"]["orden"] if s in destinos for h, t in [destinos[s]])
 
 
 def _estado_horario(F, C):
@@ -101,19 +101,24 @@ def portada(F, C):
     botones = "".join(_enlace_accion(a, "btn" if i == 0 else "btn suave") for i, a in enumerate(acciones(F, C)["hero"]))
     lema_en = f'<span class="lema-en" lang="en">{e_(N["lema_en"])}</span>' if N.get("lema_en") else ""
     return f'''<header class="hero" id="inicio" style="--c:{mayor_linea};--ct:{total}">
-<div class="hero-fondo" aria-hidden="true">{_mural(F, C)}<div class="velo"></div><div class="luz"></div><div class="grano"></div><canvas class="brasas"></canvas></div>
-<div class="hero-barra">{marca}<div class="barra-der"><nav aria-label="Secciones">{_nav(F)}</nav><button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
+<div class="hero-fondo" aria-hidden="true">{_mural(F, C)}<div class="velo"></div><div class="luz"></div><div class="grano"></div>{particulas_html(C)}</div>
+<div class="hero-barra">{marca}<div class="barra-der"><nav aria-label="Secciones">{_nav(F, C)}</nav><button type="button" class="pausa" data-pausa aria-pressed="false">{ICONO_PAUSA}{ICONO_PLAY}<span data-pausa-texto>Pausar animación</span></button></div></div>
 {_pegatina(F, C)}
 <div class="hero-cuerpo"><div class="hero-titulo"><p class="sobre">{e_(N["cocina"])} · {e_(N["ciudad"])}</p>
 <h1>{titular}</h1></div>
 <div class="hero-base"><p class="lema">{e_(N["lema"])}{lema_en}</p>
 <div class="hero-lado"><div class="acciones">{botones}</div>
-{_estado_horario(F, C)}</div></div></div>
+{estado_y_valoracion(F, C, _estado_horario(F, C))}</div></div></div>
 </header>'''
 
 
 def marquesina(F, C):
-    """Banda que corre con lo que ofrece la casa. Solo usa los nombres de la carta, la cocina y la ciudad: nada inventado."""
+    """Banda que corre con lo que ofrece la casa. Solo usa los nombres de la carta, la cocina y la ciudad: nada inventado.
+    Solo está si el paquete de animaciones lleva el módulo marquesina; si lleva texto_corre, la banda es la de texto grande."""
+    if "marquesina" not in C["modulos"]:
+        return banda_texto(F, C)
+    if C["comp"]["portada"] == "cartel_rotulo":
+        return ""   # esa portada lleva su propia cinta que corre
     N = F["negocio"]
     palabras = F.get("textos", {}).get("marquesina") or [c["titulo"] for c in F["carta"]] + [N["cocina"], N["ciudad"]]
     una = "".join(f"<span>{e_(w)}</span>" for w in palabras)
@@ -199,7 +204,7 @@ def fotos(F, C):
     figs = []
     for i, g in enumerate(_galeria(F, C)):
         a = C["fotos"][g["foto"]]
-        pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 17vw, 30vw")
+        pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 17vw, 30vw").replace("<picture>", f"<picture{paralaje_attr(C, 3)}>", 1)
         figs.append(f'<figure class="rv" data-tilt style="--c:{a["color"]};--d:{i * 70}ms;--g:{(-1.4, 1.1, -0.7, 1.5, -1.1, 0.8)[i % 6]}deg"><div class="marco">{pic}</div><figcaption>{e_(g["pie"])}</figcaption></figure>')
     ig = F["contacto"].get("instagram")
     boton = f'<a class="btn suave" href="{ig["url"]}" target="_blank" rel="noopener">{ICONO_IG} Ver más en Instagram</a>' if ig else ""
@@ -230,6 +235,9 @@ def visita(F, C):
         filas = "".join(f'<li data-dia="{k}"><span>{n}</span><span>{rango_horario(F["horario"].get(k, []))}</span></li>' for k, n in DIAS)
         horas = (f'<div class="dato"><h3>Horario</h3><p class="estado" data-open><span data-open-text>Ver horario</span></p>'
                  f'<ul class="horas" aria-label="Horario">{filas}</ul></div>')
+    calificacion = ""
+    if F.get("valoracion"):
+        calificacion = f'<div class="dato"><h3>Calificación en Google</h3>{valoracion.pieza(F, C, "en-visita")}{valoracion.nota_fuente(F)}</div>'
     reparto = ""
     if K.get("reparto"):
         nombres = " y ".join(e_(r["nombre"]) for r in K["reparto"])
@@ -244,7 +252,7 @@ def visita(F, C):
     return f'''<section class="visita" id="visitanos" aria-labelledby="t-vis"><div class="caja">
 <div class="v-izq rv">{ICONO_PIN}<h2 id="t-vis">{e_(T["visita_titulo"])}</h2><address>{e_(N["direccion"])}<br>{linea_pais}</address>
 <div class="vis-botones">{"".join(botones)}</div></div>
-<div class="datos rv" data-tilt style="--d:120ms">{horas}{reparto}{bloque_redes}</div></div></section>'''
+<div class="datos rv" data-tilt style="--d:120ms">{horas}{calificacion}{reparto}{bloque_redes}</div></div></section>'''
 
 
 def _extras(F, C):
@@ -253,6 +261,8 @@ def _extras(F, C):
 
 PERSONALIDAD = {
     "portada": portada,
+    "portadas": {"mural_columnas": portada},
+    "cartas": {"chips_tablero": carta, "lista_cartel": carta},
     "tras_portada": marquesina,
     "secciones": {"como": pedido.como_pedir, "carta": carta, "regla": regla, "fotos": fotos, "visita": visita, "cierre": cierre_muestra},
     "extras": _extras,

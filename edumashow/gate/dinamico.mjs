@@ -114,6 +114,7 @@ const medirDOM = (ignorarSticky) => {
   const enSticky = (e) => { for (let p = e; p && p !== document.body; p = p.parentElement) { if (getComputedStyle(p).position === 'sticky') return true; } return false; };
   const out = { vw, vh, dpr, scrollW: document.documentElement.scrollWidth, scrollH: document.documentElement.scrollHeight };
   out.desborde = out.scrollW - vw;
+  out.animOk = document.documentElement.getAttribute('data-anim-ok') || '';   // módulos del paquete de animaciones que arrancaron
 
   // ---- primera pantalla (hay que medirla con scroll en 0)
   const hero = document.querySelector('.hero'), h1 = hero && hero.querySelector('h1'), cta = hero && hero.querySelector('.acciones .btn');
@@ -486,8 +487,8 @@ if (puede('movimiento')) {
     infinitas: document.getAnimations().filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().iterations === Infinity).length,
     corriendo: document.getAnimations().filter((a) => a.playState === 'running').length,
     largas: document.getAnimations().filter((a) => a.playState === 'running' && a.effect && a.effect.getComputedTiming().endTime > 5000).length,
-    brasas: (() => { const c = document.querySelector('.brasas'); if (!c) return -1; const x = c.getContext('2d'); const dts = x.getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < dts.length; i += 4 * 17) if (dts[i] > 8) n++; return n; })(),
-    letras: Array.from(document.querySelectorAll('.hero h1 .l')).every((l) => parseFloat(getComputedStyle(l).opacity) === 1),
+    brasas: (() => { const c = document.querySelector('canvas.particulas, .brasas'); if (!c) return -1; const x = c.getContext('2d'); const dts = x.getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < dts.length; i += 4 * 17) if (dts[i] > 8) n++; return n; })(),
+    letras: Array.from(document.querySelectorAll('.hero h1 .l, .hero h1 [data-anim-titulo]')).every((l) => parseFloat(getComputedStyle(l).opacity) === 1 && ['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(getComputedStyle(l).transform)),
   });
   const A = await nuevaPagina(d);
   R.movimiento.normal = await A.pag.evaluate(medirMov);

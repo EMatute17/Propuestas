@@ -63,6 +63,15 @@ def grano_datauri():
     return "url(\"data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ") + "\")"
 
 
+def fibras_datauri():
+    """Fibras de papel: ruido de baja frecuencia en dos capas, oscuro y transparente, para la textura papel de las secciones claras."""
+    svg = ("<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='f'>"
+           "<feTurbulence type='fractalNoise' baseFrequency='.035 .6' numOctaves='3' seed='4' stitchTiles='stitch'/>"
+           "<feColorMatrix values='0 0 0 0 .25 0 0 0 0 .18 0 0 0 0 .1 0 0 0 .32 0'/></filter>"
+           "<rect width='100%' height='100%' filter='url(#f)'/></svg>")
+    return "url(\"data:image/svg+xml," + urllib.parse.quote(svg, safe="/:=' ") + "\")"
+
+
 def favicon_datauri(inicial, color_fondo, color_letra, estilo="elegante"):
     if estilo == "elegante":
         letra = "font-family='Georgia,serif' font-style='italic'"

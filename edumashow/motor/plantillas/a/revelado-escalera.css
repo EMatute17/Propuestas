@@ -1,0 +1,3 @@
+/* revelado en escalera: los bloques suben con un pequeño rebote, uno tras otro */
+.js .rv{opacity:0;transform:translateY(2.4rem) scale(.96);transition:opacity .55s var(--ease) var(--d,0ms),transform .8s cubic-bezier(.34,1.5,.5,1) var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}

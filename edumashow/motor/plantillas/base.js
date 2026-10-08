@@ -37,6 +37,34 @@
     setTimeout(mostrarTodo, 4000);
   }
 
+  /* ---------- calificacion de Google: las estrellas se llenan cuando se ven ---------- */
+  var vals = qsa('.valoracion');
+  if (vals.length) {
+    var llenar = function () { vals.forEach(function (v) { v.classList.add('in'); }); };
+    if (EDU.reduce || !('IntersectionObserver' in window)) { llenar(); }
+    else {
+      var iov = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); iov.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      vals.forEach(function (v) { iov.observe(v); });
+      setTimeout(llenar, 4000);
+    }
+  }
+
+  /* ---------- módulos de animación del paquete: cada uno se registra y corre al final; los que arrancaron quedan anotados (el Gate lo comprueba) ---------- */
+  var cola = [];
+  EDU.modulo = function (nombre, fn) { cola.push([nombre, fn]); };
+  EDU.correrAnim = function () {
+    var A = F.anim || {}, ok = [];
+    cola.forEach(function (m) {
+      if ((A.modulos || []).indexOf(m[0]) < 0) return;
+      try { if (m[1]() !== false) ok.push(m[0]); } catch (e) { if (window.console && console.error) console.error(e); }
+    });
+    root.setAttribute('data-anim-ok', ok.join(','));
+    EDU.animOk = ok;
+  };
+  EDU.modulo('revelado', function () { return qsa('.rv').length > 0; });
+
   /* ---------- abierto ahora, segun la hora del restaurante ---------- */
   var DIAS = ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'];
   var NOMBRES = { lun: 'el lunes', mar: 'el martes', mie: 'el miércoles', jue: 'el jueves', vie: 'el viernes', sab: 'el sábado', dom: 'el domingo' };

@@ -1,0 +1,3 @@
+/* textura de rayas: diagonales finas sobre las secciones oscuras */
+.tema-elegante :is(.idea,.reserva,.ambiente,.cierre-muestra){background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 16px)}
+.tema-urbano :is(.regla,.fotos,.visita,.cierre-muestra){background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 2px,transparent 2px 15px)}

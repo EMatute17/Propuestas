@@ -1,0 +1,6 @@
+.banda-texto{position:relative;z-index:3;overflow:hidden;overflow:clip;padding:clamp(1.2rem,3vw,2.4rem) 0;background:var(--tinta);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.34)}
+.pista-t{display:flex;width:max-content;will-change:transform}
+.pista-t span{flex:none;padding-right:2.2rem;font-family:var(--f-display);font-size:clamp(3.2rem,11vw,9rem);line-height:1;white-space:nowrap}
+.tema-elegante .pista-t span{font-style:italic}
+.tema-urbano .pista-t span{text-transform:uppercase}
+@media (forced-colors:active){.banda-texto{color:CanvasText;-webkit-text-stroke:0}}

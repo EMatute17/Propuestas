@@ -268,6 +268,8 @@ html{scroll-padding-top:4.75rem}
 .dato .horario-texto{font-family:var(--f-display);font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.05;letter-spacing:.01em}
 .dato .aviso-datos{margin-top:.5rem;font-size:1rem;color:var(--crema-2)}
 .dato .estado{margin-bottom:.9rem}
+.dato .valoracion.en-visita{margin-top:0}
+.dato .val-fuente{color:var(--crema-2)}
 .horas{border-top:1px solid rgba(255,255,255,.2)}
 .horas li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.15rem 1rem;padding:.8rem .5rem;border-bottom:1px solid rgba(255,255,255,.2);font-size:1.05rem}
 .horas li.hoy{font-weight:800;color:var(--sobre-brasa);background:var(--brasa-2)}

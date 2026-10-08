@@ -1,0 +1,3 @@
+/* ornamento: el borde entre dos secciones de color distinto (onda, diente, arco o papel rasgado), dibujado con los colores reales de las dos */
+.divisor{display:block;height:clamp(2.2rem,5.4vw,4.6rem);margin:-1px 0;background:var(--de);line-height:0}
+.divisor svg{display:block;width:100%;height:100%;max-width:none;fill:var(--a)}

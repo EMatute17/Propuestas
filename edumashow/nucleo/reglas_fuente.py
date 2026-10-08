@@ -53,7 +53,7 @@ R("R-DAT-02", "datos", "Un dato ausente se omite o se muestra como por confirmar
   0, "bloqueo", "B", "E3", ["AL-03 pp.31,37", "UX-08 p.22", "AL-02 p.24"], ["G-DATOS"])
 R("R-DAT-03", "datos", "Cada importe del HTML, de los metadatos y del mensaje de WhatsApp coincide uno a uno con la ficha. Un solo formato de moneda y decimales por página. La web no añade condiciones, depósitos ni descuentos que la ficha no tenga.",
   0, "bloqueo", "ambos", "E3", ["AL-04 pp.14,21", "AL-05 p.12", "UX-02 p.20", "UX-03 p.20", "GR-I02 p.24"], ["G-DATOS", "G-FORMULARIO"])
-R("R-DAT-04", "datos", "Cada imagen y video declara su procedencia (propia del restaurante, licenciada de banco libre, de referencia o generada) y su licencia en el manifiesto de activos. Una imagen de referencia, de banco o generada no se presenta como el plato o el local reales: se rotula como imagen de ejemplo.",
+R("R-DAT-04", "datos", "Cada imagen y video declara su procedencia (propia del restaurante, licenciada de banco libre, de referencia o generada; las de redes sociales solo para el logo, ver R-FOT-01) y su licencia en el manifiesto de activos. Una imagen de referencia, de banco o generada no se presenta como el plato o el local reales: se rotula como imagen de ejemplo.",
   0, "bloqueo", "ambos", "E3", ["UX-06 pp.18,20,30", "GR-A01 p.24", "GR-A02 p.25", "PS-16 p.7"], ["G-FOTOS"])
 R("R-DAT-05", "datos", "Toda afirmación factual (premios, antigüedad, superlativos, valoraciones, cifras) lleva fuente y fecha en la ficha. Sin fuente no se publica.",
   0, "bloqueo", "ambos", "E3", ["UX-05 pp.18,20", "AL-12 p.34", "PS-16 p.7", "CO-07 p.8"], ["G-ETICA", "G-DATOS"])
@@ -95,6 +95,22 @@ R("R-ETI-11", "etica", "Preferencia de marca de Eduardo: los entregables no menc
   0, "bloqueo", "ambos", "N", ["Orden de Eduardo"], ["G-MARCA"])
 R("R-ETI-12", "etica", "Comillas: nunca se usan las comillas angulares dobles; siempre comillas rectas. Orden permanente de Eduardo.",
   0, "bloqueo", "ambos", "N", ["Orden de Eduardo"], ["G-COMILLAS"])
+
+# ------------------------------------------------------------------ FOTOS Y VALORACION DE GOOGLE (ordenes de Eduardo, 2026-10-08)
+R("R-FOT-01", "fotos", "Ninguna foto viene de Instagram ni de otra red social; solo el logo puede tomarse del perfil del restaurante, y se sube en la mayor calidad disponible. Las demás fotos son originales enviados por el restaurante como archivo (no capturas ni reenviadas por una red) o de un banco libre con la licencia comprobada, y su origen consta en el manifiesto. Las fotos de referencia o generadas solo se admiten en un ejemplo ficticio rotulado.",
+  0, "bloqueo", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-DAT-04"], ["G-FOTOS"],
+  "Las redes recomprimen las fotos y los derechos de la foto son de quien la hizo; el logo es la excepción porque es la marca del propio restaurante.")
+R("R-FOT-02", "fotos", "Calidad máxima de las fotos: cada foto es un original sin ampliar ni recomprimir, con un lado largo de al menos 2400 px en la portada, 1600 px en las demás y 640 px en el logo, y ninguna se muestra ampliada. La regla no admite excepciones: una foto que no llega se sustituye.",
+  4, "bloqueo", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-REN-02"], ["G-FOTOS", "G-RESOLUCION"],
+  "Los mínimos cubren una pantalla de escritorio de 1920 px y una de móvil de alta densidad; el Gate mide el original y la web entrega versiones ligeras, así que la calidad del original no cuesta velocidad.")
+R("R-VAL-01", "valoracion", "Si el restaurante tiene en Google una calificación de 4,0 o más, la web la muestra (estrellas, nota y número de reseñas) con enlace a su ficha de Google Maps. Solo se publica un dato real con fuente, fecha de consulta y enlace; nunca se inventa, se redondea hacia arriba ni se muestra una nota menor de 4,0. Sin dato real no hay calificación.",
+  0, "bloqueo", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-DAT-05", "R-ETI-02"], ["G-VALORACION", "G-ETICA"],
+  "Los motores de búsqueda no aceptan una calificación propia como dato estructurado, así que no se publica como tal: es solo una cita visible con su enlace.")
+R("R-VAL-02", "valoracion", "No se copia ningún comentario de clientes, ni bueno ni malo, ni se muestran extractos: la nota y el número de reseñas ya resumen todos. Está prohibido mostrar comentarios inventados o escoger solo los favorables como si fueran el conjunto.",
+  0, "prohibido", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-ETI-02", "R-DAT-05"], ["G-VALORACION", "G-ETICA"])
+R("R-IDE-08", "identidad", "Animaciones de firma premium: toda web lleva un paquete de al menos tres animaciones de un catálogo (revelado de titulares, contador, partículas, paralaje, marquesina, sello giratorio, cortina, subrayado dibujado y otras), elegido según su carácter y distinto del de las webs vecinas. Todas respetan el movimiento reducido, tienen pausa si duran más de 5 segundos y caben en el presupuesto de carga; la página es completa sin ellas.",
+  4, "bloqueo", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-IDE-05", "R-LEG-06", "R-REN-04"], ["G-ANIMACION", "G-MOVIMIENTO"],
+  "El paquete declarado en el manifiesto se comprueba en el navegador: cada módulo debe haber arrancado.")
 
 # ------------------------------------------------------------------ ACCESIBILIDAD Y LEGIBILIDAD (prioridad 1)
 R("R-LEG-01", "legibilidad", "Contraste de texto de al menos 4,5:1 (3:1 en texto grande) medido sobre el fondo real bajo el texto, también sobre fotos, degradados y animaciones, no sobre un color nominal.",
@@ -189,14 +205,18 @@ R("R-PER-03", "persuasion", "Anclaje, encuadre y otras heurísticas son descripc
   5, "hipotesis", "ambos", "E1", ["CO-27 p.5", "PS-25 p.4", "UX-56 pp.6,9,11", "UX-57 pp.6,9"], ["G-MANIFIESTO"])
 
 # ------------------------------------------------------------------ VARIEDAD (prioridad 6)
-R("R-VAR-01", "variedad", "Gate de unicidad: la huella de diseño (paleta, tipografías, portada, carta, orden de secciones, forma y movimiento) difiere en al menos 3 de 6 dimensiones respecto de cada web ya registrada.",
-  6, "bloqueo", "ambos", "E3", ["UX-27 pp.7,21,30", "GR-V03 p.26", "AL-29 pp.15,17,25"], ["G-HUELLA"],
-  "Los estudios no definen familia de diseño ni distancia; la métrica de 6 dimensiones viene del kit de propuestas.")
-R("R-VAR-03", "variedad", "Rotación tipográfica: la fuente de titular de una web nueva no puede ser la misma que en 2 de las 6 webs anteriores, ni de la misma clase (expandida, condensada, serif, grotesca o geométrica) que en 2 de las 4 anteriores. Una misma fuente web tras web hace que todas se parezcan aunque cambien los colores.",
-  6, "bloqueo", "ambos", "E3", ["DM 6.3"], ["G-HUELLA"],
-  "La regla viene del kit de propuestas; con pocas webs registradas el Gate casi nunca la dispara y, cuando haya más, la dispara antes de que el diseño se repita.")
-R("R-VAR-02", "variedad", "Se generan pocas alternativas materialmente distintas, no decenas de variantes superficiales. Si la asignación de variante es aleatoria se registran semilla y probabilidad para poder evaluarla después.",
+R("R-VAR-01", "variedad", "Gate de unicidad: la huella de diseño de cada web reúne familia, paleta, tipografía de titular, portada, carta, galería, ornamento, botones, navegación, paquete de animaciones, orden de secciones, forma y movimiento. No hay dos huellas iguales en el registro, y la distancia ponderada entre una web nueva y cada una de las últimas 12 registradas es de al menos 8 puntos (la familia, la portada, la carta y la galería pesan más que el resto).",
+  6, "bloqueo", "ambos", "E3", ["UX-27 pp.7,21,30", "GR-V03 p.26", "AL-29 pp.15,17,25", "Orden de Eduardo 2026-10-08"], ["G-HUELLA"],
+  "Los estudios no definen familia de diseño ni distancia; la métrica del kit de propuestas era de 6 dimensiones y 3 de diferencia contra todas las webs, que no se sostiene con cientos de webs. Desde la orden de Eduardo la comparación es ponderada, contra una ventana de las últimas 12, y sin repeticiones exactas en todo el registro.")
+R("R-VAR-03", "variedad", "Rotación tipográfica dentro de cada familia: la fuente de titular de una web nueva no puede ser la misma que la de ninguna de las 3 webs anteriores de su familia, ni de la misma clase (expandida, condensada, serif, grotesca o geométrica) que en 2 de las 4 anteriores cuando la familia tiene más de una clase. Una misma fuente web tras web hace que todas se parezcan aunque cambien los colores.",
+  6, "bloqueo", "ambos", "E3", ["DM 6.3", "Orden de Eduardo 2026-10-08"], ["G-HUELLA"],
+  "La regla del kit de propuestas contaba 2 de las 6 anteriores sin distinguir familias; con una sola clase en la familia elegante (todas serifas) no se podía cumplir a partir de la tercera web. Si el catálogo se agota para una racha, el director elige la que menos repite y el Gate lo bloquea: señal de que faltan tipografías.")
+R("R-VAR-02", "variedad", "Para un mismo restaurante se generan pocas alternativas materialmente distintas, no decenas de variantes superficiales (la variedad entre restaurantes distintos es R-VAR-01 y R-VAR-04). Si la asignación de variante es aleatoria se registran semilla y probabilidad para poder evaluarla después.",
   6, "defecto", "ambos", "E2", ["AL-29 pp.15,17,25", "AL-30 pp.17,31,40", "UX-38 pp.25,33"], ["G-MANIFIESTO"])
+
+R("R-VAR-04", "variedad", "Ninguna web se parece a otra: la composición (portada, carta, galería, ornamento, botones, navegación y paquete de animaciones) se elige de un catálogo según los datos reales del restaurante (cocina, nivel de precio, ambiente, servicio, fotos y logo), con rotación frente a las webs ya hechas, y nunca por defecto. Cada elección y su motivo constan en el manifiesto.",
+  6, "bloqueo", "ambos", "N", ["Orden de Eduardo 2026-10-08", "R-IDE-01"], ["G-HUELLA"],
+  "La composición es la parte que se nota: dos webs que solo cambian de color y tipografía siguen siendo la misma web.")
 
 # ------------------------------------------------------------------ MUESTRA (modo A)
 R("R-MUE-01", "muestra", "La muestra se rotula (cinta Muestra de Edumashow para el restaurante), lleva noindex y la cabecera X-Robots-Tag, y distingue los datos de ejemplo de los reales.",
@@ -279,7 +299,7 @@ def main():
     for r in REGLAS:
         por_tema[r["tema"]] = por_tema.get(r["tema"], 0) + 1
     salida = {
-        "version": "0.2.0",
+        "version": "0.3.0",
         "descripcion": "Núcleo de conocimiento unificado de Edumashow. Reglas con prioridad, fuente, evidencia y prueba.",
         "prioridades": {str(k): v for k, v in PRIORIDADES.items()},
         "resolucion_de_choques": "Cuando dos reglas chocan gana la que lleva el número más bajo, porque el número es un orden de importancia como un podio: el 0 (verdad, legalidad y ética) pasa por encima del 1, el 1 por encima del 2, y así hasta el 6 (variedad entre webs), que cede ante todas las demás. Número bajo quiere decir más importante, no menos. Entre dos reglas con el mismo número, el bloqueo gana al defecto y el defecto a la hipótesis. Una regla con número más alto nunca se cumple a costa de una con número más bajo.",

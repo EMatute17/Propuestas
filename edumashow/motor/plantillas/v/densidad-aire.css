@@ -1,0 +1,6 @@
+/* densidad con aire: secciones muy espaciadas y texto con más interlínea */
+:is(.idea,.ambiente,.reserva,.visita,.regla,.fotos,.carta:not(.como+.carta),.cierre-muestra){padding-top:clamp(5.5rem,13vw,11.5rem);padding-bottom:clamp(5.5rem,13vw,11.5rem)}
+.como{padding-top:clamp(4.5rem,10vw,8rem)}
+.como+.carta{padding-top:clamp(4rem,9vw,7rem)}
+body{line-height:1.72}
+.hero-cuerpo{gap:2rem}

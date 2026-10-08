@@ -6,3 +6,4 @@ edumashow/gate/node_modules/
 edumashow/gate/capturas/
 *.log
 edumashow/informes/*/capturas/
+*.lock

@@ -1,0 +1,9 @@
+/* botones de sello: borde grueso y sombra dura que se hunde al pulsar */
+.tema-elegante{--b-sh:var(--crema)}
+.tema-elegante :is(.tarjeta,.visita,.panel-edu){--b-sh:var(--tinta)}
+.tema-urbano{--b-sh:var(--crema)}
+.tema-urbano .panel-edu{--b-sh:var(--tinta)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn{border:2px solid var(--b-sh);box-shadow:4px 4px 0 var(--b-sh);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background-color var(--dur) var(--ease)}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn.suave{border-color:var(--b-sh);background:transparent}
+@media (hover:hover){:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--b-sh)}}
+:is(.hero,.reserva,.visita,.cierre-muestra,.panel-edu) .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--b-sh)}

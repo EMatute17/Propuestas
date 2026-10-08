@@ -1,0 +1,61 @@
+/* portada marco_editorial: papel, titular por palabras que se descubren con máscara y foto en arco con un sello que gira */
+.hero.hero-marco{display:block;min-height:calc(100vh - var(--cinta-real,var(--cinta-h)));min-height:calc(100svh - var(--cinta-real,var(--cinta-h)));padding:0 0 clamp(2.5rem,7vw,5rem);background:var(--papel);color:var(--tinta);--foco-anillo:var(--foco-anillo-papel);--b-tx:var(--tinta);--b-ac:var(--brasa-papel);--b-sobre:var(--papel);--b-sh:var(--tinta)}
+.hero-marco .hero-barra{margin:0 auto}
+.hero-marco .marca{color:var(--tinta)}
+.hero-marco .pausa{border-color:rgba(11,20,28,.4);background:rgba(255,255,255,.6);color:var(--tinta)}
+@media (min-width:900px){.hero-marco .hero-barra nav a:hover{background:rgba(11,20,28,.08)}}
+.marco-cuerpo{display:grid;grid-template-columns:minmax(0,1fr);gap:2.4rem;width:100%;max-width:var(--max);margin:0 auto;padding:1.4rem var(--pad) 0}
+.marco-texto{min-width:0}
+.marco-sobre{display:flex;flex-wrap:wrap;align-items:center;gap:.2rem .8rem;max-width:100%;font-size:.875rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brasa-papel)}
+.marco-sobre i{flex:none;width:2.2rem;height:1px;background:currentColor}
+.marco-sobre span{min-width:0}
+.marco-sobre i{display:none}
+@media (min-width:700px){.marco-sobre i{display:block}}
+.hero.hero-marco h1{margin:1rem 0 1.2rem;font-family:var(--f-titulo);font-style:normal;font-weight:400;line-height:.96;letter-spacing:-.02em;color:var(--tinta);text-shadow:none;font-size:clamp(2.8rem,calc((100vw - 2 * var(--pad)) / (var(--c) * .56)),8.5rem)}
+.marco-h1{display:block}
+.mp{display:block;overflow:hidden;overflow:clip;padding:.06em .1em .14em;margin:-.06em -.1em -.14em}
+.mp-i{display:inline-block}
+.mp-ultima{font-family:var(--f-display);font-style:italic;color:var(--brasa-papel)}
+.js .mp-i{transform:translateY(110%)}
+.js.listo .mp-i{animation:pm-sube 1.05s var(--ease) forwards;animation-delay:calc(var(--i) * 150ms + 180ms)}
+@keyframes pm-sube{to{transform:none}}
+.hero-marco .lema{max-width:32ch;color:var(--texto-suave-papel)}
+.hero-marco .acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.4rem}
+.hero-marco .btn.suave:hover{background:rgba(11,20,28,.06)}
+.hero-marco .hero-datos{margin-top:1.2rem}
+.hero-marco .estado{background:rgba(11,20,28,.07);color:var(--tinta)}
+.hero-marco .estado.is-open{background:rgba(11,20,28,.07)}
+.hero-marco .valoracion{--val-fondo:rgba(11,20,28,.07);--val-fondo-hover:rgba(11,20,28,.14);--val-base:rgba(11,20,28,.28);--val-estrella:#b87700}
+.marco-foto{position:relative;isolation:isolate;justify-self:center;width:min(76vw,24rem)}
+.arco{position:relative;overflow:hidden;overflow:clip;aspect-ratio:4/5;border-radius:999px 999px var(--r-tarjeta) var(--r-tarjeta);background:var(--tinta-2)}
+.arco picture,.arco img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:var(--foco,50% 40%)}
+.js .arco img{animation:kenburns 30s ease-in-out infinite alternate;animation-play-state:var(--anim-estado,running)}
+.arco .luz{position:absolute;top:0;right:0;bottom:0;left:0;background:radial-gradient(circle var(--rad,46vmax) at var(--mx,62%) var(--my,36%),rgba(255,150,60,.34),rgba(255,150,60,0) 62%);mix-blend-mode:soft-light}
+.arco .particulas{position:absolute;top:0;left:0;width:100%;height:100%}
+.filete{position:absolute;z-index:-1;top:1rem;left:1rem;right:-1rem;bottom:-1rem;border:1px solid var(--brasa-papel);border-radius:999px 999px var(--r-tarjeta) var(--r-tarjeta);pointer-events:none}
+.js .arco{clip-path:inset(100% 0 0 0 round 999px 999px 0 0)}
+.js.listo .arco{animation:pm-abre 1.5s var(--ease) .15s forwards}
+@keyframes pm-abre{to{clip-path:inset(0 0 0 0 round 999px 999px var(--r-tarjeta) var(--r-tarjeta))}}
+.sello-marco{position:absolute;left:-1.2rem;bottom:2rem;width:6.2rem;height:6.2rem;rotate:-8deg;filter:drop-shadow(0 .4rem .6rem rgba(11,20,28,.25))}
+.sello-marco svg{display:block;width:100%;height:100%;max-width:none;overflow:visible}
+.sello-marco .s-fondo{fill:var(--papel);stroke:var(--brasa-papel);stroke-width:2}
+.sello-marco .s-centro{fill:var(--papel-2)}
+.sello-marco .s-anillo{font-family:var(--f-texto);font-weight:800;letter-spacing:.04em;fill:var(--tinta)}
+.sello-marco .s-estrella{fill:var(--brasa-papel)}
+.js .sello-marco .s-giro{transform-origin:100px 100px;animation:pm-gira 28s linear infinite;animation-play-state:var(--anim-estado,running)}
+@keyframes pm-gira{to{transform:rotate(360deg)}}
+@media (min-width:900px){
+  .marco-cuerpo{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center;gap:clamp(2rem,5vw,5rem);min-height:calc(100svh - var(--cinta-real,var(--cinta-h)) - 8rem);padding-top:1rem}
+  .marco-foto{width:100%;max-width:30rem;justify-self:end}
+  .hero.hero-marco h1{font-size:clamp(3rem,calc((min(100vw,var(--max)) * .56 - var(--pad)) / (var(--c) * .56)),9.5rem)}
+  .sello-marco{left:-2.6rem;bottom:3rem;width:8.2rem;height:8.2rem}
+}
+@media (max-height:520px) and (min-width:560px){
+  .hero-marco{padding-bottom:1.5rem}
+  .marco-cuerpo{grid-template-columns:minmax(0,1fr);padding-top:.2rem}
+  .marco-foto,.hero-marco .lema{display:none}
+  .hero.hero-marco h1{margin:.2rem 0 .4rem;font-size:clamp(2.4rem,min(calc((100vw - 2 * var(--pad)) / (var(--c) * .56)),22vh),6rem)}
+  .hero-marco .acciones{margin-top:.6rem}
+  .hero-marco .hero-datos{margin-top:.6rem}
+}
+@media (prefers-reduced-motion:reduce){.js .arco{clip-path:none}.js .mp-i{transform:none}}

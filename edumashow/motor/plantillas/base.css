@@ -43,6 +43,24 @@ dialog:not([open]){display:none}
 @media (hover:hover){.btn:hover{background:var(--brasa-2);transform:translateY(-1px)}.btn.suave:hover{background:rgba(255,255,255,.1)}}
 .btn:active{transform:translateY(0)}
 
+/* calificacion de Google (R-VAL-01): estrellas con relleno parcial, nota y numero de resenas con enlace a la ficha de Google Maps */
+.hero-datos{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .75rem;margin-top:1rem}
+.hero-datos .estado{margin-top:0}
+@media (min-width:900px){.hero-datos{margin-top:0;justify-content:flex-end}}
+.valoracion{--val-estrella:#f6b800;--val-base:rgba(255,255,255,.34);display:inline-flex;align-items:center;flex-wrap:wrap;gap:.15rem .6rem;max-width:100%;padding:.45rem 1rem;border-radius:999px;background:var(--val-fondo,rgba(255,255,255,.1));color:inherit;font-size:.9rem;line-height:1.3;text-decoration:none}
+a.valoracion{min-height:2.75rem;transition:background-color var(--dur) var(--ease)}
+@media (hover:hover){a.valoracion:hover{background:var(--val-fondo-hover,rgba(255,255,255,.2))}}
+.val-estrellas{position:relative;display:inline-block;flex:none;width:5.5rem;height:1.1rem}
+.val-estrellas svg{position:absolute;top:0;left:0;width:100%;height:100%;max-width:none}
+.val-base{fill:var(--val-base)}
+.val-llena{fill:var(--val-estrella);clip-path:inset(0 calc(100% - var(--p,100%)) 0 0)}
+.js .val-llena{clip-path:inset(0 100% 0 0);transition:clip-path 1.4s var(--ease) .25s}
+.js .valoracion.in .val-llena{clip-path:inset(0 calc(100% - var(--p,100%)) 0 0)}
+.val-nota{font-weight:800;font-variant-numeric:tabular-nums}
+.val-ejemplo{padding:.05rem .5rem;border:1px solid currentColor;border-radius:999px;font-size:.875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.val-fuente{margin-top:.5rem;max-width:44ch;font-size:.9rem}
+.valoracion.en-visita{margin-top:1.25rem}
+
 /* estado: abierto ahora */
 .estado{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1rem;border-radius:999px;background:rgba(255,255,255,.1);font-size:.9rem;line-height:1.3}
 .estado::before{content:"";width:.55rem;height:.55rem;flex:none;border-radius:50%;background:var(--bruma)}

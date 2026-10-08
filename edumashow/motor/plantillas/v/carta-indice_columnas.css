@@ -1,0 +1,28 @@
+/* carta indice_columnas: todas las categorías seguidas, con un índice que se queda a la vista y marca la que se está leyendo */
+.carta-indice .caja{display:block}
+.carta-indice .carta-lado{display:contents}
+.carta-indice .carta-cab{position:static}
+.carta-indice .indice{position:sticky;top:0;z-index:15;margin:1.4rem calc(var(--pad) * -1) 0;padding:0 var(--pad);background:var(--papel);border-bottom:1px solid rgba(11,20,28,.2)}
+.carta-indice .indice ol{display:flex;gap:.25rem;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}
+.carta-indice .indice ol::-webkit-scrollbar{display:none}
+.carta-indice .indice li{flex:none;scroll-snap-align:start}
+.carta-indice .indice a{display:inline-flex;align-items:center;min-height:3rem;padding:0 1rem;color:var(--texto-suave-papel);font-weight:600;white-space:nowrap;text-decoration:none;border-bottom:3px solid transparent}
+.carta-indice .indice a:focus-visible{outline-offset:-5px}
+.carta-indice .indice a[aria-current="true"]{color:var(--tinta);font-weight:700;border-bottom-color:var(--brasa-papel)}
+.carta-cuerpo-i{counter-reset:cat;padding-top:.6rem}
+.cat-i{scroll-margin-top:4.5rem;padding-top:2.4rem}
+.cat-i-titulo{font-family:var(--f-titulo);font-weight:400;font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+.cat-i-titulo::before{counter-increment:cat;content:counter(cat,decimal-leading-zero);display:block;margin-bottom:.35rem;font-family:var(--f-display);font-style:italic;font-size:1.05rem;letter-spacing:.12em;color:var(--brasa-papel)}
+.cat-i-nota{margin-top:.4rem;color:var(--texto-suave-papel);font-size:1rem}
+.cat-i .lista{margin-top:1rem;border-top:1px solid rgba(11,20,28,.2)}
+@media (min-width:900px){
+  .carta-indice .caja{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:4rem;align-items:start}
+  .carta-indice .carta-lado{display:block;position:sticky;top:2rem;align-self:start}
+  .carta-indice .indice{position:static;margin:2rem 0 0;padding:0;background:none;border-bottom:0}
+  .carta-indice .indice ol{display:block;overflow:visible;border-left:1px solid rgba(11,20,28,.2)}
+  .carta-indice .indice li{display:block}
+  .carta-indice .indice a{display:flex;min-height:2.9rem;padding:0 1.2rem;border-bottom:0;margin-left:-1px;border-left:3px solid transparent;font-size:1.1rem}
+  .carta-indice .indice a[aria-current="true"]{border-left-color:var(--brasa-papel)}
+  .cat-i{scroll-margin-top:2rem;padding-top:3rem}
+  .cat-i:first-child{padding-top:0}
+}

@@ -19,13 +19,12 @@ import zipfile
 import rcssmin
 import rjsmin
 
-from . import color, dinero, estilo as _estilo, huella as _huella, imagenes, pedido, piezas, temas, tipografia
+from . import calidad, catalogo, color, dinero, estilo as _estilo, huella as _huella, imagenes, ornamentos, pedido, piezas, temas, tipografia, valoracion
 
 VERSION_GENERADOR = "0.3.0"
 RAIZ = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 PLANTILLAS = os.path.join(RAIZ, "motor", "plantillas")
 ORIGEN_ACTIVOS = os.path.join(RAIZ, "activos", "origen")
-REGISTRO_HUELLAS = os.path.join(RAIZ, "gate", "registro_huellas.json")
 
 ESTADOS_CONFIRMACION = ("confirmado", "ejemplo", "por_confirmar")
 PERSONALIDADES_CONOCIDAS = ("elegante", "urbano")
@@ -42,11 +41,16 @@ def leer(ruta):
 
 def personalidad(nombre):
     """Módulo de piezas de una personalidad (cada una trae su portada, sus secciones y sus estilos)."""
+    from . import portadas
     if nombre == "elegante":
-        return piezas.PERSONALIDAD
+        P = dict(piezas.PERSONALIDAD)
+        P["portadas"] = {**P["portadas"], **portadas.ELEGANTE}
+        return P
     if nombre == "urbano":
         from . import piezas_urbano
-        return piezas_urbano.PERSONALIDAD
+        P = dict(piezas_urbano.PERSONALIDAD)
+        P["portadas"] = {**P["portadas"], **portadas.URBANO}
+        return P
     raise FichaIncompleta(f"estilo.personalidad desconocida: {nombre}")
 
 
@@ -76,20 +80,29 @@ def validar_ficha(F):
     if P is None:
         falta.append("estilo.personalidad (desconocida)")
     else:
-        if est.get("paleta") not in temas.PALETAS and est.get("paleta") != "auto":
+        if est.get("paleta", "auto") not in temas.PALETAS and est.get("paleta", "auto") != "auto":
             falta.append("estilo.paleta (desconocida)")
-        if est.get("forma") not in temas.FORMAS:
+        if est.get("forma") not in (None, "auto") and est["forma"] not in temas.FORMAS:
             falta.append("estilo.forma (desconocida)")
-        if est.get("movimiento") not in temas.MOVIMIENTOS:
+        if est.get("movimiento") not in (None, "auto") and est["movimiento"] not in temas.MOVIMIENTOS:
             falta.append("estilo.movimiento (desconocido)")
-        if est.get("tipografia") not in tipografia.PAREJAS and est.get("tipografia") != "auto":
+        if est.get("tipografia", "auto") not in tipografia.PAREJAS and est.get("tipografia", "auto") != "auto":
             falta.append("estilo.tipografia (desconocida)")
-        for s in est.get("orden", []):
+        for d in catalogo.DIMENSIONES:   # lo que la ficha fija a mano tiene que existir en el catálogo y poderse dibujar con sus datos
+            v = est.get(d)
+            if v in (None, "auto"):
+                continue
+            if v not in catalogo.OPCIONES[d][pers]:
+                falta.append(f"estilo.{d} ({v!r} no existe en la personalidad {pers}; opciones: {', '.join(catalogo.OPCIONES[d][pers])})")
+            elif not catalogo.viable(d, v, F):
+                falta.append(f"estilo.{d} ({v} necesita datos que la ficha no tiene: la foto hero o más fotos en la galería)")
+        orden_ef = est.get("orden") or catalogo.orden_por_defecto(F)
+        for s in orden_ef:
             if s != "portada" and s not in P["secciones"]:
                 falta.append(f"estilo.orden: la sección {s} no existe en la personalidad {pers}")
-        if "reserva" in est.get("orden", []) and not F.get("reservas"):
+        if "reserva" in orden_ef and not F.get("reservas"):
             falta.append("reservas (la sección reserva está en el orden)")
-        if "idea" in est.get("orden", []) and not F.get("historia"):
+        if "idea" in orden_ef and not F.get("historia"):
             falta.append("historia (la sección idea está en el orden)")
         if P["requiere_hero"] and "hero" not in F.get("activos", {}):
             falta.append("activos.hero")
@@ -102,9 +115,9 @@ def validar_ficha(F):
             falta.append("textos.reparto_texto (debe llevar {apps})")
         if est.get("personalidad") == "urbano" and not F.get("galeria"):
             falta.append("galeria (el mural de la portada usa las fotos de la galería)")
-        if "como" in est.get("orden", []) and not pedido.activo(F):
+        if "como" in orden_ef and not pedido.activo(F):
             falta.append("pedido (la sección como está en el orden)")
-        if "regla" in est.get("orden", []):
+        if "regla" in orden_ef:
             I = F.get("idea") or {}
             for k in ("categoria", "unidad", "por", "sobretitulo", "titulo", "texto", "mejor", "nota"):
                 if not I.get(k):
@@ -164,6 +177,8 @@ def validar_ficha(F):
         falta.append("contacto.telefono (formato internacional, por ejemplo +17867282934)")
     if K.get("whatsapp") and not re.fullmatch(r"\d{8,15}", str(K["whatsapp"])):
         falta.append("contacto.whatsapp (solo dígitos con el código de país y sin signos, por ejemplo 17867282934)")
+    if F.get("reservas") and not (K.get("whatsapp") or F.get("muestra", {}).get("ejemplo_ficticio")):
+        falta.append("contacto.whatsapp (las reservas por WhatsApp llegan al número del restaurante; solo un ejemplo ficticio puede prescindir de él)")
     ids = [p_.get("id") for c in F.get("carta", []) for p_ in c.get("platos", [])]
     malos = sorted({i for i in ids if not isinstance(i, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", i)})
     if malos:
@@ -195,7 +210,7 @@ def validar_ficha(F):
                 falta.append(f"acciones.{donde}: llamar necesita contacto.telefono")
             elif tipo == "instagram" and not K.get("instagram", {}).get("url"):
                 falta.append(f"acciones.{donde}: instagram necesita contacto.instagram.url")
-            elif tipo == "reservar" and (not F.get("reservas") or "reserva" not in est.get("orden", [])):
+            elif tipo == "reservar" and (not F.get("reservas") or "reserva" not in (est.get("orden") or catalogo.orden_por_defecto(F))):
                 falta.append(f"acciones.{donde}: reservar necesita reservas y la sección reserva")
             elif tipo == "whatsapp" and not (K.get("whatsapp") or F.get("muestra", {}).get("ejemplo_ficticio")):
                 falta.append(f"acciones.{donde}: whatsapp necesita contacto.whatsapp")
@@ -203,8 +218,32 @@ def validar_ficha(F):
         falta.append("acciones.barra: la barra del móvil admite tres acciones como máximo")
     if not A and not F.get("reservas"):
         falta.append("acciones (sin reservas, la ficha debe declarar sus acciones)")
+    falta += valoracion.validar(F)[0]
+    if est.get("personalidad") == "elegante" and horario_pendiente:
+        falta.append("horario_estado por_confirmar: la personalidad elegante necesita el horario por días (la visita y la reserva lo dibujan)")
     if falta:
         raise FichaIncompleta("Faltan o son inválidos: " + "; ".join(falta))
+
+
+def archivos_de_composicion(est_r, paquete, modulos):
+    """CSS y JS de las opciones elegidas (plantillas/v) y de los módulos del paquete de animaciones (plantillas/a). Una opción sin archivo es la clásica."""
+    css, js = [], []
+    candidatos = [f"v/{d}-{est_r[d]}" for d in catalogo.DIMENSIONES if d != "animaciones"] + ["a/revelado-" + paquete["revelado"]] + [f"a/{m}" for m in modulos]
+    if est_r["ornamento"] != "recto":
+        candidatos.insert(0, "v/ornamento")
+    for base in candidatos:
+        for ext, lista in (("css", css), ("js", js)):
+            if os.path.exists(os.path.join(PLANTILLAS, f"{base}.{ext}")):
+                lista.append(f"{base}.{ext}")
+    return css, js
+
+
+def escalera(nativo, tope, base=(480, 800, 1200, 1600, 2000, 2400)):
+    """Anchos de las variantes de una foto: los de la escalera que no pasan ni del ancho original ni del tope, y el propio tope.
+    Nunca se amplia una foto; con originales de calidad (R-FOT-02) la escalera llega sin ampliar hasta lo que muestra una pantalla grande."""
+    techo = min(nativo, tope)
+    anchos = [a for a in base if a < techo] + [techo]
+    return sorted(set(anchos))
 
 
 def sha256_archivo(ruta):
@@ -233,7 +272,7 @@ def _carga_fuente(familia, peso, estilo):
     return f"{'' if estilo == 'normal' else estilo + ' '}{peso} 1em '{familia}'"
 
 
-def construir(ruta_ficha, salida_base, base_url=None):
+def construir(ruta_ficha, salida_base, base_url=None, redisenar=False):
     F = leer(ruta_ficha)
     cfg = leer(os.path.join(RAIZ, "config.json"))
     validar_ficha(F)
@@ -253,10 +292,12 @@ def construir(ruta_ficha, salida_base, base_url=None):
     prefijo = f"assets/{bid}"
 
     # ---- director de estilo: paleta, tipografía y orden de fotos, cada una con su razón (se guardan en el manifiesto)
-    registro_huellas = _huella.cargar_registro(REGISTRO_HUELLAS)
-    D = _estilo.decidir(F, ORIGEN_ACTIVOS, registro_huellas)
-    est_r = dict(est, paleta=D["paleta"]["id"], tipografia=D["tipografia"]["clave"])   # el estilo ya resuelto
+    D = _estilo.decidir(F, ORIGEN_ACTIVOS, _huella.ruta_registro(), redisenar=redisenar)
+    est_r = dict(est, **D["estilo_resuelto"])   # el estilo ya resuelto: cada dimensión con su opción concreta
+    fam = est_r["familia"]
     tokens_paleta = D["paleta"]["tokens"]
+    paquete = catalogo.PAQUETES[est_r["animaciones"]]
+    modulos = D["composicion"]["animaciones_modulos"]
 
     # ---- tipografía
     fuentes = tipografia.preparar_pareja(est_r["tipografia"], os.path.join(carpeta, prefijo, "fonts"), f"{prefijo}/fonts")
@@ -285,8 +326,12 @@ def construir(ruta_ficha, salida_base, base_url=None):
         p.update(F["activos"][clave].get("procedencia", {}))
         p["archivo_origen"] = F["activos"][clave]["archivo"]
         p["sha256_origen"] = sha256_archivo(ruta_origen(clave))
+        if clave not in medidas_origen:   # lo que mide el Gate sobre el original (R-FOT-02); aqui solo se deja constancia
+            medidas_origen[clave] = calidad.medir(ruta_origen(clave))
+        p["original"] = medidas_origen[clave]
         return p
 
+    medidas_origen = {}
     hero, hero_im = None, None
     if "hero" in F["activos"]:
         h = F["activos"]["hero"]
@@ -295,8 +340,9 @@ def construir(ruta_ficha, salida_base, base_url=None):
         ajustes = h.get("ajustes")
         hero = {
             "foco": foco,
-            "escritorio": A.procesar("hero", hero_im, [800, 1280, 1920], prov("hero"), ajustes=ajustes, jpg_ancho=1280),
-            "movil": A.procesar("hero-m", hero_im, [480, 768, 960], prov("hero"), recorte={"razon": 0.8, "foco": foco}, ajustes=ajustes, jpg_ancho=768),
+            "escritorio": A.procesar("hero", hero_im, escalera(hero_im.width, 2400), prov("hero"), ajustes=ajustes, jpg_ancho=1280),
+            "movil": A.procesar("hero-m", hero_im, escalera(min(hero_im.width, round(hero_im.height * 0.8)), 1280, base=(480, 768, 960)), prov("hero"),
+                                recorte={"razon": 0.8, "foco": foco}, ajustes=ajustes, jpg_ancho=768),
         }
     logo = None
     if "logo" in F["activos"]:
@@ -304,11 +350,10 @@ def construir(ruta_ficha, salida_base, base_url=None):
     fotos = {}
 
     def foto_general(k):
-        """Foto sin recorte: hasta 480 px de ancho y el ancho original (no se amplía nada)."""
+        """Foto sin recorte: escalera de anchos hasta 1600 px, sin ampliar nada (la respaldo JPEG, de hasta 1200 px)."""
         if k not in fotos:
             im = abrir(k)
-            anchos = sorted({min(480, im.width), im.width})
-            d = A.procesar(k, im, anchos, prov(k), jpg_ancho=im.width)
+            d = A.procesar(k, im, escalera(im.width, 1600), prov(k), jpg_ancho=min(im.width, 1200))
             fotos[k] = {"datos": d, "color": d["color"]}
 
     for c in F["carta"]:
@@ -330,14 +375,16 @@ def construir(ruta_ficha, salida_base, base_url=None):
     prefijo_wa_pedido = f"(Prueba de la muestra de Edumashow para {N['nombre']}) " if muestra else ""
     orden_fotos = D["fotos"]["orden_por_antojo"] if D["fotos"]["usa_el_orden"] else None
     C = {"muestra": muestra, "ejemplo": ejemplo, "agencia": agencia, "hero": hero, "logo": logo, "fotos": fotos, "orden_fotos": orden_fotos,
-         "wa_destino": wa_destino, "prefijo_wa": prefijo_wa, "prefijo_wa_pedido": prefijo_wa_pedido, "importe": dinero.importe_fn(F), "horario_pendiente": horario_pendiente}
+         "wa_destino": wa_destino, "prefijo_wa": prefijo_wa, "prefijo_wa_pedido": prefijo_wa_pedido, "importe": dinero.importe_fn(F), "horario_pendiente": horario_pendiente,
+         "comp": est_r, "paquete": paquete, "modulos": modulos, "semilla": hashlib.sha1(F["id"].encode()).hexdigest()}
 
     # ---- CSS y JS
     cinta_h = "3.25rem" if muestra else "0rem"
-    css = temas.tokens_css(tokens_paleta, est["forma"], est["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h, tipografia.ancho_em(est_r["tipografia"]))
-    css += f"body{{--grano:{temas.grano_datauri()}}}"
+    css = temas.tokens_css(tokens_paleta, est_r["forma"], est_r["movimiento"], par, max(len(w) for w in N["nombre"].split()), cinta_h, tipografia.ancho_em(est_r["tipografia"]))
+    css += f"body{{--grano:{temas.grano_datauri()};--fibras:{temas.fibras_datauri()}}}"
     css += fuentes["css"]
-    for nombre in ["base.css"] + (["pedido.css"] if pedido.activo(F) else []) + [f"{est['personalidad']}.css"]:
+    v_css, v_js = archivos_de_composicion(est_r, paquete, modulos)
+    for nombre in ["base.css"] + (["pedido.css"] if pedido.activo(F) else []) + [f"{fam}.css"] + v_css:
         with open(os.path.join(PLANTILLAS, nombre), encoding="utf-8") as f:
             css += "\n" + f.read()
     css += P["css_extra"]
@@ -357,19 +404,24 @@ def construir(ruta_ficha, salida_base, base_url=None):
     if pedido.activo(F):
         Fjs["pedido"] = pedido.config_js(F, C)
     Fjs["fuentes_carga"] = [_carga_fuente(par["familia_display"], disp["peso"], disp["estilo"]), _carga_fuente(par["familia_texto"], txt_min, "normal")]
-    js = "window.__F=" + json.dumps(Fjs, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";\n"
     # cada módulo va en su propio try: si uno falla al arrancar (un dato raro, un navegador antiguo) no tumba a los demás, y el error sigue saliendo por la consola
     aislado = lambda codigo: "try{" + codigo + "\n}catch(e){if(window.console&&console.error)console.error(e)}\n"
-    for nombre in ["base.js"] + (["pedido.js"] if pedido.activo(F) else []) + [f"{est['personalidad']}.js"]:
+    Fjs["anim"] = {"paquete": est_r["animaciones"], "modulos": modulos, "particulas": paquete.get("particulas")}
+    js = "window.__F=" + json.dumps(Fjs, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";\n"
+    for nombre in ["base.js"] + (["pedido.js"] if pedido.activo(F) else []) + [f"{fam}.js"] + v_js:
         with open(os.path.join(PLANTILLAS, nombre), encoding="utf-8") as f:
             js += aislado(f.read())
     if P["js_extra"].strip():
         js += aislado(P["js_extra"])
+    js += aislado("EDU.correrAnim()")   # arranca los módulos de animación del paquete (cada uno se registró al cargarse) y deja constancia de cuáles lo hicieron
     js_min = rjsmin.jsmin(js)
 
     # ---- HTML
-    secciones = P["secciones"]
-    main = "".join(secciones[s](F, C) for s in est["orden"] if s in secciones)
+    secciones = dict(P["secciones"])
+    secciones["carta"] = P["cartas"][est_r["carta"]]
+    portada_fn = P["portadas"][est_r["portada"]]
+    banda = P.get("tras_portada", lambda F_, C_: "")(F, C)
+    main = ornamentos.intercalar([(s, secciones[s](F, C)) for s in est_r["orden"] if s in secciones], fam, est_r, banda=bool(banda), semilla=C["semilla"])
     titulo = f"{N['nombre']} · {N['cocina']} en {N['ciudad']}" + (" · Muestra de Edumashow" if muestra else "")
     meta = [f'<meta name="description" content="{piezas.e_(N["descripcion"])}">']
     if muestra:
@@ -391,12 +443,13 @@ def construir(ruta_ficha, salida_base, base_url=None):
         meta.append(f'<meta property="og:url" content="{base_url}">')
     precarga = "".join(f'<link rel="preload" href="{p["archivo"]}" as="font" type="font/woff2" crossorigin>'
                        for p in fuentes["precarga"] if p is disp or (p["rol"] == "texto" and p["peso"] == txt_min))
-    icono = temas.favicon_datauri(N["nombre"][0].upper(), tokens_paleta["tinta"], tokens_paleta["brasa"], est["personalidad"])
+    icono = temas.favicon_datauri(N["nombre"][0].upper(), tokens_paleta["tinta"], tokens_paleta["brasa"], fam)
     head = (f'<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             f'<title>{piezas.e_(titulo)}</title>{"".join(meta)}<link rel="icon" href="{icono}">{precarga}'
             f'<script>document.documentElement.className+=" js"</script><style>{css_min}</style></head>')
-    body = (f'<body class="tema-{est["personalidad"]}"><a class="salto" href="#contenido">Saltar al contenido</a>'
-            f'{piezas.cinta(F, C)}{P["portada"](F, C)}{P.get("tras_portada", lambda F_, C_: "")(F, C)}<main id="contenido">{main}</main>{piezas.pie(F, C)}'
+    atributos = " ".join(f'data-{d}="{est_r[d]}"' for d in ("portada", "carta", "galeria", "ornamento", "boton", "densidad", "textura")) + f' data-paquete="{est_r["animaciones"]}" data-revelado="{paquete["revelado"]}"'
+    body = (f'<body class="tema-{fam}" {atributos}><a class="salto" href="#contenido">Saltar al contenido</a>'
+            f'{piezas.cinta(F, C)}{portada_fn(F, C)}{banda}<main id="contenido">{main}</main>{piezas.pie(F, C)}'
             f'{piezas.barra_movil(F, C)}{P["extras"](F, C)}{piezas.panel_edu(F, C)}<script>{js_min}</script></body>')
     html = f'<!doctype html><html lang="{F["idioma"]}">{head}{body}</html>'
     with open(os.path.join(carpeta, "index.html"), "w", encoding="utf-8") as f:
@@ -421,7 +474,7 @@ def construir(ruta_ficha, salida_base, base_url=None):
                 f.write(f"--- {t} ---\n{g.read()}\n\n")
 
     # ---- huella, manifiesto y zip
-    hu = _huella.huella(F, est_r)
+    hu = D["huella"]
     pesos = {"html": os.path.getsize(os.path.join(carpeta, "index.html")), "css_min": len(css_min.encode()), "js_min": len(js_min.encode())}
     dir_fuentes = os.path.join(carpeta, prefijo, "fonts")
     dir_img = os.path.join(carpeta, prefijo, "img")
@@ -458,9 +511,10 @@ def main(argv=None):
     ap.add_argument("ficha")
     ap.add_argument("--salida", default=os.path.join(os.path.dirname(RAIZ), "muestras"))
     ap.add_argument("--base-url", default=None, help="URL publica final (necesaria para la imagen de vista previa al compartir)")
+    ap.add_argument("--redisenar", action="store_true", help="elige de nuevo la composición (por defecto una web ya construida conserva su diseño)")
     a = ap.parse_args(argv)
     try:
-        r = construir(a.ficha, a.salida, a.base_url)
+        r = construir(a.ficha, a.salida, a.base_url, redisenar=a.redisenar)
     except FichaIncompleta as err:
         print("EL MOTOR SE ABSTIENE:", err)
         return 2

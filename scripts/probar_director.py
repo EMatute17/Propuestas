@@ -7,13 +7,14 @@ import copy
 import json
 import os
 import sys
+import tempfile
 
 from PIL import Image
 
 RAIZ = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, RAIZ)
 
-from edumashow.motor import antojo, color, estilo, huella, tipografia  # noqa: E402
+from edumashow.motor import antojo, catalogo, color, estilo, huella, tipografia  # noqa: E402
 from edumashow.motor.generar import ORIGEN_ACTIVOS  # noqa: E402
 
 FALLOS = []
@@ -32,12 +33,16 @@ def ficha(nombre):
 
 def main():
     alf, lum = ficha("alfuego"), ficha("lumbre")
-    reg = {"lumbre": {"display": "Bodoni Moda", "clase_tipografica": "serif", "secuencia": 1},
-           "alfuego": {"display": "Anton", "clase_tipografica": "condensada", "secuencia": 2}}
+    reg = {"lumbre": {"display": "Bodoni Moda", "clase_tipografica": "serif", "portada": "luz_brasas", "secuencia": 1},
+           "alfuego": {"display": "Anton", "clase_tipografica": "condensada", "portada": "mural_columnas", "secuencia": 2}}
+    # el director anota lo que elige en el registro: las pruebas usan uno propio, nunca el real
+    ruta_reg = os.path.join(tempfile.mkdtemp(), "registro.json")
+    with open(ruta_reg, "w", encoding="utf-8") as f:
+        json.dump(reg, f)
 
     # 1) paleta: del logo, todos los pares de contraste cumplen y es determinista
-    d1 = estilo.decidir(alf, ORIGEN_ACTIVOS, reg)
-    d2 = estilo.decidir(alf, ORIGEN_ACTIVOS, reg)
+    d1 = estilo.decidir(alf, ORIGEN_ACTIVOS, ruta_reg)
+    d2 = estilo.decidir(alf, ORIGEN_ACTIVOS, ruta_reg)
     pares = d1["paleta"]["pares"]
     comprobar("la paleta de Al Fuego sale del logo", d1["paleta"]["id"].startswith("auto:"), d1["paleta"]["origen"])
     comprobar("todos los pares de contraste de la paleta cumplen", all(p["ok"] for p in pares), f"{len(pares)} pares")
@@ -65,9 +70,11 @@ def main():
         comprobar("con 3 titulares condensados ya registrados el motor se abstiene o cambia de clase", "rotación" in str(e) or "pareja" in str(e), str(e)[:80])
     # una pareja fijada a mano que rompe la rotación se ve en la huella
     h = {"display": "Anton", "clase_tipografica": "condensada"}
-    comprobar("la rotación detecta una repetición", len(huella.rotacion("otro", h, {"a": {"display": "Anton", "clase_tipografica": "condensada", "secuencia": 1},
-                                                                                   "b": {"display": "Anton", "clase_tipografica": "condensada", "secuencia": 2}})) == 2)
-    comprobar("la rotación no salta con una sola repetición", huella.rotacion("otro", h, reg) == [])
+    h = dict(h, familia="urbano")
+    comprobar("la rotación detecta una repetición de fuente y de clase", len(huella.rotacion("otro", h, {"a": {"display": "Anton", "clase_tipografica": "condensada", "portada": "mural_columnas", "secuencia": 1},
+                                                                                                          "b": {"display": "Anton", "clase_tipografica": "condensada", "portada": "mural_columnas", "secuencia": 2}})) == 2)
+    comprobar("la rotación no salta si la fuente no se repite en la familia", huella.rotacion("otro", dict(h, display="Unbounded", clase_tipografica="expandida"), reg) == [])
+    comprobar("la rotación de la familia urbana no cuenta las webs elegantes", huella.rotacion("otro", dict(h, display="Bodoni Moda", clase_tipografica="serif"), reg) == [])
 
     # 4) cobertura de caracteres: Instrument Serif no trae la media (U+00BD)
     comprobar("una pareja sin el carácter de la media libra se descarta", "½" in tipografia.faltantes("instrument-inter", "carne ½ lb"))
@@ -90,7 +97,7 @@ def main():
     comprobar("una foto diminuta y lisa no rompe las medidas", antojo.medidas_tecnicas(im)["puntos"] >= 0)
 
     # 6) Lumbre (paleta y pareja a mano): se valida sin cambiar nada
-    dl = estilo.decidir(lum, ORIGEN_ACTIVOS, reg)
+    dl = estilo.decidir(lum, ORIGEN_ACTIVOS, ruta_reg)
     comprobar("Lumbre mantiene su pareja fijada", dl["tipografia"]["clave"] == lum["estilo"]["tipografia"])
     comprobar("Lumbre mantiene su paleta a mano", dl["paleta"]["id"] == lum["estilo"]["paleta"])
 
@@ -106,6 +113,25 @@ def main():
     comprobar("un logo de dos colores lisos da dos grupos", len(color.colores_dominantes(dos)) == 2)
     comprobar("una foto de 800 x 3 px no rompe las medidas", antojo.medidas_tecnicas(Image.new("RGB", (800, 3), (120, 80, 40)))["puntos"] >= 0)
     comprobar("una foto transparente se mide sobre gris y no rompe", antojo.medidas_tecnicas(Image.new("RGBA", (60, 60), (255, 0, 0, 0)))["puntos"] >= 0)
+
+    # 8) composición: cada dimensión sale de las opciones de su familia, con su motivo, y la ficha puede fijarla
+    c = d1["composicion"]
+    comprobar("la composición elige una opción de su familia en cada dimensión", all(c["elegidas"][d] in catalogo.OPCIONES[d]["urbano"] for d in catalogo.DIMENSIONES))
+    comprobar("cada elección lleva su motivo", all(c["motivos"].get(d) for d in catalogo.DIMENSIONES))
+    fijada = copy.deepcopy(alf); fijada["id"] = "fijada"; fijada["estilo"]["portada"] = "cartel_rotulo"; fijada["estilo"]["ornamento"] = "onda"
+    df = estilo.decidir(fijada, ORIGEN_ACTIVOS, ruta_reg)
+    comprobar("lo que la ficha fija manda", df["composicion"]["elegidas"]["portada"] == "cartel_rotulo" and df["composicion"]["elegidas"]["ornamento"] == "onda")
+    df2 = estilo.decidir(fijada, ORIGEN_ACTIVOS, ruta_reg)
+    comprobar("una web ya construida conserva su diseño al volver a construirse", df2["composicion"]["elegidas"] == df["composicion"]["elegidas"] and df2["tipografia"]["clave"] == df["tipografia"]["clave"])
+    # variedad: 30 webs seguidas de la misma familia cumplen la distancia con las 12 anteriores y no repiten firma
+    ruta30 = os.path.join(tempfile.mkdtemp(), "registro30.json")
+    hs = []
+    for i in range(30):
+        f30 = copy.deepcopy(alf); f30["id"] = f"s{i:02d}"; f30["estilo"].pop("portada", None); f30["estilo"].pop("carta", None); f30["estilo"].pop("galeria", None); f30["estilo"]["tipografia"] = "auto"
+        hs.append(estilo.decidir(f30, ORIGEN_ACTIVOS, ruta30)["huella"])
+    minimos = [min(huella.distancia(h_, p_) for p_ in hs[max(0, i - 12):i]) for i, h_ in enumerate(hs) if i]
+    comprobar("30 webs seguidas distan al menos el umbral de las 12 anteriores", min(minimos) >= huella.UMBRAL, f"mínimo {min(minimos)}")
+    comprobar("30 webs seguidas no repiten ninguna huella completa", len({huella.firma(h_) for h_ in hs}) == 30)
 
     print("\nFALLAN:" if FALLOS else "\nTodo pasa.", FALLOS or "")
     return 1 if FALLOS else 0

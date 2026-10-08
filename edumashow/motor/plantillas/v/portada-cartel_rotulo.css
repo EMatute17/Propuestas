@@ -1,0 +1,45 @@
+/* portada cartel_rotulo: cartel del color de la marca, titular enorme con una palabra solo de contorno, disco con foto y una cinta que corre */
+.hero.hero-cartel{background:var(--brasa);color:var(--sobre-brasa);--foco-anillo:var(--tinta);padding-bottom:6rem}
+.hero-cartel .hero-fondo{background:var(--brasa)}
+.hero-cartel .puntos{position:absolute;top:0;right:0;bottom:0;left:0;background-image:radial-gradient(circle,rgba(11,9,8,.17) 1.6px,transparent 2px);background-size:16px 16px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 80%);mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+.hero-cartel .hero-barra,.hero-cartel .hero-barra nav a{color:var(--sobre-brasa)}
+@media (min-width:900px){.hero-cartel .hero-barra nav a:hover{background:rgba(11,9,8,.12)}}
+.hero-cartel .sobre{background:var(--tinta);color:var(--brasa)}
+.hero-cartel h1{color:var(--sobre-brasa);text-shadow:none}
+.hero-cartel h1 .acento{color:transparent;-webkit-text-stroke:.04em var(--sobre-brasa)}
+.hero-cartel .lema,.hero-cartel .lema-en{color:var(--sobre-brasa)}
+.hero-cartel .lema-en{opacity:.85}
+.hero-cartel .btn{background:var(--tinta);color:var(--crema)}
+.hero-cartel .btn.suave{background:transparent;color:var(--sobre-brasa);border-color:var(--sobre-brasa)}
+@media (hover:hover){.hero-cartel .btn:hover{background:var(--tinta-3)}.hero-cartel .btn.suave:hover{background:rgba(11,9,8,.12)}}
+.hero-cartel .estado{background:rgba(11,9,8,.12);color:var(--sobre-brasa);border-color:rgba(11,9,8,.6)}
+.hero-cartel .estado.is-open,.hero-cartel .estado.is-closed,.hero-cartel .estado.pendiente{background:rgba(11,9,8,.12);border-color:rgba(11,9,8,.6)}
+.hero-cartel .valoracion{--val-fondo:rgba(11,9,8,.13);--val-fondo-hover:rgba(11,9,8,.24);--val-base:rgba(11,9,8,.3);--val-estrella:var(--tinta)}
+.hero-cartel .pausa{background:var(--tinta);border-color:var(--tinta);color:var(--crema)}
+.hero-cartel .logo-enlace{box-shadow:0 0 0 2px var(--tinta)}
+.cartel-disco{position:absolute;z-index:2;top:5rem;right:var(--pad);width:6.6rem;height:6.6rem;rotate:8deg;pointer-events:none}
+.disco-foto{position:absolute;top:15%;right:15%;bottom:15%;left:15%;overflow:hidden;border-radius:50%;border:3px solid var(--tinta);background:var(--tinta)}
+.disco-foto picture{display:block;width:100%;height:100%}
+.disco-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.disco-anillo{position:absolute;top:0;right:0;bottom:0;left:0}
+.disco-anillo svg{display:block;width:100%;height:100%;max-width:none;overflow:visible}
+.disco-anillo .s-fondo{fill:none;stroke:var(--tinta);stroke-width:27px}
+.disco-anillo .s-centro,.disco-anillo .s-estrella{display:none}
+.disco-anillo .s-anillo{font-family:var(--f-texto);font-weight:800;letter-spacing:.05em;fill:var(--brasa)}
+.js .disco-anillo .s-giro{transform-origin:100px 100px;animation:pr-gira 22s linear infinite;animation-play-state:var(--anim-estado,running)}
+@keyframes pr-gira{to{transform:rotate(360deg)}}
+.cartel-cinta{position:absolute;z-index:3;left:-6%;right:-6%;bottom:1.1rem;rotate:-2.2deg;overflow:hidden;overflow:clip;background:var(--tinta);color:var(--brasa);border-top:3px solid var(--crema);border-bottom:3px solid var(--crema);pointer-events:none}
+.cartel-cinta .pista-m span{padding:.45rem 1.4rem .3rem 0}
+@media (min-width:700px){.cartel-disco{width:10rem;height:10rem;top:5.4rem}}
+@media (min-width:1000px){
+  .cartel-disco{top:50%;translate:0 -52%;right:max(var(--pad),calc((100vw - var(--max)) / 2 + var(--pad)));width:min(24rem,32vw);height:min(24rem,32vw)}
+  .hero-cartel .hero-cuerpo{padding-right:calc(min(24rem,32vw) + 2rem)}
+  .hero-cartel .hero-base{grid-template-columns:minmax(0,1fr)}
+  .hero-cartel .hero-lado{grid-template-columns:minmax(0,1fr);justify-items:start}
+  .hero-cartel .hero-datos{justify-content:flex-start}
+  .hero-cartel .acciones{width:100%}
+  .hero-cartel .acciones .btn{flex:1 1 auto}
+  .hero-cartel h1{font-size:clamp(1.5rem,min(calc((min(100vw,var(--max)) * .62 - var(--pad)) / (var(--c) * var(--w-d,.47))),22vh),12.5rem)}
+}
+@media (max-height:759px) and (max-width:699px){.cartel-disco{display:none}}
+@media (max-height:520px) and (min-width:560px){.cartel-disco,.cartel-cinta{display:none}.hero.hero-cartel{padding-bottom:2.25rem}.hero-cartel .hero-cuerpo{padding-right:var(--pad)}}

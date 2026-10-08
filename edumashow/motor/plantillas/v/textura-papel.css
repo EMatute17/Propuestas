@@ -1,0 +1,4 @@
+/* textura de papel: fibras suaves en las secciones claras */
+.tema-elegante :is(.carta,.visita){background-image:var(--fibras);background-size:240px 240px}
+.tema-urbano :is(.carta,.como){background-image:var(--fibras);background-size:240px 240px}
+.tema-elegante .tarjeta{background-image:var(--fibras);background-size:240px 240px}

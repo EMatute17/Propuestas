@@ -1,86 +1,11 @@
-/* Personalidad ELEGANTE: luz de vela, brasas, calor que sube con el scroll, pestanas de carta,
+/* Personalidad ELEGANTE: calor que sube con el scroll, pestanas de carta,
    vista previa del plato y reserva por WhatsApp. Todo es aditivo: la pagina funciona sin esto. */
 (function () {
   'use strict';
   var E = window.EDU, F = E.F, qs = E.qs, qsa = E.qsa, doc = document;
   var raf = window.requestAnimationFrame || function (f) { return setTimeout(function () { f(Date.now()); }, 33); };
 
-  /* ---------- portada: luz que sigue al puntero y brasas que suben ---------- */
-  var hero = qs('.hero');
-  if (hero) {
-    var cv = qs('.brasas', hero), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-    var cx = 62, cy = 36, tx = cx, ty = cy, apuntando = false, visible = true, corriendo = false, t0 = 0, ultimo = 0;
-    var rect = null, ps = [], w = 0, h = 0, dpr = 1, sprite = null;
-    var usarBrasas = !!ctx && !E.bajo;
-
-    var medir = function () {
-      rect = hero.getBoundingClientRect();
-      if (!usarBrasas) return;
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      w = Math.max(1, Math.round(rect.width)); h = Math.max(1, Math.round(rect.height));
-      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.max(14, Math.min(46, Math.round(w * h / 38000)));
-      while (ps.length < n) ps.push(nueva(true));
-      ps.length = n;
-    };
-    function nueva(inicial) {
-      return { x: Math.random() * (w || 400), y: inicial ? Math.random() * (h || 600) : (h || 600) + 12, r: 0.9 + Math.random() * 2.3,
-        vy: 14 + Math.random() * 36, vx: -5 + Math.random() * 10, ph: Math.random() * 6.28, a: 0.3 + Math.random() * 0.6 };
-    }
-    function crearSprite() {
-      sprite = doc.createElement('canvas'); sprite.width = sprite.height = 32;
-      var c = sprite.getContext('2d'), g = c.createRadialGradient(16, 16, 0, 16, 16, 16);
-      g.addColorStop(0, 'rgba(255,214,150,1)'); g.addColorStop(0.35, 'rgba(255,128,48,.75)'); g.addColorStop(1, 'rgba(255,80,20,0)');
-      c.fillStyle = g; c.fillRect(0, 0, 32, 32);
-    }
-    if (usarBrasas) crearSprite();
-    medir();
-    window.addEventListener('resize', function () { clearTimeout(medir.t); medir.t = setTimeout(function () { medir(); }, 200); }, { passive: true });
-    hero.addEventListener('pointermove', function (e) {
-      if (e.pointerType === 'touch') return;
-      if (!rect || Math.abs(rect.top) > 4) rect = hero.getBoundingClientRect();
-      tx = ((e.clientX - rect.left) / rect.width) * 100; ty = ((e.clientY - rect.top) / rect.height) * 100; apuntando = true;
-    }, { passive: true });
-    hero.addEventListener('pointerleave', function () { apuntando = false; });
-
-    var pintar = function (t) {
-      var s = (t - t0) / 1000;
-      if (!apuntando) { tx = 56 + Math.sin(s * 0.33) * 22; ty = 38 + Math.sin(s * 0.5 + 1.3) * 12; }
-      cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
-      var parpadeo = 1 + Math.sin(s * 7.1) * 0.012 + Math.sin(s * 3.3 + 2) * 0.02;
-      hero.style.setProperty('--mx', cx.toFixed(2) + '%'); hero.style.setProperty('--my', cy.toFixed(2) + '%');
-      hero.style.setProperty('--rad', (46 * parpadeo).toFixed(2) + 'vmax');
-    };
-    var dibujar = function (t, dt) {
-      ctx.clearRect(0, 0, w, h); ctx.globalCompositeOperation = 'lighter';
-      for (var i = 0; i < ps.length; i++) {
-        var p = ps[i]; p.y -= p.vy * dt; p.x += (p.vx + Math.sin(t / 1000 * 0.9 + p.ph) * 9) * dt;
-        if (p.y < -12) { ps[i] = nueva(false); continue; }
-        var vida = Math.min(1, p.y / (h * 0.85)), fl = 0.72 + 0.28 * Math.sin(t / 1000 * 6 + p.ph);
-        ctx.globalAlpha = p.a * vida * fl; var d = p.r * 7; ctx.drawImage(sprite, p.x - d / 2, p.y - d / 2, d, d);
-      }
-      ctx.globalAlpha = 1;
-    };
-    var paso = function (t) {
-      if (!corriendo) return;
-      if (!visible || doc.hidden || !E.animar()) { corriendo = false; return; }
-      if (t - ultimo >= 32) {
-        var dt = Math.min(0.06, (t - ultimo) / 1000); ultimo = t; pintar(t);
-        if (usarBrasas) dibujar(t, dt);
-      }
-      raf(paso);
-    };
-    var arrancar = function () {
-      if (corriendo || !visible || doc.hidden) return;
-      if (!E.animar()) { if (usarBrasas) ctx.clearRect(0, 0, w, h); return; }
-      corriendo = true; if (!t0) t0 = performance.now(); ultimo = 0; raf(paso);
-    };
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) arrancar(); }, { threshold: 0 }).observe(hero);
-    doc.addEventListener('visibilitychange', function () { if (!doc.hidden) arrancar(); });
-    doc.addEventListener('edu:movimiento', function () { if (!E.animar() && usarBrasas) ctx.clearRect(0, 0, w, h); arrancar(); });
-    arrancar();
-  }
+  /* la luz de la portada y las partículas son módulos del paquete de animaciones (plantillas/a) */
 
   /* ---------- idea: el calor sube con el scroll, atado a la posicion de la propia cifra ---------- */
   var idea = qs('.idea');
@@ -154,21 +79,6 @@
     var ajustaGal = function () { if (gal.scrollWidth > gal.clientWidth + 1) gal.setAttribute('tabindex', '0'); else gal.removeAttribute('tabindex'); };
     ajustaGal();
     if ('ResizeObserver' in window) new ResizeObserver(ajustaGal).observe(gal); else window.addEventListener('resize', ajustaGal);
-  }
-
-  /* ---------- galeria: paralaje suave en escritorio ---------- */
-  var figs = qsa('.galeria figure');
-  if (figs.length && window.matchMedia && window.matchMedia('(min-width:900px)').matches) {
-    var pend2 = false;
-    var par = function () {
-      pend2 = false; if (!E.animar()) return; var vh = window.innerHeight || 800;
-      figs.forEach(function (f) {
-        var r = f.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
-        var k = ((r.top + r.height / 2) - vh / 2) / vh, im = qs('img', f); if (im) im.style.transform = 'translate3d(0,' + (k * -4).toFixed(2) + '%,0) scale(1.08)';
-      });
-    };
-    var pedir2 = function () { if (!pend2) { pend2 = true; raf(par); } };
-    window.addEventListener('scroll', pedir2, { passive: true }); window.addEventListener('resize', pedir2, { passive: true }); par();
   }
 
   /* ---------- reserva por WhatsApp ---------- */

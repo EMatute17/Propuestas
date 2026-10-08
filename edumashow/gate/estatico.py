@@ -214,7 +214,10 @@ def datos(carpeta, ficha, importe, rango_horario):
 
 
 def etica(carpeta):
-    html, p = leer_html(carpeta)
+    html, _ = leer_html(carpeta)
+    # la calificacion real de Google (estrellas y nota) la juzga G-VALORACION; aqui se mira el resto del texto
+    p = _Texto()
+    p.feed(re.sub(r"<(a|p)\b[^>]*\sdata-valoracion[\s>=][^>]*>.*?</\1>", "", html, flags=re.S))
     texto = re.sub(r"\s+", " ", " ".join(p.texto)).lower()
     malos = []
     for nombre, patron in ETICA:
@@ -295,6 +298,8 @@ def muestra(carpeta, ficha, whatsapp_agencia):
 
 
 def fotos(carpeta, ficha):
+    """Procedencia de cada imagen (R-DAT-04 y R-FOT-01): origen y licencia registrados, nada de redes sociales salvo el logo."""
+    from edumashow.motor import calidad
     html, p = leer_html(carpeta)
     man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))
     fallos = []
@@ -302,6 +307,11 @@ def fotos(carpeta, ficha):
         for k in ("origen", "licencia"):
             if not im.get(k):
                 fallos.append(f"{im['clave']}: falta {k} en el manifiesto")
+        if im.get("origen") == "redes_del_restaurante" and im["clave"].removesuffix("-m") != "logo":
+            fallos.append(f"{im['clave']}: foto sacada de redes sociales (solo el logo puede venir de una red)")
+    # la ficha dice lo mismo que el manifiesto, y lo que dice cumple la regla
+    errores_p, _ = calidad.revisar_procedencia(ficha)
+    fallos += errores_p
     sin_alt = [i.get("src", "")[-30:] for i in p.imgs if "alt" not in i]
     if sin_alt:
         fallos.append(f"imágenes sin atributo alt: {sin_alt[:4]}")
@@ -309,7 +319,96 @@ def fotos(carpeta, ficha):
         t = " ".join(p.texto).lower()
         if "referencia" not in t:
             fallos.append("hay fotos de referencia y la página no lo declara")
-    return res("PASS" if not fallos else "FAIL", f"{len(man['imagenes'])} imágenes con origen y licencia registrados; {len(p.imgs)} etiquetas img con alt", fallos[:8])
+    return res("PASS" if not fallos else "FAIL", f"{len(man['imagenes'])} imágenes con origen y licencia registrados; {len(p.imgs)} etiquetas img con alt; ninguna de redes sociales salvo el logo", fallos[:8])
+
+
+def fotos_calidad(carpeta, ficha, origen_activos):
+    """Calidad del original de cada foto (R-FOT-02): el Gate mide el archivo original, comprueba que sea el mismo que declara el manifiesto
+    (SHA-256) y aplica los mismos mínimos que el validador. No admite excepciones."""
+    from edumashow.motor import calidad
+    man = json.load(open(os.path.join(carpeta, "manifiesto.json"), encoding="utf-8"))
+    fallos, avisos, vistos, minimos = [], [], set(), []
+    for im in man["imagenes"]:
+        clave = im["clave"].removesuffix("-m")
+        origen = im.get("archivo_origen")
+        if not origen or origen in vistos:
+            continue
+        vistos.add(origen)
+        ruta = os.path.join(origen_activos, origen)
+        if not os.path.exists(ruta):
+            fallos.append(f"{clave}: no se encuentra el original {origen} para medirlo")
+            continue
+        h = hashlib.sha256()
+        with open(ruta, "rb") as f:
+            for bloque in iter(lambda: f.read(1 << 16), b""):
+                h.update(bloque)
+        if im.get("sha256_origen") and h.hexdigest() != im["sha256_origen"]:
+            fallos.append(f"{clave}: el original {origen} cambió desde que se construyó el paquete")
+        try:
+            m = calidad.medir(ruta)
+        except Exception as e:
+            fallos.append(f"{clave}: el original no se puede abrir como imagen ({type(e).__name__})")
+            continue
+        e_, a_ = calidad.juzgar(clave, m)
+        fallos += e_
+        avisos += a_
+        minimos.append(f"{clave} {m['ancho']}x{m['alto']}")
+    r = res("PASS" if not fallos else "FAIL", f"{len(vistos)} originales medidos (mínimos: portada {calidad.MINIMOS['portada']} px, resto {calidad.MINIMOS['otras']} px, logo {calidad.MINIMOS['logo']} px de lado largo); "
+            + ("; ".join(minimos[:6]) + ("..." if len(minimos) > 6 else "")), fallos[:10])
+    r["avisos"] = avisos[:8]
+    return r
+
+
+def valoracion(carpeta, ficha):
+    """Calificación de Google (R-VAL-01 y R-VAL-02): solo si la ficha trae un dato real de 4,0 o más, con el mismo número, enlace y fecha
+    que la ficha; en la portada y en la visita; y sin comentarios de clientes ni datos estructurados de reseñas."""
+    from edumashow.motor import valoracion as V
+    html, p = leer_html(carpeta)
+    marcado = re.sub(r"<(script|style)\b.*?</\1>", "", html, flags=re.S)
+    bloques = [(m.start(), m.group(0)) for m in re.finditer(r"<(a|p)\b[^>]*\sdata-valoracion[\s>=][^>]*>.*?</\1>", marcado, re.S)]
+    fallos = []
+    # nunca: datos estructurados de reseñas ni comentarios copiados
+    if re.search(r"aggregateRating|ratingValue|schema\.org/(Review|AggregateRating)|\"@type\"\s*:\s*\"Review\"", html, re.I):
+        fallos.append("la página lleva datos estructurados de reseñas (los buscadores no aceptan una calificación propia)")
+    if re.search(r"<blockquote|class=\"[^\"]*(rese[nñ]a|review|testimonio|comentario)", marcado, re.I):
+        fallos.append("la página lleva un bloque de comentarios de clientes (R-VAL-02)")
+    F = ficha.get("valoracion")
+    if not F:
+        if bloques or re.search(r"val-estrellas|data-valoracion", marcado):
+            fallos.append("la ficha no trae valoracion y la página muestra una calificación")
+        return res("PASS" if not fallos else "FAIL", "la ficha no trae calificación de Google y la web no muestra ninguna", fallos)
+    fallos += V.validar(ficha)[0]
+    inicio_visita = marcado.find('id="visitanos"')
+    fin_cabecera = marcado.find("</header>")
+    en_cabecera = [b for pos, b in bloques if 0 <= pos < fin_cabecera]
+    en_visita = [b for pos, b in bloques if inicio_visita >= 0 and pos > inicio_visita]
+    if not en_cabecera:
+        fallos.append("falta la calificación en la portada")
+    if not en_visita:
+        fallos.append("falta la calificación en la visita")
+    nota, n = V.nota_txt(ficha), V.resenas_txt(ficha)
+    href = V.enlace(ficha)
+    for _, b in bloques:
+        txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", b))
+        if f'data-nota="{F["nota"]:.1f}"' not in b or f'data-resenas="{F["resenas"]}"' not in b:
+            fallos.append("los datos de la pastilla no son los de la ficha")
+        if nota not in txt or n not in txt or "Google" not in txt:
+            fallos.append(f"el texto de la pastilla no dice {nota}, {n} y Google: {txt.strip()[:80]}")
+        if href:
+            if f'href="{href}"' not in b.replace("&amp;", "&") and f'href="{V.e_(href)}"' not in b:
+                fallos.append("el enlace de la pastilla no es el de la ficha")
+            if 'target="_blank"' not in b or "noopener" not in b:
+                fallos.append("el enlace de la calificación debe abrirse en una pestaña nueva con rel noopener")
+        elif "<a " in b:
+            fallos.append("un ejemplo ficticio no debe enlazar a Google")
+        if F.get("ejemplo") and "Ejemplo" not in b:
+            fallos.append("la calificación de un ejemplo debe llevar la etiqueta Ejemplo")
+    fechas = re.findall(r'data-valoracion-fecha="([^"]+)"', marcado)
+    if not fechas or any(f_ != F["fecha"] for f_ in fechas):
+        fallos.append("falta la frase de la fuente con la fecha de consulta de la ficha")
+    elif not F.get("ejemplo") and V.fecha_txt(F) not in re.sub(r"\s+", " ", " ".join(p.texto)):
+        fallos.append(f"la fecha de consulta no aparece escrita ({V.fecha_txt(F)})")
+    return res("PASS" if not fallos else "FAIL", f"calificación {nota} con {n} reseñas, fecha {F['fecha']}: {len(bloques)} pastillas (portada y visita) iguales a la ficha; sin comentarios ni datos estructurados", fallos[:10])
 
 
 def red_estatica(carpeta, ficha=None):
@@ -318,8 +417,11 @@ def red_estatica(carpeta, ficha=None):
     cargas = re.findall(r'(?:src|srcset)="(https?://[^"]+)"|url\((https?://[^)]+)\)|@import\s+["\']?(https?://[^"\')\s]+)', css)
     ext = [next(x for x in c if x) for c in cargas]
     enlaces = sorted({a.get("href") for a in p.links if a.get("href", "").startswith(("http", "mailto"))})
-    permitidos = ("https://wa.me/", "https://www.google.com/maps/", "mailto:")
+    from edumashow.motor import valoracion as _val
+    permitidos = ("https://wa.me/", "mailto:") + _val.PREFIJOS_ENLACE
     redes = {r["url"] for r in (ficha or {}).get("contacto", {}).values() if isinstance(r, dict) and r.get("url")}   # solo las redes que declara la ficha
+    if (ficha or {}).get("valoracion", {}).get("url"):
+        redes.add(ficha["valoracion"]["url"])
     raros = [e for e in enlaces if not e.startswith(permitidos) and e not in redes]
     fallos = [f"recurso externo en la carga: {u}" for u in ext] + [f"enlace externo no previsto: {u}" for u in raros]
     return res("PASS" if not fallos else "FAIL", f"{len(ext)} recursos externos en la carga; {len(enlaces)} enlaces de salida revisados", fallos[:8])

@@ -15,9 +15,9 @@ import re
 
 from PIL import Image
 
-from . import antojo, color, huella as _huella, temas, tipografia
+from . import antojo, catalogo, color, huella as _huella, temas, tipografia
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 # carácter de cocina: palabras de la ficha (cocina, nombre, descripción) que sugieren un tono tipográfico
 TONOS_COCINA = [
@@ -29,7 +29,12 @@ TONOS_COCINA = [
     (r"alta cocina|autor|degustaci|gourmet|fine", ["autor", "elegante", "premium", "contemporaneo"]),
     (r"panader|artesan|tradici|casero|abuela", ["tradicion", "artesanal", "calido"]),
     (r"sushi|nikkei|ramen|japon", ["minimal", "tecnica", "moderno"]),
-    (r"mariscos|pescad|cevich|marin", ["fresco", "elegante", "calido"]),
+    (r"mariscos|pescad|cevich|marin|peruan", ["fresco", "marino", "elegante", "luminoso"]),
+    (r"caf[eé]|cafeter|brunch|desayun|bakery", ["fresco", "luminoso", "calmado", "moderno", "cafe"]),
+    (r"\bbar\b|c[oó]ctel|cocktail|cerveza|taproom|\bpub\b|lounge", ["nocturno", "social", "joven", "festivo"]),
+    (r"arepa|empanada|cachapa|criolla|callejer", ["callejero", "calido", "familiar"]),
+    (r"taco|mexican|antojit|taquer|burrito", ["callejero", "festivo", "pop", "calido"]),
+    (r"familiar|casa de comidas|menu del dia|men[uú] del d[ií]a", ["familiar", "calido", "tradicion", "amable"]),
 ]
 
 
@@ -60,7 +65,7 @@ def _tokens_con_acento(tokens):
 def resolver_paleta(F, origen_activos, fecha=None):
     """Tokens de color de la web. Con paleta 'auto' salen del logo; con el nombre de una paleta hecha a mano, de ella (solo se valida)."""
     est = F["estilo"]
-    if est["paleta"] != "auto":
+    if est.get("paleta", "auto") != "auto":
         tokens = _tokens_con_acento(temas.PALETAS[est["paleta"]])
         return {"id": est["paleta"], "origen": "paleta hecha a mano, validada con los mismos pares de contraste", "tokens": tokens,
                 "pares": color.pares_de_contraste(tokens), "informe": None}
@@ -84,18 +89,18 @@ def resolver_paleta(F, origen_activos, fecha=None):
 
 
 # ------------------------------------------------------------------ tipografía
-def elegir_tipografia(F, texto, registro, tonos):
+def elegir_tipografia(F, texto, registro, tonos, conservar=None):
     """Clasifica las parejas posibles de la personalidad y devuelve la mejor que cubre todos los caracteres y cumple la rotación."""
     est = F["estilo"]
     pers = est["personalidad"]
-    clave_ficha = est["tipografia"]
+    clave_ficha = est.get("tipografia", "auto")
     nombre = F["negocio"]["nombre"]
     filas = []
     for k, p in tipografia.PAREJAS.items():
         if pers not in p["personalidades"]:
             continue
         faltan = tipografia.faltantes(k, texto)
-        rot = _huella.rotacion(F["id"], {"display": p["familia_display"], "clase_tipografica": p["clase"]}, registro)
+        rot = _huella.rotacion(F["id"], {"display": p["familia_display"], "clase_tipografica": p["clase"]}, registro, familia=pers)
         coincide = [t for t in p["tonos"] if t in tonos]
         puntos = len(coincide) / max(1, len(tonos)) if tonos else 0.0
         probada = tipografia.esta_probada(k, pers)
@@ -105,16 +110,28 @@ def elegir_tipografia(F, texto, registro, tonos):
                       "orden": puntos + desempate, "faltan_caracteres": "".join(faltan), "rotacion": rot, "probada": probada, "ancho_em": tipografia.ancho_em(k)})
     filas.sort(key=lambda f: -f["orden"])
     aptas = [f for f in filas if not f["faltan_caracteres"] and not f["rotacion"] and f["probada"]]
+    previa = next((f for f in filas if f["clave"] == conservar and not f["faltan_caracteres"] and f["probada"]), None) if conservar else None
     if clave_ficha != "auto":
         elegida = next((f for f in filas if f["clave"] == clave_ficha), None)
         origen = "fijada en la ficha"
+    elif previa is not None:
+        elegida = previa
+        origen = "conservada de la construcción anterior de esta misma web (el diseño no cambia al corregir un texto)"
     else:
         elegida = aptas[0] if aptas else None
         origen = "elegida por el director: la mejor probada que cubre los caracteres y cumple la rotación"
+        if elegida is None:   # el catálogo de tipografías de la familia se agotó para esta racha: se elige la que menos repite y el Gate lo señala
+            posibles = sorted((f for f in filas if not f["faltan_caracteres"] and f["probada"]), key=lambda f: (len(f["rotacion"]), -f["orden"]))
+            elegida = posibles[0] if posibles else None
+            origen = "no hay pareja que cumpla la rotación: se elige la que menos repite; faltan tipografías en el catálogo para esta racha de webs"
     if elegida is None:
         from .generar import FichaIncompleta
         raise FichaIncompleta(f"no hay una pareja tipográfica probada para la personalidad {pers} que cubra el texto y cumpla la rotación")
-    return {"clave": elegida["clave"], "origen": origen, "elegida": elegida, "ranking": [{k: v for k, v in f.items() if k != "orden"} for f in filas]}
+    # solo cuando la elección es del director (ni fijada en la ficha ni conservada) la composición puede afinarla entre las que cumplen
+    candidatas = None
+    if clave_ficha == "auto" and previa is None:
+        candidatas = aptas if aptas else [f for f in sorted((f for f in filas if not f["faltan_caracteres"] and f["probada"]), key=lambda f: (len(f["rotacion"]), -f["orden"]))][:3]
+    return {"clave": elegida["clave"], "origen": origen, "elegida": elegida, "ranking": [{k: v for k, v in f.items() if k != "orden"} for f in filas], "candidatas": candidatas}
 
 
 # ------------------------------------------------------------------ fotos
@@ -146,26 +163,62 @@ def para_manifiesto(D):
     return _limpio(D)
 
 
-def decidir(F, origen_activos, registro, fecha=None):
-    """Decisiones de diseño de una ficha. Devuelve un diccionario serializable y completo (va al manifiesto)."""
+def decidir(F, origen_activos, ruta_registro, fecha=None, redisenar=False):
+    """Decisiones de diseño de una ficha. Devuelve un diccionario serializable y completo (va al manifiesto).
+    La tipografía y la composición se eligen y se anotan como reservadas bajo un candado, para que varias webs construyéndose a la vez no repitan.
+    Si la web ya estaba en el registro, conserva su diseño (corregir un texto no cambia el diseño aprobado) salvo que se pida rediseñar."""
+    import json
+    from . import pedido
     est = F["estilo"]
+    fam = est["personalidad"]
     fecha = fecha or F.get("confirmacion", {}).get("fecha")
     tonos, de_donde = tonos_de(F)
-    import json
     texto = json.dumps(F, ensure_ascii=False)
-    from . import pedido
     if pedido.activo(F):
         texto += json.dumps(pedido.textos(F), ensure_ascii=False)
     paleta = resolver_paleta(F, origen_activos, fecha)
-    tipo = elegir_tipografia(F, texto, registro, tonos)
     registros, orden = puntuar_fotos(F, origen_activos)
+    cubo = _huella.cubo_de_tono(paleta["tokens"]["brasa"]) if est.get("paleta", "auto") == "auto" else est["paleta"]
+
+    def elegir(registro):
+        previo = None if redisenar else registro.get(F["id"])
+        tipo = elegir_tipografia(F, texto, registro, tonos, conservar=(previo or {}).get("tipografia"))
+        fijados, origen_fijados = {}, {}
+        for d in catalogo.DIMENSIONES:
+            if est.get(d) not in (None, "auto"):
+                fijados[d], origen_fijados[d] = est[d], "fijada en la ficha"
+            elif previo and previo.get(d) in catalogo.OPCIONES[d][fam] and catalogo.viable(d, previo[d], F):
+                fijados[d], origen_fijados[d] = previo[d], "conservada de la construcción anterior de esta misma web"
+        orden_s = est.get("orden") or catalogo.orden_por_defecto(F)
+        comp = catalogo.componer(F, registro, tonos, fijados, origen_fijados, tipos=tipo.get("candidatas"), paleta_cubo=cubo, orden=orden_s)
+        if tipo.get("candidatas"):
+            elegida = next(f for f in tipo["candidatas"] if f["clave"] == comp["elegidas"]["tipografia"])
+            tipo = dict(tipo, clave=elegida["clave"], elegida=elegida, origen=tipo["origen"] + "; afinada junto con la composición para distinguirse de las últimas webs")
+        el = {d: comp["elegidas"][d] for d in catalogo.DIMENSIONES}
+        pack = catalogo.PAQUETES[el["animaciones"]]
+        forma = est.get("forma") if est.get("forma") not in (None, "auto") else catalogo.forma_de(comp["rasgos"])
+        mov = est.get("movimiento") if est.get("movimiento") not in (None, "auto") else pack["movimiento"]
+        est_r = dict(est, familia=fam, paleta=paleta["id"], paleta_cubo=cubo, tipografia=tipo["clave"], forma=forma, movimiento=mov, orden=orden_s, **el)
+        return _huella.huella(F, est_r), {"tipo": tipo, "comp": comp, "est_r": est_r, "forma_de": "fijada en la ficha" if est.get("forma") not in (None, "auto") else "por los rasgos del restaurante"}
+
+    h, extra = _huella.reservar(F["id"], ruta_registro, elegir)
+    tipo, comp, est_r = extra["tipo"], extra["comp"], extra["est_r"]
+    tipo = {k: v for k, v in tipo.items() if k != "candidatas"}
     d = {
         "version_director": VERSION, "fecha_de_referencia": fecha, "tonos": {"lista": tonos, "origen": de_donde},
         "paleta": paleta, "tipografia": tipo,
+        "composicion": {"elegidas": {d: comp["elegidas"][d] for d in catalogo.DIMENSIONES}, "motivos": comp["motivos"], "rasgos": comp["rasgos"], "ajustes_por_variedad": comp["ajustes_por_variedad"],
+                        "distancia_minima": comp["distancia_minima"], "variedad_limitada": comp["variedad_limitada"],
+                        "forma": est_r["forma"], "movimiento": est_r["movimiento"], "orden": est_r["orden"],
+                        "animaciones_modulos": catalogo.animaciones_de(comp["elegidas"]["animaciones"]),
+                        "paquete": {"nombre": comp["elegidas"]["animaciones"], **{k: v for k, v in catalogo.PAQUETES[comp["elegidas"]["animaciones"]].items() if k != "modulos"}},
+                        "ranking": {dim: filas[:4] for dim, filas in comp["ranking"].items() if dim != "tipografia"}},
         "fotos": {"registros": registros, "orden_por_antojo": orden, "usa_el_orden": est.get("orden_fotos") == "antojo",
                   "criterios": {k: {"descripcion": v[0], "peso": v[1]} for k, v in antojo.CRITERIOS.items()},
                   "pesos": {"juicio": antojo.PESO_JUICIO, "tecnica": antojo.PESO_TECNICA}},
-        "estilo_resuelto": {"paleta": paleta["id"], "tipografia": tipo["clave"]},
+        "estilo_resuelto": {k: est_r[k] for k in ("familia", "paleta", "paleta_cubo", "tipografia", "portada", "carta", "galeria", "ornamento", "boton", "densidad", "textura",
+                                                   "animaciones", "forma", "movimiento", "orden")},
+        "huella": h,
     }
     # la idea que se dibuja: solo si la carta tiene medidas reales
     idea = F.get("idea")
