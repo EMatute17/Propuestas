@@ -1,5 +1,6 @@
 /* portada cortina: foto a pantalla completa con un marco fino, titular centrado y una cortina que se abre */
 .hero.hero-cortina{justify-content:center;text-align:center;padding:0 0 3.5rem}
+.hero-cortina .velo{background:linear-gradient(to bottom,rgba(8,15,21,.74) 0%,rgba(8,15,21,.64) 24%,rgba(8,15,21,.66) 50%,rgba(8,15,21,.84) 80%,rgba(8,15,21,.96) 100%)}   /* el texto va centrado sobre la foto: el velo es parejo, no solo abajo */
 .hero-cortina .hero-barra{position:relative;flex-direction:column;justify-content:center;gap:.35rem;margin:0 auto;padding-top:1.6rem}
 .hero-cortina .hero-barra .barra-der{justify-content:center}
 .hero-cortina .pausa{position:absolute;top:1rem;right:var(--pad)}
