@@ -2,7 +2,7 @@
 
 Aquí vive el conocimiento único que sale de los cinco estudios de Eduardo (alianzas, psicología, UX, conducta y motor gráfico), más las normas técnicas (WCAG 2.2, Core Web Vitals) y las medidas hechas en este proyecto.
 
-El conocimiento no se pega como texto en ningún prompt. Se ejecuta: cada regla tiene un tipo, una prioridad y una prueba en el Gate, así que no cuesta tokens por página.
+El conocimiento no se pega como texto en ningún prompt. Se ejecuta: cada regla tiene un tipo, un número de orden de importancia y una prueba en el Gate, así que no cuesta tokens por página.
 
 ## Lo que hay que saber de los estudios
 
@@ -14,15 +14,15 @@ El conocimiento no se pega como texto en ningún prompt. Se ejecuta: cada regla 
 
 ## Cómo se resuelven los choques
 
-Las reglas se ordenan por prioridad (ver reglas.json). Gana siempre la de menor número:
+Cada regla lleva un número de orden de importancia (ver reglas.json), como un podio: el 0 es lo más importante y el 6 lo menos. Cuando dos reglas chocan gana siempre la que tiene el número más bajo, porque número bajo quiere decir más importante. Una regla de variedad (6) nunca le quita nada a una de accesibilidad (1), y una de accesibilidad nunca le quita nada a una de verdad (0).
 
-0. Verdad, legalidad y ética
+0. Verdad, legalidad y ética (la más importante)
 1. Accesibilidad y legibilidad
 2. Tarea del visitante: un siguiente paso claro y poca fricción
 3. Rendimiento en móvil lento
 4. Identidad y estética del restaurante
 5. Persuasión (solo como hipótesis a probar)
-6. Variedad entre webs
+6. Variedad entre webs (la que cede ante todas)
 
 Choques reales que se detectaron y cómo se resuelven:
 

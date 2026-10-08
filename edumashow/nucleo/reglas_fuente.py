@@ -5,7 +5,8 @@ Aquí se escriben, una sola vez, las reglas unificadas que salen de los cinco es
 en este proyecto. Ejecutar este archivo regenera reglas.json y lo valida.
 
 Convenciones
-- prioridad: 0 verdad, legalidad y ética | 1 accesibilidad y legibilidad | 2 tarea del visitante |
+- prioridad: es un número de orden, como un podio: el 0 es lo más importante y el 6 lo menos.
+  0 verdad, legalidad y ética | 1 accesibilidad y legibilidad | 2 tarea del visitante |
   3 rendimiento en móvil lento | 4 identidad y estética | 5 persuasión (hipótesis) | 6 variedad |
   None = regla de proceso (como se construye, se prueba y se mide).
 - tipo: bloqueo (impide entregar) | defecto (se aplica salvo razón documentada) | hipótesis (solo se
@@ -171,6 +172,13 @@ R("R-IDE-04", "identidad", "Los activos de marca aprobados por el restaurante (l
 R("R-IDE-05", "identidad", "El movimiento tiene personalidad (elegante: lento y con aire; casual: rápido y grueso) y siempre respeta las reglas de legibilidad y rendimiento. Los efectos inmersivos son aditivos: la página es completa sin ellos.",
   4, "defecto", "ambos", "E3", ["AL-42 pp.4,5,33", "UX-58 p.10"], ["G-MOVIMIENTO", "G-AVANCE", "G-REND"])
 
+R("R-IDE-06", "identidad", "La paleta sale del color de identidad del logo (los neutros no cuentan como identidad), con un acento de temporada WGSN x Coloro de tono análogo o complementario (nunca la zona de choque) y fondos teñidos hacia la marca, en proporción 60 / 30 / 10. Todo par de colores con el que se lee cumple 4,5 a 1 (3 a 1 en anillos de foco y superficies de marca) y el Gate lo mide sobre los colores finales de la página.",
+  4, "defecto", "ambos", "E3", ["DM 6.2", "GR-A04 p.24", "UX-28 pp.13,30"], ["G-PALETA", "G-CONTRASTE"],
+  "Los hex de WGSN son aproximaciones digitales no oficiales de los códigos Coloro publicados. El 60 / 30 / 10 es un punto de partida, no un ensayo de conversión (R-IDE-03).")
+R("R-IDE-07", "identidad", "Las fotos de comida se ordenan por antojo: cada foto se juzga mirándola con 7 criterios (textura, reconocible, acción, protagonista, luz cálida lateral, señal de calor, mano o cubierto) con 0, 1 o 2, y ese juicio pesa el 65 %; el 35 % son medidas técnicas objetivas (nitidez en la zona del plato, calidez, saturación y contraste). Solo cuentan las fotos reales y sin marcas ajenas, y el orden que se ve en el mural y la galería es el del ranking, con el motivo de cada foto escrito en la ficha.",
+  4, "defecto", "ambos", "E3", ["DM 5.4", "DM 6.5"], ["G-ANTOJO", "G-FOTOS"],
+  "Ningún cálculo mide el deseo de comer: la puntuación aplica, foto por foto, las señales que la evidencia de percepción de comida asocia con él. Los pesos son criterios de diseño, no medidas calibradas con clientes.")
+
 # ------------------------------------------------------------------ PERSUASION (prioridad 5, solo hipótesis)
 R("R-PER-01", "persuasion", "Ninguna técnica de persuasión se activa por defecto en todas las webs. Cada módulo persuasivo lleva evidencia y estado (probada en este contexto o hipótesis), y las hipótesis no se activan sin prueba propia.",
   5, "hipotesis", "ambos", "E1", ["PS-01 pp.1,4,6,7", "CO-26 pp.5-6,8"], ["G-MANIFIESTO"])
@@ -184,6 +192,9 @@ R("R-PER-03", "persuasion", "Anclaje, encuadre y otras heurísticas son descripc
 R("R-VAR-01", "variedad", "Gate de unicidad: la huella de diseño (paleta, tipografías, portada, carta, orden de secciones, forma y movimiento) difiere en al menos 3 de 6 dimensiones respecto de cada web ya registrada.",
   6, "bloqueo", "ambos", "E3", ["UX-27 pp.7,21,30", "GR-V03 p.26", "AL-29 pp.15,17,25"], ["G-HUELLA"],
   "Los estudios no definen familia de diseño ni distancia; la métrica de 6 dimensiones viene del kit de propuestas.")
+R("R-VAR-03", "variedad", "Rotación tipográfica: la fuente de titular de una web nueva no puede ser la misma que en 2 de las 6 webs anteriores, ni de la misma clase (expandida, condensada, serif, grotesca o geométrica) que en 2 de las 4 anteriores. Una misma fuente web tras web hace que todas se parezcan aunque cambien los colores.",
+  6, "bloqueo", "ambos", "E3", ["DM 6.3"], ["G-HUELLA"],
+  "La regla viene del kit de propuestas; con pocas webs registradas el Gate casi nunca la dispara y, cuando haya más, la dispara antes de que el diseño se repita.")
 R("R-VAR-02", "variedad", "Se generan pocas alternativas materialmente distintas, no decenas de variantes superficiales. Si la asignación de variante es aleatoria se registran semilla y probabilidad para poder evaluarla después.",
   6, "defecto", "ambos", "E2", ["AL-29 pp.15,17,25", "AL-30 pp.17,31,40", "UX-38 pp.25,33"], ["G-MANIFIESTO"])
 
@@ -271,13 +282,14 @@ def main():
         "version": "0.2.0",
         "descripcion": "Núcleo de conocimiento unificado de Edumashow. Reglas con prioridad, fuente, evidencia y prueba.",
         "prioridades": {str(k): v for k, v in PRIORIDADES.items()},
-        "resolucion_de_choques": "Gana la regla de menor número de prioridad. A igual prioridad, el bloqueo gana al defecto y el defecto a la hipótesis. Una regla de prioridad mayor nunca se cumple a costa de una de prioridad menor.",
+        "resolucion_de_choques": "Cuando dos reglas chocan gana la que lleva el número más bajo, porque el número es un orden de importancia como un podio: el 0 (verdad, legalidad y ética) pasa por encima del 1, el 1 por encima del 2, y así hasta el 6 (variedad entre webs), que cede ante todas las demás. Número bajo quiere decir más importante, no menos. Entre dos reglas con el mismo número, el bloqueo gana al defecto y el defecto a la hipótesis. Una regla con número más alto nunca se cumple a costa de una con número más bajo.",
         "estudios_de_origen": {
             "AL": "Estudio motor predictivo para propuestas y alianzas con creadores (55 pp.)",
             "PS": "Estudio de psicología humana histórica y actual (9 pp.)",
             "UX": "Estudio motor predictivo de UX para propuestas (40 pp.)",
             "CO": "Estudio de ciencias del comportamiento y de la conducta (11 pp.)",
             "GR": "Informe motor gráfico para propuestas comerciales (33 pp.)",
+            "DM": "Documento Maestro del kit de propuestas v4.6 (método de paleta, tipografía y fotos que usa el kit, reescrito para la web)",
         },
         "aviso": "Ninguno de los estudios trata de webs de restaurante: las reglas web son traducciones, y los umbrales numéricos de legibilidad, táctil y rendimiento son criterios propios o normas externas (WCAG 2.2, Core Web Vitals) o medidas de este proyecto.",
         "reglas": REGLAS,

@@ -40,6 +40,20 @@ Reglas de la tabla:
 > No inventes datos: si algo no aparece en la página, escribe sin verificar. Prefiere resoluciones de 3000 px o más y videos de 10 a 20
 > segundos, verticales y horizontales.
 
+## Cómo se juzga cada foto (antojo)
+
+Cuando una web ordena sus fotos por antojo (`estilo.orden_fotos` en la ficha), cada foto de comida lleva su juicio en `activos.<foto>.antojo`:
+
+    "antojo": {"juicio": {"textura": 2, "reconocible": 2, "accion": 0, "protagonista": 1, "luz": 1, "calor": 1, "mano": 2},
+               "real": true, "sin_marcas_ajenas": true, "nota": "qué se ve y por qué se puntuó así"}
+
+Cada criterio se juzga mirando la foto, con 0 (no), 1 (en parte) o 2 (claramente sí). Nunca se pone 2 por defecto:
+textura (primer plano con costra, brillo o fundido), reconocible (se entiende qué plato es), accion (corte, salsa cayendo, mordisco, vapor),
+protagonista (un solo plato sobre un fondo que contrasta), luz (lateral y cálida, sin dominante azulada), calor (vapor, fundido o gotas de frío)
+y mano (mano o cubierto hacia la derecha, o nada que estorbe). `real` es falso si la foto es una ilustración o está generada; `sin_marcas_ajenas`,
+falso si lleva logos de otra marca o marca de agua. El motor suma ese juicio (65 %) a cuatro medidas técnicas (35 %: nitidez en la zona del plato,
+calidez, saturación y contraste) y ordena el mural y la galería. Una foto descartada no entra al ranking.
+
 ## Qué hace el motor con cada archivo
 
 - Fotos: recorte opcional, AVIF y WebP con srcset, JPEG de respaldo, miniatura borrosa, color medio, sha256 del original, procedencia y

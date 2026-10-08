@@ -88,9 +88,11 @@ REGLAS = {
     "R-REN-03": ("Aplicada", [(MOT + "tipografia.py", "def subconjunto_woff2"), (GAT + "estatico.py", "def fuentes_glifos")], "Subconjuntos WOFF2 propios con font-display swap."),
     "R-REN-04": ("Sin prueba", [(PLA + "base.js", "ResizeObserver")], "JavaScript propio de unos 17 KB minificado. El tope de 30 KB lo imprime el generador pero el Gate no lo exige."),
     "R-REN-05": ("Aplicada", [(MOT + "generar.py", "_headers"), (GAT + "verificar.py", "G-RED")], "Un solo origen, cabeceras de caché inmutable y cero peticiones externas."),
-    "R-IDE-01": ("Parcial", [(MOT + "temas.py", "PALETAS"), (MOT + "huella.py", "def huella")], "El estilo lo decide la ficha a partir de los datos del restaurante; el motor no lo deduce solo."),
+    "R-IDE-01": ("Aplicada", [(MOT + "estilo.py", "def decidir"), (MOT + "estilo.py", "TONOS_COCINA"), (MOT + "huella.py", "def huella")],
+                 "El director de estilo deduce paleta (del logo), tipografía (del carácter de la cocina) y orden de fotos (por antojo) de los datos de la ficha, y deja escrita la razón de cada decisión en el manifiesto y en el informe del Gate."),
     "R-IDE-02": ("Aplicada", [(MOT + "piezas.py", "def _plato"), (PLA + "elegante.js", "role=tab"), (MOT + "piezas_urbano.py", "def _item"), (PLA + "urbano.js", "chips")], "Precio junto al nombre, categorías de carta y botones de acción donde se esperan: pestañas en la personalidad elegante y barra de categorías pegada arriba, con la categoría actual marcada, en la urbana."),
-    "R-IDE-03": ("Aplicada", [(MOT + "tipografia.py", "PAREJAS"), (GAT + "verificar.py", "G-CONTRASTE")], "Paleta y tipografía se eligen por contraste y marca, y se miden."),
+    "R-IDE-03": ("Aplicada", [(MOT + "color.py", "def paleta_marca"), (MOT + "tipografia.py", "PAREJAS"), (GAT + "verificar.py", "G-CONTRASTE"), (GAT + "verificar.py", "G-PALETA")],
+                 "Paleta y tipografía se eligen por contraste, marca y carácter, y se miden dos veces: los pares de colores sobre los tokens finales y el contraste real sobre los píxeles de la página."),
     "R-IDE-04": ("Parcial", [(MOT + "imagenes.py", "def procesar_logo"), (GAT + "verificar.py", "G-LOGO"), (MOT + "temas.py", "\"fuego\"")],
                  "El logo se usa íntegro: con su transparencia, sin recortar, recolorear ni deformar, y el Gate mide que cargue y que no cambie de proporción. La paleta fuego se tomó de los colores del logo; falta un campo de colores aprobados por el restaurante."),
     "R-IDE-05": ("Aplicada", [(MOT + "temas.py", "MOVIMIENTOS"), (PLA + "urbano.css", "mural"), (GAT + "verificar.py", "G-AVANCE"), (GAT + "verificar.py", "G-MOVIMIENTO")], "Movimiento lento para la personalidad elegante y rápido y grueso para la urbana (mural de fotos, brasas, titular que sube), las dos con pausa, sin efectos obligatorios y quietas con movimiento reducido."),
@@ -98,7 +100,14 @@ REGLAS = {
     "R-PER-02": ("No aplica", [], "No hay prueba social ni normas en las muestras."),
     "R-PER-03": ("No aplica", [], "No se usan anclajes ni encuadres como palanca."),
     "R-VAR-01": ("Aplicada", [(MOT + "huella.py", "def comparar"), (GAT + "verificar.py", "G-HUELLA")], "Huella de seis dimensiones y registro; el Gate bloqueo una copia exacta en la prueba del modo final."),
-    "R-VAR-02": ("Parcial", [(MOT + "huella.py", "def huella"), (MOT + "piezas_urbano.py", "PERSONALIDAD")], "Hay dos personalidades materialmente distintas (la huella de Al Fuego difiere de la de Lumbre en las 6 dimensiones). El motor todavía no propone alternativas para un mismo restaurante ni registra semillas."),
+    "R-VAR-02": ("Parcial", [(MOT + "huella.py", "def huella"), (MOT + "piezas_urbano.py", "PERSONALIDAD"), (MOT + "estilo.py", "variante_paleta")],
+                 "Hay dos personalidades materialmente distintas y el director propone la pareja tipográfica y el acento de temporada con alternativas, pero no asigna variantes al azar ni registra semillas: la misma ficha siempre da el mismo resultado."),
+    "R-IDE-06": ("Aplicada", [(MOT + "color.py", "def paleta_marca"), (MOT + "color.py", "def colores_dominantes"), (MOT + "color.py", "def elegir_acento"), (GAT + "estatico.py", "def paleta"), (GAT + "verificar.py", "G-PALETA")],
+                 "Color de identidad del logo (k-means en OKLab, sin neutros), acento de temporada con relación de tono y unidad, fondos teñidos hacia la marca y ajuste automático de luminosidad hasta cumplir cada par de contraste; el Gate recalcula los pares sobre los colores finales."),
+    "R-IDE-07": ("Aplicada", [(MOT + "antojo.py", "CRITERIOS"), (MOT + "antojo.py", "def puntuar"), (MOT + "piezas_urbano.py", "def _galeria"), (GAT + "estatico.py", "def antojo"), (GAT + "verificar.py", "G-ANTOJO")],
+                 "Siete criterios juzgados mirando cada foto (65 %) y cuatro medidas técnicas (35 %); el orden del mural y de la galería es el del ranking y el Gate comprueba que lo que se ve coincide con el ranking del manifiesto."),
+    "R-VAR-03": ("Aplicada", [(MOT + "huella.py", "def rotacion"), (MOT + "tipografia.py", "CLASES"), (MOT + "estilo.py", "def elegir_tipografia"), (GAT + "verificar.py", "G-HUELLA")],
+                 "Fuente y clase del titular quedan en la huella y en el registro con su secuencia; el director solo propone parejas que no repiten y el Gate bloquea una repetición."),
     "R-MUE-01": ("Aplicada", [(MOT + "piezas.py", "def cinta"), (MOT + "generar.py", "noindex"), (GAT + "estatico.py", "def muestra")], "Cinta, noindex, cabecera X-Robots-Tag y robots.txt; el Gate lo exige en toda muestra."),
     "R-MUE-02": ("Aplicada", [(MOT + "piezas.py", "def cierre_muestra"), (MOT + "piezas.py", "def panel_edu")], "Una sola acción de contratación: WhatsApp a Edumashow con mensaje prellenado."),
     "R-MUE-03": ("Aplicada", [(MOT + "piezas.py", "def cierre_muestra")], "El cierre habla en condicional y no menciona presupuesto ni margen."),
@@ -228,12 +237,12 @@ def escribir(reglas_json, salida):
     L.append("Este documento lo genera `edumashow/nucleo/trazabilidad_fuente.py`, que además comprueba que cada archivo y cada función citados existen. Dice también lo que todavía no está hecho.\n")
     L.append("Estados: **Aplicada** (está en el código o el diseño y el Gate la comprueba), **Sin prueba** (aplicada, pero el Gate no la mide), **Parcial**, **Pendiente** y **No aplica**.\n")
     L.append("## Resumen\n")
-    L.append("| Estado | Reglas unificadas (76) | Controles del informe del motor gráfico (54) |\n|---|---|---|")
+    L.append(f"| Estado | Reglas unificadas ({len(REGLAS)}) | Controles del informe del motor gráfico (54) |\n|---|---|---|")
     for e in ORDEN_ESTADO:
         L.append(f"| {e} | {cuenta[e]} | {cuenta_g[e]} |")
     L.append("")
-    L.append("Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y conducta) y el informe del motor gráfico se unificaron en 76 reglas con prioridad, fuente, evidencia y prueba (`reglas.json`). Si dos reglas chocan, gana la de menor prioridad numérica. Ninguno de los cinco trata de webs de restaurante: las reglas web son traducciones y están marcadas como tales.\n")
-    L.append("## Las 76 reglas unificadas\n")
+    L.append(f"Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y conducta) y el informe del motor gráfico se unificaron, junto con el método de paleta, tipografía y fotos del Documento Maestro del kit, en {len(REGLAS)} reglas con prioridad, fuente, evidencia y prueba (`reglas.json`). Cada regla lleva un número de orden de importancia, como un podio: el 0 es lo más importante (verdad, legalidad y ética) y el 6 lo menos (variedad entre webs). Cuando dos reglas chocan gana la que tiene el número más bajo, porque número bajo quiere decir más importante. Ninguno de los cinco trata de webs de restaurante: las reglas web son traducciones y están marcadas como tales.\n")
+    L.append(f"## Las {len(REGLAS)} reglas unificadas\n")
     L.append("| Regla | Estado | Fuente en los estudios | Dónde se aplica | Prueba del Gate | Nota |\n|---|---|---|---|---|---|")
     for rid in sorted(REGLAS, key=lambda x: (x.split("-")[1], x)):
         estado, donde, nota = REGLAS[rid]

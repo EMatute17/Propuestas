@@ -6,17 +6,17 @@ Estados: **Aplicada** (está en el código o el diseño y el Gate la comprueba),
 
 ## Resumen
 
-| Estado | Reglas unificadas (76) | Controles del informe del motor gráfico (54) |
+| Estado | Reglas unificadas (79) | Controles del informe del motor gráfico (54) |
 |---|---|---|
-| Aplicada | 48 | 26 |
+| Aplicada | 52 | 26 |
 | Sin prueba | 5 | 2 |
-| Parcial | 13 | 18 |
+| Parcial | 12 | 18 |
 | Pendiente | 6 | 2 |
 | No aplica | 4 | 6 |
 
-Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y conducta) y el informe del motor gráfico se unificaron en 76 reglas con prioridad, fuente, evidencia y prueba (`reglas.json`). Si dos reglas chocan, gana la de menor prioridad numérica. Ninguno de los cinco trata de webs de restaurante: las reglas web son traducciones y están marcadas como tales.
+Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y conducta) y el informe del motor gráfico se unificaron, junto con el método de paleta, tipografía y fotos del Documento Maestro del kit, en 79 reglas con prioridad, fuente, evidencia y prueba (`reglas.json`). Cada regla lleva un número de orden de importancia, como un podio: el 0 es lo más importante (verdad, legalidad y ética) y el 6 lo menos (variedad entre webs). Cuando dos reglas chocan gana la que tiene el número más bajo, porque número bajo quiere decir más importante. Ninguno de los cinco trata de webs de restaurante: las reglas web son traducciones y están marcadas como tales.
 
-## Las 76 reglas unificadas
+## Las 79 reglas unificadas
 
 | Regla | Estado | Fuente en los estudios | Dónde se aplica | Prueba del Gate | Nota |
 |---|---|---|---|---|---|
@@ -41,11 +41,13 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 | R-ETI-10 | No aplica | AL-03 p.31; PS sec.6 | - | G-DATOS | Regla del modo final (alérgenos y dietas). Las muestras no los muestran. Queda pendiente su comprobación cuando haya una web final con alérgenos. |
 | R-ETI-11 | Aplicada | Orden de Eduardo | `gate/estatico.py`: def marca | G-MARCA | Ninguna mención a herramientas de IA ni a Peetfoodie en lo que se entrega. |
 | R-ETI-12 | Aplicada | Orden de Eduardo | `gate/estatico.py`: def comillas<br>`../scripts/revisar_comillas.py`: PROHIBIDOS<br>`../CLAUDE.md`: Comillas | G-COMILLAS | Cero comillas angulares en todo el repositorio y en cada paquete. |
-| R-IDE-01 | Parcial | AL-25 pp.21,45; AL-26 pp.7,9,13; UX-27 pp.7,21,30 | `motor/temas.py`: PALETAS<br>`motor/huella.py`: def huella | G-HUELLA | El estilo lo decide la ficha a partir de los datos del restaurante; el motor no lo deduce solo. |
+| R-IDE-01 | Aplicada | AL-25 pp.21,45; AL-26 pp.7,9,13; UX-27 pp.7,21,30 | `motor/estilo.py`: def decidir<br>`motor/estilo.py`: TONOS_COCINA<br>`motor/huella.py`: def huella | G-HUELLA | El director de estilo deduce paleta (del logo), tipografía (del carácter de la cocina) y orden de fotos (por antojo) de los datos de la ficha, y deja escrita la razón de cada decisión en el manifiesto y en el informe del Gate. |
 | R-IDE-02 | Aplicada | PS-15 p.4; UX-27 p.21 | `motor/piezas.py`: def _plato<br>`motor/plantillas/elegante.js`: role=tab<br>`motor/piezas_urbano.py`: def _item<br>`motor/plantillas/urbano.js`: chips | G-SIGUIENTE, G-INTERACCION | Precio junto al nombre, categorías de carta y botones de acción donde se esperan: pestañas en la personalidad elegante y barra de categorías pegada arriba, con la categoría actual marcada, en la urbana. |
-| R-IDE-03 | Aplicada | UX-28 pp.13,30; UX-60 pp.6,11 | `motor/tipografia.py`: PAREJAS<br>`gate/verificar.py`: G-CONTRASTE | G-CONTRASTE | Paleta y tipografía se eligen por contraste y marca, y se miden. |
+| R-IDE-03 | Aplicada | UX-28 pp.13,30; UX-60 pp.6,11 | `motor/color.py`: def paleta_marca<br>`motor/tipografia.py`: PAREJAS<br>`gate/verificar.py`: G-CONTRASTE<br>`gate/verificar.py`: G-PALETA | G-CONTRASTE | Paleta y tipografía se eligen por contraste, marca y carácter, y se miden dos veces: los pares de colores sobre los tokens finales y el contraste real sobre los píxeles de la página. |
 | R-IDE-04 | Parcial | AL-31 pp.9,14,24; GR-A04 p.24 | `motor/imagenes.py`: def procesar_logo<br>`gate/verificar.py`: G-LOGO<br>`motor/temas.py`: "fuego" | G-HUELLA, G-LOGO | El logo se usa íntegro: con su transparencia, sin recortar, recolorear ni deformar, y el Gate mide que cargue y que no cambie de proporción. La paleta fuego se tomó de los colores del logo; falta un campo de colores aprobados por el restaurante. |
 | R-IDE-05 | Aplicada | AL-42 pp.4,5,33; UX-58 p.10 | `motor/temas.py`: MOVIMIENTOS<br>`motor/plantillas/urbano.css`: mural<br>`gate/verificar.py`: G-AVANCE<br>`gate/verificar.py`: G-MOVIMIENTO | G-MOVIMIENTO, G-AVANCE, G-REND | Movimiento lento para la personalidad elegante y rápido y grueso para la urbana (mural de fotos, brasas, titular que sube), las dos con pausa, sin efectos obligatorios y quietas con movimiento reducido. |
+| R-IDE-06 | Aplicada | DM 6.2; GR-A04 p.24; UX-28 pp.13,30 | `motor/color.py`: def paleta_marca<br>`motor/color.py`: def colores_dominantes<br>`motor/color.py`: def elegir_acento<br>`gate/estatico.py`: def paleta<br>`gate/verificar.py`: G-PALETA | G-PALETA, G-CONTRASTE | Color de identidad del logo (k-means en OKLab, sin neutros), acento de temporada con relación de tono y unidad, fondos teñidos hacia la marca y ajuste automático de luminosidad hasta cumplir cada par de contraste; el Gate recalcula los pares sobre los colores finales. |
+| R-IDE-07 | Aplicada | DM 5.4; DM 6.5 | `motor/antojo.py`: CRITERIOS<br>`motor/antojo.py`: def puntuar<br>`motor/piezas_urbano.py`: def _galeria<br>`gate/estatico.py`: def antojo<br>`gate/verificar.py`: G-ANTOJO | G-ANTOJO, G-FOTOS | Siete criterios juzgados mirando cada foto (65 %) y cuatro medidas técnicas (35 %); el orden del mural y de la galería es el del ranking y el Gate comprueba que lo que se ve coincide con el ranking del manifiesto. |
 | R-LEG-01 | Aplicada | UX-16 pp.12,21; AL-34 p.14; GR-G06 p.25; WCAG 2.2 SC 1.4.3 | `motor/temas.py`: PALETAS<br>`gate/dinamico.mjs`: muestrearContraste<br>`gate/verificar.py`: G-CONTRASTE | G-CONTRASTE, G-AXE | El contraste se mide sobre los píxeles reales (texto oculto, captura, relación por pixel), no sobre colores nominales. |
 | R-LEG-02 | Aplicada | UX-17 p.21; WCAG 2.2 SC 2.5.8 | `motor/plantillas/base.css`: .btn{<br>`gate/verificar.py`: G-TACTIL44 | G-TACTIL | Botones de 3,25 rem y controles de al menos 44 px en móvil. |
 | R-LEG-03 | Aplicada | AL-33 p.14; UX-19 pp.21,24,31; GR-G01 p.25; WCAG 2.2 SC 1.4.10 y 1.4.4 | `motor/plantillas/base.css`: @container<br>`motor/plantillas/elegante.css`: minmax(0,1fr)<br>`gate/verificar.py`: G-DESBORDE | G-DESBORDE | Reorganiza sin desbordar desde 280 px y con el texto al 200 por ciento; medido en 27 dispositivos. |
@@ -95,7 +97,8 @@ Los cuatro estudios de conocimiento (alianzas, psicología, UX predictivo y cond
 | R-SIG-11 | Parcial | PS-24 p.7; AL-19 pp.14,33,51; AL-20 pp.29,54 | `gate/estatico.py`: ETICA | G-ETICA | Titulares literales; el Gate no detecta vacíos de curiosidad. |
 | R-SIG-12 | Aplicada | AL-18 pp.14,51; UX-56 pp.6,9,11; PS-26 p.6 | `gate/verificar.py`: G-ESTRUCTURA | G-ESTRUCTURA | Cada sección tiene un encabezado que dice su función (25 encabezados en Lumbre). |
 | R-VAR-01 | Aplicada | UX-27 pp.7,21,30; GR-V03 p.26; AL-29 pp.15,17,25 | `motor/huella.py`: def comparar<br>`gate/verificar.py`: G-HUELLA | G-HUELLA | Huella de seis dimensiones y registro; el Gate bloqueo una copia exacta en la prueba del modo final. |
-| R-VAR-02 | Parcial | AL-29 pp.15,17,25; AL-30 pp.17,31,40; UX-38 pp.25,33 | `motor/huella.py`: def huella<br>`motor/piezas_urbano.py`: PERSONALIDAD | G-MANIFIESTO | Hay dos personalidades materialmente distintas (la huella de Al Fuego difiere de la de Lumbre en las 6 dimensiones). El motor todavía no propone alternativas para un mismo restaurante ni registra semillas. |
+| R-VAR-02 | Parcial | AL-29 pp.15,17,25; AL-30 pp.17,31,40; UX-38 pp.25,33 | `motor/huella.py`: def huella<br>`motor/piezas_urbano.py`: PERSONALIDAD<br>`motor/estilo.py`: variante_paleta | G-MANIFIESTO | Hay dos personalidades materialmente distintas y el director propone la pareja tipográfica y el acento de temporada con alternativas, pero no asigna variantes al azar ni registra semillas: la misma ficha siempre da el mismo resultado. |
+| R-VAR-03 | Aplicada | DM 6.3 | `motor/huella.py`: def rotacion<br>`motor/tipografia.py`: CLASES<br>`motor/estilo.py`: def elegir_tipografia<br>`gate/verificar.py`: G-HUELLA | G-HUELLA | Fuente y clase del titular quedan en la huella y en el registro con su secuencia; el director solo propone parejas que no repiten y el Gate bloquea una repetición. |
 
 ## Los 54 controles del informe del motor grafico
 

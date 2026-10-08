@@ -12,8 +12,8 @@ El mismo motor, el mismo Gate y el mismo conocimiento sirven a los dos. Todo se 
 | Carpeta | Qué hay |
 |---|---|
 | `edumashow/nucleo/` | El conocimiento unificado de los cinco estudios: reglas con prioridad, fuente, evidencia y prueba. Ver su README. |
-| `edumashow/motor/` | El generador (ficha a sitio), las piezas de cada personalidad (elegante y urbana), los temas, las tipografías y el procesado de imágenes. |
-| `edumashow/gate/` | El verificador: comprobaciones estáticas y pruebas en navegador real en 27 dispositivos. |
+| `edumashow/motor/` | El generador (ficha a sitio), las piezas de cada personalidad (elegante y urbana), el pedido con ticket en vivo (`pedido.py`, `pedido.js`), el director de estilo (`estilo.py`: paleta desde el logo en `color.py`, tipografía con rotación en `tipografia.py` y `huella.py`, fotos por antojo en `antojo.py`), los temas y el procesado de imágenes. |
+| `edumashow/gate/` | El verificador: comprobaciones estáticas y pruebas en navegador real en 27 dispositivos (incluye el pedido, los filtros del menú, la página con el JavaScript apagado, los pares de colores y la rotación tipográfica). |
 | `edumashow/fichas/` | Una ficha JSON por restaurante: datos, carta, horario, textos y estilo. |
 | `edumashow/activos/origen/` | Fotos de origen: las de referencia de la muestra de ejemplo (Lumbre) y los recortes de las redes de Al Fuego Grill, con su `recortes.json`. La guía para pasar fotos y videos de bancos libres está en `edumashow/activos/GUIA_RECURSOS.md`. |
 | `edumashow/informes/` | Informes del Gate por restaurante. |
@@ -41,7 +41,13 @@ Versión de un solo archivo para verla o enviarla como vista previa:
 
     python3 -m edumashow.motor.unico muestras/lumbre muestras/lumbre.unico.html
 
-Las dos muestras que hay hoy: `lumbre` (restaurante de ejemplo, personalidad elegante, con reservas por WhatsApp) y `alfuego` (negocio real, personalidad urbana, con llamada en un toque y menú con precios; sus datos y fotos salen de sus redes públicas y están por confirmar).
+Las dos muestras que hay hoy: `lumbre` (restaurante de ejemplo, personalidad elegante, con reservas por WhatsApp) y `alfuego` (negocio real, personalidad urbana, con llamada en un toque, menú con filtros, tarjetas con Agregar y ticket en vivo que sale por WhatsApp; sus datos y fotos salen de sus redes públicas y están por confirmar).
+
+Probar parejas tipográficas nuevas en el Gate para que el director de estilo pueda proponerlas:
+
+    python3 scripts/probar_parejas.py edumashow/fichas/alfuego.json bebas-manrope,outfit-outfit
+
+La explicación de cómo se construyen estas webs y qué estudios se aplican en cada capa está en `edumashow/COMO_LO_HIZO.md`.
 
 Subir a un hosting: sube la carpeta `muestras/lumbre` (o el zip). Trae `_headers` (seguridad, noindex y caché) y `robots.txt`, que funcionan en Netlify y Cloudflare Pages.
 

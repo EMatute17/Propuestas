@@ -17,6 +17,8 @@ Nada de esto lo ha confirmado el restaurante. Esta lista es lo que hay que lleva
 | Pedidos a domicilio | DoorDash y Uber Eats | Logotipos al pie del menú impreso | Faltan los enlaces a sus páginas en cada app. Sin ellos la web solo los nombra |
 | Redes | Instagram y TikTok (@alfuego_grill) | Perfil de Instagram y volante | Facebook aparece en el menú, pero su nombre no se puede verificar como dirección: no se enlaza |
 | Lema | Sabor · Calidad · Pasión / Flavor · Quality · Passion | Volante | Ninguna |
+| Pedido desde la web | El ticket de la muestra manda el pedido por WhatsApp a Edumashow, rotulado como prueba. No se menciona recogida ni entrega propia | Es parte de la muestra, no un dato del restaurante | Preguntar al dueño si quiere recibir pedidos por WhatsApp (y a qué número), si son para recoger o también a domicilio propio, y si quiere una nota con los acompañantes de los platos especiales |
+| Medida de las picadas | 1, 2, 3 y 5 libras; el precio por libra se calcula (25, 22,50, 22 y 23 dólares) | Nombre y precio de cada picada en el menú impreso | Si cambian los precios, el cálculo se rehace solo. La etiqueta Menor precio por libra sale de ese cálculo y no es una promoción |
 
 ## Fotos y logo
 
@@ -26,6 +28,7 @@ Nada de esto lo ha confirmado el restaurante. Esta lista es lo que hay que lleva
   el enlace del pie (pedir que retiren esta muestra).
 - Ninguna foto usada muestra personas. Se descartó una foto del perfil donde sale una persona.
 - Cada recorte conserva su caja y el hash de la captura original en `edumashow/activos/origen/alfuego/recortes.json`.
+- El orden de las fotos en el mural y en la galería sale de un ranking de antojo (7 criterios juzgados mirando cada foto y 4 medidas técnicas; la tabla está en el informe del Gate). Los juicios son de quien preparó la muestra: si el dueño prefiere otro orden, se cambian en la ficha. La foto del lomo con la tabla del logo se ve muy pulida: confirmar con el restaurante que es una foto suya real, no una ilustración.
 
 ## Lo que no se ha puesto a propósito
 
