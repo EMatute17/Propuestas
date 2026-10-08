@@ -7,3 +7,6 @@ edumashow/gate/capturas/
 *.log
 edumashow/informes/*/capturas/
 *.lock
+# fotos de relleno del piloto con un modelo barato: copias de las de Lumbre y Al Fuego Grill con otro nombre, no son de ningun restaurante
+edumashow/activos/origen/casa_almendra/
+edumashow/activos/origen/trailer_patacon/
