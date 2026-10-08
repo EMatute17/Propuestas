@@ -1,0 +1,7458 @@
+{
+ "version_gate": "0.1.0",
+ "dispositivos": [
+  {
+   "id": "se1-320",
+   "nombre": "iPhone SE (1.a gen)",
+   "tipo": "telefono",
+   "w": 320,
+   "h": 568,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 320,
+    "vh": 568,
+    "dpr": 2,
+    "scrollW": 320,
+    "scrollH": 6002,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 218,
+      "bottom": 290,
+      "dentro": true
+     },
+     "cta": {
+      "top": 401,
+      "bottom": 453,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-768.avif",
+      "clave": "hero-m",
+      "cajaW": 320.321044921875,
+      "cajaH": 596.28515625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 150.015625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 218.390625,
+      "cajaH": 272.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 218.390625,
+      "cajaH": 272.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 320,
+    "vh": 568,
+    "dpr": 2,
+    "scrollW": 320,
+    "scrollH": 6002,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 5434,
+     "h1": {
+      "top": -5216,
+      "bottom": -5144,
+      "dentro": false
+     },
+     "cta": {
+      "top": -5033,
+      "bottom": -4981,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-768.avif",
+      "clave": "hero-m",
+      "cajaW": 322.28497314453125,
+      "cajaH": 599.94091796875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 150.015625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 218.390625,
+      "cajaH": 272.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 218.390625,
+      "cajaH": 272.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "fold-280",
+   "nombre": "Galaxy Z Fold plegado",
+   "tipo": "telefono",
+   "w": 280,
+   "h": 653,
+   "dpr": 3,
+   "estres": true,
+   "arriba": {
+    "vw": 280,
+    "vh": 653,
+    "dpr": 3,
+    "scrollW": 280,
+    "scrollH": 6246,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 240,
+      "bottom": 302,
+      "dentro": true
+     },
+     "cta": {
+      "top": 439,
+      "bottom": 491,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 280.28509521484375,
+      "cajaH": 652.616943359375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 175.609375,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 187.1875,
+      "cajaH": 233.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 187.1875,
+      "cajaH": 233.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 280,
+    "vh": 653,
+    "dpr": 3,
+    "scrollW": 280,
+    "scrollH": 6246,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 5593,
+     "h1": {
+      "top": -5353,
+      "bottom": -5291,
+      "dentro": false
+     },
+     "cta": {
+      "top": -5154,
+      "bottom": -5102,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 22,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 282.04583740234375,
+      "cajaH": 656.716796875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 175.609375,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 187.1875,
+      "cajaH": 233.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 187.1875,
+      "cajaH": 233.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "se3-375",
+   "nombre": "iPhone SE (2.a y 3.a gen)",
+   "tipo": "telefono",
+   "w": 375,
+   "h": 667,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 375,
+    "vh": 667,
+    "dpr": 2,
+    "scrollW": 375,
+    "scrollH": 5569,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 287,
+      "bottom": 373,
+      "dentro": true
+     },
+     "cta": {
+      "top": 484,
+      "bottom": 536,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-768.avif",
+      "clave": "hero-m",
+      "cajaW": 375.3818359375,
+      "cajaH": 615.626220703125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 261.296875,
+      "cajaH": 326.609375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 261.296875,
+      "cajaH": 326.609375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 375,
+    "vh": 667,
+    "dpr": 2,
+    "scrollW": 375,
+    "scrollH": 5569,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4902,
+     "h1": {
+      "top": -4615,
+      "bottom": -4529,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4418,
+      "bottom": -4366,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-768.avif",
+      "clave": "hero-m",
+      "cajaW": 377.2188720703125,
+      "cajaH": 618.638671875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 261.296875,
+      "cajaH": 326.609375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 261.296875,
+      "cajaH": 326.609375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "mini-360",
+   "nombre": "iPhone 12 mini",
+   "tipo": "telefono",
+   "w": 360,
+   "h": 780,
+   "dpr": 3,
+   "estres": false,
+   "arriba": {
+    "vw": 360,
+    "vh": 780,
+    "dpr": 3,
+    "scrollW": 360,
+    "scrollH": 5727,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 404,
+      "bottom": 486,
+      "dentro": true
+     },
+     "cta": {
+      "top": 597,
+      "bottom": 649,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 360.36114501953125,
+      "cajaH": 728.7303466796875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 360,
+    "vh": 780,
+    "dpr": 3,
+    "scrollW": 360,
+    "scrollH": 5727,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4947,
+     "h1": {
+      "top": -4543,
+      "bottom": -4461,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4350,
+      "bottom": -4298,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 362.267578125,
+      "cajaH": 732.58544921875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "s8-360",
+   "nombre": "Galaxy S8",
+   "tipo": "telefono",
+   "w": 360,
+   "h": 740,
+   "dpr": 4,
+   "estres": false,
+   "arriba": {
+    "vw": 360,
+    "vh": 740,
+    "dpr": 4,
+    "scrollW": 360,
+    "scrollH": 5687,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 364,
+      "bottom": 446,
+      "dentro": true
+     },
+     "cta": {
+      "top": 557,
+      "bottom": 609,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 360.36114501953125,
+      "cajaH": 688.690185546875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 360,
+    "vh": 740,
+    "dpr": 4,
+    "scrollW": 360,
+    "scrollH": 5687,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4947,
+     "h1": {
+      "top": -4583,
+      "bottom": -4501,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4390,
+      "bottom": -4338,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 362.64556884765625,
+      "cajaH": 693.05615234375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 121.75,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 249.59375,
+      "cajaH": 311.984375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "iph-390",
+   "nombre": "iPhone 12, 13 y 14",
+   "tipo": "telefono",
+   "w": 390,
+   "h": 844,
+   "dpr": 3,
+   "estres": false,
+   "arriba": {
+    "vw": 390,
+    "vh": 844,
+    "dpr": 3,
+    "scrollW": 390,
+    "scrollH": 5738,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 460,
+      "bottom": 550,
+      "dentro": true
+     },
+     "cta": {
+      "top": 661,
+      "bottom": 713,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 390.3912658691406,
+      "cajaH": 792.7945556640625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 273,
+      "cajaH": 341.25,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 273,
+      "cajaH": 341.25,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 390,
+    "vh": 844,
+    "dpr": 3,
+    "scrollW": 390,
+    "scrollH": 5738,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4894,
+     "h1": {
+      "top": -4434,
+      "bottom": -4344,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4233,
+      "bottom": -4181,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 391.85052490234375,
+      "cajaH": 795.7578125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 273,
+      "cajaH": 341.25,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 273,
+      "cajaH": 341.25,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "estructura": {
+    "lang": "es",
+    "h1": 1,
+    "encabezados": [
+     1,
+     2,
+     3,
+     3,
+     3,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "saltosEncabezado": 0,
+    "landmarks": {
+     "header": true,
+     "nav": 2,
+     "main": 1,
+     "footer": true
+    },
+    "imgSinAlt": 0,
+    "imgTotal": 11,
+    "sinNombre": 0,
+    "salto": {
+     "destino": "#contenido",
+     "existe": true
+    },
+    "anclasRotas": [],
+    "enlaces": [
+     "#contenido",
+     "#inicio",
+     "#carta",
+     "#ambiente",
+     "#reservar",
+     "#visitanos",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
+    ]
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pro-393",
+   "nombre": "iPhone 14 Pro",
+   "tipo": "telefono",
+   "w": 393,
+   "h": 852,
+   "dpr": 3,
+   "estres": false,
+   "arriba": {
+    "vw": 393,
+    "vh": 852,
+    "dpr": 3,
+    "scrollW": 393,
+    "scrollH": 5750,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 467,
+      "bottom": 558,
+      "dentro": true
+     },
+     "cta": {
+      "top": 669,
+      "bottom": 721,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 393.38836669921875,
+      "cajaH": 800.79052734375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 275.328125,
+      "cajaH": 344.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 275.328125,
+      "cajaH": 344.15625,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 393,
+    "vh": 852,
+    "dpr": 3,
+    "scrollW": 393,
+    "scrollH": 5750,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4898,
+     "h1": {
+      "top": -4431,
+      "bottom": -4340,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4229,
+      "bottom": -4177,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 395.39984130859375,
+      "cajaH": 804.88525390625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 275.328125,
+      "cajaH": 344.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 275.328125,
+      "cajaH": 344.15625,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pix-412",
+   "nombre": "Pixel 7",
+   "tipo": "telefono",
+   "w": 412,
+   "h": 915,
+   "dpr": 2.6,
+   "estres": false,
+   "arriba": {
+    "vw": 412,
+    "vh": 915,
+    "dpr": 2.5999999046325684,
+    "scrollW": 412,
+    "scrollH": 5773,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 525,
+      "bottom": 621,
+      "dentro": true
+     },
+     "cta": {
+      "top": 732,
+      "bottom": 784,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 412.40716552734375,
+      "cajaH": 863.852783203125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 412,
+    "vh": 915,
+    "dpr": 2.5999999046325684,
+    "scrollW": 412,
+    "scrollH": 5773,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4858,
+     "h1": {
+      "top": -4333,
+      "bottom": -4237,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4126,
+      "bottom": -4074,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 414.4845275878906,
+      "cajaH": 868.2041015625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "s20-412",
+   "nombre": "Galaxy S20 Ultra",
+   "tipo": "telefono",
+   "w": 412,
+   "h": 915,
+   "dpr": 3.5,
+   "estres": false,
+   "arriba": {
+    "vw": 412,
+    "vh": 915,
+    "dpr": 3.5,
+    "scrollW": 412,
+    "scrollH": 5773,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 525,
+      "bottom": 621,
+      "dentro": true
+     },
+     "cta": {
+      "top": 732,
+      "bottom": 784,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 412.41949462890625,
+      "cajaH": 863.8787841796875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 412,
+    "vh": 915,
+    "dpr": 3.5,
+    "scrollW": 412,
+    "scrollH": 5773,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4858,
+     "h1": {
+      "top": -4333,
+      "bottom": -4237,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4126,
+      "bottom": -4074,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 415.13238525390625,
+      "cajaH": 869.5615234375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 96.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 290.15625,
+      "cajaH": 362.6875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "max-430",
+   "nombre": "iPhone 14 Pro Max",
+   "tipo": "telefono",
+   "w": 430,
+   "h": 932,
+   "dpr": 3,
+   "estres": false,
+   "arriba": {
+    "vw": 430,
+    "vh": 932,
+    "dpr": 3,
+    "scrollW": 430,
+    "scrollH": 5780,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 537,
+      "bottom": 638,
+      "dentro": true
+     },
+     "cta": {
+      "top": 749,
+      "bottom": 801,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 430.431396484375,
+      "cajaH": 880.8829345703125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 304.1875,
+      "cajaH": 380.234375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 304.1875,
+      "cajaH": 380.234375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 430,
+    "vh": 932,
+    "dpr": 3,
+    "scrollW": 430,
+    "scrollH": 5780,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4848,
+     "h1": {
+      "top": -4311,
+      "bottom": -4210,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4099,
+      "bottom": -4047,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 432.67523193359375,
+      "cajaH": 885.474853515625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 304.1875,
+      "cajaH": 380.234375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 304.1875,
+      "cajaH": 380.234375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "se-horiz-667",
+   "nombre": "iPhone SE horizontal",
+   "tipo": "telefono",
+   "w": 667,
+   "h": 375,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 667,
+    "vh": 375,
+    "dpr": 2,
+    "scrollW": 667,
+    "scrollH": 5231,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 154,
+      "bottom": 235,
+      "dentro": true
+     },
+     "cta": {
+      "top": 265,
+      "bottom": 317,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 667.67919921875,
+      "cajaH": 365.6531982421875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 667,
+    "vh": 375,
+    "dpr": 2,
+    "scrollW": 667,
+    "scrollH": 5231,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4856,
+     "h1": {
+      "top": -4702,
+      "bottom": -4621,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4591,
+      "bottom": -4539,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 672.214599609375,
+      "cajaH": 368.13671875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "estructura": {
+    "lang": "es",
+    "h1": 1,
+    "encabezados": [
+     1,
+     2,
+     3,
+     3,
+     3,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "saltosEncabezado": 0,
+    "landmarks": {
+     "header": true,
+     "nav": 2,
+     "main": 1,
+     "footer": true
+    },
+    "imgSinAlt": 0,
+    "imgTotal": 11,
+    "sinNombre": 0,
+    "salto": {
+     "destino": "#contenido",
+     "existe": true
+    },
+    "anclasRotas": [],
+    "enlaces": [
+     "#contenido",
+     "#inicio",
+     "#carta",
+     "#ambiente",
+     "#reservar",
+     "#visitanos",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
+    ]
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "iph-horiz-844",
+   "nombre": "iPhone 14 horizontal",
+   "tipo": "telefono",
+   "w": 844,
+   "h": 390,
+   "dpr": 3,
+   "estres": false,
+   "arriba": {
+    "vw": 844,
+    "vh": 390,
+    "dpr": 3,
+    "scrollW": 844,
+    "scrollH": 5534,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 154,
+      "bottom": 238,
+      "dentro": true
+     },
+     "cta": {
+      "top": 268,
+      "bottom": 320,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 844.8467407226562,
+      "cajaH": 368.88531494140625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 844,
+    "vh": 390,
+    "dpr": 3,
+    "scrollW": 844,
+    "scrollH": 5534,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 5144,
+     "h1": {
+      "top": -4990,
+      "bottom": -4906,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4876,
+      "bottom": -4824,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 852.556884765625,
+      "cajaH": 372.251953125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pix-horiz-915",
+   "nombre": "Pixel 7 horizontal",
+   "tipo": "telefono",
+   "w": 915,
+   "h": 412,
+   "dpr": 2.6,
+   "estres": false,
+   "arriba": {
+    "vw": 915,
+    "vh": 412,
+    "dpr": 2.5999999046325684,
+    "scrollW": 915,
+    "scrollH": 4591,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 154,
+      "bottom": 243,
+      "dentro": true
+     },
+     "cta": {
+      "top": 273,
+      "bottom": 325,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 915.91796875,
+      "cajaH": 373.6401062011719,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 479.046875,
+      "cajaH": 269.453125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 337.609375,
+      "cajaH": 485.609375,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 266.875,
+      "cajaH": 200.15625,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 196.171875,
+      "cajaH": 147.125,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 915,
+    "vh": 412,
+    "dpr": 2.5999999046325684,
+    "scrollW": 915,
+    "scrollH": 4591,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4179,
+     "h1": {
+      "top": -4025,
+      "bottom": -3936,
+      "dentro": false
+     },
+     "cta": {
+      "top": -3906,
+      "bottom": -3854,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 922.4742431640625,
+      "cajaH": 376.31494140625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-420.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 517.37060546875,
+      "cajaH": 291.0093994140625,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 364.6181640625,
+      "cajaH": 524.4581298828125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 288.2249755859375,
+      "cajaH": 216.1688232421875,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 211.8656005859375,
+      "cajaH": 158.89501953125,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "fold-673",
+   "nombre": "Galaxy Z Fold desplegado",
+   "tipo": "telefono",
+   "w": 673,
+   "h": 841,
+   "dpr": 2.6,
+   "estres": false,
+   "arriba": {
+    "vw": 673,
+    "vh": 841,
+    "dpr": 2.5999999046325684,
+    "scrollW": 673,
+    "scrollH": 5660,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 389,
+      "bottom": 547,
+      "dentro": true
+     },
+     "cta": {
+      "top": 658,
+      "bottom": 710,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 673.6751708984375,
+      "cajaH": 789.7915649414062,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 673,
+    "vh": 841,
+    "dpr": 2.5999999046325684,
+    "scrollW": 673,
+    "scrollH": 5660,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4819,
+     "h1": {
+      "top": -4430,
+      "bottom": -4272,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4161,
+      "bottom": -4109,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-m-960.avif",
+      "clave": "hero-m",
+      "cajaW": 677.4237670898438,
+      "cajaH": 794.186279296875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "mini-768",
+   "nombre": "iPad mini",
+   "tipo": "tablet",
+   "w": 768,
+   "h": 1024,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 768,
+    "vh": 1024,
+    "dpr": 2,
+    "scrollW": 768,
+    "scrollH": 5975,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 547,
+      "bottom": 728,
+      "dentro": true
+     },
+     "cta": {
+      "top": 841,
+      "bottom": 893,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 768.7589721679688,
+      "cajaH": 972.9605712890625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 768,
+    "vh": 1024,
+    "dpr": 2,
+    "scrollW": 768,
+    "scrollH": 5975,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4951,
+     "h1": {
+      "top": -4404,
+      "bottom": -4223,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4110,
+      "bottom": -4058,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 771.46630859375,
+      "cajaH": 976.38720703125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "estructura": {
+    "lang": "es",
+    "h1": 1,
+    "encabezados": [
+     1,
+     2,
+     3,
+     3,
+     3,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "saltosEncabezado": 0,
+    "landmarks": {
+     "header": true,
+     "nav": 2,
+     "main": 1,
+     "footer": true
+    },
+    "imgSinAlt": 0,
+    "imgTotal": 11,
+    "sinNombre": 0,
+    "salto": {
+     "destino": "#contenido",
+     "existe": true
+    },
+    "anclasRotas": [],
+    "enlaces": [
+     "#contenido",
+     "#inicio",
+     "#carta",
+     "#ambiente",
+     "#reservar",
+     "#visitanos",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
+    ]
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "ipad-810",
+   "nombre": "iPad",
+   "tipo": "tablet",
+   "w": 810,
+   "h": 1080,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 810,
+    "vh": 1080,
+    "dpr": 2,
+    "scrollW": 810,
+    "scrollH": 6120,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 590,
+      "bottom": 781,
+      "dentro": true
+     },
+     "cta": {
+      "top": 897,
+      "bottom": 949,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 810.776611328125,
+      "cajaH": 1028.985595703125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 810,
+    "vh": 1080,
+    "dpr": 2,
+    "scrollW": 810,
+    "scrollH": 6120,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 5040,
+     "h1": {
+      "top": -4450,
+      "bottom": -4259,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4143,
+      "bottom": -4091,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 814.7021484375,
+      "cajaH": 1033.967529296875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pro11-834",
+   "nombre": "iPad Pro 11",
+   "tipo": "tablet",
+   "w": 834,
+   "h": 1194,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 834,
+    "vh": 1194,
+    "dpr": 2,
+    "scrollW": 834,
+    "scrollH": 6287,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 697,
+      "bottom": 893,
+      "dentro": true
+     },
+     "cta": {
+      "top": 1011,
+      "bottom": 1063,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 21,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 834.82421875,
+      "cajaH": 1143.128662109375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "grid",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 834,
+    "vh": 1194,
+    "dpr": 2,
+    "scrollW": 834,
+    "scrollH": 6287,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 5093,
+     "h1": {
+      "top": -4396,
+      "bottom": -4200,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4082,
+      "bottom": -4030,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 24,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 839.253173828125,
+      "cajaH": 1149.193115234375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 76,
+      "cajaH": 95,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 416,
+      "cajaH": 520,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "grid",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pro13-1024",
+   "nombre": "iPad Pro 12.9",
+   "tipo": "tablet",
+   "w": 1024,
+   "h": 1366,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 1024,
+    "vh": 1366,
+    "dpr": 2,
+    "scrollW": 1024,
+    "scrollH": 5717,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 894,
+      "bottom": 1135,
+      "dentro": true
+     },
+     "cta": {
+      "top": 1175,
+      "bottom": 1227,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1024.981689453125,
+      "cajaH": 1315.259765625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 536.90625,
+      "cajaH": 302,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 378.9375,
+      "cajaH": 542.953125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 299.9375,
+      "cajaH": 224.953125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 220.96875,
+      "cajaH": 165.71875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1024,
+    "vh": 1366,
+    "dpr": 2,
+    "scrollW": 1024,
+    "scrollH": 5717,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4351,
+     "h1": {
+      "top": -3457,
+      "bottom": -3216,
+      "dentro": false
+     },
+     "cta": {
+      "top": -3176,
+      "bottom": -3124,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1031.311767578125,
+      "cajaH": 1323.38232421875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 579.8587646484375,
+      "cajaH": 326.1600341796875,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 409.25244140625,
+      "cajaH": 586.389404296875,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 323.9324951171875,
+      "cajaH": 242.94940185546875,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 238.646240234375,
+      "cajaH": 178.9761962890625,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "ipad-horiz-1024",
+   "nombre": "iPad horizontal",
+   "tipo": "tablet",
+   "w": 1024,
+   "h": 768,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 1024,
+    "vh": 768,
+    "dpr": 2,
+    "scrollW": 1024,
+    "scrollH": 5119,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 296,
+      "bottom": 537,
+      "dentro": true
+     },
+     "cta": {
+      "top": 577,
+      "bottom": 629,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1024.981689453125,
+      "cajaH": 716.6865234375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 536.90625,
+      "cajaH": 302,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 378.9375,
+      "cajaH": 542.953125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 299.9375,
+      "cajaH": 224.953125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 220.96875,
+      "cajaH": 165.71875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1024,
+    "vh": 768,
+    "dpr": 2,
+    "scrollW": 1024,
+    "scrollH": 5119,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4351,
+     "h1": {
+      "top": -4055,
+      "bottom": -3814,
+      "dentro": false
+     },
+     "cta": {
+      "top": -3774,
+      "bottom": -3722,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1030.52978515625,
+      "cajaH": 720.5654296875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 579.8587646484375,
+      "cajaH": 326.159912109375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 409.25244140625,
+      "cajaH": 586.389404296875,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 323.9324951171875,
+      "cajaH": 242.9493408203125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 238.646240234375,
+      "cajaH": 178.976318359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pro11-horiz-1194",
+   "nombre": "iPad Pro 11 horizontal",
+   "tipo": "tablet",
+   "w": 1194,
+   "h": 834,
+   "dpr": 2,
+   "estres": false,
+   "arriba": {
+    "vw": 1194,
+    "vh": 834,
+    "dpr": 2,
+    "scrollW": 1194,
+    "scrollH": 5536,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 330,
+      "bottom": 603,
+      "dentro": true
+     },
+     "cta": {
+      "top": 643,
+      "bottom": 695,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1195.144775390625,
+      "cajaH": 782.749755859375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 627.15625,
+      "cajaH": 352.765625,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 443.40625,
+      "cajaH": 632.390625,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 351.515625,
+      "cajaH": 263.625,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 259.640625,
+      "cajaH": 194.71875,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1194,
+    "vh": 834,
+    "dpr": 2,
+    "scrollW": 1194,
+    "scrollH": 5536,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4702,
+     "h1": {
+      "top": -4372,
+      "bottom": -4099,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4059,
+      "bottom": -4007,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1201.9912109375,
+      "cajaH": 787.23388671875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 677.328857421875,
+      "cajaH": 380.9869384765625,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 478.87884521484375,
+      "cajaH": 682.9818115234375,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 379.63690185546875,
+      "cajaH": 284.7149658203125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 280.411865234375,
+      "cajaH": 210.2962646484375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-1280",
+   "nombre": "Portatil 1280",
+   "tipo": "escritorio",
+   "w": 1280,
+   "h": 720,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 1280,
+    "vh": 720,
+    "dpr": 1,
+    "scrollW": 1280,
+    "scrollH": 5472,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 216,
+      "bottom": 489,
+      "dentro": true
+     },
+     "cta": {
+      "top": 529,
+      "bottom": 581,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1280.avif",
+      "clave": "hero",
+      "cajaW": 1281.24609375,
+      "cajaH": 668.6502685546875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1280,
+    "vh": 720,
+    "dpr": 1,
+    "scrollW": 1280,
+    "scrollH": 5472,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4752,
+     "h1": {
+      "top": -4536,
+      "bottom": -4263,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4223,
+      "bottom": -4171,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1280.avif",
+      "clave": "hero",
+      "cajaW": 1286.8707275390625,
+      "cajaH": 671.58544921875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.5198974609375,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.12005615234375,
+      "cajaH": 713.880126953125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.44000244140625,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.320068359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-1366",
+   "nombre": "Portatil 1366",
+   "tipo": "escritorio",
+   "w": 1366,
+   "h": 768,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 1366,
+    "vh": 768,
+    "dpr": 1,
+    "scrollW": 1366,
+    "scrollH": 5606,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 264,
+      "bottom": 537,
+      "dentro": true
+     },
+     "cta": {
+      "top": 577,
+      "bottom": 629,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1367.289794921875,
+      "cajaH": 716.676025390625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1366,
+    "vh": 768,
+    "dpr": 1,
+    "scrollW": 1366,
+    "scrollH": 5606,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4838,
+     "h1": {
+      "top": -4574,
+      "bottom": -4301,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4261,
+      "bottom": -4209,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1373.43017578125,
+      "cajaH": 719.89453125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.12005615234375,
+      "cajaH": 713.8798828125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.44000244140625,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.320068359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-1440",
+   "nombre": "Escritorio 1440",
+   "tipo": "escritorio",
+   "w": 1440,
+   "h": 900,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 1440,
+    "vh": 900,
+    "dpr": 1,
+    "scrollW": 1440,
+    "scrollH": 5812,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 396,
+      "bottom": 669,
+      "dentro": true
+     },
+     "cta": {
+      "top": 709,
+      "bottom": 761,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1441.339111328125,
+      "cajaH": 848.7885131835938,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1440,
+    "vh": 900,
+    "dpr": 1,
+    "scrollW": 1440,
+    "scrollH": 5812,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4912,
+     "h1": {
+      "top": -4516,
+      "bottom": -4243,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4203,
+      "bottom": -4151,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1446.68896484375,
+      "cajaH": 851.93896484375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.12005615234375,
+      "cajaH": 713.880126953125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.4399719238281,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.3199462890625,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "estructura": {
+    "lang": "es",
+    "h1": 1,
+    "encabezados": [
+     1,
+     2,
+     3,
+     3,
+     3,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "saltosEncabezado": 0,
+    "landmarks": {
+     "header": true,
+     "nav": 2,
+     "main": 1,
+     "footer": true
+    },
+    "imgSinAlt": 0,
+    "imgTotal": 11,
+    "sinNombre": 0,
+    "salto": {
+     "destino": "#contenido",
+     "existe": true
+    },
+    "anclasRotas": [],
+    "enlaces": [
+     "#contenido",
+     "#inicio",
+     "#carta",
+     "#ambiente",
+     "#reservar",
+     "#visitanos",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=%28Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre%29%20Hola%20Lumbre%2C%20tengo%20una%20consulta.",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante.",
+     "mailto:Eduardopm@edumashow.online?subject=Retirar%20la%20muestra%20de%20Lumbre",
+     "#reservar",
+     "#carta",
+     "https://www.google.com/maps/search/?api=1&query=Av.%20Principal%20de%20Las%20Mercedes%2C%20local%204%2C%20Caracas",
+     "https://wa.me/584127705633?text=Hola%20Edumashow%2C%20vi%20la%20muestra%20de%20la%20web%20de%20Lumbre%20y%20quiero%20una%20as%C3%AD%20para%20mi%20restaurante."
+    ]
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-1536",
+   "nombre": "Portatil 1536",
+   "tipo": "escritorio",
+   "w": 1536,
+   "h": 864,
+   "dpr": 1.25,
+   "estres": false,
+   "arriba": {
+    "vw": 1536,
+    "vh": 864,
+    "dpr": 1.25,
+    "scrollW": 1536,
+    "scrollH": 5776,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 360,
+      "bottom": 633,
+      "dentro": true
+     },
+     "cta": {
+      "top": 673,
+      "bottom": 725,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1537.38427734375,
+      "cajaH": 812.7318115234375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1536,
+    "vh": 864,
+    "dpr": 1.25,
+    "scrollW": 1536,
+    "scrollH": 5776,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4912,
+     "h1": {
+      "top": -4552,
+      "bottom": -4279,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4239,
+      "bottom": -4187,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1544.802734375,
+      "cajaH": 816.65380859375,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.12005615234375,
+      "cajaH": 713.8800048828125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.4399719238281,
+      "cajaH": 298.0799560546875,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.3199462890625,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-1920",
+   "nombre": "Escritorio Full HD",
+   "tipo": "escritorio",
+   "w": 1920,
+   "h": 1080,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 1920,
+    "vh": 1080,
+    "dpr": 1,
+    "scrollW": 1920,
+    "scrollH": 5992,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 576,
+      "bottom": 849,
+      "dentro": true
+     },
+     "cta": {
+      "top": 889,
+      "bottom": 941,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1921.7301025390625,
+      "cajaH": 1028.9263916015625,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 1920,
+    "vh": 1080,
+    "dpr": 1,
+    "scrollW": 1920,
+    "scrollH": 5992,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4912,
+     "h1": {
+      "top": -4336,
+      "bottom": -4063,
+      "dentro": false
+     },
+     "cta": {
+      "top": -4023,
+      "bottom": -3971,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 1929.0458984375,
+      "cajaH": 1032.84326171875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.1201171875,
+      "cajaH": 713.8798828125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.4399719238281,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.320068359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-2560",
+   "nombre": "Escritorio 2K",
+   "tipo": "escritorio",
+   "w": 2560,
+   "h": 1440,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 2560,
+    "vh": 1440,
+    "dpr": 1,
+    "scrollW": 2560,
+    "scrollH": 6352,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 936,
+      "bottom": 1209,
+      "dentro": true
+     },
+     "cta": {
+      "top": 1249,
+      "bottom": 1301,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 2562.19921875,
+      "cajaH": 1389.1925048828125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 2560,
+    "vh": 1440,
+    "dpr": 1,
+    "scrollW": 2560,
+    "scrollH": 6352,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4912,
+     "h1": {
+      "top": -3976,
+      "bottom": -3703,
+      "dentro": false
+     },
+     "cta": {
+      "top": -3663,
+      "bottom": -3611,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 2571.3056640625,
+      "cajaH": 1394.12939453125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.1201171875,
+      "cajaH": 713.8800659179688,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.43994140625,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.320068359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  },
+  {
+   "id": "pc-3440",
+   "nombre": "Ultrapanoramico",
+   "tipo": "escritorio",
+   "w": 3440,
+   "h": 1440,
+   "dpr": 1,
+   "estres": false,
+   "arriba": {
+    "vw": 3440,
+    "vh": 1440,
+    "dpr": 1,
+    "scrollW": 3440,
+    "scrollH": 6352,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 0,
+     "h1": {
+      "top": 936,
+      "bottom": 1209,
+      "dentro": true
+     },
+     "cta": {
+      "top": 1249,
+      "bottom": 1301,
+      "dentro": true
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": true
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 3442.814453125,
+      "cajaH": 1389.1356201171875,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 656,
+      "cajaH": 369,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 464,
+      "cajaH": 661,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 368,
+      "cajaH": 276,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 272,
+      "cajaH": 204,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "hidden",
+     "display": "none",
+     "claseVisible": false
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "pagina": {
+    "vw": 3440,
+    "vh": 1440,
+    "dpr": 1,
+    "scrollW": 3440,
+    "scrollH": 6352,
+    "desborde": 0,
+    "primera": {
+     "scrollY": 4912,
+     "h1": {
+      "top": -3976,
+      "bottom": -3703,
+      "dentro": false
+     },
+     "cta": {
+      "top": -3663,
+      "bottom": -3611,
+      "dentro": false
+     },
+     "sobre": {
+      "texto": "Cocina de brasa y pasta fresca · Caracas",
+      "dentro": false
+     }
+    },
+    "solapes": [],
+    "recortes": [],
+    "interactivos": 25,
+    "tactil24": [],
+    "tactil44": [],
+    "textoMin": {
+     "px": 14,
+     "el": "button.pausa \"Pausar animación\"",
+     "menores14": []
+    },
+    "cuerpoPx": 16,
+    "imagenes": [
+     {
+      "archivo": "hero-1920.avif",
+      "clave": "hero",
+      "cajaW": 3456.904296875,
+      "cajaH": 1394.82080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "plato_croquetas-210.avif",
+      "clave": "plato_croquetas",
+      "cajaW": 100,
+      "cajaH": 125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_azul-1280.avif",
+      "clave": "sala_azul",
+      "cajaW": 708.47998046875,
+      "cajaH": 398.52001953125,
+      "cubre": true
+     },
+     {
+      "archivo": "rincon_rojo-716.avif",
+      "clave": "rincon_rojo",
+      "cajaW": 501.1201171875,
+      "cajaH": 713.8800048828125,
+      "cubre": true
+     },
+     {
+      "archivo": "sala_roja-800.avif",
+      "clave": "sala_roja",
+      "cajaW": 397.43994140625,
+      "cajaH": 298.080078125,
+      "cubre": true
+     },
+     {
+      "archivo": "reservado-800.avif",
+      "clave": "reservado",
+      "cajaW": 293.760009765625,
+      "cajaH": 220.320068359375,
+      "cubre": true
+     }
+    ],
+    "barra": {
+     "enlaces": 3,
+     "visibilidad": "visible",
+     "display": "none",
+     "claseVisible": true
+    },
+    "estadoTexto": "Cerrado · abre mañana a las 12:00",
+    "fuentes": [
+     "Bodoni Moda:loaded",
+     "Playfair Display:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded",
+     "Manrope:loaded"
+    ],
+    "cookies": "",
+    "storage": [
+     0,
+     0
+    ],
+    "checkboxMarcados": 0,
+    "dialogosAbiertos": 0
+   },
+   "externas": [],
+   "errores": []
+  }
+ ],
+ "axe": {
+  "iph-390": [],
+  "mini-768": [],
+  "pc-1440": []
+ },
+ "foco": {
+  "pc-1440": {
+   "dispositivo": "pc-1440",
+   "interactivos": 23,
+   "primero": "a.salto",
+   "sinAnillo": [],
+   "fueraDePantalla": [],
+   "tapadoPorBarra": [],
+   "noAlcanzados": 0,
+   "pasos": 32
+  },
+  "iph-390": {
+   "dispositivo": "iph-390",
+   "interactivos": 19,
+   "primero": "a.salto",
+   "sinAnillo": [],
+   "fueraDePantalla": [],
+   "tapadoPorBarra": [],
+   "noAlcanzados": 0,
+   "pasos": 28
+  },
+  "se-horiz-667": {
+   "dispositivo": "se-horiz-667",
+   "interactivos": 19,
+   "primero": "a.salto",
+   "sinAnillo": [],
+   "fueraDePantalla": [],
+   "tapadoPorBarra": [
+    "div.galeria"
+   ],
+   "noAlcanzados": 0,
+   "pasos": 28
+  },
+  "mini-768": {
+   "dispositivo": "mini-768",
+   "interactivos": 19,
+   "primero": "a.salto",
+   "sinAnillo": [],
+   "fueraDePantalla": [],
+   "tapadoPorBarra": [],
+   "noAlcanzados": 0,
+   "pasos": 28
+  }
+ },
+ "movimiento": {
+  "normal": {
+   "infinitas": 2,
+   "corriendo": 2,
+   "brasas": 249,
+   "letras": true
+  },
+  "pausado": {
+   "infinitas": 0,
+   "corriendo": 0,
+   "brasas": 0,
+   "letras": true
+  },
+  "pausaEstado": {
+   "aria": "true",
+   "clase": true,
+   "texto": "Reanudar animación"
+  },
+  "reducido": {
+   "infinitas": 0,
+   "corriendo": 0,
+   "brasas": 0,
+   "letras": true
+  }
+ },
+ "funcional": {
+  "horario": [
+   {
+    "caso": "miércoles 15:00 en Caracas, abierto",
+    "reloj": "2026-10-07T19:00:00Z",
+    "esperado": "Abierto ahora · cierra a las 22:00",
+    "obtenido": "Abierto ahora · cierra a las 22:00",
+    "ok": true
+   },
+   {
+    "caso": "miércoles 23:00 en Caracas, cerrado hasta mañana",
+    "reloj": "2026-10-08T03:00:00Z",
+    "esperado": "Cerrado · abre mañana a las 12:00",
+    "obtenido": "Cerrado · abre mañana a las 12:00",
+    "ok": true
+   },
+   {
+    "caso": "lunes 13:00 en Caracas, cerrado todo el día",
+    "reloj": "2026-10-05T17:00:00Z",
+    "esperado": "Cerrado · abre mañana a las 12:00",
+    "obtenido": "Cerrado · abre mañana a las 12:00",
+    "ok": true
+   },
+   {
+    "caso": "viernes 23:45 en Caracas, cerrado hasta el sábado",
+    "reloj": "2026-10-10T03:45:00Z",
+    "esperado": "Cerrado · abre mañana a las 12:00",
+    "obtenido": "Cerrado · abre mañana a las 12:00",
+    "ok": true
+   },
+   {
+    "caso": "domingo 16:30 en Caracas, abierto",
+    "reloj": "2026-10-11T20:30:00Z",
+    "esperado": "Abierto ahora · cierra a las 17:00",
+    "obtenido": "Abierto ahora · cierra a las 17:00",
+    "ok": true
+   },
+   {
+    "caso": "domingo 17:30 en Caracas, abre el martes",
+    "reloj": "2026-10-11T21:30:00Z",
+    "esperado": "Cerrado · abre el martes a las 12:00",
+    "obtenido": "Cerrado · abre el martes a las 12:00",
+    "ok": true
+   },
+   {
+    "caso": "visitante en Tokio, mismo instante que miércoles 15:00 en Caracas",
+    "reloj": "2026-10-07T19:00:00Z",
+    "esperado": "Abierto ahora · cierra a las 22:00",
+    "obtenido": "Abierto ahora · cierra a las 22:00",
+    "ok": true
+   },
+   {
+    "caso": "visitante en Madrid, miércoles 06:00 en Caracas aún no abre",
+    "reloj": "2026-10-07T10:00:00Z",
+    "esperado": "Cerrado · abre hoy a las 12:00",
+    "obtenido": "Cerrado · abre hoy a las 12:00",
+    "ok": true
+   },
+   {
+    "caso": "vie 18:30 hora local (cruce)",
+    "obtenido": "Abierto ahora · cierra a las 02:00",
+    "esperado": "Abierto ahora · cierra a las 02:00",
+    "ok": true
+   },
+   {
+    "caso": "sab 01:00 hora local (madrugada del cruce)",
+    "obtenido": "Abierto ahora · cierra a las 02:00",
+    "esperado": "Abierto ahora · cierra a las 02:00",
+    "ok": true
+   },
+   {
+    "caso": "sab 02:30 hora local (ya cerrado)",
+    "obtenido": "Cerrado · abre el viernes a las 18:00",
+    "esperado": "Cerrado · abre el viernes a las 18:00",
+    "ok": true
+   }
+  ],
+  "reserva": {
+   "antes": {
+    "fecha": "2026-10-07",
+    "hora": "20:00",
+    "personas": "2",
+    "resumen": "Mesa para 2 personas el miércoles 7/10 a las 20:00.",
+    "horas": [
+     "16:30",
+     "17:00",
+     "17:30",
+     "18:00",
+     "18:30",
+     "19:00",
+     "19:30",
+     "20:00",
+     "20:30",
+     "21:00"
+    ]
+   },
+   "sinNombre": {
+    "aviso": "Escribe tu nombre para que podamos confirmarte.",
+    "visible": true,
+    "envios": 0
+   },
+   "envio": [
+    {
+     "url": "https://wa.me/584127705633?text=(Prueba%20de%20la%20muestra%20de%20Edumashow%20para%20Lumbre)%20Hola%20Lumbre%2C%20soy%20Ana%20P%C3%A9rez.%20Quisiera%20reservar%20una%20mesa%20para%204%20personas%20el%20mi%C3%A9rcoles%207%2F10%20a%20las%2020%3A00.%0ACumplea%C3%B1os%2C%20una%20silla%20para%20beb%C3%A9%0A%C2%BFHay%20disponibilidad%3F",
+     "texto": "(Prueba de la muestra de Edumashow para Lumbre) Hola Lumbre, soy Ana Pérez. Quisiera reservar una mesa para 4 personas el miércoles 7/10 a las 20:00.\nCumpleaños, una silla para bebé\n¿Hay disponibilidad?"
+    }
+   ],
+   "cerrado": {
+    "deshabilitado": true,
+    "aviso": "Ese día no hay mesas disponibles. El próximo día con horario es el martes 13/10."
+   }
+  },
+  "pestanas": {
+   "t0": {
+    "sel": [
+     "true",
+     "false",
+     "false",
+     "false"
+    ],
+    "visibles": 1
+   },
+   "t1": {
+    "sel": [
+     "false",
+     "true",
+     "false",
+     "false"
+    ],
+    "activo": "tab-c1",
+    "visibles": [
+     "panel-c1"
+    ]
+   },
+   "t2": {
+    "activo": "tab-c3"
+   }
+  },
+  "dialogo": {
+   "abierto": {
+    "abierto": true,
+    "foco": "cerrar"
+   },
+   "cerrado": {
+    "abierto": false,
+    "foco": "Quiero mi web"
+   }
+  }
+ },
+ "red": {
+  "peticiones404": [],
+  "bytesPorTipo": {
+   ".html": 1018380,
+   ".woff2": 5020180,
+   ".avif": 12901351
+  },
+  "externasIntentadas": []
+ },
+ "contraste": [
+  {
+   "dispositivo": "iph-390",
+   "etiqueta": "portada",
+   "imagen": "capturas/contraste_iph-390_portada.png",
+   "dpr": 3,
+   "filas": [
+    {
+     "sel": ".cinta p",
+     "texto": "Muestra de Edumashow para Lumb",
+     "rects": [
+      [
+       20,
+       16.359375,
+       158.8125,
+       19
+      ],
+      [
+       20,
+       16.359375,
+       158.8125,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".cinta button",
+     "texto": "Quiero mi web",
+     "rects": [
+      [
+       257.46875,
+       16.359375,
+       98.5,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 700
+    },
+    {
+     "sel": ".hero-barra .marca",
+     "texto": "Lumbre",
+     "rects": [
+      [
+       20,
+       66.59375,
+       106.453125,
+       49
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 32,
+     "peso": 400
+    },
+    {
+     "sel": ".sobre",
+     "texto": "Cocina de brasa y pasta fresca",
+     "rects": [
+      [
+       35.796875,
+       399.984375,
+       307.03125,
+       19
+      ],
+      [
+       35.796875,
+       422.375,
+       79.890625,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 700
+    },
+    {
+     "sel": ".hero h1",
+     "texto": "LumbreLumbre",
+     "rects": [
+      [
+       19,
+       426.765625,
+       319.4375,
+       153
+      ],
+      [
+       20,
+       427.765625,
+       324.65625,
+       153
+      ],
+      [
+       20,
+       427.765625,
+       55.21875,
+       153
+      ],
+      [
+       75.21875,
+       427.765625,
+       54.65625,
+       153
+      ],
+      [
+       129.875,
+       427.765625,
+       79.859375,
+       153
+      ],
+      [
+       209.734375,
+       427.765625,
+       47.515625,
+       153
+      ],
+      [
+       257.25,
+       427.765625,
+       42.953125,
+       153
+      ],
+      [
+       300.203125,
+       427.765625,
+       44.453125,
+       153
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 100.575,
+     "peso": 400
+    },
+    {
+     "sel": ".lema",
+     "texto": "Fuego lento, pasta hecha a man",
+     "rects": [
+      [
+       20,
+       590.28125,
+       313.21875,
+       24
+      ],
+      [
+       20,
+       615.78125,
+       196.375,
+       24
+      ]
+     ],
+     "color": [
+      216,
+      204,
+      183
+     ],
+     "alfa": 1,
+     "px": 17.6,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Reservar mesa",
+     "rects": [
+      [
+       46.34375,
+       675.484375,
+       117.96875,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       229,
+       675.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .estado",
+     "texto": "Cerrado · abre mañana a las 12",
+     "rects": [
+      [
+       54.390625,
+       737.28125,
+       220.1875,
+       18.71875
+      ],
+      [
+       54.390625,
+       736.28125,
+       220.1875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".pausa",
+     "texto": "Reanudar animación",
+     "rects": [
+      [
+       340,
+       83.59375,
+       16,
+       16
+      ],
+      [
+       347.5,
+       92.09375,
+       42.5,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .acciones .btn.suave",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       229,
+       675.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "iph-390",
+   "etiqueta": "galeria",
+   "imagen": "capturas/contraste_iph-390_galeria.png",
+   "dpr": 3,
+   "filas": [
+    {
+     "sel": ".galeria figcaption",
+     "texto": "Sala azul",
+     "rects": [
+      [
+       36,
+       511.15625,
+       68.328125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "El rincón rojo",
+     "rects": [
+      [
+       321,
+       511.15625,
+       69,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Reservar",
+     "rects": [
+      [
+       56.078125,
+       799.671875,
+       65.34375,
+       21
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Carta",
+     "rects": [
+      [
+       193.953125,
+       799.671875,
+       41.359375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Cómo llegar",
+     "rects": [
+      [
+       299.109375,
+       790.9375,
+       43.515625,
+       21
+      ],
+      [
+       299.953125,
+       808.40625,
+       41.828125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "se-horiz-667",
+   "etiqueta": "portada",
+   "imagen": "capturas/contraste_se-horiz-667_portada.png",
+   "dpr": 2,
+   "filas": [
+    {
+     "sel": ".cinta p",
+     "texto": "Muestra de Edumashow para Lumb",
+     "rects": [
+      [
+       30,
+       16.359375,
+       158.8125,
+       19
+      ],
+      [
+       30,
+       16.359375,
+       158.8125,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".cinta button",
+     "texto": "Quiero mi web",
+     "rects": [
+      [
+       522.5,
+       16.359375,
+       98.5,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 700
+    },
+    {
+     "sel": ".hero-barra .marca",
+     "texto": "Lumbre",
+     "rects": [
+      [
+       30,
+       57,
+       106.453125,
+       49
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 32,
+     "peso": 400
+    },
+    {
+     "sel": ".sobre",
+     "texto": "Cocina de brasa y pasta fresca",
+     "rects": [
+      [
+       45.796875,
+       121,
+       391.671875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 700
+    },
+    {
+     "sel": ".hero h1",
+     "texto": "LumbreLumbre",
+     "rects": [
+      [
+       29,
+       124.578125,
+       285.890625,
+       137
+      ],
+      [
+       30,
+       125.578125,
+       290.5625,
+       137
+      ],
+      [
+       30,
+       125.578125,
+       49.421875,
+       137
+      ],
+      [
+       79.421875,
+       125.578125,
+       48.921875,
+       137
+      ],
+      [
+       128.34375,
+       125.578125,
+       71.46875,
+       137
+      ],
+      [
+       199.8125,
+       125.578125,
+       42.53125,
+       137
+      ],
+      [
+       242.34375,
+       125.578125,
+       38.4375,
+       137
+      ],
+      [
+       280.78125,
+       125.578125,
+       39.78125,
+       137
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 90,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Reservar mesa",
+     "rects": [
+      [
+       313.171875,
+       279.171875,
+       117.96875,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       496.328125,
+       279.171875,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .estado",
+     "texto": "Cerrado · abre mañana a las 12",
+     "rects": [
+      [
+       376.8125,
+       334.5625,
+       220.1875,
+       18.71875
+      ],
+      [
+       376.8125,
+       333.5625,
+       220.1875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".pausa",
+     "texto": "Reanudar animación",
+     "rects": [
+      [
+       464.375,
+       74,
+       16,
+       16
+      ],
+      [
+       488.375,
+       70.796875,
+       131.625,
+       22.390625
+      ],
+      [
+       488.375,
+       71.796875,
+       131.625,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .acciones .btn.suave",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       496.328125,
+       279.171875,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "se-horiz-667",
+   "etiqueta": "galeria",
+   "imagen": "capturas/contraste_se-horiz-667_galeria.png",
+   "dpr": 2,
+   "filas": [
+    {
+     "sel": ".galeria figcaption",
+     "texto": "Sala azul",
+     "rects": [
+      [
+       46,
+       365.46875,
+       68.328125,
+       9.53125
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "El rincón rojo",
+     "rects": [
+      [
+       474,
+       365.46875,
+       99.84375,
+       9.53125
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Reservar",
+     "rects": [
+      [
+       119,
+       330.671875,
+       65.34375,
+       21
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Carta",
+     "rects": [
+      [
+       347.578125,
+       330.671875,
+       41.359375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    },
+    {
+     "sel": ".barra-movil a",
+     "texto": "Cómo llegar",
+     "rects": [
+      [
+       505.890625,
+       330.671875,
+       88.375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "mini-768",
+   "etiqueta": "portada",
+   "imagen": "capturas/contraste_mini-768_portada.png",
+   "dpr": 2,
+   "filas": [
+    {
+     "sel": ".cinta p",
+     "texto": "Muestra de Edumashow para Lumb",
+     "rects": [
+      [
+       34.546875,
+       16.359375,
+       158.8125,
+       19
+      ],
+      [
+       34.546875,
+       16.359375,
+       158.8125,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".cinta button",
+     "texto": "Quiero mi web",
+     "rects": [
+      [
+       618.953125,
+       16.359375,
+       98.5,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 700
+    },
+    {
+     "sel": ".hero-barra .marca",
+     "texto": "Lumbre",
+     "rects": [
+      [
+       34.546875,
+       66.59375,
+       106.453125,
+       49
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 32,
+     "peso": 400
+    },
+    {
+     "sel": ".sobre",
+     "texto": "Cocina de brasa y pasta fresca",
+     "rects": [
+      [
+       50.34375,
+       509.6875,
+       391.671875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 700
+    },
+    {
+     "sel": ".hero h1",
+     "texto": "LumbreLumbre",
+     "rects": [
+      [
+       33.546875,
+       483.078125,
+       637.890625,
+       306
+      ],
+      [
+       34.546875,
+       484.078125,
+       648.265625,
+       306
+      ],
+      [
+       34.546875,
+       484.078125,
+       110.25,
+       306
+      ],
+      [
+       144.796875,
+       484.078125,
+       109.15625,
+       306
+      ],
+      [
+       253.953125,
+       484.078125,
+       159.453125,
+       306
+      ],
+      [
+       413.40625,
+       484.078125,
+       94.890625,
+       306
+      ],
+      [
+       508.296875,
+       484.078125,
+       85.75,
+       306
+      ],
+      [
+       594.046875,
+       484.078125,
+       88.765625,
+       306
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 200.828,
+     "peso": 400
+    },
+    {
+     "sel": ".lema",
+     "texto": "Fuego lento, pasta hecha a man",
+     "rects": [
+      [
+       34.546875,
+       767.8125,
+       327.953125,
+       26
+      ],
+      [
+       34.546875,
+       794.546875,
+       205.609375,
+       26
+      ]
+     ],
+     "color": [
+      216,
+      204,
+      183
+     ],
+     "alfa": 1,
+     "px": 18.432,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Reservar mesa",
+     "rects": [
+      [
+       61.140625,
+       855.484375,
+       117.96875,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       244.296875,
+       855.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .estado",
+     "texto": "Cerrado · abre mañana a las 12",
+     "rects": [
+      [
+       68.9375,
+       917.28125,
+       220.1875,
+       18.71875
+      ],
+      [
+       68.9375,
+       916.28125,
+       220.1875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".pausa",
+     "texto": "Reanudar animación",
+     "rects": [
+      [
+       560.828125,
+       83.59375,
+       16,
+       16
+      ],
+      [
+       584.828125,
+       80.390625,
+       131.625,
+       22.390625
+      ],
+      [
+       584.828125,
+       81.390625,
+       131.625,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .acciones .btn.suave",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       244.296875,
+       855.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "mini-768",
+   "etiqueta": "galeria",
+   "imagen": "capturas/contraste_mini-768_galeria.png",
+   "dpr": 2,
+   "filas": [
+    {
+     "sel": ".galeria figcaption",
+     "texto": "Sala azul",
+     "rects": [
+      [
+       50.546875,
+       690.34375,
+       68.328125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "El rincón rojo",
+     "rects": [
+      [
+       478.546875,
+       690.34375,
+       99.84375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    }
+   ]
+  },
+  {
+   "dispositivo": "pc-1440",
+   "etiqueta": "portada",
+   "imagen": "capturas/contraste_pc-1440_portada.png",
+   "dpr": 1,
+   "filas": [
+    {
+     "sel": ".cinta p",
+     "texto": "Muestra de Edumashow para Lumb",
+     "rects": [
+      [
+       56,
+       16.359375,
+       512.390625,
+       19
+      ],
+      [
+       56,
+       16.359375,
+       193.96875,
+       19
+      ],
+      [
+       249.96875,
+       16.359375,
+       52.75,
+       19
+      ],
+      [
+       302.71875,
+       16.359375,
+       265.671875,
+       19
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".cinta button",
+     "texto": "Quiero mi web",
+     "rects": [
+      [
+       1269.5,
+       16.359375,
+       98.5,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 700
+    },
+    {
+     "sel": ".hero-barra .marca",
+     "texto": "Lumbre",
+     "rects": [
+      [
+       152,
+       66.59375,
+       106.453125,
+       49
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 32,
+     "peso": 400
+    },
+    {
+     "sel": ".hero-barra nav a",
+     "texto": "Carta",
+     "rects": [
+      [
+       710.296875,
+       80.4375,
+       43.734375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".hero-barra nav a",
+     "texto": "Ambiente",
+     "rects": [
+      [
+       790.03125,
+       80.4375,
+       74.78125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".hero-barra nav a",
+     "texto": "Reservar",
+     "rects": [
+      [
+       900.8125,
+       80.4375,
+       69.109375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".hero-barra nav a",
+     "texto": "Visítanos",
+     "rects": [
+      [
+       1005.921875,
+       80.4375,
+       72.453125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".sobre",
+     "texto": "Cocina de brasa y pasta fresca",
+     "rects": [
+      [
+       167.796875,
+       358.296875,
+       391.671875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 700
+    },
+    {
+     "sel": ".hero h1",
+     "texto": "LumbreLumbre",
+     "rects": [
+      [
+       151,
+       298.6875,
+       965.671875,
+       464
+      ],
+      [
+       152,
+       299.6875,
+       981.359375,
+       464
+      ],
+      [
+       152,
+       299.6875,
+       166.90625,
+       464
+      ],
+      [
+       318.90625,
+       299.6875,
+       165.234375,
+       464
+      ],
+      [
+       484.140625,
+       299.6875,
+       241.390625,
+       464
+      ],
+      [
+       725.53125,
+       299.6875,
+       143.640625,
+       464
+      ],
+      [
+       869.171875,
+       299.6875,
+       129.8125,
+       464
+      ],
+      [
+       998.984375,
+       299.6875,
+       134.375,
+       464
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 304,
+     "peso": 400
+    },
+    {
+     "sel": ".lema",
+     "texto": "Fuego lento, pasta hecha a man",
+     "rects": [
+      [
+       152,
+       741.09375,
+       441.4375,
+       33
+      ],
+      [
+       152,
+       777.046875,
+       276.765625,
+       33
+      ]
+     ],
+     "color": [
+      216,
+      204,
+      183
+     ],
+     "alfa": 1,
+     "px": 24.8,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Reservar mesa",
+     "rects": [
+      [
+       988.171875,
+       723.484375,
+       117.96875,
+       22
+      ]
+     ],
+     "color": [
+      11,
+      20,
+      28
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .btn",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       1171.328125,
+       723.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    },
+    {
+     "sel": ".hero .estado",
+     "texto": "Cerrado · abre mañana a las 12",
+     "rects": [
+      [
+       1051.8125,
+       785.28125,
+       220.1875,
+       18.71875
+      ],
+      [
+       1051.8125,
+       784.28125,
+       220.1875,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14.4,
+     "peso": 400
+    },
+    {
+     "sel": ".pausa",
+     "texto": "Reanudar animación",
+     "rects": [
+      [
+       1115.375,
+       83.59375,
+       16,
+       16
+      ],
+      [
+       1139.375,
+       80.390625,
+       131.625,
+       22.390625
+      ],
+      [
+       1139.375,
+       81.390625,
+       131.625,
+       19
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 14,
+     "peso": 400
+    },
+    {
+     "sel": ".hero .acciones .btn.suave",
+     "texto": "Ver la carta",
+     "rects": [
+      [
+       1171.328125,
+       723.484375,
+       90.078125,
+       22
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 16,
+     "peso": 700
+    }
+   ]
+  },
+  {
+   "dispositivo": "pc-1440",
+   "etiqueta": "galeria",
+   "imagen": "capturas/contraste_pc-1440_galeria.png",
+   "dpr": 1,
+   "filas": [
+    {
+     "sel": ".galeria figcaption",
+     "texto": "Sala azul",
+     "rects": [
+      [
+       168,
+       450.453125,
+       68.328125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "El rincón rojo",
+     "rects": [
+      [
+       840,
+       742.453125,
+       99.84375,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "La sala roja",
+     "rects": [
+      [
+       168,
+       742.453125,
+       85.453125,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    },
+    {
+     "sel": ".galeria figcaption",
+     "texto": "El reservado",
+     "rects": [
+      [
+       552,
+       742.453125,
+       94.046875,
+       21
+      ]
+     ],
+     "color": [
+      243,
+      233,
+      216
+     ],
+     "alfa": 1,
+     "px": 15.2,
+     "peso": 600
+    }
+   ]
+  }
+ ],
+ "zoom": {
+  "mini-360": {
+   "desborde": 0,
+   "solapes": [],
+   "recortes": []
+  },
+  "pc-1280": {
+   "desborde": 0,
+   "solapes": [],
+   "recortes": []
+  }
+ },
+ "peso": {
+  "iph-390": {
+   "inicial": 300497,
+   "total": 300497,
+   "peticionesIniciales": 10,
+   "peticionesTotales": 10,
+   "porTipo": {
+    ".html": 18516,
+    ".woff2": 91276,
+    ".avif": 190705
+   }
+  },
+  "pc-1440": {
+   "inicial": 430872,
+   "total": 430872,
+   "peticionesIniciales": 12,
+   "peticionesTotales": 12,
+   "porTipo": {
+    ".html": 18516,
+    ".woff2": 91276,
+    ".avif": 321080
+   }
+  }
+ }
+}
