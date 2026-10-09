@@ -305,14 +305,17 @@ def ambiente(F, C):
     T = F["textos"]
     figs = []
     # el mosaico de escritorio tiene cuatro huecos (a, b, c y d): con más fotos se solaparían, así que solo lleva las cuatro primeras
-    fotos_galeria = F["galeria"][:4] if (C.get("comp") or {}).get("galeria", "mosaico") == "mosaico" else F["galeria"]
+    mosaico = (C.get("comp") or {}).get("galeria", "mosaico") == "mosaico"
+    fotos_galeria = F["galeria"][:4] if mosaico else F["galeria"]
+    # con menos de cuatro fotos el mosaico cambia de reparto (g1, g2, g3) para no dejar huecos vacios
+    clase_galeria = f"galeria g{len(fotos_galeria)}" if mosaico and len(fotos_galeria) < 4 else "galeria"
     for i, g in enumerate(fotos_galeria):
         clase = "abcd"[i % 4]
         a = C["fotos"][g["foto"]]
         pic = picture_html(a["datos"], F["activos"][g["foto"]]["alt"], "(min-width:900px) 58vw, 78vw").replace("<picture>", f"<picture{paralaje_attr(C, 3)}>", 1)
         figs.append(f'<figure class="{clase} rv" style="--c:{a["color"]};--d:{i * 90}ms"><div class="marco">{pic}</div><figcaption>{e_(g["pie"])}</figcaption></figure>')
     return f'''<section class="ambiente" id="ambiente" aria-labelledby="t-amb"><div class="caja"><h2 id="t-amb" class="rv">{e_(T["ambiente_titulo"])}</h2>{('<p class="amb-texto rv">' + e_(T["ambiente_texto"]) + '</p>') if T.get("ambiente_texto") else ""}
-<div class="galeria" role="group" aria-label="Fotos del local" tabindex="0">{"".join(figs)}</div></div></section>'''
+<div class="{clase_galeria}" role="group" aria-label="Fotos del local" tabindex="0">{"".join(figs)}</div></div></section>'''
 
 
 # ------------------------------------------------------------------ reserva
