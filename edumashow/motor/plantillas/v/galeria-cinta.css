@@ -1,6 +1,6 @@
 /* galería cinta: una tira horizontal de fotos grandes que se desliza, con el pie debajo de cada una */
 .tema-urbano .fotos .caja{grid-template-columns:minmax(0,1fr);gap:2rem}
-body[data-galeria="cinta"] .galeria{display:flex;grid-template-areas:none;gap:1rem;width:auto;max-width:none;margin:2.4rem calc(var(--pad) * -1) 0;padding:.4rem var(--pad) 1.2rem;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+body[data-galeria="cinta"] .galeria{display:flex;grid-template-areas:none;gap:1rem;width:auto;max-width:none;margin:2.4rem calc(var(--pad) * -1) 0;padding:.4rem var(--pad) 1.2rem;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 body[data-galeria="cinta"] .galeria figure{position:relative;flex:0 0 min(78vw,28rem);max-width:none;grid-area:auto;scroll-snap-align:start;overflow:visible;border:0;border-radius:0;background:none;rotate:0deg}
 body[data-galeria="cinta"] .galeria figure .marco{position:relative;display:block;overflow:hidden;border-radius:var(--r-tarjeta);background:var(--c,#222)}
 body[data-galeria="cinta"] .galeria figure .marco::before{content:"";display:block;padding-top:125%}

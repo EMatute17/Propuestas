@@ -32,12 +32,13 @@
       if (vertical()) { tabs.style.setProperty('--ind-y', b.offsetTop + 'px'); tabs.style.setProperty('--ind-h', b.offsetHeight + 'px'); }
       else { tabs.style.setProperty('--ind-x', b.offsetLeft + 'px'); tabs.style.setProperty('--ind-w', b.offsetWidth + 'px'); }
     };
-    var activar = function (i, foco) {
+    var activar = function (i, foco, inicial) {
       actual = i;
       bts.forEach(function (b, k) { b.setAttribute('aria-selected', k === i ? 'true' : 'false'); b.tabIndex = k === i ? 0 : -1; });
       pans.forEach(function (p, k) { p.classList.toggle('activo', k === i); });
       indicador();
-      if (!vertical()) { var b = bts[i]; tabs.scrollTo ? tabs.scrollTo({ left: b.offsetLeft - (tabs.clientWidth - b.offsetWidth) / 2, behavior: E.reduce ? 'auto' : 'smooth' }) : 0; }
+      /* al cargar no se desplaza la tira: un desplazamiento suave al cargar hace que el navegador deje de medir el pintado del contenido principal (LCP) */
+      if (!inicial && !vertical()) { var b = bts[i]; tabs.scrollTo ? tabs.scrollTo({ left: b.offsetLeft - (tabs.clientWidth - b.offsetWidth) / 2, behavior: E.reduce ? 'auto' : 'smooth' }) : 0; }
       if (foco) bts[i].focus();
     };
     bts.forEach(function (b, i) {
@@ -50,7 +51,7 @@
         if (j >= 0) { e.preventDefault(); activar(j, true); }
       });
     });
-    activar(0, false);
+    activar(0, false, true);
     window.addEventListener('resize', indicador, { passive: true });
     if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(indicador);
   }

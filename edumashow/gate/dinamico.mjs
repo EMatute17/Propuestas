@@ -593,9 +593,14 @@ if (ficha.reservas) {
   await pag.fill('#r-nombre', 'Ana Pérez'); await pag.selectOption('[name=personas]', '4'); await pag.fill('#r-nota', 'Cumpleaños, una silla para bebé');
   await pag.click('#form-reserva button[type=submit]'); await pag.waitForTimeout(400);
   const envio = await pag.evaluate(() => window.__wa.slice());
-  // día cerrado (lunes): sin horas y con aviso
-  await pag.fill('[name=fecha]', '2026-10-12'); await pag.dispatchEvent('[name=fecha]', 'change'); await pag.waitForTimeout(250);
-  const cerrado = await pag.evaluate(() => ({ deshabilitado: document.querySelector('[name=hora]').disabled, aviso: (document.querySelector('[data-r-mensaje]') || {}).textContent }));
+  // día cerrado: el primer día de la semana sin horario en la ficha (sin horas y con aviso). Si el restaurante abre todos los días no hay nada que probar
+  const FECHAS_SEMANA = { lun: '2026-10-12', mar: '2026-10-13', mie: '2026-10-14', jue: '2026-10-15', vie: '2026-10-16', sab: '2026-10-17', dom: '2026-10-18' };
+  const diaCerrado = Object.keys(FECHAS_SEMANA).find((k) => !((ficha.horario || {})[k] || []).length);
+  let cerrado = null;
+  if (diaCerrado) {
+    await pag.fill('[name=fecha]', FECHAS_SEMANA[diaCerrado]); await pag.dispatchEvent('[name=fecha]', 'change'); await pag.waitForTimeout(250);
+    cerrado = await pag.evaluate(() => ({ deshabilitado: document.querySelector('[name=hora]').disabled, aviso: (document.querySelector('[data-r-mensaje]') || {}).textContent }));
+  }
   F.reserva = { antes, sinNombre, envio, cerrado };
   await ctx.close();
 }

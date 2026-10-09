@@ -432,9 +432,10 @@ def verificar(ruta_ficha, sitio, rapido=False, con_navegador=True, con_rendimien
             for esperado in ("Ana Pérez", "4 personas", "20:00", "Cumpleaños, una silla para bebé", "Hola " + ficha["negocio"]["nombre"]):
                 if esperado not in tx: fl.append(f"el mensaje de WhatsApp no contiene: {esperado}")
             if ejemplo and "(Prueba de la muestra de Edumashow" not in tx: fl.append("el mensaje de la muestra no se identifica como prueba")
-            if not (rv.get("cerrado", {}).get("deshabilitado") and "no hay mesas" in (rv.get("cerrado", {}).get("aviso") or "")): fl.append("un día cerrado debía deshabilitar la hora y avisar")
+            cr = rv.get("cerrado")   # None si el restaurante abre todos los días: no hay día cerrado que probar
+            if cr is not None and not (cr.get("deshabilitado") and "no hay mesas" in (cr.get("aviso") or "")): fl.append("un día cerrado debía deshabilitar la hora y avisar")
             if min(a.get("horas", ["99:99"]), default="99:99") <= "16:00" and a.get("fecha") == "2026-10-07": fl.append("se ofrecen horas pasadas o sin antelacion")
-            I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y día cerrado", fl)
+            I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "PASS" if not fl else "FAIL", "5 campos; se probó envío vacío, envío completo y " + ("día cerrado" if cr is not None else "(la ficha abre todos los días: no hay día cerrado que probar)"), fl)
         else:
             I.add("G-FORMULARIO", "Reserva: valores por defecto, validación, mensaje y destino de WhatsApp", ["R-SIG-03", "R-SIG-04", "R-DAT-03"], "defecto", "NA", "no aplica: la ficha no tiene reservas y su acción principal es llamar")
         pe, dl, ch, ind = Fn.get("pestanas"), Fn.get("dialogo", {}), Fn.get("filtros"), Fn.get("indice")

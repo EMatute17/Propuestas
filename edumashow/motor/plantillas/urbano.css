@@ -157,7 +157,7 @@ html{scroll-padding-top:4.75rem}
 .nota-precios{max-width:52ch;font-size:1rem;color:var(--texto-suave-papel)}
 /* barra de categorias: pegada arriba mientras se recorre el menu. Sin JavaScript son enlaces; con JavaScript, filtros */
 .chips{position:sticky;top:0;z-index:20;margin-top:1.75rem;padding:.55rem 0;background:var(--tinta);color:var(--crema);--foco-anillo:var(--foco-anillo-claro)}
-.chips ul,.filtros{display:flex;gap:.5rem;margin:-.4rem calc(var(--pad) * -1);padding:.55rem var(--pad);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips ul,.filtros{display:flex;gap:.5rem;margin:-.4rem calc(var(--pad) * -1);padding:.55rem var(--pad);overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .chips ul::-webkit-scrollbar,.filtros::-webkit-scrollbar{display:none}
 .chips li{flex:none;scroll-snap-align:start}
 .chips a,.chip{display:inline-flex;align-items:center;flex:none;min-height:2.75rem;padding:0 1.05rem;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:transparent;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;white-space:nowrap;color:var(--crema);scroll-snap-align:start;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),transform var(--dur) var(--ease)}

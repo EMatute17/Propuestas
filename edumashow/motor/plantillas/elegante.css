@@ -101,7 +101,7 @@
 .aviso-datos{max-width:44ch;margin-top:1rem;font-size:.95rem;color:var(--texto-suave-papel)}
 .sobretitulo{font-size:.875rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--brasa-papel)}
 .carta h2,.ambiente h2,.reserva h2,.visita h2,.cierre-muestra h2{font-family:var(--f-titulo);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
-.tabs{position:relative;display:none;overflow-x:auto;scroll-snap-type:x proximity;margin:1rem calc(var(--pad) * -1) 0;padding:0 var(--pad);border-bottom:1px solid rgba(11,20,28,.2)}
+.tabs{position:relative;display:none;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--pad);margin:1rem calc(var(--pad) * -1) 0;padding:0 var(--pad);border-bottom:1px solid rgba(11,20,28,.2)}
 .js .tabs{display:flex}
 .tabs::-webkit-scrollbar{display:none}
 .tabs{scrollbar-width:none}
@@ -148,7 +148,7 @@
 .ambiente{background:var(--tinta-2);padding:clamp(4.5rem,10vw,9rem) 0;overflow:hidden;overflow:clip}
 .ambiente h2{max-width:14ch}
 .amb-texto{max-width:52ch;margin-top:1rem;color:var(--bruma)}
-.galeria{display:flex;gap:.75rem;margin:2.5rem calc(var(--pad) * -1) 0;padding:0 var(--pad) 1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.galeria{display:flex;gap:.75rem;margin:2.5rem calc(var(--pad) * -1) 0;padding:0 var(--pad) 1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .galeria::-webkit-scrollbar{display:none}
 /* el aro de foco va por dentro: la banda llega de borde a borde y por fuera quedaria recortado */
 .galeria:focus-visible{outline:3px solid var(--foco-anillo);outline-offset:-3px;border-radius:0}
