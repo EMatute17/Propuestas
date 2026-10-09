@@ -51,7 +51,6 @@ def esquema():
                     "suplementos": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["etiqueta", "precio"], "additionalProperties": False,
                                                                              "properties": {"etiqueta": TEXTO, "precio": PRECIO}}},
                 },
-                "oneOf": [{"required": ["precio"], "not": {"required": ["variantes"]}}, {"required": ["variantes"], "not": {"required": ["precio"]}}],
             }},
         },
     }
@@ -83,6 +82,7 @@ def esquema():
             "acciones": {"type": "object", "additionalProperties": False,
                          "properties": {"hero": {"type": "array", "minItems": 1, "maxItems": 2, "items": accion}, "barra": {"type": "array", "minItems": 1, "maxItems": 3, "items": accion}}},
             "moneda": {"type": "string", "enum": sorted(dinero.MONEDAS)},
+            "carta_sin_precios": {"type": "boolean"},   # el restaurante no publica precios: ningun plato lleva precio y la pagina lo dice (textos.carta_nota)
             "horario_estado": {"type": "string", "enum": ["por_confirmar"]},
             "horario_texto": TEXTO,
             "horario": {"type": "object", "additionalProperties": False, "required": ["lun", "mar", "mie", "jue", "vie", "sab", "dom"],

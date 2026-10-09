@@ -19,7 +19,7 @@
   .carta-indice .caja{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:4rem;align-items:start}
   .carta-indice .carta-lado{display:block;position:sticky;top:2rem;align-self:start}
   .carta-indice .indice{position:static;margin:2rem 0 0;padding:0;background:none;border-bottom:0}
-  .carta-indice .indice ol{display:block;overflow:visible;border-left:1px solid rgba(11,20,28,.2)}
+  .carta-indice .indice ol{display:block;overflow-x:hidden;overflow-y:auto;max-height:calc(100vh - 15rem);max-height:calc(100svh - 15rem);scrollbar-width:thin;border-left:1px solid rgba(11,20,28,.2)}   /* con muchas categorias el indice se desplaza dentro de su caja en vez de quedar cortado por abajo */
   .carta-indice .indice li{display:block}
   .carta-indice .indice a{display:flex;min-height:2.9rem;padding:0 1.2rem;border-bottom:0;margin-left:-1px;border-left:3px solid transparent;font-size:1.1rem}
   .carta-indice .indice a[aria-current="true"]{border-left-color:var(--brasa-papel)}

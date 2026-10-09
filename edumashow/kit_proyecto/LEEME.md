@@ -53,7 +53,7 @@ Conclusión honesta: un modelo pequeño escribe fichas válidas y respeta las re
 - Que existan fotos buenas. El kit no las consigue: cada restaurante debe aportar originales de al menos 1600 px (2400 px la de portada, 640 px el logo), sin Instagram ni otras redes (salvo el logo). Sin ellas el validador y el Gate no dejan entregar la web, y no hay excepción. Con fotos de baja calidad solo se puede probar el sistema (opción --fotos-de-prueba), y el resultado queda marcado como no entregable.
 - Que la nota de Google sea cierta: la escribe quien prepara la hoja mirando la ficha de Google Maps, y la web la cita con su enlace y la fecha. Sin dato real o con menos de 4,0 no se muestra.
 - Que el permiso del dueño exista: la muestra es privada para su dueño y el permiso queda pendiente hasta que lo conceda.
-- Variedad infinita. Con el catálogo actual el motor puede dibujar 23.040 composiciones distintas en la familia elegante y 23.040 en la urbana (1.658.880 y 1.658.880 con tipografía y tono de paleta). El Gate exige que cada web difiera al menos 8 puntos de las últimas 12 y que no haya dos huellas iguales. Si una racha de restaurantes muy parecidos agota el catálogo, el Gate lo dice y toca ampliar el catálogo (más portadas, tipografías y paquetes de animación): es trabajo del motor, no del modelo que escribe fichas.
+- Variedad infinita. Con el catálogo actual el motor puede dibujar 30.720 composiciones distintas en la familia elegante y 23.040 en la urbana (2.211.840 y 1.658.880 con tipografía y tono de paleta). El Gate exige que cada web difiera al menos 8 puntos de las últimas 12 y que no haya dos huellas iguales. Si una racha de restaurantes muy parecidos agota el catálogo, el Gate lo dice y toca ampliar el catálogo (más portadas, tipografías y paquetes de animación): es trabajo del motor, no del modelo que escribe fichas.
 
 ## Una excepción a una regla del proyecto
 
@@ -64,7 +64,7 @@ CLAUDE.md dice que el conocimiento vive en edumashow/nucleo y no se pega como te
 Con python3 scripts/kit_proyecto.py. Los textos fijos están en edumashow/kit_proyecto/_fuentes y lo demás (reglas, parejas, opciones del catálogo de diseño, ejemplos, esquema) sale del propio repositorio, así que el kit se regenera cuando cambia el motor.
 
 Archivos del kit:
-- conocimiento/01_esquema_de_la_ficha.md (17 KB): Campo por campo: qué es cada dato de la ficha, cuál es obligatorio y los valores permitidos
+- conocimiento/01_esquema_de_la_ficha.md (18 KB): Campo por campo: qué es cada dato de la ficha, cuál es obligatorio y los valores permitidos
 - conocimiento/02_ejemplo_ficha_urbana.json (9 KB): Ficha completa de un restaurante ficticio URBANO (parrilla de pedido para llevar)
 - conocimiento/03_ejemplo_ficha_elegante.json (6 KB): Ficha completa de un restaurante ficticio ELEGANTE (mantel, reservas)
 - conocimiento/04_reglas_que_aplican.md (13 KB): Las reglas del núcleo que dependen de lo que escribes, con su puesto, su evidencia y qué haces tú
@@ -72,5 +72,5 @@ Archivos del kit:
 - conocimiento/06_juicio_de_antojo.md (3 KB): Cómo juzgar cada foto con los siete criterios (solo URBANO)
 - conocimiento/07_elegir_estilo.md (9 KB): Cómo elegir la personalidad, el perfil del restaurante y qué decide el motor
 - conocimiento/08_hoja_de_entrada.md (6 KB): La plantilla de lo que te pega el usuario, con dos ejemplos y las reglas de las fotos
-- conocimiento/09_checklist_y_errores.md (5 KB): Lista de comprobación antes de responder y los errores más comunes del validador
+- conocimiento/09_checklist_y_errores.md (6 KB): Lista de comprobación antes de responder y los errores más comunes del validador
 - conocimiento/10_ficha.schema.json (23 KB): El esquema de la ficha en JSON Schema (la forma exacta que acepta el validador)

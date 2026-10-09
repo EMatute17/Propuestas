@@ -21,7 +21,7 @@ FAMILIAS = ("elegante", "urbano")
 
 # ------------------------------------------------------------------ opciones por dimensión (la primera de cada familia es la clásica de siempre)
 OPCIONES = {
-    "portada": {"elegante": ["luz_brasas", "marco_editorial", "cortina"], "urbano": ["mural_columnas", "collage_pegatinas", "cartel_rotulo"]},
+    "portada": {"elegante": ["luz_brasas", "marco_editorial", "cortina", "franja"], "urbano": ["mural_columnas", "collage_pegatinas", "cartel_rotulo"]},
     "carta": {"elegante": ["pestanas_lista", "indice_columnas"], "urbano": ["chips_tablero", "lista_cartel"]},
     "galeria": {"elegante": ["mosaico", "cinta", "polaroid", "bento"], "urbano": ["cuadricula_ig", "cinta", "polaroid", "bento"]},
     "ornamento": {"elegante": ["recto", "onda", "diente", "arco", "rasgado"], "urbano": ["recto", "onda", "diente", "arco", "rasgado"]},
@@ -62,6 +62,7 @@ DESCRIPCIONES = {
     ("portada", "luz_brasas"): "foto de portada a pantalla completa, luz de brasa que sigue al puntero y titular que entra letra a letra",
     ("portada", "marco_editorial"): "portada de papel claro, titular por palabras y la foto en un arco con un sello giratorio",
     ("portada", "cortina"): "foto a pantalla completa con marco fino, titular centrado y una cortina que se abre",
+    ("portada", "franja"): "titular a todo el ancho sobre una franja de foto panorámica que se desplaza despacio, con el lema, los botones y el estado debajo",
     ("portada", "mural_columnas"): "mural de fotos en columnas que suben y bajan y titular de cartel",
     ("portada", "collage_pegatinas"): "fotos como polaroids pegadas con cinta que caen sobre un fondo de puntos",
     ("portada", "cartel_rotulo"): "cartel del color de la marca con titular enorme, disco con foto y una cinta que corre",
@@ -99,6 +100,7 @@ A = {
     ("portada", "luz_brasas"): ["brasa", "parrilla", "calido", "romantico", "nocturno", "autor", "premium", "lujo", "elegante"],
     ("portada", "marco_editorial"): ["moderno", "minimal", "luminoso", "fresco", "tradicion", "artesanal", "saludable", "calmado", "cafe", "panaderia", "dulce"],
     ("portada", "cortina"): ["lujo", "premium", "romantico", "nocturno", "autor", "elegante", "minimal", "marino"],
+    ("portada", "franja"): ["nocturno", "premium", "lujo", "autor", "moderno", "potente", "parrilla", "brasa", "social", "contemporaneo"],
     ("portada", "mural_columnas"): ["parrilla", "callejero", "potente", "urbano", "rapido", "llevar", "brasa"],
     ("portada", "collage_pegatinas"): ["joven", "pop", "festivo", "fresco", "familiar", "dulce", "amable", "social"],
     ("portada", "cartel_rotulo"): ["potente", "callejero", "impacto", "economico", "rapido", "cartel", "urbano"],
@@ -182,7 +184,7 @@ def viable(dim, opcion, F):
     n_gal = len(F.get("galeria") or [])
     hero = "hero" in (F.get("activos") or {})
     if dim == "portada":
-        if opcion in ("luz_brasas", "marco_editorial", "cortina"):
+        if opcion in ("luz_brasas", "marco_editorial", "cortina", "franja"):
             return hero
         if opcion in ("mural_columnas", "collage_pegatinas"):
             return n_gal >= 4

@@ -122,6 +122,8 @@ def _controles(F, p, etiqueta):
 
 def opciones(F, C, p, pedir):
     """Lista de opciones de un plato: una fila por precio (una sola si no hay variantes). Con pedir, cada fila lleva su botón Agregar."""
+    if not p.get("variantes") and p.get("precio") is None:   # carta sin precios publicados
+        return ""
     if p.get("variantes"):
         filas = "".join(f'<li class="op" data-op="{e_(p["id"])}~{k}"><span class="eti">{e_(v["etiqueta"])}</span>{_precio(C, v["precio"])}'
                         f'{_controles(F, p, v["etiqueta"]) if pedir else ""}</li>' for k, v in enumerate(p["variantes"]))

@@ -340,6 +340,9 @@
     "VES"
    ]
   },
+  "carta_sin_precios": {
+   "type": "boolean"
+  },
   "horario_estado": {
    "type": "string",
    "enum": [
@@ -710,29 +713,7 @@
           }
          }
         }
-       },
-       "oneOf": [
-        {
-         "required": [
-          "precio"
-         ],
-         "not": {
-          "required": [
-           "variantes"
-          ]
-         }
-        },
-        {
-         "required": [
-          "variantes"
-         ],
-         "not": {
-          "required": [
-           "precio"
-          ]
-         }
-        }
-       ]
+       }
       }
      }
     }
@@ -1110,6 +1091,7 @@
       "cartel_rotulo",
       "collage_pegatinas",
       "cortina",
+      "franja",
       "luz_brasas",
       "marco_editorial",
       "mural_columnas"

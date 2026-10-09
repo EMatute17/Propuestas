@@ -7,8 +7,8 @@
 3. ¿negocio completo (nombre, cocina, ciudad, pais, direccion, zona_horaria, lema, descripcion)? ¿zona_horaria válida? ¿pais de la lista?
 4. ¿telefono con signo más y solo dígitos, whatsapp solo dígitos o null? ¿mapa_consulta con nombre y dirección?
 5. ¿Horario por días en el formato de listas, o horario_estado por_confirmar con horario_texto (solo URBANO)? ¿Sin inventar días?
-6. ¿Cada plato con id único, nombre y precio (número) o variantes, nunca ambos ni ninguno? ¿Los platos sin precio fuera de la carta?
-7. ¿ELEGANTE: todos los platos con descripcion, ningún plato con variantes, activo hero, horario por días, y reservas con contacto.whatsapp si hay reserva?
+6. ¿Cada plato con id único, nombre y precio (número) o variantes, nunca ambos ni ninguno? ¿Los platos sin precio fuera de la carta? Si el restaurante no publica NINGÚN precio: carta_sin_precios en verdadero, ningún plato con precio, textos.carta_nota diciéndolo y sin pedido ni idea.
+7. ¿ELEGANTE: descripcion en cada plato cuando la hoja da algo que contar (y omitida, nunca copiando el nombre, cuando no), ningún plato con variantes, activo hero, horario por días, y reservas con contacto.whatsapp si hay reserva?
 8. ¿URBANO: galería de 6 a 9 fotos, acciones, y los textos obligatorios (incluidos horario_aviso y reparto_texto cuando corresponda)?
 9. ¿Cada foto con archivo, alt concreto y procedencia con permiso? ¿Ninguna foto de Instagram ni de otra red (solo el logo puede venir de una red)? ¿Las de banco libre con autor, licencia y url?
 10. ¿Las fotos llegan a los tamaños pedidos (portada 2400 px, resto 1600 px, logo 640 px)? Si la hoja no da las medidas, anótalo en Por confirmar.
@@ -29,7 +29,8 @@
 - "whatsapp": solo dígitos con el código de país, sin signo.
 - "ids de plato repetidos o no válidos": cada plato necesita un id único con letras, números, guion o guion bajo.
 - "debe tener un precio o variantes con precio": un plato con las dos formas o con ninguna.
-- "la personalidad elegante exige descripción" o "no muestra variantes": ELEGANTE no admite variantes y pide descripción en cada plato.
+- "no muestra variantes": ELEGANTE no admite variantes; usa un precio único por plato.
+- "la carta no publica precios, carta_sin_precios es verdadero": marcaste la carta sin precios pero un plato trae precio, variantes o suplementos. Quítalos, o quita la marca si el restaurante sí publica precios. Con la marca también hacen falta textos.carta_nota y no se admiten pedido ni idea.
 - "la personalidad elegante necesita el horario por días": ELEGANTE no admite horario por confirmar; pide el horario por días al usuario.
 - "textos.xxx": falta un texto obligatorio de la personalidad. Escríbelo (archivo 05).
 - "activos.xxx.archivo (no existe...)": el nombre del archivo no coincide con una foto de la carpeta. Usa los nombres de la hoja de entrada.

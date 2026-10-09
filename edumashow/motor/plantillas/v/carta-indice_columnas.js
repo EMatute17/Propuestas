@@ -12,6 +12,10 @@
     if (on && lista && lista.scrollWidth > lista.clientWidth + 1 && window.getComputedStyle(lista).display === 'flex') {
       lista.scrollTo({ left: on.parentNode.offsetLeft - (lista.clientWidth - on.offsetWidth) / 2, behavior: E.reduce ? 'auto' : 'smooth' });
     }
+    else if (on && lista && lista.scrollHeight > lista.clientHeight + 1) {   /* en escritorio, con muchas categorías, el índice es una columna que se desplaza: la marcada queda a la vista */
+      var rl = lista.getBoundingClientRect(), ra = on.getBoundingClientRect();
+      if (ra.top < rl.top || ra.bottom > rl.bottom) lista.scrollTo({ top: lista.scrollTop + (ra.top - rl.top) - (lista.clientHeight - ra.height) / 2, behavior: E.reduce ? 'auto' : 'smooth' });
+    }
   };
   var io = new IntersectionObserver(function (es) {
     if (Date.now() < fijo) return;   // tras elegir una categoría en el índice, el desplazamiento no cambia la marca

@@ -143,7 +143,10 @@ def validar_ficha(F):
             variantes = p.get("variantes")
             if not p.get("id") or not p.get("nombre"):
                 falta.append(f"carta.{c.get('id')}.{p.get('id')} (id y nombre)")
-            if tiene_precio == bool(variantes):
+            if F.get("carta_sin_precios"):
+                if p.get("precio") is not None or variantes or p.get("suplementos"):
+                    falta.append(f"carta.{c.get('id')}.{p.get('id')} (la carta no publica precios, carta_sin_precios es verdadero: el plato no lleva precio, variantes ni suplementos)")
+            elif tiene_precio == bool(variantes):
                 falta.append(f"carta.{c.get('id')}.{p.get('id')} (debe tener un precio o variantes con precio, no las dos cosas ni ninguna)")
             if variantes:
                 if P is not None and not P["admite_variantes"]:
@@ -155,6 +158,13 @@ def validar_ficha(F):
                 falta.append(f"carta.{c.get('id')}.{p.get('id')} (la personalidad {pers} exige descripción)")
             if p.get("foto") and p["foto"] not in F.get("activos", {}):
                 falta.append(f"activos.{p['foto']}")
+    if F.get("carta_sin_precios"):
+        if not F.get("textos", {}).get("carta_nota"):
+            falta.append("textos.carta_nota (la carta no publica precios y la página tiene que decirlo)")
+        if F.get("pedido"):
+            falta.append("pedido (no se puede armar un pedido con una carta sin precios)")
+        if F.get("idea"):
+            falta.append("idea (la sección regla calcula con los precios y la carta no los tiene)")
     for g in F.get("galeria", []):
         if g.get("foto") not in F.get("activos", {}):
             falta.append(f"activos.{g.get('foto')} (galería)")

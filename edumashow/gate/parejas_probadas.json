@@ -80,6 +80,15 @@
    "veredicto": "APTO"
   }
  },
+ "gloock-worksans": {
+  "elegante": {
+   "fecha": "2026-10-09",
+   "gate": "0.3.0",
+   "modo": "completo (27 dispositivos, Lighthouse), fotos de relleno",
+   "sitio": "cortepuro",
+   "veredicto": "APTO"
+  }
+ },
  "instrument-inter": {
   "elegante": {
    "fecha": "2026-10-08",

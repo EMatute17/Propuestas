@@ -66,11 +66,12 @@ carta = lista de categorías. Cada categoría: id (palabra corta sin tildes, ún
 Cada plato:
 - id (OBLIGATORIO): único en toda la carta; solo letras, números, guion y guion bajo. Convención: categoria-1, categoria-2.
 - nombre (OBLIGATORIO), nombre_en (OPCIONAL, si el restaurante lo da en inglés), lang (OPCIONAL, para nombres en otro idioma, "it").
-- descripcion: OBLIGATORIA en ELEGANTE, de 8 a 18 palabras con los ingredientes y la técnica que da la hoja. Si la hoja no da los ingredientes de un plato, no los deduzcas del nombre: escribe solo lo que el nombre dice con certeza (aunque queden menos de 8 palabras) y anótalo en Por confirmar. OPCIONAL en URBANO.
+- descripcion: en ELEGANTE se escribe siempre que la hoja dé algo que contar, de 8 a 18 palabras con los ingredientes y la técnica. Si la hoja no da los ingredientes de un plato, no los deduzcas del nombre: escribe solo lo que el nombre dice con certeza (aunque queden menos de 8 palabras) y anótalo en Por confirmar. Si ni el nombre dice más (un vino, un whisky, una bebida de marca), omite la descripción: la web muestra solo el nombre. Nunca repitas el nombre como descripción. OPCIONAL en URBANO.
 - Precio, una de dos formas (OBLIGATORIO una):
   - precio: número. Ejemplo: 25 o 9.5. En ELEGANTE solo se admite esta forma.
   - variantes (solo URBANO): [{"etiqueta": "½ lb", "precio": 24000}, {"etiqueta": "1 lb", "precio": 44000}]. Ejemplo: media libra y una libra.
   - Nunca las dos a la vez ni ninguna.
+  - Única excepción: si el restaurante no publica ningún precio, pon en la raíz de la ficha "carta_sin_precios": true. Entonces NINGÚN plato lleva precio, variantes ni suplementos, textos.carta_nota es obligatoria y dice la verdad ("Carta sin precios publicados. Consulta los importes por WhatsApp."), y no se usan pedido ni idea (no hay con qué sumar). Es todo o nada: si unos platos tienen precio y otros no, no uses esta marca y aplica la regla de abajo.
 - suplementos (OPCIONAL, URBANO con pedido): extras con precio. [{"etiqueta": "Con tocino", "precio": 4000}].
 - foto (OPCIONAL): clave de un activo, para platos con foto propia.
 - medida (OPCIONAL): número (libras, piezas) solo si la ficha usa la sección regla (ver idea).

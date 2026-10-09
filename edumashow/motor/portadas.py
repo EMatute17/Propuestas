@@ -72,6 +72,27 @@ def portada_cortina(F, C):
 </header>'''
 
 
+# ------------------------------------------------------------------ elegante: franja
+def portada_franja(F, C):
+    """Titular a todo el ancho sobre una franja de foto panoramica que se desplaza despacio; debajo, el lema, los botones y el estado.
+    En el movil la franja baja tras los botones, para que el titular y la accion principal queden en la primera pantalla."""
+    N = F["negocio"]
+    nombre = N["nombre"]
+    letras, mas_larga = letras_titular(nombre)
+    pic, foco, lqip = hero_picture(C, paralaje_attr(C, 4))
+    return f'''<header class="hero hero-franja" id="inicio" style="--c:{mas_larga};--ct:{len(nombre)};--ln:{len(nombre.split())};--foco:{foco}">
+<div class="hero-fondo" aria-hidden="true">{luz_html(C)}<div class="grano"></div>{particulas_html(C)}</div>
+<div class="hero-barra">{marca_elegante(F, C)}<div class="barra-der">{nav_elegante(F)}{_pausa()}</div></div>
+<div class="franja-cuerpo">
+<p class="franja-sobre"><span>{e_(N["cocina"])}</span><i aria-hidden="true"></i><span>{e_(N["ciudad"])}</span></p>
+<h1><span class="sr-only">{e_(nombre)}</span><span aria-hidden="true">{letras}</span></h1>
+<div class="franja-foto" aria-hidden="true" style="--lqip:url({lqip})">{pic}<div class="velo"></div></div>
+<div class="franja-pie"><p class="lema">{e_(N["lema"])}{lema_en_html(N)}</p>
+<div class="franja-acc"><div class="acciones">{_botones(F, C)}</div>
+{estado_y_valoracion(F, C, '<p class="estado" data-open><span data-open-text>Ver horario</span></p>')}{hero_pie_html(F)}</div></div>
+</div></header>'''
+
+
 # ------------------------------------------------------------------ urbano: collage_pegatinas
 def _marca_urbana(F, C):
     nombre = F["negocio"]["nombre"]
@@ -127,5 +148,5 @@ def portada_cartel(F, C):
 </header>'''
 
 
-ELEGANTE = {"marco_editorial": portada_marco, "cortina": portada_cortina}
+ELEGANTE = {"marco_editorial": portada_marco, "cortina": portada_cortina, "franja": portada_franja}
 URBANO = {"collage_pegatinas": portada_collage, "cartel_rotulo": portada_cartel}

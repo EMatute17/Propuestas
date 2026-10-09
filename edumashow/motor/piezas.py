@@ -249,8 +249,12 @@ def idea(F, C):
 
 # ------------------------------------------------------------------ carta
 def _plato(F, C, p):
-    precio = C["importe"](p["precio"])
+    precio = C["importe"](p["precio"]) if p.get("precio") is not None else None   # una carta sin precios publicados no los lleva
     firma = '<span class="firma">de la casa</span>' if p.get("firma") else ""
+    # la descripcion que repite el nombre (una carta de bebidas sin mas texto) no se pone dos veces
+    desc = p.get("descripcion") or ""
+    if _plano(desc) == _plano(p["nombre"]):
+        desc = ""
     foto_html, vista, clase = "", "", ""
     if p.get("foto"):
         a = C["fotos"][p["foto"]]
@@ -259,8 +263,9 @@ def _plato(F, C, p):
         vista = f' data-vista="{a["datos"]["variantes"]["webp"][-1][0]}"'
         clase = " con-foto"
     return (f'<li class="plato{clase}" data-item="{e_(p["id"])}"{vista}>{foto_html}<div class="plato-cuerpo">'
-            f'<div class="fila"><h3 class="nom">{e_(p["nombre"])}{firma}</h3><span class="puntos" aria-hidden="true"></span>'
-            f'<data class="pre" value="{p["precio"]}">{e_(precio)}</data></div><p class="des">{e_(p["descripcion"])}</p></div></li>')
+            f'<div class="fila"><h3 class="nom">{e_(p["nombre"])}{firma}</h3>'
+            + ('<span class="puntos" aria-hidden="true"></span>' + f'<data class="pre" value="{p["precio"]}">{e_(precio)}</data>' if precio is not None else "")
+            + '</div>' + (f'<p class="des">{e_(desc)}</p>' if desc else "") + '</div></li>')
 
 
 def carta(F, C):
@@ -463,6 +468,7 @@ PERSONALIDAD = {
     "js_extra": JS_EXTRA,
     "requiere_hero": True,
     "admite_variantes": False,
+    "descripcion_opcional": True,
     "mide_apertura": True,
     "textos": ["carta_titulo", "carta_sobretitulo", "ambiente_titulo", "reserva_titulo", "reserva_texto", "visita_titulo"],
 }

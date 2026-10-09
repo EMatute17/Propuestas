@@ -17,7 +17,7 @@ Escribe perfil con lo que dice la hoja: servicio (mesa, barra, llevar, reparto),
 ## Lo que decide el motor (no lo escribes)
 
 Portada:
-- ELEGANTE: luz_brasas (foto de portada a pantalla completa, luz de brasa que sigue al puntero y titular que entra letra a letra); marco_editorial (portada de papel claro, titular por palabras y la foto en un arco con un sello giratorio); cortina (foto a pantalla completa con marco fino, titular centrado y una cortina que se abre).
+- ELEGANTE: luz_brasas (foto de portada a pantalla completa, luz de brasa que sigue al puntero y titular que entra letra a letra); marco_editorial (portada de papel claro, titular por palabras y la foto en un arco con un sello giratorio); cortina (foto a pantalla completa con marco fino, titular centrado y una cortina que se abre); franja (titular a todo el ancho sobre una franja de foto panorámica que se desplaza despacio, con el lema, los botones y el estado debajo).
 - URBANO: mural_columnas (mural de fotos en columnas que suben y bajan y titular de cartel); collage_pegatinas (fotos como polaroids pegadas con cinta que caen sobre un fondo de puntos); cartel_rotulo (cartel del color de la marca con titular enorme, disco con foto y una cinta que corre).
 Carta:
 - ELEGANTE: pestanas_lista (pestañas por categoría y lista con puntos guía y fotos pequeñas); indice_columnas (todas las categorías seguidas, con un índice que marca dónde se está leyendo).
